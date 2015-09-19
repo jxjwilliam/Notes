@@ -1,0 +1,286 @@
+{
+	"auto_complete":
+	{
+		"selected_items":
+		[
+			[
+				"const",
+				"constructor	keyword"
+			]
+		]
+	},
+	"buffers":
+	[
+		{
+			"file": "2015/09-12.txt",
+			"settings":
+			{
+				"buffer_size": 576,
+				"line_ending": "Unix"
+			}
+		}
+	],
+	"build_system": "",
+	"build_system_choices":
+	[
+	],
+	"build_varint": "",
+	"command_palette":
+	{
+		"height": 147.0,
+		"last_filter": "",
+		"selected_items":
+		[
+			[
+				"install",
+				"Package Control: Install Package"
+			],
+			[
+				"install ",
+				"Package Control: Install Package"
+			],
+			[
+				"git",
+				"Git: Init"
+			],
+			[
+				"insta",
+				"Indentation: Convert to Spaces"
+			]
+		],
+		"width": 467.0
+	},
+	"console":
+	{
+		"height": 126.0,
+		"history":
+		[
+			"import urllib.request,os,hashlib; h = 'eb2297e1a458f27d836c04bb0cbaf282' + 'd0e7a3098092775ccb37ca9d6b2e4b7d'; pf = 'Package Control.sublime-package'; ipp = sublime.installed_packages_path(); urllib.request.install_opener( urllib.request.build_opener( urllib.request.ProxyHandler()) ); by = urllib.request.urlopen( 'http://packagecontrol.io/' + pf.replace(' ', '%20')).read(); dh = hashlib.sha256(by).hexdigest(); print('Error validating download (got %s instead of %s), please try manual install' % (dh, h)) if dh != h else open(os.path.join( ipp, pf), 'wb' ).write(by)"
+		]
+	},
+	"distraction_free":
+	{
+		"menu_visible": true,
+		"show_minimap": false,
+		"show_open_files": false,
+		"show_tabs": false,
+		"side_bar_visible": false,
+		"status_bar_visible": false
+	},
+	"expanded_folders":
+	[
+		"/Users/user/Notes",
+		"/Users/user/Notes/2015"
+	],
+	"file_history":
+	[
+		"/Users/user/Notes/typescript/Person.ts",
+		"/Users/user/Notes/typescript/test.ts",
+		"/Users/user/Notes/typescript/test.js",
+		"/Users/user/Notes/Notes.sublime-project",
+		"/Users/user/Notes/2015/08-12.txt",
+		"/Users/user/Notes/javascript/js-call.js",
+		"/Users/user/Notes/2015/08-03.txt",
+		"/Users/user/Notes/javascript/angular-extend.js",
+		"/Users/user/Notes/2015/07-16.txt",
+		"/Users/user/Notes/2015/08-06.txt",
+		"/Users/user/Notes/2014/git.txt",
+		"/Users/user/Notes/2015/07-18.txt",
+		"/Users/user/Notes/2014/2014-04-18.txt",
+		"/Users/user/Notes/css/collection.css",
+		"/Users/user/Notes/samples/directives-checklist.js",
+		"/Users/user/Notes/jsfiddle/form-ngmodel-validator.html",
+		"/Users/user/Notes/plunkr/bindonce.html",
+		"/Users/user/Notes/jsbin/bindonce.html",
+		"/Users/user/Notes/plunkr/contactCard.html",
+		"/Users/user/Notes/jsfiddle/jsfiddle-template.html",
+		"/Users/user/Notes/jsfiddle/bind-apply.html",
+		"/Users/user/Notes/jsfiddle/jsfillde-template.html",
+		"/Users/user/Notes/jsfiddle/AngularJS issue 1404.html",
+		"/Users/user/Notes/jsfiddle/angular form validation ",
+		"/Users/user/Notes/jsfiddle/AngularJS Debounce Service.html",
+		"/Users/user/Notes/jsfiddle/decorator.html",
+		"/Users/user/Notes/jsfiddle/directive-formvalidation.html",
+		"/Users/user/Notes/jsfiddle/js-call.js",
+		"/Users/user/Notes/jsbin/AngularJS issue 1404.html",
+		"/Users/user/Notes/jsbin/direcitves-product.html",
+		"/Users/user/Notes/jsbin/parse-compile-interpolate.html",
+		"/Users/user/Notes/jsfiddle/directive-parent-child.html",
+		"/Users/user/Notes/jsfiddle/parse-compile-interpolate.html",
+		"/Users/user/Notes/jsfiddle/direcitves-product.html",
+		"/Users/user/Notes/jsfiddle/form-validator.html",
+		"/Users/user/Notes/jsfiddle/directive-amount.html",
+		"/Users/user/Notes/jsfiddle/directive-debug.html"
+	],
+	"find":
+	{
+		"height": 23.0
+	},
+	"find_in_files":
+	{
+		"height": 93.0,
+		"where_history":
+		[
+			""
+		]
+	},
+	"find_state":
+	{
+		"case_sensitive": false,
+		"find_history":
+		[
+			"this",
+			"constructor",
+			"Object.create(Shape.prototype);",
+			"apply",
+			"ng-app",
+			"filter_fun",
+			"myapp",
+			"directive-debug.html"
+		],
+		"highlight": true,
+		"in_selection": false,
+		"preserve_case": false,
+		"regex": false,
+		"replace_history":
+		[
+			"jsbin"
+		],
+		"reverse": false,
+		"show_context": true,
+		"use_buffer2": true,
+		"whole_word": false,
+		"wrap": true
+	},
+	"groups":
+	[
+		{
+			"selected": 0,
+			"sheets":
+			[
+				{
+					"buffer": 0,
+					"file": "2015/09-12.txt",
+					"semi_transient": true,
+					"settings":
+					{
+						"buffer_size": 576,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								0,
+								0
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Text/Plain text.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 0,
+					"type": "text"
+				}
+			]
+		}
+	],
+	"incremental_find":
+	{
+		"height": 23.0
+	},
+	"input":
+	{
+		"height": 31.0
+	},
+	"layout":
+	{
+		"cells":
+		[
+			[
+				0,
+				0,
+				1,
+				1
+			]
+		],
+		"cols":
+		[
+			0.0,
+			1.0
+		],
+		"rows":
+		[
+			0.0,
+			1.0
+		]
+	},
+	"menu_visible": true,
+	"output.doc":
+	{
+		"height": 0.0
+	},
+	"output.find_results":
+	{
+		"height": 0.0
+	},
+	"pinned_build_system": "",
+	"project": "Notes.sublime-project",
+	"replace":
+	{
+		"height": 42.0
+	},
+	"save_all_on_build": true,
+	"select_file":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+			[
+				"git",
+				"2014/git.txt"
+			],
+			[
+				"",
+				"2014/2014-04-18.txt"
+			]
+		],
+		"width": 0.0
+	},
+	"select_project":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"select_symbol":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"selected_group": 0,
+	"settings":
+	{
+	},
+	"show_minimap": true,
+	"show_open_files": false,
+	"show_tabs": true,
+	"side_bar_visible": true,
+	"side_bar_width": 210.0,
+	"status_bar_visible": true,
+	"template_settings":
+	{
+	}
+}

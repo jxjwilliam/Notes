@@ -1,0 +1,71 @@
+
+------@ grunt-init-gruntfile
+
+// npm install grunt-init
+npm install -g grunt-init
+
+//Installing templates
+git clone https://github.com/gruntjs/grunt-init-gruntfile.git ~/.grunt-init/gruntfile
+
+// create a Gruntfile.json using default prompts
+grunt-init gruntfile
+
+```
+------@ git
+Delete your branch in Github, run: git push origin :my-fix-branch
+Check out the master branch, run: git checkout master
+Delete your local branch, run: git branch -D my-fix-branch
+Update your master with the latest upstream version, run: git pull --ff upstream master
+
+git rebase -i HEAD^
+git rebase -i HEAD~10
+git reset --hard HEAD^
+
+
+gitk
+git clean -f -n
+
+//git fetch only fetches changes from remote repository, but not merge your local master branch 
+//with remote. You can always git merge or git rebase to origin/master, or do it with just one command: 
+git pull
+git pull --rebase
+
+//If you don't care about any local changes and just want a copy from the repo:
+git reset HEAD
+git clean -f
+git pull
+
+git reset --soft HEAD^     # use --soft if you want to keep your changes
+git reset --hard HEAD^     # use --hard if you don't care about keeping the changes you made
+
+//http://stackoverflow.com/questions/17097472/difference-between-git-reset-commands
+HEAD^ and HEAD~1 refer to the same commit.
+^ refers to the first parent of the commit. ~n refers to the n:th ancestor. So ^^ (parent-of-parent) is equivalent to ~2.
+
+
+git remote -v
+git push origin -f
+
+------@
+
+sudo npm install -g meanio
+mean -h
+mean init myapp
+cd myapp && npm install
+grunt
+
+mean package mymodule
+cd mymodule
+mean list && cd ..
+grunt
+mean install mean-tokens
+mean list
+grunt
+
+------@ facebook account
+745638552168686, df4aa6d144501b6a364d13a95231a4ef
+developers.facebook.com User jaiten.gill@gmail.com Pass inzite2014
+
+------@ google account
+
+

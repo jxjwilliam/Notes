@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.0/angular.min.js"></script>
+    <meta charset="utf-8">
+    <title>jsfiddle</title>
+</head>
+<body ng-app='jsfiddle'>
+    <div ng-controller="MainController">
+        <clickable foo="foo"></clickable>
+        <button ng-click="update()">Update with implicit $apply()</button> <span ng-show="false" ng-model="val">{{val}}</span>
+
+    </div>
+    <script>
+       'use strict';
+    var app = angular.module('app', []);
+
+    app.directive('clickable', function() {
+        return {
+            restrict: "E",
+            scope: {
+                foo: '='
+            },
+            template: '<button>{{foo}}</button>',
+            link: function(scope, element, attrs) {
+                element.bind('click', function() {
+                    scope.$apply(function() {
+                        scope.foo++;
+                    });
+                });
+            }
+        };
+    });
+
+    app.controller('MainController', function($scope) {
+        $scope.foo = 0;
+        $scope.val = '';
+
+        $scope.update = function() {
+            $scope.val = "garbage123";
+            $scope.show = true;
+        };
+    });
+    </script>
+</body>
+</html>

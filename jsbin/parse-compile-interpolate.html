@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+<head>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.0/angular.min.js"></script>
+  <meta charset="utf-8">
+  <title>JS Bin</title>
+</head>
+<body>
+<div ng-app="jsbin">
+  <div ng-controller="picCtrl">
+    <div>Parse: {{parse}} - {{parse_assign}}</div>
+    <div>Interpolate: {{interpolate}}</div>
+    <div>Compible: {{$compile}}</div>
+  </div>
+  <div ng-controller="Ctrl">
+    <ul>
+      <li ng-repeat="num in [1,2,3,4,5,6,7,8,9,10] | filter_num">{{num}}</li>
+    </ul>
+    <div ng-repeat="item in items | filter:filter_fun(criteria)">{{ item }}</div>
+  </div>
+</div>
+<script>
+var app = angular.module('jsbin', []);
+
+app.controller('picCtril', 
+               ['$scope', '$parse', '$interpolate', '$compile',
+                function($scope, $parse, $interpolate, $compile) {
+                  $scope.name = 'william jiang';
+
+                  //$parse
+                  $scope.parse = $parse('name')($scope);
+                  $parse('name').assign($scope,'other name bill');
+                  $scope.parse_assign = $parse('name')($scope);
+
+                  $scope.button_text = 'click me';
+                  //$interpolate
+                  var html = '<div ng-click="clickme();">{{button_text}}</div>';
+                  $scope.interpolate = $interpolate(html)($scope);
+
+                  //$compile
+                  $scope.compile = $compile(html)($scope);
+                  //its best to use compile only in directives
+                }]);
+
+app.controller('Ctrl', ['$scope', function ($scope) {
+    $scope.items = [{
+        name: 'Bob'
+    }, {
+        name: 'Alice'
+    }];
+    $scope.criteria = {
+        name: 'Bob'
+    };
+    $scope.filter_fun = function (where) {
+        return function (item) {
+            return item.name === where.name;
+        };
+    };
+}]);
+
+app.filter('filter_num', function () {
+    return function (num) {
+        var out = [];
+        for (var i = 0; i < num.length; i++) {
+            if (num[i] % 2 === 0) out.push(num[i]);
+        }
+        return out;
+    };
+});
+</script
+</body>
+</html>

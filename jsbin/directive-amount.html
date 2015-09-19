@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.5/css/bootstrap.css"  rel="stylesheet">
+	<title>Angular JS</title>
+</head>
+<body ng-app="jsbin" class="well">
+
+	<div ng-init="amount=10"></div>
+
+	<bank ng-model="amount"></bank>
+	<div><mark>{{ amount | currency }}</mark></div>
+
+	<script src="//cdnjs.cloudflare.com/ajax/libs/angular.js/1.3.8/angular.js"></script>
+	<script>
+		(function() {
+			angular.module('jsbin', [])
+			.directive('bank', function() {
+				return {
+					restrict: 'E',
+					template: '<button class="btn btn-default" type="button">Click to add $10</button>',
+					require: 'ngModel',
+					link: function(scope, element, attrs, ngModelCtrl) {
+
+						element.on('click', function() {
+							ngModelCtrl.$setViewValue(ngModelCtrl.$viewValue + 10);
+
+//scope.$apply();
+});
+					}
+				};
+			});
+
+		}());
+	</body>
+	</html>

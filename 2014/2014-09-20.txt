@@ -1,0 +1,190 @@
+
+db.users.find({ '$and': [ { email: 'test1@abc.com' }, { _id: { '$ne': ObjectId("5425984f0ff629ec0a280d0a") } } ] }) 
+
+db.users.insert({ __v: 0, roles: [ 'authenticated' ], provider: 'local', updated: new Date("Fri, 26 Sep 2014 16:46:07 GMT"), _id: ObjectId("5425984f0ff629ec0a280d0a"), lastname: 'last1', firstname: 'first1', salt: 'T7WdH02FoZjMhHYqljpmTg==', hashed_password: '3q3UIgMxkiWUHtd6qw7IO4P7oiQaMS2w/4v09gCXsvDeOoecweR6rJrEyZzws7q1uVy+RbNUjJIbTE1w6EZ48g==', email: 'test1@abc.com', name: 'test1@abc.com' }) {} 
+
+db.users.getIndexes();
+db.users.dropIndexs();
+> db.users.getIndexes()
+[
+        {
+                "v" : 1,
+                "key" : {
+                        "_id" : 1
+                },
+                "ns" : "inzite-dev.users",
+                "name" : "_id_"
+        }
+]
+
+---------------------------------------------------------------
+
+
+http://localhost:3000/profile/541fd6da2f41cc1025a2343c
+
+williamjxj@hotmail.com
+---------------------------------------------------------------
+{ 
+  provider: 'linkedin',
+  id: 'MvfdMkmR6c',
+  displayName: 'William Jiang',
+  name: { familyName: 'Jiang', givenName: 'William' },
+  _raw: '{\n  "firstName": "William",\n  "id": "MvfdMkmR6c",\n  "lastName": "Jiang"\n}',
+  _json: { firstName: 'William', id: 'MvfdMkmR6c', lastName: 'Jiang' } } function verified(err, user, info) {
+          if (err) { return self.error(err); }
+          if (!user) { return self.fail(info); }
+          self.success(user, info);
+}
+
+		
+691ca72d-cc5d-4af6-8785-6b1cc36f42f8 4897fbce-f049-4765-b6c3-4e8fde811dfe { 
+  provider: 'linkedin',
+  id: 'MvfdMkmR6c',
+  displayName: 'William Jiang',
+  name: { familyName: 'Jiang', givenName: 'William' },
+  _raw: '{\n  "firstName": "William",\n  "id": "MvfdMkmR6c",\n  "lastName": "Jiang"\n}',
+  _json: { firstName: 'William', id: 'MvfdMkmR6c', lastName: 'Jiang' } } function verified(err, user, info) {
+          if (err) { return self.error(err); }
+          if (!user) { return self.fail(info); }
+          self.success(user, info);
+        }		
+		
+var ObjectId = require('mongoose').Types.ObjectId;
+Profile.get({user: new ObjectId($scope.global.user._id})
+
+db.profiles.find({user: ObjectId("541e4b73b074ba201cf1007a")})
+-----------------------------------------------------------
+User Signup 
+ ? Step 1
+ ? Asks them to Sign-up with Facebook, Google or LinkedIn or can Create a local account
+ ? If Local Signup asks for
+ ? First Name, Last Name.
+ ? Email address
+ ? Password & Confirm Password * should be completely hashed
+ ? On Sign in sends verification email only if local signup was done
+ ? Displays message email sent please verify to activate 
+ ? Email Includes short message with link to verify email.
+ ? When link clicked if not signed in requires them to sign in then verifies
+ ? If already signed in when clicked redirects to User¡¯s Profile which is step 2
+ ? If social network sign up
+ ? Gets {First Name, Last Name, Email, Picture} then redirects to User Profile no verification required
+ ? Error Handling
+ ? Password for local signup must be at least 6 characters
+ ? If email for local or social signup exists says account already exists
+ ? Email Validation 
+ ? First Name, Last Name can¡¯t be numbers on local signup
+ ? Step 2
+ ? Redirects to user profile for setup
+
+User Sign in completed
+ ? Can sign in with Google, Facebook & LinkedIn Auth & Local Sign in
+ ? Email & Password fields required (for local sign in)
+ ? Once sign in successful redirects them to the Discovery Page
+ ? Forgot Password 
+ ? Asks for email then sends password reset link to email.
+ ? Email contains link and once clicked generates token for reset which expires in 24hrs
+ ? Link clicked asks for New Password and Confirm Password (must be 6 characters)
+ ? Once Submitted signs them in how it would be normally
+
+'
+User Profiles in progress some code ready
+ ? Profile UI displayed and can fill in information
+ ? Information they can edit on page and is displayed includes { Bio, Upload Profile Picture, Headline, Jobs, Education, Industry, Location}
+ ? Connect with Linkedln button to pre-fill information listed above, want r_fullprofile permissions on LinkedIn
+ ? Button to save changes on profile once edited
+ ? Connect with Twitter button once connected gets twitter feed and displays on profile
+ ? Users can post updates to there profile 
+ ? Text-box to write and on enter adds update to there profile maximum 1000 characters.
+ ? Basic Information Modify
+ ? Can change email address no verification required
+ ? Modify password have to enter old password then new password twice
+ ? Modify First Name & Last Name
+ ? timezone can save so it¡¯s pre filled on booking
+ ? Apply to become an expert button in settings
+ ? On Click redirects to expert signup
+ ? Please note everyone is a user but under each user they can become an expert and an additional table is added if they want to become an expert
+
+
+   <a #!/
+Expert Signup 
+ ? Step 1
+ ? Asks them to Create a new account or Sign in with existing INZITE account
+ ? if creating a new account 
+ ? Asks for { First Name, Last Name, Email, Password, Confirm Password }
+ ? Option to sign up with Facebook, Google & Linkedin
+ ? On submit if local signup verification email like user signup sent once verified redirects to step 2
+ ? On submit if social network signup redirects to step 2 no verification required
+ ? Note* Is a User now once step two is complete expert value added to user in database
+ ? Signing in with existing accounts (Local Signup, Facebook, Google, Linkedln) skips to step 2
+ ? If clicked from settings tab in user profile automatically skips to step two
+ ? Step 2
+ ? Requires connect with Linkedln button (gets full access including first name, last name, industry,headline,jobs, educations, patents, twitter account, location, awards)
+ ? LinkedIn Connect will try to pre fill as much of the experts application
+ ? Asks Expert for the followi]ng details { industry,headline,jobs, educations, patents, twitter account, location, awards, additional information, picture.,Types of things they can help you, timezone they are in.} status automatically marked as in review
+ ? Category they can help you with
+ ? Asks expert for phone number once entered click verify
+ ? Sends verification text to phone number
+ ? Once sent enter verification code
+ ? Resend button for phone and can edit number to resend
+  ? once correct saves phone number.
+ ? Connect with Twitter enters twitter credentials
+ ? Then displays twitter feed on experts profile.
+ ? Step 3
+ ? Redirects to new expert profile
+ ? Displays status of expert profile is In Review
+Once we change it manually in database to ¡°Approved¡±
+? Status is hidden and now expert profile is publicly listed and users can search for it.
+?  Link to profile is now there first and last name so inzite.io/jaitengill
+
+Expert Profile
+ ? Profile UI displayed with details entered in expert application page {industry,headline,jobs, educations, patents, twitter account, location, awards, additional information, picture.,Types of things they can help you, timezone they are in}
+ ? Can write to profile and post updates. if it is that expert page
+ ? Displays twitter feed 
+ ? Links to full expert portal and settings if it is that expert page
+ ? Displays types of things they can help you with
+
+
+Expert Portal Settings
+ ? Can modify profile information {industry,headline,jobs, educations, patents, twitter account, location, awards, additional information, picture.,Types of things they can help you, timezone they are in}
+ ? Save button to save all this information
+ ? Change Password has to enter existing password then new password twice to confirm
+ ? Can change email address no verification required
+ ? Settings tab
+ ? Updates in which we can push alerts to expert
+ ? In management dashboard can push message to expert
+ ? Displayed messages
+
+
+Search for Experts System
+- Can type in name and search for experts
+
+Discovery Page
+ ?  Displays all experts
+ ? Content per each experts talk topic
+ ? Experts Profile Picture
+ ? Headline
+ ? Related topic
+ ? Location
+ ? Name
+ ? Clickable card that goes to profile
+ ? Summary of Expert
+ ? Can sort by categories that they had said they were good at in the expert signup
+[9:11:51 PM] panoramalv2007: experts.inzite.io
+[9:13:00 PM] panoramalv2007: $scope.getLinkedInData = function() {
+  if(!$scope.hasOwnProperty("userprofile")){
+   IN.API.Profile("me").fields([ "firstName", "lastName", "industry", "location", "summary", "headline", "public-profile-url", "twitter-accounts", "picture-url" ]).result(function(result) {
+     // set the model
+   $rootScope.$apply(function() {
+    var userprofile =result.values[0]
+    userprofile.status = "In Review";
+    $rootScope.userprofile = userprofile;
+    $rootScope.loggedUser = true;
+    $location.path("/apply");
+   });   
+   }).error(function(err) {
+    $scope.error = err;
+    });
+  }
+ };
+
+

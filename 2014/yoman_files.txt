@@ -1,0 +1,68 @@
+(1) README.md
+
+After create a js project, for example:
+
+$ npm install -g generator-backbone
+$ mkdir project && cd $_
+$ yo backbone
+Make sure to create README.md as an instruction of the project:
+$ touch ~/README.md
+Besides README.md file:
+
+When using webstorm, make sure to install the markdown plguin.
+Many .md files can be added, working together with wiki and gist
+(2) package.json
+
+$ npm init
+to generate and initialize package.json.
+
+(3) bower.json
+
+$ bower init
+to generate and initialize bower.json.
+.bowerrc 每 to set the directory which Bower will download the dependencies. eg:
+$ cat .bowerrc
+{
+※directory§: ※components§
+}
+
+(4) Gruntfile.js
+
+grunt need to work with Gruntfile.js. The following is how to generate and initialize Gruntfile.js:
+
+$ npm install -g grunt-init
+$ git clone https://github.com/gruntjs/grunt-init-gruntfile.git ~/.grunt-init/gruntfile
+$ grunt-init gruntfile // create a Gruntfile.json using default prompts
+(5) Others
+
+(5.a) jshint
+
+$ npm install jshint
+.jshintrc 每 grunt jshint to check javascript syntax. Sometimes change ＆true＊ to false＊ to switch syntax checking to ignore the warnings.
+
+.jshintignore
+
+(5.b) csslint
+
+.csslintrc 每 grunt csslint to check css syntax. Sometimes change ＆true＊ to false＊ to switch syntax checking to ignore the warnings.
+
+(5.c) git
+
+.gitingore:
+
+.idea/
+dist/
+node_modules/
+bower_components/*
+!bower_components/ui-grid.info/
+(5.d) editor
+
+.editorconfig 每 this is a file used to configure your editor. It＊s part of EditorConfig, which is designed to be an easy way for developers to use the same code settings, such as spaces/tabs and size of tabs, in a project. If you have the EditorConfig plugin for your editor (Vim, Sublime Text, Notepad++, Emacs, and many more), your editor will update its settings to match the ones in this file.
+set the following in ~/.bashrc:
+
+set -o vi
+export PORT=8888
+export NODE_ENV=development
+(e) .travis.yml
+
+Used by Travis CI.

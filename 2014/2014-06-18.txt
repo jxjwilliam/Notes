@@ -1,0 +1,159 @@
+------@ true ------
+$('form') instanceof jQuery
+$('form') instanceof $
+$('form') instanceof Object
+
+if(typeof Object.create !== 'function')
+{
+	Object.create = function(o) {
+		function F() {}
+		F.prototype = o;
+		return new F();
+	};
+}
+
+var Model = {
+	prototype: {
+		init: function() {}
+	},
+	
+	create: function() {
+		var object = Object.create(this);
+		object.parent = this;
+		object.prototype = object.fn = Object.create(this.prototype);
+		
+		return object;
+	},
+	
+	init: function() {
+		var instance = Object.create(this.prototype);
+		instance.parent = this;
+		instance.init.apply(instance, arguments);
+		return instance;
+	},
+	
+	extend: function(o) {
+		var extended = o.extended;
+		jQuery.extend(this, o);
+		if(extended) extended(this);
+	},
+	
+	include: function(o) {
+		var included = o.included;
+		jQuery.extend(this.prototype, o);
+		if(included) included(this);
+	}
+	
+}	
+
+
+jQuery.extend(Model, {
+	find: function() {}
+});
+
+jQuery.extend(Model.prototype, {
+	init: function(attrs) {
+		if(attrs) this.load(attrs);
+	},
+	
+	load: function(attributes) {
+		for(var name in attributes) {
+			this[name] = attributes[name];
+		}
+	}
+});
+
+Model.records = {};
+
+Model.include({
+	newRecord: true,
+	
+	create: function() {
+		this.newRecord = false;
+		this.parent.records[this.id] = this;
+	},
+	
+	destroy: function() {
+		delete this.parent.records[this.id];
+	},
+	
+	update: function() {
+		this.parent.records[this.id] = this;
+	}
+});
+
+Model.include({
+	save: function() {
+		this.newRecord ? this.create() : this.update();
+	}
+});
+
+Model.extend({
+	find: function(id) {
+		return this.records[id] || throw("Unknown record");
+	}
+});
+
+------@ ------
+var addChange = function(ob) {
+  ob.change = function(callback) {
+	if(callback) {
+		if(!this._change) this._change = [];
+		this._change.push(callback);
+	}
+	else {
+		if(!this._change) return;
+		for (var i=0; i<this._change.length; i++)
+			this._change[i].apply(this);
+		}
+	};
+}
+------@ ------
+var User = function(name) {
+	this.name = name;
+	 console.log('I am User constructor function.');
+};
+User.records = []
+
+User.bind = function(ev, callback) {
+	var calls = this._callbacks || (this._callbacks={});
+	(this._callbacks[ev] || (this._callbacks[ev]=[])).push(callback);
+};
+
+User.trigger = function(ev) {
+	var list, calls;
+	if(!(calls = this._callbacks)) return this;
+	if(!(list = this._callbacks[ev])) return this;
+	jQuery.each(list, function(index){ 
+		//console.log('111', User._callbacks);
+		//console.log('222', list);
+		//console.log('333', this);
+		this();
+		list[index].apply(this, arguments);
+		list[index].call(this);
+	});
+}
+
+User.create = function(name) {
+	this.records.push(new this(name));
+	this.trigger('change');
+};
+
+jQuery(function($) {
+	User.bind('change', function() {
+		console.log('triggered!');
+	});
+});
+
+
+jQuery(function($) {
+	User.bind('change', function() {
+		var template = $('#userTmpl').tmpl(User.records);
+		
+		$('#users').html(template);
+	});
+});
+
+<script id="userTmpl" type="text/x-jquery-tmpl">
+<li>${name}</li>
+</script>

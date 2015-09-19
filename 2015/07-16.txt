@@ -1,0 +1,222 @@
+<h4>event register</h4>
+$scope.$on()
+element.on() in link(scope, element, attrs)
+
+
+// no need .$apply() in $timeout():
+$timeout(function () { $scope.assignmentsLoaded(data); }, 1000);
+
+use $evalAsync() (which does work):
+$scope.$evalAsync(function() { $scope.assignmentsLoaded(data); } );
+
+
+<h4>Here's the calling order:</h4>
+
+1. app.config()
+2. app.run()
+3. directive's compile functions (if they are found in the dom)
+4. app.controller()
+5. directive's link functions (again if found)
+
+Run blocks - get executed after the injector is created and are used to kickstart the application. Only instances and constants can be injected into run blocks.
+This is to prevent further system configuration during application run time.
+
+There are some convenience methods on the module which are equivalent to the config block. For example:
+
+angular.module('myModule', []).
+  value('a', 123).
+  factory('a', function() { return 123; }).
+  directive('directiveName', ...).
+  filter('filterName', ...);
+
+// is same as
+
+angular.module('myModule', []).
+  config(function($provide, $compileProvider, $filterProvider) {
+    $provide.value('a', 123);
+    $provide.factory('a', function() { return 123; });
+    $compileProvider.directive('directiveName', ...);
+    $filterProvider.register('filterName', ...);
+  });
+
+more: Module Loading & Dependencies
+
+1. Configuration blocks - get executed during the provider registrations and configuration phase. Only providers and constants can be injected into configuration blocks. This is to prevent accidental instantiation of services before they have been fully configured.
+2. Run blocks - get executed after the injector is created and are used to kickstart the application. Only instances and constants can be injected into run blocks. This is to prevent further system configuration during application run time.
+
+angular.module('myModule', []).
+config(function(injectables) { // provider-injector
+  // This is an example of config block.
+  // You can have as many of these as you want.
+  // You can only inject Providers (not instances)
+  // into config blocks.
+}).
+run(function(injectables) { // instance-injector
+  // This is an example of a run block.
+  // You can have as many of these as you want.
+  // You can only inject instances (not Providers)
+  // into run blocks
+});
+
+//Add an angularjs directive into another directive
+
+  inserting a new element(directive)//inserting a new attribute(directive) to element
+
+var newElement = $compile( "<div my-diretive='n'></div>" )( $scope );
+$element.parent().append( newElement );
+
+/////////////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////
+mixins
+
+
+// AngularJS provide
+
+An Angular service is a singleton object created by a service factory. These service factories are functions which, in turn, are created by a service provider.
+The service providers are constructor functions. When instantiated they must contain a property called $get, which holds the service factory function.
+
+When you request a service, the $injector is responsible for finding the correct service provider, instantiating it and
+then calling its $get service factory function to get the instance of the service.
+
+//  Practical uses of decorators:
+
+Caching: if we have a service which makes potentially expensive HTTP calls, we can wrap the service in a caching decorator which checks local storage before making the external call.
+Debugging/Tracing: have a switch depending on your development/production configuration which decorates your services with debugging or tracing wrappers.
+Throttling : wrap frequently triggered calls in a debouncing wrapper. Allows us to easily interact with rate-limited services, for example.
+
+decorator can intercept service instance created by factory, service, value, provider, and gives the options to change some instance(service) that is otherwise not configurable / with options.
+
+It can also provide mock up instances for testing purpose, for example $http.
+
+http://stackoverflow.com/questions/12419619/whats-the-difference-between-ng-model-and-ng-bind
+
+
+<h4>CSS classes used by angular</h4>
+(1) ng-scope
+Usage: angular applies this class to any element for which a new scope is defined. (see scope guide for more information about scopes)
+
+(1) ng-isolate-scope
+Usage: angular applies this class to any element for which a new isolate scope is defined.
+
+(1) ng-binding
+Usage: angular applies this class to any element that is attached to a data binding, via ng-bind or {{}} curly braces, for example. (see databinding guide)
+
+(1) ng-invalid, ng-valid
+Usage: angular applies this class to a form control widget element if that element's input does not pass validation. (see input directive)
+
+(1) ng-pristine, ng-dirty
+Usage: angular ngModel directive applies ng-pristine class to a new form control widget which did not have user interaction. Once the user interacts with the form control, the class is changed to ng-dirty.
+
+(1) ng-touched, ng-untouched
+Usage: angular ngModel directive applies ng-untouched class to a new form control widget which has not been blurred. Once the user blurs the form control, the class is changed to ng-touched.
+
+  <h4>ng-form</h4>
+  CSS classes
+  ng-valid is set if the form is valid.
+  ng-invalid is set if the form is invalid.
+  ng-pristine is set if the form is pristine.
+  ng-dirty is set if the form is dirty.
+  ng-submitted is set if the form was submitted.
+
+
+<h4>html highlight</h4>
+<mark>highlight</mark>
+
+<h4></h4>
+Math.max.apply(null, array);
+
+<h4>$apply vs. $digest</h4>
+scope.$digest() will only fire watchers on current scope, scope.$apply will evaluate passed function and run $rootScope.$digest().
+
+scope.$digest() is faster, as needs to evaluate watchers for current scope, scope.$apply is slower (needs to evaluate watchers for $rootScope and all it's child scopes).
+
+After evaluating the expression, the $apply method performs a $digest. In the $digest phase the scope examines all of the $watch expressions and compares them with the previous value.
+
+Usually you don't call $digest() directly in controllers or in directives. Instead a call to $apply() (typically from within a directives) will force a $digest().
+
+ng-click, http, timeout auto call $apply().
+
+<h4>eval(string) => function</h4>
+eval('function abc() { console.log("convert"); }');
+abc();
+
+
+<h4></h4>
+$scope.state = { selected: undefined };
+<li ng-repeat="name in names" ng-class="{ active: $index == state.selected }"
+    ng-click="state.selected = $index">
+    {{ $index}}: {{name.first}} {{name.last}}</li>
+
+<h4>Extending Angular Directive</h4>
+  http://stackoverflow.com/questions/17005122/extending-angular-directive
+
+But I also want to keep Angular-Bootstrap up to date with Bower. As soon as I run bower update, I'll overwrite my changes.
+
+(1) $provide.decorator()
+
+(2) Probably the simplest way to solve this is to create a directive on your app with the same name as the third party directive. Both directives will run and you can specify their run order using the priority property (higher priority runs first).
+
+    The two directives will share scope and you can access and modify the scope of the third party directive via your directive's link method.
+
+
+<h4>ng-repeat select</h4>
+<select ng-model="foo">
+   <option ng-repeat="item in items" value="{{item.code}}">{{item.name}}</option>
+</select>
+
+<select ng-model="foo" ng-options="item as item.name for item in items"></select>
+{{foo | json}}
+
+
+<h4>angular forEach(obj, iterator, context)</h4>
+iterator.call(context, obj[key], key, obj);
+
+<h4></h4>
+var index = array.indexof(value);
+if(index >= 0) array.splice(index, 1);
+return index;
+
+fn.apply(self, concat(curryArgs, aguments, 0))
+arguments.length ? fn.apply(self, arguments) : fn.call(self);
+
+
+<h4>define throw Error</h4>
+function assertArg(arg, name, reason) {
+  if(!arg) throw Error('', error);
+  return result;
+}
+
+<h4>ngmodules.org</h4>
+http://ngmodules.org/modules/ng-repeat-once:
+
+Inspired by Bindonce binding for AngularJS, ng-repeat-once is a one-time binding for collection elements. Collection is just bound once, and any changed to the collection thereafter are not observed.
+This binding can be used for collections which are not expected to change. Using this you can avoid the overhead of unneccessary watch expressions on this collection
+
+<h4>$injector.instantiate VS $injector.get VS $injector.invoke</h4>
+Whilst invoke calls a function with it's parameters injected, instantiate will construct a new object with it's constructor parameters injected.
+
+function instantiate(Type, locals, serviceName) {
+  var instance = Object.create((isArray(Type) ? Type[Type.length - 1] : Type).prototype || null);
+  var returnedValue = invoke(Type, instance, locals, serviceName);
+  return isObject(returnedValue) || isFunction(returnedValue) ? returnedValue : instance;
+}
+function invoke(fn, self, locals, serviceName) {
+  return fn.apply(self, args);
+}
+
+<h4>checklist-model</h4>
+http://stackoverflow.com/a/19228302/1458162:
+In cases where you have multiple directives on a single DOM element and where the order in which they’re applied matters,
+you can use the priority property to order their application. Higher numbers run first.
+The default priority is 0 if you don’t specify one.
+{
+  terminal: true,
+  priority: 1000
+}
+
+<h4>input[checkbox]</h4>
+ngTrueValue - expression
+The value to which the expression should be set when selected.
+
+ngFalseValue - expression
+The value to which the expression should be set when not selected.

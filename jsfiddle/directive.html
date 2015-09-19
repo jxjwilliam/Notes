@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.0/angular.min.js"></script>
+    <meta charset="utf-8">
+    <title>jsfiddle</title>
+</head>
+<body ng-app='jsfiddle'>
+<body ng-app="myApp" ng-controller="myCtrl">
+
+    <h3>Plain Angular</h3>
+    {{customerName}}: <input ng-model="credit" />
+    <button ng-click="saveChanges('plain html')">Save</button>
+    
+    <h3>Custom Directive</h3>
+    <my-dir 
+      name="{{customerName}}" 
+      amount="credit"
+      save="saveChanges('custom directive')">
+    </my-dir>
+</body>
+    <script>
+    // the main (app) module
+var myApp = angular.module("myApp", []);
+
+// add a controller
+myApp.controller("myCtrl", function($scope) {
+    $scope.customerName = "Eddie";
+    $scope.credit = 123;
+    $scope.saveChanges = function(source) {
+        alert("changes saved from " + source);
+    };
+    
+    $scope.corors = [];
+    $scope.corors.push("red");
+    $scope.corors.push("blue");
+    
+    $scope.color="";
+});
+
+// add a directive
+myApp.directive("myDir", function() {
+  return {
+    restrict: "E",
+    scope: {
+      name: "@",   // by value
+      amount: "=", // by reference
+      save: "&"    // event
+    },
+    template: 
+      '<div>' +
+      '<select' +
+   'ng-model="color"' +
+   'ng-options=" country in countries"' +
+    '<option value="">All Countries</option>'  +
+'</select> ' +
+      '</div>' ,
+    replace: true,
+    transclude: false,
+    link: function (scope, element, attrs) {
+        
+        // show initial values: by-val members will be undefined
+        console.log("initial value for name:" + scope.name);
+        console.log("initial value for amount:" + scope.amount);
+        
+        // change element just to show we can
+        element.css("background", "yellow");
+        // log changes to the 'amount' variable
+        scope.$watch("amount", function (newVal, oldVal) {
+            console.log("amount has changed " + oldVal + " >> " + newVal);
+        });
+        
+        // log changes to the 'name' variable
+        scope.$watch("name", function (newVal, oldVal) {
+            console.log("name has changed " + oldVal + " >> " + newVal);
+        });
+    }
+  }
+});
+
+    </script>
+</body>
+</html>

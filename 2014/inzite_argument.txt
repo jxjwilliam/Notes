@@ -1,0 +1,29 @@
+var bb = typeof ccc!=='undefined'? ccc : (aaa=123)
+
+At the beginning of this October, Jaiten and I discussed for the processing. At that time, there were 2 ways to do the development:
+(1) follow the agreement to roughly implement all the stuff, so at the conference there would be all stuff put in the site.  such as integrate Strip, webRTC functionality into Inzite.io
+(2) dig in details, instead of extending extra functionality such as WebRTC, Stripe etc.
+Because many new stuff were introduced and the site need to be fixed in details.
+such as: 
+more accurate categories implementation, fix the vague concepts of category, industry, sector. 
+. expertise details implementation
+. inzite_url, auto-matched with username change and improvement
+. linked grap data
+. local expert data access and storage.
+. switch user profile and expert profile in a better way.
+. the conflict of different resource merges(local, facebook, linkedin): such as firstname, lastname, user, username.
+. etc.
+A lot of new stuff need to be added and vogue concepts  need to be clarified.
+
+Jaiten told me that you said to let user put their profiles is more important, so change the schedule to focus on plan 2. 
+
+I told Jaiten that this will change the agreement schedule and cause the project can't finish by the end of Nov.
+Jaiten said you said that's ok, to make user input their profiles is more urgent, and latter you will pay me for extra implementation.
+
+
+So I focus on the details on plan 2 to make the user add their profiles into the side.
+
+Since it was your decision to change the plan, You know everything about it, so why you charge me following the agreement? It is weired.
+
+Since you already terminated the agreement with me at the beginning of Nov, so I have the right not reply to you. So don't email me directly, contact Jaiten first to clarify everything.
+

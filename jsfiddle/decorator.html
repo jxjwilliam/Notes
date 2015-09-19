@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.0/angular.min.js"></script>
+    <meta charset="utf-8">
+    <title>jsfiddle</title>
+</head>
+<body ng-app='jsfiddle'>
+<div ng-controller='mainCtrl'>
+    <foo></foo>
+</div>
+    <script>
+    var app = angular.module('myApp', [])
+app.controller('mainCtrl', function ($scope) {});
+app.directive('foo', function () {
+    return {
+        restrict: 'E',
+        link: function (scope, iElement, iAttrs) {
+            scope.message = "directive message";
+            scope.alertFunction = function () {
+                alert("testing function");
+            }
+        },
+        template: "<div ng-click='alertFunction()'> this is the alert message : {{message}} </div>"
+    }
+});
+
+app.config(function ($provide) {
+    $provide.decorator('fooDirective', function ($delegate) {
+        var directive = $delegate[0];
+        var link = directive.link;
+        directive.compile = function () {
+            return function (scope, element, attrs) {
+                link.apply(this, arguments);
+                scope.alertFunction = function () {
+                    alert(scope.message); // using directive message variable, but overriding the alertFunction method
+                }
+            }
+        }
+        return $delegate;
+    });
+});
+    </script>
+</body>
+</html>

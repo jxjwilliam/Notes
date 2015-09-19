@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.0/angular.min.js"></script>
+    <meta charset="utf-8">
+    <title>jsfiddle</title>
+</head>
+<body>
+<div ng-app='MyApp' ng-controller="MyCtrl">
+    <input type="text" debounce-delay="1000" debounce-model="search"></input>
+    <p>{{ val }}</p>
+</div>
+    <script>
+    angular.module('MyApp', [])
+    .controller('MyCtrl', ['$scope', '$debounce', function($scope, $debounce) {
+        $scope.val = 0;
+        
+        $scope.search = "";
+        $scope.$watch('search', function (newVal, oldVal) {
+              if(newVal === oldVal){
+        return;
+      }
+            // called when something in the settings has changed (recursively)
+            $scope.val++;
+        });
+    }])
+    // http://unscriptable.com/2009/03/20/debouncing-javascript-methods/
+    // adapted from angular's $timeout code
+    .factory('$debounce', ['$rootScope', '$browser', '$q', '$exceptionHandler',
+        function($rootScope,   $browser,   $q,   $exceptionHandler) {
+            var deferreds = {},
+                methods = {},
+                uuid = 0;
+
+            function debounce(fn, delay, invokeApply) {
+                var deferred = $q.defer(),
+                    promise = deferred.promise,
+                    skipApply = (angular.isDefined(invokeApply) && !invokeApply),
+                    timeoutId, cleanup,
+                    methodId, bouncing = false;
+
+                // check we dont have this method already registered
+                angular.forEach(methods, function(value, key) {
+                    if(angular.equals(methods[key].fn, fn)) {
+                        bouncing = true;
+                        methodId = key;
+                    }
+                });
+
+                // not bouncing, then register new instance
+                if(!bouncing) {
+                    methodId = uuid++;
+                    methods[methodId] = {fn: fn};
+                } else {
+                    // clear the old timeout
+                    deferreds[methods[methodId].timeoutId].reject('bounced');
+                    $browser.defer.cancel(methods[methodId].timeoutId);
+                }
+
+                var debounced = function() {
+                    // actually executing? clean method bank
+                    delete methods[methodId];
+
+                    try {
+                        deferred.resolve(fn());
+                    } catch(e) {
+                        deferred.reject(e);
+                        $exceptionHandler(e);
+                    }
+
+                    if (!skipApply) $rootScope.$apply();
+                };
+
+                timeoutId = $browser.defer(debounced, delay);
+
+                // track id with method
+                methods[methodId].timeoutId = timeoutId;
+
+                cleanup = function(reason) {
+                    delete deferreds[promise.$$timeoutId];
+                };
+
+                promise.$$timeoutId = timeoutId;
+                deferreds[timeoutId] = deferred;
+                promise.then(cleanup, cleanup);
+
+                return promise;
+            }
+
+
+            // similar to angular's $timeout cancel
+            debounce.cancel = function(promise) {
+                if (promise && promise.$$timeoutId in deferreds) {
+                    deferreds[promise.$$timeoutId].reject('canceled');
+                    return $browser.defer.cancel(promise.$$timeoutId);
+                }
+                return false;
+            };
+
+            return debounce;
+    }]).directive('debounceDelay', function ($compile, $debounce) {
+    return {
+      replace: false,
+      scope: {
+        debounceModel: '='
+      },
+      link: function (scope, element, attr) {
+        var delay= attr.debounceDelay;
+        var applyFunc = function () {
+          scope.debounceModel = scope.model;
+        }
+        scope.model = scope.debounceModel;
+        scope.$watch('model', function(){
+          $debounce(applyFunc, delay);
+        });
+        attr.$set('ngModel', 'model');
+        element.removeAttr('debounce-delay'); // so the next $compile won't run it again!
+
+       $compile(element)(scope);
+      }
+    };
+  });
+    </script>
+</body>
+</html>

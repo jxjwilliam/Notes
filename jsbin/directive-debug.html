@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.5/css/bootstrap.css"  rel="stylesheet">
+  <title>Angular JS</title>
+</head>
+<body ng-app="jsbin">
+  <div ng-controller="DemoCtrl as demo">
+    <h1>Hello {{demo.name}}</h1>
+    <div debug class="well">this is a div with debug.</div>
+  </div>
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.0/angular.min.js"></script>
+  <script>
+  var app = angular.module('jsbin', []);
+
+app.controller('DemoCtrl', function($scope) {
+  $scope.name = 'World';
+});
+
+app.directive('debug', function($compile) {
+  return {
+    restrict: 'AE',
+    terminal: true,
+    priority: 100,
+    link: function(scope, element) {
+      var e1 = element.clone();
+      e1.removeAttr('debug');
+      e1.html('this is without debug.');
+      
+      var e2 = $compile(e1)(scope);
+      element.after(e2);
+      element.attr('style', 'color:red');
+      //scope.$apply();//$apply already in process.
+    }
+  };
+});
+  </script
+</body>
+</html>

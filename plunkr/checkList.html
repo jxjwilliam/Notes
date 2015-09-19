@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+  <head lang="en">
+    <meta charset="utf-8">
+    <title>Custom Plunker</title>
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js"></script>
+    <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.0.3/angular.min.js"></script>
+    <link rel="stylesheet" href="style.css">
+    <script>
+      document.write('<base href="' + document.location + '" />');
+    </script>
+    <script src="app.js"></script>
+  </head>
+  
+  <body ng-app="myApp" ng-controller='MainController'>
+    <span ng-repeat="fruit in fruits">
+      <input type='checkbox' value="{{fruit}}" check-list='checked_fruits'> {{fruit}}<br />
+    </span>
+  
+    <div>The following fruits are checked: {{checked_fruits | json}}</div>
+    
+    <div>Add fruit to the array manually:
+      <button ng-repeat="fruit in fruits" ng-click='addFruit(fruit)'>{{fruit}}</button>
+    </div>
+  </body>
+<script>
+// Checkboxes control existence of value in an array
+
+var app = angular.module('myApp', []);
+
+app.controller('MainController', function($scope) {
+  $scope.fruits = ['apple', 'orange', 'pear', 'naartjie'];
+  $scope.checked_fruits = ['apple', 'pear'];
+  $scope.addFruit = function(fruit) {
+    if ($scope.checked_fruits.indexOf(fruit) != -1) return;
+    $scope.checked_fruits.push(fruit);
+  };
+});
+
+app.directive('checkList', function() {
+  return {
+    scope: {
+      list: '=checkList',
+      value: '@'
+    },
+    link: function(scope, elem, attrs) {
+      var handler = function(setup) {
+        var checked = elem.prop('checked');
+        var index = scope.list.indexOf(scope.value);
+
+        if (checked && index == -1) {
+          if (setup) elem.prop('checked', false);
+          else scope.list.push(scope.value);
+        } else if (!checked && index != -1) {
+          if (setup) elem.prop('checked', true);
+          else scope.list.splice(index, 1);
+        }
+      };
+      
+      var setupHandler = handler.bind(null, true);
+      var changeHandler = handler.bind(null, false);
+            
+      elem.on('change', function() {
+        scope.$apply(changeHandler);
+      });
+      scope.$watch('list', setupHandler, true);
+    }
+  };
+});
+
+</script>
+</html>

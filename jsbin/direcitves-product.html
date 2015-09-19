@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+<head>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.0/angular.min.js"></script>
+  <meta charset="utf-8">
+  <title>JS Bin</title>
+</head>
+<body ng-app='jsbin'>
+  <div ng-controller='myCtrl'>
+    <product ng-repeat="product in products">
+      <product-item item="product">
+        <div product-detail name="{{product.name}}"></div>
+      </product-item>
+    </product>
+  </div>
+  <script>
+  var app = angular.module('jsbin', []);
+
+app.controller('myCtrl', function($scope) {
+  $scope.products = [
+    {name: 'product 1', description: 'product 1 description'},
+    {name: 'product 2', description: 'product 2 description'},
+    {name: 'product 3', description: 'product 3 description'},
+    {name: 'product 4', description: 'product 4 description'}
+  ];
+});
+
+app.directive('product', function() {
+  return {
+    restrict: 'E',
+    controller: function($scope) {}
+  };
+});
+
+app.directive('productItem', function() {
+ return {
+   restrict: 'E',
+   scope: {
+     item: '='
+   },
+   transclude: true,
+   template: '<p><input type="text" ng-model="item.name" /><button ng-click="wow(item.name)">{{item.description}}</button><div><ng-transclude></ng-transclude></div></p>',
+   require: '^?product', //The ^ prefix means that this directive searches for the controller on its parents (without the ^ prefix, the directive would look for the controller on just its own element).
+   controller: function($scope) {
+     $scope.wow = function(name) {
+       console.log('wow: ' +  name);
+       //$scope.item.name = 'abc';
+     };
+   },
+   link: function(scope, element, attrs, productCtrl) {
+    scope.$watch('item.name', function(newVal, oldVal) {
+      if(newVal != oldVal) 
+        console.log('changed:'+newVal+','+oldVal);
+    });
+   }
+ };
+});
+
+app.directive('productDetail', function() {
+  return {
+    restrict: 'AE',
+    scope: {
+      name: '@',
+    },
+    require: ['^?product', '^?productItem'],
+    template: '<mark>{{name}}</mark>',
+    link: function(scope, element, attrs, ctrls) {
+      console.log('ctrls', ctrls);
+    }
+  };
+});
+  </script
+</body>
+</html>

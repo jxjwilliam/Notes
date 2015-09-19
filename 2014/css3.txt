@@ -1,0 +1,146 @@
+1. Some of the most important CSS3 modules are:
+
+Selectors
+Box Model
+Backgrounds and Borders
+Image Values and Replaced Content
+Text Effects
+2D/3D Transformations
+Animations
+Multiple Column Layout
+User Interface
+
+2. CSS3 Borders
+With CSS3, you can create rounded borders, add shadow to boxes, and use an image as a border - without using a design program, like Photoshop.
+
+border-radius: 25px;
+box-shadow: 10px 10px 5px #888888;
+
+-webkit-border-image:url(border.png) 30 30 round; /* Safari 5 */
+-o-border-image:url(border.png) 30 30 round; /* Opera 10.5-12.1 */
+border-image:url(border.png) 30 30 round;
+
+3. CSS3 Backgrounds
+div {
+	background:url(img_tree.gif),url(img_flwr.gif);
+	background:url(img_flwr.gif);
+	background-repeat:no-repeat;
+	background-size:100% 100%;
+	background-origin:content-box;
+}
+background-clip: border-box|padding-box|content-box|initial|inherit;
+The background image can be placed within the content-box, padding-box, or border-box area.
+
+4.CSS3 defines two types of gradients:
+
+- Linear Gradients (goes down/up/left/right/diagonally)
+- Radial Gradients (defined by their center)
+#grad
+{
+	background: -webkit-linear-gradient(red, blue); /* For Safari 5.1 to 6.0 */
+	background: -o-linear-gradient(red, blue); /* For Opera 11.1 to 12.0 */
+	background: -moz-linear-gradient(red, blue); /* For Firefox 3.6 to 15 */
+	background: linear-gradient(red, blue); /* Standard syntax */
+}
+
+5. CSS3 Text Effects
+- text-shadow: 5px 5px 5px #FF0000;
+- word-wrap:break-word;
+the word-wrap property allows you to force the text to wrap - even if it means splitting it in the middle of a word.
+
+
+6. CSS3 Web Fonts - The @font-face Rule
+Web fonts allow Web designers to use fonts that are not installed on the user's computer.
+
+When you have found/bought the font you wish to use, just include the font file on your web server, and it will be automatically downloaded to the user when needed.
+
+<style> 
+@font-face{
+	font-family: myFirstFont;
+	src: url(sansation_light.woff);
+	font-weight/font-stretch/font-style/unicode-range
+}
+div{
+	font-family:myFirstFont;
+}
+</style>
+
+7. CSS3 Transforms
+With CSS3 transform, we can move, scale, turn, spin, and stretch elements.
+A transformation is an effect that lets an element change shape, size and position.
+You can transform your elements using 2D or 3D transformation.
+- translate(x,y), translateX(n), translateY(n)
+- rotate()
+- scale()
+- skew(x-angle,y-angle), skewX(angle), skewY(angle)
+- matrix(n,n,n,n,n,n)
+
+The transform-origin property allows you to change the position on transformed elements.
+
+8. CSS3 3D Transforms
+CSS3 allows you to format your elements using 3D transforms.
+
+
+9. CSS3 Transitions
+With CSS3, we can add an effect when changing from one style to another, without using Flash animations or JavaScripts.
+
+Specify the CSS property you want to add an effect to
+Specify the duration of the effect.
+
+div{
+	-webkit-transition: width 2s; /* For Safari 3.1 to 6.0 */
+	transition: width 2s;
+}
+div:hover {
+	width:300px;
+}
+
+10. CSS3 Animations
+To create animations in CSS3, you will have to learn about the @keyframes rule.
+An animation is an effect that lets an element gradually change from one style to another.
+
+You can change as many styles you want, as many times you want.
+
+Specify when the change will happen in percent, or the keywords "from" and "to", which is the same as 0% and 100%.
+
+0% is the beginning of the animation, 100% is when the animation is complete.
+
+For best browser support, you should always define both the 0% and the 100% selectors.
+
+
+11. CSS3 Multiple Columns
+column-count
+column-gap
+column-rule
+
+
+12. User Interface
+In CSS3, some of the new user interface features are resizing elements, box sizing, and outlining.
+
+resize:both; overflow:auto;
+box-sizing:border-box; //Specify two bordered boxes side by side:
+outline-offset
+
+box-sizing: content-box|border-box|initial|inherit:
+The box-sizing property allows you to define certain elements to fit an area in a certain way:
+
+
+The <section> tag defines sections in a document, such as chapters, headers, footers, or any other sections of the document.
+
+
+The <article> tag specifies independent, self-contained content.
+
+An article should make sense on its own and it should be possible to distribute it independently from the rest of the site.
+
+Potential sources for the <article> element:
+
+Forum post
+Blog post
+News story
+Comment
+
+////////////////////////
+
+1. I use CSS3 
+1. Use CSS3 Transforms, Transitions, resize, Animations to customize the columns
+2. For backward compatibility to older browsers, use Modernizr.js to detect, and add polyfill codes/plugin

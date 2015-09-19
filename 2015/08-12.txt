@@ -1,0 +1,48 @@
+Sublime Text 3:
+Ctrl/Cmd + Shift + p: package controller -> install TypeScript
+
+cmd+alt+shift+t on OS X
+cmd+shift+t on OS X
+
+cmd+D, cmd+L, cmd+A
+Ctrl+cmd+M
+
+cmd + Ctrl + G
+cmd + Shift + P
+
+Command + T: Lists tabs that are currently open. Select one to go to the tab.
+
+Command + Shift + ]	
+This will bring you immediately to the next tab.
+
+Command + Shift + [	
+While this key will bring you the previous tab.
+
+Command + Ctrl + P	
+Switch between the projects that are listed on the SublimeText Sidebar.
+
+
+http://www.hongkiat.com/blog/sublime-text-tips/
+
+
+/////////////////////////////////////////
+
+Proxy and Delegate
+
+
+### node expressjs as proxy
+
+1. when http-request comes, the following steps are available:
+
+(1) parse header, url-params and body
+(2) analyse and update the http-request, add new logic to the request.
+(3) assembly and wrap the htt-requestf as new object, and pass the next process.
+(4) trigger other protocal, such as ws websocket to emit events with the new message, to broadcast back to existing client connections.
+
+
+### Nginx as reverse-proxy
+1) proxy_set_body
+2) proxy_set_header
+3) Nginx 3rd-party modules:
+http://wiki.nginx.org/3rdPartyModules
+4) 

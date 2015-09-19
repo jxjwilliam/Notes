@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html ng-app="jsbin">
+<head>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.0/angular.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.4.3/angular-messages.min.js"></script>
+  <meta charset="utf-8">
+  <title>JS Bin</title>
+</head>
+<body>
+  <h2>advanced form validation</h2>
+  <form name="myForm" ng-controller="FormCtrl" novalidate>
+    
+    <label for="postal">Postal Code: </label>
+    
+    <input type="text" id="postal" ng-model="postalCode" name="myField"
+           postal-code-validator autofocus /><!--autofocus-->
+    
+    <div ng-if="myForm.myField.$error.postal">You did not enter a valid Canadian postal code</div>
+
+    <hr/>
+    <input type="text" ng-model="postalCode1" name="postalCode1" required
+           minlength="6" postal-code-validator-1 />
+
+    <div ng-messages="myForm.postalCode1.$error">
+      <div ng-message="required">You don't enter a postal code</div>
+      <div ng-message="minlength">Your postal code is too short</div>
+      <div ng-message="postal">Your postal code is invalid</div>
+      <div special-message>...</div>
+    </div>   
+  </form>
+  <script>
+  angular.module('jsbin', ['ngMessages'])
+  .controller('FormCtrl', ['$scope', function($scope) {
+  }])
+  .directive('postalCodeValidator', function() {
+    return {
+      require: 'ngModel',
+      link: function(scope, element, attrs, ctrl) {
+        
+        ctrl.$parsers.push(function(value) {
+          var regex = /[A-Z]\d[A-Z]\s?\d[A-Z]\d/i;
+          var success = regex.test(value);
+          ctrl.$setValidity('postal', success);
+          return value;
+        });
+        ctrl.$formatters.push(function() {});  
+      }
+    };
+  })
+  .directive('postalCodeValidator1', function() {
+    return {
+      require: 'ngModel',
+      link: function(scope, element, attrs, ctrl) {
+        ctrl.$parsers.push(function(value) {
+          var regex = /[A-Z]\d[A-Z]\s?\d[A-Z]\d/i;
+          var success = regex.test(value);
+          ctrl.$setValidity('postal', success);
+          return value;
+        });
+      }
+    };
+  })
+  .directive('specialMessage', function() {
+    return {
+      restrict: 'A',
+      require: '^ngMessages',
+      link: function(scope, element, attrs, ctrl) {
+        console.log(ctrl);
+      }
+    };
+  })
+  .directive('focus', function() {
+    return {
+      restrict: 'A',
+      link: function(scope, element, attrs) {
+        element.focus();
+      }
+    };
+  });
+  </script>
+</body>
+</html>

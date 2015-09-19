@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.0/angular.min.js"></script>
+    <meta charset="utf-8">
+    <title>jsfiddle</title>
+</head>
+<body>
+<div ng-app="myApp">
+  <div ng-controller="MyController">
+    <form id="leForm" name="form">
+      <div data-ng-repeat="name in names">
+        <input 
+          type="text" 
+          id="field{{ name }}" 
+          name="{{ name }}" 
+          data-ng-model="field.data" 
+          value="This is field {{name}}"
+          />
+      </div>
+    </form>
+      
+    <hr>
+    <h3>Expected $scope.form</h3>
+    <pre>{
+  "foo": {}, 
+  "bar": {}, 
+  "baz": {}
+}    </pre>
+    <hr>
+               
+    <h3>Actual</h3>
+    <pre>{{ form | json }}</pre>
+  </div>
+</div>
+
+    <script>
+    var app = angular.module('myApp', []);
+//
+app.controller('MyController', [ '$scope' , function($scope) {
+    $scope.model = {};
+    $scope.names = ['foo','bar','baz'];
+}]);
+   
+// Workaround for bug #1404
+// https://github.com/angular/angular.js/issues/1404
+// Source: http://plnkr.co/edit/hSMzWC?p=preview
+app.config(['$provide', function($provide) {
+    $provide.decorator('ngModelDirective', ['$delegate', function($delegate) {
+        var ngModel = $delegate[0], controller = ngModel.controller;
+        ngModel.controller = ['$scope', '$element', '$attrs', '$injector', function(scope, element, attrs, $injector) {
+            var $interpolate = $injector.get('$interpolate');
+            attrs.$set('name', $interpolate(attrs.name || '')(scope));
+            $injector.invoke(controller, this, {
+                '$scope': scope,
+                '$element': element,
+                '$attrs': attrs
+            });
+        }];
+        return $delegate;
+    }]);
+    $provide.decorator('formDirective', ['$delegate', function($delegate) {
+        var form = $delegate[0], controller = form.controller;
+        form.controller = ['$scope', '$element', '$attrs', '$injector', function(scope, element, attrs, $injector) {
+            var $interpolate = $injector.get('$interpolate');
+            attrs.$set('name', $interpolate(attrs.name || attrs.ngForm || '')(scope));
+            $injector.invoke(controller, this, {
+                '$scope': scope,
+                '$element': element,
+                '$attrs': attrs
+            });
+        }];
+        return $delegate;
+    }]);
+}]);                     
+
+    </script>
+</body>
+</html>

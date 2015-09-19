@@ -1,0 +1,91 @@
+<a href="http://hdnrnzk.me/2013/06/09/backbone-requirejs-jasmine-phantomjs-and-grunt-41/">
+Backbone, RequireJS, Jasmine, PhantomJS, Bower, and Grunt 4.1</a>
+-------------------------------------------------------------
+
+make sure node is installed, so npm, node available
+
+cmd; //run as administrator
+
+$ npm install -g grunt-cli bower
+
+$ cd ~
+$ mkdir -p app/js/models test/spec/models test/lib
+
+$ vi ~/.bowerrc
+{
+	"directory": "app/components"
+}
+
+------@ init
+$ npm init    // init package.json
+$ bower init //init bower.json
+
+$ npm install -g grunt-init
+git clone https://github.com/gruntjs/grunt-init-gruntfile.git ~/.grunt-init/gruntfile
+grunt-init gruntfile // create a Gruntfile.json using default prompts
+
+------@ bower
+$ bower install jquery --save
+$ bower install underscore --save
+$ bower install backbone --save
+$ bower install requirejs --save
+$ bower install jasmine --save
+$ bower install bootstrap --save
+
+$ git init
+$ touch README.md .gitignore
+$ git add .
+$ git commit -am
+
+----------------------
+http://blog.sourcing.io/interview-questions
+http://bonsaiden.github.io/JavaScript-Garden/
+
+(1)
+spacify('hello world') // => 'h e l l o  w o r l d'
+function spacify(str) {
+  return str.split('').join(' ');
+}
+
+String.prototype.spacify = function(){
+  return this.split('').join(' ');
+};
+'hello world'.spacify();
+
+(2) 
+function log(){
+  console.log.apply(console, arguments);
+};
+
+function log(){
+  var args = Array.prototype.slice.call(arguments);
+  args.unshift('(app)');
+
+  console.log.apply(console, args);
+};
+
+(3)
+var User = {
+  count: 1,
+
+  getCount: function() {
+    return this.count;
+  }
+};
+console.log(User.getCount());
+
+var func = User.getCount; //wrong
+console.log(func());  //undefined
+
+func.apply(User)
+func.call(User);
+var func = User.getCount.bind(User);
+console.log(func());
+
+Function.prototype.bind = Function.prototype.bind || function(context){
+  var self = this;
+
+  return function(){
+    return self.apply(context, arguments);
+  };
+}

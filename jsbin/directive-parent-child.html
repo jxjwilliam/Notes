@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.0/angular.min.js"></script>
+  <meta charset="utf-8">
+  <title>JS Bin</title>
+</head>
+<body ng-app='app' ng-controller="ctrl0 as vm">
+  <div>this is parent controller: {{vm.title}}</div>
+  <div ng-controller="ctrl1 as vm">this is child controller: {{vm.title}}</div>
+</body>
+<script>
+angular.module('app', []).
+controller('ctrl0', function() {
+  var vm = this;
+  vm.title = 'parent';
+  
+  var $injector = angular.injector();
+  //var $timeout = $injector.get('$timeout');
+  
+  //vm.$inject = [ '$rootScope' ];
+  //$injector.get('$rootScope');
+  
+})
+.controller('ctrl1', ['$scope', '$rootScope', function($scope, $rootScope) {
+  var vm = this;
+  vm.title = 'child';
+  
+  var child1 = $rootScope.$new();
+  //$rootScope.$digest();
+  //$rootScope.$apply();
+}]);
+</script
+</html>
