@@ -38,6 +38,14 @@ git pull
 git reset --soft HEAD^     # use --soft if you want to keep your changes
 git reset --hard HEAD^     # use --hard if you don't care about keeping the changes you made
 
+git config --system core.longpaths true
+
+git cherry-pick
+
+git config --list
+~/.gitconfig
+git config-add proxy-http ?
+
 //http://stackoverflow.com/questions/17097472/difference-between-git-reset-commands
 HEAD^ and HEAD~1 refer to the same commit.
 ^ refers to the first parent of the commit. ~n refers to the n:th ancestor. So ^^ (parent-of-parent) is equivalent to ~2.

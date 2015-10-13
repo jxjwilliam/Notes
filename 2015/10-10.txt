@@ -1,0 +1,49 @@
+https://raygun.io/blog/2015/06/useful-javascript-debugging-tips-you-didnt-know/?utm_source=JSNewsletter25&utm_medium=SponsoredLink&utm_campaign=CooperPressSept15
+
+console.table(personnel, ['firstName', 'lastName', 'fullName']);
+console.table(personnel, ['homeLocation', 'currentLocation', 'id'])
+console.error()
+monitor(function)
+trace function	
+
+
+Open up the inspector and go to the network tab. Right click on the desired request and choose Edit and Resend. Now you can change anything you want. Change the header and edit your parameters and the simply hit resend.
+
+You can also replay ajax requests in chrome. Just right click on a request and hit “Replay XHR”. No need to switch to post mans or Firefox. 
+
+
+
+Type debug(car.funcY) in the console and the script will stop in debug mode when it gets a function call to car.funcY.
+
+
+// strip methods, only keep properties:
+var new_obj = {};
+
+Object.keys(obj).filter(function(prop) { 
+	return typeof obj[prop] !== 'function' 
+}).map(function(v) { 
+	return new_obj[v]=obj[v]; 
+}); 
+
+var obj = { 
+	name: 'usa', 
+	age: 200, 
+	getName: function() { 
+		return this.name 
+	}, 
+	getAge: function() { 
+		return this.age; 
+	}
+};
+
+new_obj: Object {name: "usa", age: 200}
+
+
+//////
+When in the console's multi-line editing mode, you can treat blocks of text as if you were using a standard text editor. Shift + Enter allows you enter multi-line mode in the console.
+
+
+Shift + Enter
+
+Shift + Command + C
+Option + Command + i

@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<script>
+angular.module('jsbin', ['ui.bootstrap']).config(Decorate);
+
+Decorate.inject = ['$provide'];
+
+function Decorate($provide) {
+
+    $provide.decorator('alertDirective', function ($delegate) {
+
+        var directive = $delegate[0];
+        directive.templateUrl = "alertOverride.tpl.html";
+        return $delegate;
+    });
+}
+
+angular.module("template/alert/alert.html", []).run(["$templateCache", function ($templateCache) {
+
+$templateCache.put("template/alert/alert.html",
+"<div class='alert' ng-class='type && \"alert-\" + type'>\n" +
+" <button ng-show='closeable' type='button' class='close' ng-click='close()'>Close</button>\n" +
+"  <div ng-transclude></div>\n" +
+"</div>");
+}]);
+</script>
+</body>
+</html>
