@@ -21,4 +21,3 @@ Or, if you prefer:
 git pull upstream master ­­rebase
 
 git checkout ­B master upstream/master.
-

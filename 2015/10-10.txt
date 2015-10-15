@@ -47,3 +47,12 @@ Shift + Enter
 
 Shift + Command + C
 Option + Command + i
+
+//////
+
+_.pluck(unavailablePersonnelSorted, 'fullName').indexOf('Senk');
+
+
+////// $($0).data().$scope
+ng-repeat:
+$($0).data().$scope.person
