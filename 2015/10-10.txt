@@ -48,11 +48,16 @@ Shift + Enter
 Shift + Command + C
 Option + Command + i
 
+
 //////
+console.time()
+console.timeEnd()
+console.count()
 
-_.pluck(unavailablePersonnelSorted, 'fullName').indexOf('Senk');
 
+/////
+Communicating with inherited scopes
 
-////// $($0).data().$scope
-ng-repeat:
-$($0).data().$scope.person
+Communicating with events
+
+Communicating with services

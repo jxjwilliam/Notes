@@ -1,0 +1,87 @@
+
+git-clean - Remove untracked files from the working tree
+
+
+If untracked directory is a git repository of its own (e.g. submodule), you need to use -f twice:
+git clean -d -f -f
+
+
+git clean -fd removes directory
+
+git clean -fX removes ignored files
+
+git clean -fx removes ignored and un-ignored files
+
+
+git fetch upstream
+git merge ­­ff­only upstream/master
+
+Or, if you prefer:
+git pull upstream master ­­rebase
+
+git checkout ­B master upstream/master.
+
+
+////// git push 403
+Github seems only supports ssh way to read&write the repo, although https way also displayed 'Read&Write'.
+
+So you need to change your repo config on your PC to ssh way:
+
+edit .git/config file under your repo directory
+find url=entry under section [remote "origin"]
+change it from url=https://MichaelDrogalis@github.com/derekerdmann/lunch_call.git to
+url=ssh://git@github.com/derekerdmann/lunch_call.git. that is, change all the texts before @ symbol to ssh://git
+Save config file and quit. now you could use git push origin master to sync your repo on GitHub
+
+
+////////////////////////////////////
+
+Sea change for the front-end developer
+
+§     Regular JS to Typescript (transpilation)
+
+§     Build tools (Gulp, Grunt, pre/post CSS, pre/post JS, dev/dist builds)
+
+§     Testing  (unit, e2e, etc.)
+
+§     ES5 => ES6 => ES7 …
+
+§     Module loading
+
+§     Dependency injection
+
+§     Promises
+
+§     Observables
+
+§     Use the fat arrow =>
+
+·     Smart2 folder review
+
+o     Gulp tasks review
+
+o     Dev vs. dis
+
+·     RxJS: Moving from promises to observables
+
+o     Rx is the underscore.js for events
+
+o     Very brief overview
+
+o     Observables vs. promises
+
+ 
+
+Resources
+·     http://reactivex.io/
+
+·     https://github.com/Reactive-Extensions/RxJS
+
+·     http://rxmarbles.com/
+
+·     https://github.com/Reactive-Extensions/RxJS/tree/master/doc/designguidelines
+
+·     http://xgrommx.github.io/rx-book/
+
+·     http://reactivex.io/documentation/operators.html
+
