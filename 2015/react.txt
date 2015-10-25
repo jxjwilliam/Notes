@@ -1,0 +1,19 @@
+Babel is a great transpiler for trying out ES6. You can run ES6 in the browser in the "Try it out" section of their website. It functions similarly to jsfiddle.
+
+$ babel ES6.js | node
+$ babel ES6.js --out-file output.js
+
+//////
+chrome://chrome
+chrome://plugins
+chrome://components
+chrome://flags/#enable-javascript-harmony -> enable ES6 arrow.
+
+
+///////
+If you'd like to develop with "plain" ES6 and ES7, you can use Babel, the "compiler for writing next generation Javascript." If you'd like to use Ionic and Angular, we recommend TypeScript which will provide similar features as babel, with extra type checking if you choose to use it.
+
+
+Node.js has always used CommonJS and as a result most libraries published on npm use it. 
+
+//////
