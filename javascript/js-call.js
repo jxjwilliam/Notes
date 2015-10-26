@@ -46,9 +46,6 @@ document.writeln('Is rect an instance of Rectangle? ' + (rect instanceof Rectang
 document.writeln('Is rect an instance of Shape? ' + (rect instanceof Shape)); // true
 rect.move(1, 1); // Outputs, 'Shape moved.'
 
-
-
-
 (function($, ng) {
     'use strict';
 
@@ -71,3 +68,42 @@ rect.move(1, 1); // Outputs, 'Shape moved.'
         return result;
     }
 })(window.jQuery, window.angular);
+
+
+///////////////
+
+ //1. constructor:
+function CarMaker() {}
+
+//2. Factory Items Iteration:
+CarMaker.Compact = function(){};
+CarMaker.Convertible = function(){};
+CarMaker.SUV = function() {};
+
+//3. public methods:
+CarMaker.prototype.tool = function() {};
+CarMaker.prototype.drive = function() {};
+
+//4. Static methods:
+CarMaker.factory = function(type) {
+  var constr = type;
+  
+  if(typeof CarMaker[constr] !== 'function') {
+     throw {
+       name: "Error",
+       message: constr + 'not exist'
+     };
+  }
+  //inheritance only once
+  if(typeof CarMaker[constr].prototype.tool !== 'function') {
+    CarMaker[constr].prototype = new CarMaker();
+  }
+  
+  return new CarMaker[constr]();
+} 
+
+//5. Usage:
+var camry = CarMaker.factory('Convertible');
+var cherokee = CarMaker.factory('SUV');
+camry.tool();
+cherokee.drive();
