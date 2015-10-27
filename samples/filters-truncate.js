@@ -17,3 +17,5 @@ angular.module('igTruncate', []).filter('truncate', function (){
         }
     };
 });
+
+/////////////////
