@@ -9,7 +9,6 @@ var Task = new Schema({
 });
 
 var Task = mongoose.model('Task', Task);
-...
 
 app.get('/api/tasks', function(req, res, next){
   Task.find({}, function (err, docs) {

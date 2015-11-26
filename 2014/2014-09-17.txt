@@ -70,6 +70,9 @@ mean install mean-tokens
 mean list
 grunt
 
+mean uninstall articles
+mean uninstall i18n
+
 ------@ facebook account
 745638552168686, df4aa6d144501b6a364d13a95231a4ef
 developers.facebook.com User jaiten.gill@gmail.com Pass inzite2014

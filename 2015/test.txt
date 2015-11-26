@@ -72,6 +72,4 @@ Hopefully now you understand what $apply is and when to use it. If you only use 
 
 //////
 
-While I am working on this investigation, I debug web-socket to check the data which the client subscribe or send.
 
-When I visit rabbitmq service on production: http://smart.dsnyad.nycnet:15672/, it is the same username/password with locally, so easily get it. It seems unsecurity.

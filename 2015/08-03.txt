@@ -175,3 +175,20 @@ app.directive('debug', function($compile) {
 // webstorm: live templates
 
 - Angularjs Controller is just javascript constructor function, nothing more.
+
+
+// auto wrap $scope.$apply:
+
+AngularJS actually calls almost all of your code within an $apply call. Events like ng-click, controller initialization, $http callbacks are all wrapped in $scope.$apply().
+
+In other words, ng-click, http, timeout auto call $apply().
+AngularJS provides wrappers for common native JS async behaviors:
+
+1. Events => ng-click
+1. Timeouts => $timeout
+1. jQuery.ajax() => $http
+
+This is just a traditional async function with a $scope.$apply() called at the end, to tell AngularJS that an asynchronous event just occurred.
+
+
+AngularJS provides $timeout, which is like setTimeout, but automatically wraps your code in $apply by default.

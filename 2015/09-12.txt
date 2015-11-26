@@ -137,3 +137,5 @@ reading.then(funciton success(a){}, function fail(err) {});
 
 gulp, yoaman, karma, webstorm, sublimetext 3, kdiff3, snagit
 git, bigbugget, bamboo/travis/jenkins, 
+
+

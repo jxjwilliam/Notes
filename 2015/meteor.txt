@@ -1,0 +1,2 @@
+meteor help
+meteor run
