@@ -1,0 +1,47 @@
+jasmin-jquery.js
+
+https://github.com/yearofmoo-articles/AngularJS-Testing-Article/tree/master/test
+
+
+
+///////////////////////////////////////////
+if [ ! -f package.json ]; then
+   echo "no package.json exists!"
+   exit;
+fi
+
+// A.1
+if ! type grunt-cli 1>/dev/null 2>&1; then
+  npm install -g grunt-cli
+fi
+// A.2
+type grunt-cli 2>/dev/null
+if [ $? -ne 0 ]; then
+   npm install -g grunt-cli
+fi
+
+//B.1
+if ! type karma 1>/dev/null 2>&1; then
+  npm install -g karma
+fi
+//B.2
+type karma 2>/dev/null
+if [ $? -ne 0 ]; then
+   npm install -g karma
+fi
+
+ls -ld node_modules 2>/dev/null
+if [ $? -ne 0 ]; then
+   npm install
+fi
+
+if [ ! -f bower.json ]; then
+   echo "no bower.json exists!"
+   exit;
+fi
+
+ls -ld application/public/bower_components 2>/dev/null
+if [ $? -ne 0 ]; then
+   bower install
+fi
+

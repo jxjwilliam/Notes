@@ -1,0 +1,22 @@
+
+
+
+(1) 
+<a id="this_a" href="" title="" class=""></a>
+
+<script type="text/javascript">
+
+$('a#this_a').click(function(e) {
+  e.preventDefault(); //optional
+  
+  do_some_stuff...
+  
+  return false; //not to spread to other added-events.
+  
+});
+
+</script>
+
+
+(2)  Cross-origin resource sharing (CORS) is a more recent method of getting data from a server in a different domain, which addresses some of those criticisms.
+

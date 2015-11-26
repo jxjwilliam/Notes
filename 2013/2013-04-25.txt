@@ -1,0 +1,10 @@
+/**
+http://localhost/dataservice/ImportantDatesReminder.svc/getremindercount 200 Exception detected.
+Dev: 
+ http://dev.topproducer.com/campus/top-producer/contacts/important-date-reminders/?utm_source=important-date-reminders&utm_medium=productlink&utm_campaign=tp-help    
+Production: 
+ http://www.topproducer.com/campus/top-producer/contacts/important-date-reminders/?utm_source=important-date-reminders&utm_medium=productlink&utm_campaign=tp-help
+*/
+
+javascript control special characters.
+slidedown/slideup change for current element.

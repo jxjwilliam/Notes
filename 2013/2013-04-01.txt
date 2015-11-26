@@ -1,0 +1,62 @@
+rails generate model tpouser v:Integer UserId:string ProfileId:string Day1:Date New1:Integer Total1:Integer --skip-migration  --orm mongo_mapper
+
+
+db.crmuser.insert({
+ v: 1,
+ UserId: 'user1',
+ ProfileId: 'profile1',
+ Day1: '2013-04-01',
+ New1: 123,
+ Total1: 456
+});
+db.crmuser.insert({
+ v: 1,
+ UserId: 'user2',
+ ProfileId: 'profile2',
+ Day1: '2013-03-01',
+ New1: 666,
+ Total1: 888
+});
+db.crmuser.insert({
+ v: 1,
+ UserId: 'user3',
+ ProfileId: 'profile3',
+ Day1: '2013-02-01',
+ New1: 777,
+ Total1: 456
+});
+
+
+db.crmusers.insert({
+ v: 1,
+ UserId: 'user1',
+ ProfileId: 'profile1',
+ Day1: '2013-04-01',
+ New1: 123,
+ Total1: 456
+});
+db.crmusers.insert({
+ v: 1,
+ UserId: 'user2',
+ ProfileId: 'profile2',
+ Day1: '2013-03-01',
+ New1: 666,
+ Total1: 888
+});
+db.crmusers.insert({
+ v: 1,
+ UserId: 'user3',
+ ProfileId: 'profile3',
+ Day1: '2013-02-01',
+ New1: 777,
+ Total1: 456
+})
+
+
+
+http://192.168.56.32:3000/v1/user/contacts/count/createdForMonth/dagent_1/2013-04-02/
+http://192.168.56.32:3000/v1/user/contacts/count/dagent_1/
+http://192.168.56.32:3000/v1/user/contacts/count/createdInDateRange/dagent_1/2013-03-31/2013-04-02
+
+http://192.168.56.32:3000/v1/user/contacts/count/createdForMonth/tester/2013-03
+http://192.168.56.32:3000/v1/user/contacts/count/createdInDateRange/tester/2013-03-30/2013-04-02

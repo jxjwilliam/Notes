@@ -1,0 +1,84 @@
+The Exceptions:
+=============
+(.) User does not exist
+
+(.) User does exist, but vague or multiple.
+
+(.) User records are multiple, e.g.: there are more than 1 contacts for March due to DB reason. (the data might be not always correct)
+
+(.) StartDate/Enddate is not the format of yyyy-mm-dd: 2013/3/5
+
+(.) StartDate/Enddate is the format of yyyy-mm-dd, but 
+*NOT* leading zeros require for single digit day or month: 2013-3-5
+
+(.) Enddate - StartDate is *NOT* correct.
+EndData: 2013-04-01, StartDate: 2013-04-01
+EndData: 2013-03-01, StartDate: 2013-04-01
+EndData: 2013-01-04, StartDate: 2013-04-01
+
+(.) When *NO* StartDate/EndDate, default is current Month?
+
+(.) If no record in DB, does need a notice?
+e.g. for user 'UserA', 'UserB' in April:
+UserA has 0 count in April, UserB no record in April, What't the difference? 
+A notice for ETL data upgrated?
+
+(.) What's the difference of the contact number for 'Single Agent' and 'Team Member'?
+
+(.) What is accountId? The difference between accountID and userID?
+If User Loginname is used, the special character? like:
+O'Neal
+Mac-Donald
+"Double quote"
+\backspact
+
+(.) For:
+Make sure all the results of the API match the values the user would see in TPO 
+(or log a defect if the TPO value is determined to be incorrect)
+=================================================================================
+How to do the test? Does it need to check in real-time?
+
+
+(.) For the past 6 months, the returns are by monthly or by total? something like:
+{ 'user': 'user',
+  'MonthlyContacts': [ 
+  {'2013-03': 60},
+  {'2013-02': 55},
+  {'2013-01': 52},
+  {'2012-12': 40},
+  {'2012-11': 41},
+  {'2012-10': 48},
+  ],
+}
+
+
+(.) for touchpoints, 'call' or 'appointment' is fine; for default, 
+types='call' or 'appointment' return in an array or hash?
+The returns like:
+Returns {
+“user”: “<user>”,
+“startDate”: “<startDate>”,
+“endDate”: “<endDate>”,
+[ {“types”: “call”, “count”: “28”,}, 
+  {“types”: appointment,“count”: “56”}
+]}
+
+(.) All the data in goal setting looks like 'READONLY' property, if user changes
+his/her goals/data, how quickly the service reflect this changes? Any notices when display?
+
+(.) Do we need an interface to check TP MSSQL directly to have the data comparison or data consitency?
+
+(.) For the half year touchpoints retrieving, is there a way to distinguish this case, so no need to input
+StartDate, Enddate to let customer to calculate?
+
+(.) yearToDate or yearToMonth?
+
+
+Others:
+=======
+(.) Currently the retrieving is all by *DATE* range, Does it the need to list
+by AREA or Price? (Same Restful retrieving, different find_method).
+
+(.) For the Transactions and Closed Listing, we have RestFul retrieving for Buyer, we seem also need for Seller:
+In TP, the number of transaction = the number of closings with closed/paid status where agent represents the buyer (or buyer and seller) 
+In TP, the number of closed listings = the number of closings with closed/paid status where agent represents the seller (or buyer and seller) 

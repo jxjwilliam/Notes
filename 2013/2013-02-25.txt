@@ -1,0 +1,116 @@
+By default, all the helpers are available in the views but not in the controllers.
+
+rails g mongo_mapper:config
+
+
+ rails g scaffold tpouser first_name:string last_name:string phone:string e_mail:string contacts:Integer prospects:Integer closings:Integer listings:Integer name:String --skip-migration
+
+ 
+ =>. rails new gs2  --skip-active-record
+ =>. vi gs2/Gemfile:
+require 'mongo'
+  gem 'mongo_mapper', '~> 0.12.0'
+  gem 'bson_ext', '~> 1.8.2'
+  gem 'bson', '~> 1.8.2'
+  gem 'mongo', '~> 1.8.2'
+ =>. bundle install
+ =>. vi config/initializers/mongo_config.rb:
+MongoMapper.connection = Mongo::Connection.new('localhost', 27017)
+MongoMapper.database = "test"
+ 
+if defined?(PhusionPassenger)
+  PhusionPassenger.on_event(:starting_worker_process) do |forked|
+  MongoMapper.connection.connect if forked
+   end
+end
+
+ =>. rails generate scaffold tpouser user:string --skip-migration --orm mongo_mapper
+ =>. rails generate model Info  first_name:string last_name:string phone:string e_mail:string --skip-migration --orm mongo_mapper
+ =>. rails generate model Count contacts:Integer prospects:Integer closings:Integer listings:Integer --skip-migration --orm mongo_mapper
+ 
+ --------------------------------
+ authenticity_token	lEoy2s3/HWk6O/bUdKdQnMqki5AwDX4d45wO81KVb8U=
+commit	Create Tpouser
+tpouser.count[closings]	123
+tpouser.count[contacts]	123
+tpouser.count[listings]	456
+tpouser.count[prospects]	456
+tpouser.info[e_mail]	aa@bb.com
+tpouser.info[first_name]	william
+tpouser.info[last_name]	jiang
+tpouser.info[phone]	1234567890
+tpouser[user]	williamjxj
+utf8	?
+
+---------------------------------
+puts params.inspect
+{"utf8"=>"?", "authenticity_token"=>"lEoy2s3/HWk6O/bUdKdQnMqki5AwDX4d45wO81KVb8U=", 
+
+"tpouser.info"=>
+{"first_name"=>"william", "last_name"=>"last", "phone"=>"1111111111", "e_mail"=>"aa@bb.com"}, 
+
+"tpouser.count"=>
+{"contacts"=>"111", "prospects"=>"456", "closings"=>"222222", "listings"=>"123"}, 
+
+"tpouser"=>
+{"user"=>"william"}, 
+
+"commit"=>"Create Tpouser", "action"=>"create", "controller"=>"tpousers"}
+
+--------------------------------
+puts params["tpouser.info"].inspect
+{"first_name"=>"william", "last_name"=>"last", "phone"=>"1111111111", "e_mail"=>"aa@bb.com"}
+
+--------------------------------
+
+var cursor = db.colors.find()
+cursor.next()
+cursor
+db.colors.find({name:/l/})
+db.colors.find({primary:true}).sort({name:l}).limit(1)
+
+var me=db.people.findOne({name:'John'})
+me.name
+me.awesome
+me.shows[1]
+me.info.age
+me.info.dob.getFullYear()
+
+db.people.find({'info.age':28})
+
+-------------------------------
+Documents are stored in BSON (blog post), which is binary encoded JSON that is built 
+to be more efficient and also to include a few more data types than JSON. 
+This means that if you send Mongo a document that has values of different types, 
+such as String, Integer, Date, Array, Hash, etc., 
+Mongo knows exactly how to deal with those types and actually stores them in the database 
+as that type. This differs from traditional key/value stores, 
+which just give you a key and a string value and leave you to handle serialization yourself.
+
+-------------------------------
+[movedev@move-linux-dev sss]$ rails generate model Tpouser user:string
+      invoke  active_record
+      create    db/migrate/20130228200106_create_tpousers.rb
+      create    app/models/tpouser.rb
+[movedev@move-linux-dev sss]$ rails g model Info first_name:string last_name:string phone:string e_mail:string
+      invoke  active_record
+      create    db/migrate/20130228195708_create_infos.rb
+      create    app/models/info.rb
+[movedev@move-linux-dev sss]$ rails g model  Count contacts:Integer prospects:Integer closings:Integer listings:Integer
+      invoke  active_record
+      create    db/migrate/20130228195744_create_counts.rb
+      create    app/models/count.rb
+	  
+[movedev@move-linux-dev sss]$ rails g controller Tpousers show
+      create  app/controllers/tpousers_controller.rb
+       route  get "tpousers/show"
+      invoke  erb
+      create    app/views/tpousers
+      create    app/views/tpousers/show.html.erb
+
+-------------------------------
+
+curl http://localhost:3000/phone/1111111111.json
+curl http://localhost:3000/user/kh.json
+curl http://localhost:3000/fname/william.json
+curl http://localhost:3000/lname/last.json

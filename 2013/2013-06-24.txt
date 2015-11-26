@@ -1,0 +1,296 @@
+// http://stackoverflow.com/questions/15636302/attach-click-event-to-element-in-select2-result
+
+(function($) {
+	if(typeof $.nextId == "undefined") {
+		$.extend({
+			// A closure.
+			nextId: (function () { 
+				var counter = 1; 
+				return function () { 
+					return counter++;
+				}
+			})()
+		});
+	}
+	if(typeof $.fn.each8i == "undefined"){
+ 		$.fn.extend({
+			each8i : function (c) {
+				var j = $([0]), i = -1, l = this.length;
+				while (
+					++i < l
+					&& (j.context = j[0] = this[i])
+					&& c.call(j[0], i, j) !== false //"this"=DOM, i=index, j=jQuery object
+				);
+				return this;
+			}
+ 		});
+ 	}	
+})(jQuery);
+
+
+
+$(function() {
+		   
+  "use strict";
+
+    function TP8iClass(SuperClass, methods) {
+        var constructor = function () {};
+        constructor.prototype = new SuperClass;
+        constructor.prototype.constructor = constructor;
+        constructor.prototype.parent = SuperClass.prototype;
+        constructor.prototype = $.extend(constructor.prototype, methods);
+        return constructor;
+    }
+	
+	var ContactType = TP8iClass(Object, {
+	
+		init: function(opts) {
+
+		 //this.debug((opts)); //not work
+		 //console.log(JSON.stringify(opts));
+		 // function evaluate(val) { return $.isFunction(val) ? val() : val; }
+		 $.each(opts, function(i,v) {
+		  	if($.isFunction(v)) {
+			  v();
+			}
+			else if(typeof(v)==='object') {
+				console.log(JSON.stringify(v));
+			}
+			else {
+			  console.log(i + ': ' + v);
+			}
+		  });
+		},
+		
+		debug: function (log) {
+            if (this._debug) {
+                if (typeof (window.console) != 'undefined') {
+                    if (typeof (log) === 'object' || typeof (log) === 'function')
+                        console.log(JSON.stringify(log));
+                    else
+                        console.log(log);
+                }
+            }
+        },
+        getToken: function () {
+            if ((typeof (gCurrentTP8iUserHash) != 'undefined') && gCurrentTP8iUserHash)
+                this._Token = gCurrentTP8iUserHash;
+            else {
+                var cookies = document.cookie.split(';');
+                for (var i = cookies.length - 1; i >= 0; i--) {
+                    if (/^\s*TPOnline/i.test(cookies[i])) {
+                        this._Token = cookies[i].split('&')[0].split('=')[2];
+                    }
+                }
+            }
+            return this._Token.replace(/[\{\}]/g, '');
+        }
+	});
+
+ $.fn.fullList = function () {
+	var args = Array.prototype.slice.call(arguments, 0),
+		opts,
+		fl;
+
+	this.each(function() {
+		console.log(self.attr('id')); //1, or: 0
+		console.log(this);
+		
+		if (typeof(args[0]) === "object") {
+			opts = args.length === 0 ? {} : $.extend({}, args[0], $.fn.fullList.defaults);
+			opts.element = $(this);
+
+			fl = new  ContactType();
+			fl.init(opts);	
+		}
+		else if (typeof(args[0]) === "string") {
+			console.log('string: '+args[0]);
+		}
+		else if(args.length === 0) {
+			aaa();
+			console.log($.nextId());
+		}
+	});
+	
+	$.ajax({
+        type: "GET",
+        url: "/dataservice/Contact.svc/getPicklistContactTypesFullVersion",
+        beforeSend: function (xhrObj) { xhrObj.setRequestHeader("token", PickList.getToken()); },
+        data: null,
+        contentType: "application/json; charset=utf-8",
+        dataType: "json"
+        //headers: { "token": PickList.getToken() },
+    })
+    .done(function (list) {
+        $("#contacttype").select2({
+            multiple: true,
+            tokenSeparators: [","],
+            placeholder: "",
+            closeOnSelect: false,
+            maximumInputLength: 64,
+            query: function (query) {
+                var data = {
+                    results: []
+                };
+                //console.log(query);
+                var name = query.term;
+                var compound1 = '', compound2 = '';
+                var children1 = [], children2 = [];
+                var exists = false;
+                $.each(list, function (index, value) {
+                    if (name.length == 0 || value.itemValue.toUpperCase().indexOf(name.toUpperCase()) >= 0) {
+                        // itemFlag=2,0 means real data.
+                        if (value.itemFlag == 3) {
+                            compound1 = value.itemValue; //Master Contact Types
+                        }
+                        else if (value.itemFlag == 2) {
+                            children1.push({
+                                id: value.itemFlag + '_' + nextId(),
+                                text: value.itemValue
+                            });
+                        }
+                        else if (value.itemFlag == 1) {
+                            compound2 = value.itemValue; //User Contact Types
+                        }
+                        else if (value.itemFlag == 0) {
+                            children2.push({
+                                id: value.itemFlag + '_' + nextId(),
+                                text: value.itemValue
+                            });
+                        }
+                        else {
+                            //  console.log('each.list: error here.');
+                        }
+                        exists = true;
+                    }
+                    else {
+                        //console.log('each.list: nothing.');
+                    }
+                });
+                data.results.push(
+                    { text: "Master Contact Types", children: children1 },
+                    { text: "User Contact Types", children: children2 }
+                );
+                if (!exists) {
+                    //data.results.push({ id: 'new_' + Math.floor((Math.random()*100)+1), text: name });
+                    data.results[1].children.push({
+                        id: 'new_' + nextId(), text: name
+                    });
+                    exists = false;
+                }
+                //console.log('===>exists:' + exists + ',query:' + contactIdquery);
+                query.callback(data);
+
+            },
+            initSelection: function (element, callback) {
+                //PickList.getAssignedContactTypes(element, callback);
+
+                $.ajax({
+                    url: PickList.url3,
+                    beforeSend: function (xhrObj) {
+                        xhrObj.setRequestHeader("token", PickList.getToken());
+                    },
+                    data: {
+                        id: PickList.contactId
+                    },
+                    contentType: "application/json; charset=utf-8",
+                    dataType: "json"
+                }).done(function (predata) {
+                    console.log('##############');
+                    console.log(predata);
+                    PickList.predata = element.val().split(",");
+                    console.log(element);
+                    //PickList.debug(callback);
+                    var data = [];
+                    $(element.val().split(",")).each(function () {
+                        data.push({ id: this, text: this });
+                    });
+                    callback(data);
+					$('#contacttype').data(data).trigger("change");
+                });
+            }
+        });
+    });
+
+  };
+  
+
+/**
+ * token, contactId, contacttype(anchor) are from arguments.
+ */
+$.fn.fullList.defaults = {
+    nextId: ($.nextId()),
+    url_list: "/dataservice/Contact.svc/getPicklistContactTypesFullVersion",
+    url_assigned: "/dataservice/Contact.svc/getAssignedContactTypes",
+    url_update: "/dataservice/Contact.svc/updateContactTypes",
+	_debug: /(wjiang01vd|localhost)/i.test(document.location.hostname)
+};
+
+
+
+ $.extend({
+ 	updateHandler: function (e) {
+		e.stopPropagation();
+		var arr_types = [];
+		$('div', 'ul.select2-choices > li.select2-search-choice').each(function (n) {
+			var str = $(this).text(); //.replace(/,/g, '\\,');
+			arr_types.push(str);
+		});
+		// console.log(arr_types);
+
+		//.get() returns an array of all of the elements.
+		var str_types = $('ul.select2-choices > li.select2-search-choice').find('div').map(function () {
+			return $(this).text();    //.replace(/,/g, '\\,');
+		}).get().join();
+		// So we have arr_types and str_types version, use str_types version here.            
+		// console.log(str_types);
+
+
+		var userData = {
+			id: contactId,
+			types: contactTypes
+		};
+
+		$.ajax({
+			type: "POST",
+			url: PickList.url2,
+			beforeSend: function (xhrObj) {
+				xhrObj.setRequestHeader("token", PickList.getToken());
+			},
+			data: JSON.stringify(userData),
+			contentType: "application/json; charset=utf-8",
+			dataType: "json"
+		}).done(function (data) {
+			// console.log(data);
+			
+		}).fail(function (jqxhr, textStatus, errorThrown) {
+			// console.log('[fail]: ' + jqxhr.textStatus);
+		}).always(function (data) {
+		});
+	}
+});
+ 
+
+$(function() {
+
+
+ 
+ function updateCTCount() {
+	var t = 
+	  $('#contacttype').val().split(',').filter(function(value) {
+	    return value !== undefined
+	  }).length;
+
+	if(t) $('span.contacttype_count').html(t).fadeIn('fast');
+	return false;
+ }
+ 
+ $('body').on('change', '#contacttype', updateCTCount);
+ 
+ $('body').one('click', '#contacttype', $.fn.fullList);
+ 
+ $('#contacttype').click(function() {
+	$('#contacttype').val().trigger("change");
+ });
+
+});

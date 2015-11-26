@@ -1,0 +1,28 @@
+               <!-- william jiang: 04 Jun, 2013 -->
+                <tr>
+                    <th>Contact Type</th>
+                    <td>
+                        <div>
+                            <div>
+<input autocomplete="off" autocorrect="off" autocapitilize="off" spellcheck="false" class="select2-input" 
+    type="text" placeholder="Please input" id="e7" />
+                                <input type="button" value="Search" id="PickUpSearch">
+                            </div>
+                            <ul class="select2-results"></ul>
+                        </div>
+                    </td>
+
+                    <!-- Here to include jQuery Select2 plugin. -->
+                    <link rel="stylesheet" href="../_8ibackbone/select2-master/select2.css" />
+                    <script src="../_8ibackbone/select2-master/select2.js" type="text/javascript"></script>
+                    <script src="../_8ibackbone/pickuplist.js" type="text/javascript"></script>
+                </tr>
+                <tr>
+                    <th>Contact Type(mobile)</th>
+                    <td>
+                            <input type="text" placeholder="Search" class="searchText">
+                            <button class="ir icon searchAction">
+                                Search</button>
+                    </td>
+                </tr>
+                <tr>

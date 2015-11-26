@@ -1,0 +1,342 @@
+
+
+    var nextId = (function () {
+        var counter = 100;
+        return function () {
+            return counter++;
+        };
+    }());
+
+    var PickList = {
+        // url4, url3, url2 will be used, the old version url,url1 will be discarded.
+        url: "/dataservice/contact.svc/ContactTypeSearch",
+        url1: "/../../dataservice/contact.svc/ContactTypeSearch",
+        url2: "/../../dataservice/Contact.svc/updateContactTypes",
+        url3: "/dataservice/Contact.svc/getAssignedContactTypes",
+        url4: "/../../dataservice/Contact.svc/getPicklistContactTypesFullVersion",
+        predata: ["Buyer", "Seller", "Investor", "Listing prospect", "Listing prospect investor", "Service provider"],
+        precount: 1,
+        contactId: '',
+        _debug: /(wjiang01vd|localhost)/i.test(document.location.hostname),
+        debug: function (log) {
+            return false;
+            if (this._debug) {
+                if (typeof (window.console) != 'undefined') {
+                    if (typeof (log) === 'object' || typeof (log) === 'function')
+                        console.log(JSON.stringify(log));
+                    else
+                        console.log(log);
+                }
+            }
+        },
+        getToken: function () {
+            if ((typeof (gCurrentTP8iUserHash) != 'undefined') && gCurrentTP8iUserHash)
+                this._Token = gCurrentTP8iUserHash;
+            else {
+                var cookies = document.cookie.split(';');
+                for (var i = cookies.length - 1; i >= 0; i--) {
+                    if (/^\s*TPOnline/i.test(cookies[i])) {
+                        this._Token = cookies[i].split('&')[0].split('=')[2];
+                    }
+                }
+            }
+            return this._Token.replace(/[\{\}]/g, '');
+        },
+        getContactId: function (cid) {
+            this.contactId = cid;
+        },
+
+        processDuplicated: function (searched) {
+            var val = searched,
+                choices = $('ul.select2-results').find(".select2-result"),
+                compound = $('ul.select2-results').find(".select2-result-with-children");
+
+            //console.log(choices);
+            //console.log(compound);
+            choices.each(function (i, choice) {
+                //console.log(this === choice); //all true
+                var txt = $(choice).find('.select2-result-label').text().toUpperCase();
+                if (searched.toUpperCase() == txt) {
+                    console.log('====================================');
+                    console.log(searched + ', ' + txt);
+                    $(choice).addClass("select2-selected");
+                    $(choice).find(".select2-result-selectable").addClass("select2-selected");
+                }
+            });
+
+            compound.each(function (i, choice) {
+                if (! $(this).is('.select2-result-selectable')
+                    && $(this).find(".select2-result-selectable:not(.select2-selected)").length === 0) {
+                    $(choice).addClass("select2-selected");
+                }
+            });
+        },
+
+        processDuplicated1: function (searched, list) {
+            if (searched == undefined || !list.length)
+                return 0;
+            return jQuery.grep(list, function (v) {
+                return searched.toUpperCase() == v.itemValue.toUpperCase();
+            }).length;
+        },
+
+        updateHandler: function (e) {
+            e.stopPropagation();
+            var arr_types = [];
+            $('div', 'ul.select2-choices > li.select2-search-choice').each(function (n) {
+                var str = $(this).text(); //.replace(/,/g, '\\,');
+                arr_types.push(str);
+            });
+            // console.log(arr_types);
+
+            //.get() returns an array of all of the elements.
+            var str_types = $('ul.select2-choices > li.select2-search-choice').find('div').map(function () {
+                return $(this).text();    //.replace(/,/g, '\\,');
+            }).get().join();
+            // So we have arr_types and str_types version, use str_types version here.            
+            // console.log(str_types);
+
+            PickList.updateContactTypes(str_types);
+        },
+
+        updateContactTypes: function (contactTypes) {
+
+            //var contactId = typeof (FollowUp)==='object' ? FollowUp.currentContactDetails.id : '1234567890';
+            var contactId = this.contactId;
+            var userData = {
+                id: contactId,
+                types: contactTypes
+            };
+
+            $.ajax({
+                type: "POST",
+                url: PickList.url2,
+                beforeSend: function (xhrObj) {
+                    xhrObj.setRequestHeader("token", PickList.getToken());
+                },
+                data: JSON.stringify(userData),
+                contentType: "application/json; charset=utf-8",
+                dataType: "json"
+            }).done(function (data) {
+                console.log(data);
+            }).fail(function (jqxhr, textStatus, errorThrown) {
+                // console.log('[fail]: ' + jqxhr.textStatus);
+            }).always(function (data) {
+            });
+        },
+
+        getAssignedContactTypes: function (element, callback) {
+
+            var contactId = this.contactId;
+
+            $.ajax({
+                url: PickList.url3,
+                beforeSend: function (xhrObj) {
+                    xhrObj.setRequestHeader("token", PickList.getToken());
+                },
+                data: {
+                    id: contactId
+                },
+                contentType: "application/json; charset=utf-8",
+                dataType: "json"
+            }).done(function (predata) {
+                PickList.predata = predata;
+                // console.log(PickList.predata);
+                var s = "";
+                if (predata !== null) {
+                    for (var i = 0; i < predata.length; ++i) {
+                        var sTempValue = predata[i].trim();
+                        sTempValue = sTempValue.trim();
+                        if (sTempValue.length > 0) {
+                            s = s + "<li class=\"select2-search-choice\"><div>" + sTempValue + "</div>";
+                            s = s + "<a href=\"#\" class=\"select2-search-choice-close\"></a>";
+                            s = s + "</li>";
+                        }
+                    }
+                }
+                $(s).prependTo('ul.select2-choices');
+            })
+            .done(function () {
+                $('ul.select2-choices')
+                  .find(".select2-search-choice-close")
+                  .on("mousedown", function (e) {
+                      e.preventDefault();
+                      e.stopPropagation();
+                  })
+                  .on("click dblclick", function (e) {
+                      $(e.target).closest(".select2-search-choice").fadeOut('fast', function () {
+                          //this.unselect($(e.target));
+                          $(this).find(".select2-search-choice-focus").removeClass("select2-search-choice-focus");
+                          $(this).remove();
+                      }).dequeue();
+
+                      var searched = $(e.target).closest(".select2-search-choice").find('div').text();
+                      choices = $('ul.select2-results').find(".select2-result"),
+                      compound = $('ul.select2-results').find(".select2-result-with-children");
+                      choices.each(function (i, choice) {
+                          var txt = $(choice).find('.select2-result-label').text().toUpperCase();
+                          if (searched.toUpperCase() == txt) {
+                              // console.log('******:' + searched + ', ' + txt);
+                              $(choice).removeClass("select2-selected");
+                              $(choice).find(".select2-result-selectable").removeClass("select2-selected");
+                          }
+                      });
+
+                      e.preventDefault();
+                      e.stopPropagation();
+                  });
+                $("input.select2-input", 'ul.select2-choices').val('');
+            })
+            .fail(function (jqxhr, textStatus, errorThrown) {
+                // console.log('[fail]: ' + jqxhr.textStatus);
+            }).always(function (data) {
+            });
+        },
+        
+        afterSelect2callEvents: function () {
+            $("#contacttype")
+            .on("select2-open", function (e) {
+                var choices = $('ul.select2-results').find(".select2-result"),
+                    compound = $('ul.select2-results').find(".select2-result-with-children");
+
+                $.each(PickList.predata, function (i, v) {
+                    PickList.processDuplicated(v);
+                });
+                //$("input.select2-input").trigger('focus');
+            })
+            .on("change", function (e) {
+                var searched = $(e.target).closest(".select2-search-choice").find('div').text();
+                choices = $('ul.select2-results').find(".select2-result"),
+                compound = $('ul.select2-results').find(".select2-result-with-children");
+                choices.each(function (i, choice) {
+                    var txt = $(choice).find('.select2-result-label').text().toUpperCase();
+                    if (searched.toUpperCase() == txt) {
+                        console.log('******:' + searched + ', ' + txt);
+                        $(choice).removeClass("select2-selected");
+                        $(choice).find(".select2-result-selectable").removeClass("select2-selected");
+                    }
+                });
+            })
+            .on("select2-blur", function (e) {
+                alert("blur");
+                PickList.updateHandler();
+            });
+
+        },
+
+        ///////////
+        fullInitialization: function () {
+
+            $.ajax({
+                async: false,
+                type: "GET",
+                url: "/dataservice/Contact.svc/getPicklistContactTypesFullVersion",
+                beforeSend: function (xhrObj) { xhrObj.setRequestHeader("token", PickList.getToken()); },
+                data: null,
+                contentType: "application/json; charset=utf-8",
+                dataType: "json"
+                //headers: { "token": PickList.getToken() },
+            })
+            .done(function (list) {
+                $('#contacttype').select2({
+                    multiple: true,
+                    tokenSeparators: [','],
+                    placeholder: "",
+                    closeOnSelect: false,
+                    maximumInputLength: 64,
+                    query: function (query) {
+                        var data = {
+                            results: []
+                        };
+                        //console.log(query);
+                        var name = query.term;
+                        var compound1 = '', compound2 = '';
+                        var children1 = [], children2 = [];
+                        var exists = false;
+                        $.each(list, function (index, value) {
+                            if (name.length == 0 || value.itemValue.toUpperCase().indexOf(name.toUpperCase()) >= 0) {
+                                // itemFlag=2,0 means real data.
+                                if (value.itemFlag == 3) {
+                                    compound1 = value.itemValue; //Master Contact Types
+                                }
+                                else if (value.itemFlag == 2) {
+                                    children1.push({
+                                        id: value.itemFlag + '_' + nextId(),
+                                        text: value.itemValue
+                                    });
+                                }
+                                else if (value.itemFlag == 1) {
+                                    compound2 = value.itemValue; //User Contact Types
+                                }
+                                else if (value.itemFlag == 0) {
+                                    children2.push({
+                                        id: value.itemFlag + '_' + nextId(),
+                                        text: value.itemValue
+                                    });
+                                }
+                                else {
+                                    //  console.log('each.list: error here.');
+                                }
+                                exists = true;
+                            }
+                            else {
+                                //console.log('each.list: nothing.');
+                            }
+                        });
+                        data.results.push(
+                            { text: "Master Contact Types", children: children1 },
+                            { text: "User Contact Types", children: children2 }
+                        );
+                        if (!exists) {
+                            //data.results.push({ id: 'new_' + Math.floor((Math.random()*100)+1), text: name });
+                            data.results[1].children.push({
+                                id: 'new_' + nextId(), text: name
+                            });
+                            exists = false;
+                        }
+                        //console.log('===>exists:' + exists + ',query:' + contactIdquery);
+                        query.callback(data);
+
+                        finished = 1;
+                    },
+                    initSelection: function (element, callback) {
+                        //PickList.getAssignedContactTypes(element, callback);
+                    }
+                });
+            });
+            PickList.afterSelect2callEvents();
+            //return false;
+        },
+        ///////////
+        escape: function (html) {
+            return String(html).replace(/&(?!\w+;)/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
+        }
+    };
+ 
+    $(function () {
+        $("body").on("click", 'input#contacttype_update', PickList.updateHandler);
+
+        $("body").on("click", '.select2-search-choice-close', function (e) {
+            e.preventDefault();
+            alert('bbbbbbbbb');
+            return false;
+        });
+        $("body").on("focus", "input.select2-input111", function (e) {
+            e.preventDefault();
+            e.stopPropagation();
+            var choices = $('ul.select2-results').find(".select2-result"),
+                compound = $('ul.select2-results').find(".select2-result-with-children");
+            if (PickList.precount == 1) {
+                // console.log('~~~~~~~~~~~~~');
+                // console.log(choices);
+                // console.log(compound);
+                $.each(PickList.predata, function (i, v) {
+                    PickList.processDuplicated(v);
+                });
+                PickList.precount = 0;
+            }
+            return false;
+        })
+
+    });
+

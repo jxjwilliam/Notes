@@ -1,0 +1,64 @@
+the "new" keyword is required because APP.Views.HomePage is a reference to a constructor function 
+and not a reference to a singleton.
+
+function a(x,y) {
+ if(typeof x=='undefined') console.log('typeof x: undefined'); 
+ if(x==undefined) console.log('x: undefined');
+  if(!x) console.log('x: empty');
+}
+a(); // typeof x: undefined, x: undefined, x:empty
+------------------------------------------------
+
+Undefined and Null
+Undefined is the value of a variable with no value.
+
+Variables can be emptied by setting the value to null;
+cars=null;
+person=null;
+
+a={x:1,y:2};
+console.log(a.z)
+//return: undefined, not a error.
+console.log(t); //error:ReferenceError: t is not defined
+
+var x;               // Now x is undefined
+var x = 5;           // Now x is a Number
+var x = "John";      // Now x is a String
+
+
+ functions are objects in JavaScript? Functions have predefined methods, 
+ two of them are apply() and call(). 
+ 
+ 
+------------------------------------------------
+//         ____________Immediately executed (self invoked)___________________
+//         |                                                                |
+//         |      Scope Retained for use        __Returned as the______     |
+//         |     only by returned function     |  value of func       |     |
+//         |             |            |        |                      |     |
+//         v             v            v        v                      v     v
+var func = (function() { var a = 'val'; return function() { alert(a); }; })();
+
+-------------------------------------------------
+var f = function(){};
+var o = new f();
+
+console.log(f instanceof Object); //true;
+console.log(f instanceof Function); //true;
+console.log(o instanceof Function); // false;
+console.log(typeof o);  //object
+
+---------------------------
+
+CRUD: Create POST  Read GET Update PUT Delete DELETE
+PUT POST, _method="put"
+DELETE POST, _method="delete"
+
+Backbone.emulateHTTP = true;
+Backbone.emulateJSON = true;
+
+return url + "?id=" + encodeURIComponent(this.id); //??????
+
+backbonejs.org/: Events, Model, Collection, Router, History, View, Sync
+Model.extend->
+fetch(), save(), destroy(), create(), reset(), 

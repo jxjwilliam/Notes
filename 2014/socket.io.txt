@@ -1,0 +1,183 @@
+------@ server ------
+npm install socket.io --save
+
+------@ client ------
+bower install socket.io-client --save
+<script src="bower_components/angular-socket-io/socket.js"></script>
+<script src='bower_components/socket.io-client/dist/socket.io.min.js'></script>
+
+
+------ server.js ------
+var app = require('express')()
+  , server = require('http').createServer(app)
+  , io = require('socket.io').listen(server);
+
+server.listen(80);
+
+app.get('/', function (req, res) {
+  res.sendfile(__dirname + '/index.html');
+});
+
+io.sockets.on('connection', function (socket) {
+  socket.emit('news', { hello: 'world' });
+  socket.on('my other event', function (data) {
+    console.log(data);
+  });
+});
+
+------ client-side: index.html ------
+<script type="text/javascript" src="bower_components/socket.io-client/dist/socket.io.js"></script>
+<script>
+    var socket = io.connect('http://localhost:9000');
+    socket.on('news', function (data) {
+        console.log(data);
+        socket.emit('my other event', { my: 'data' });
+    });
+</script>
+
+------ result ------
+in the browser console: object-> { hello: "world" }
+in back-end term: 
+debug: websocket writing 5:::{"name":"news","args":[{"hello":"world"}]}
+{ my: 'data' }
+
+
+------@ cross domain (ACAO)  ------
+Access-Control-Allow-Origin: http://www.example-social-network.com
+
+To allow access from all domains, a server can send the following response header:
+ Access-Control-Allow-Origin: *
+ 
+ 
+app.all('*', function(req, res, next) {
+    res.header("Access-Control-Allow-Origin", "*");
+    res.header("Access-Control-Allow-Headers", "X-Requested-With");
+    next();
+});
+
+-- enable cookie:
+Access-Control-Allow-Credentials: true 
+
+Access-Control-Allow-Credentials (optional) - By default, cookies are not included in CORS requests. Use this header to indicate that cookies should be included in CORS requests. The only valid value for this header is true (all lowercase). If you don't need cookies, don't include this header (rather than setting its value to false).
+
+HTTP Method matches (case-sensitive) one of:
+HEAD
+GET
+POST, MethodOverride
+HTTP Headers matches (case-insensitive):
+1. Accept
+2. Accept-Language
+3. Content-Language
+4. Last-Event-ID
+5. Content-Type, but only if the value is one of:
+	application/x-www-form-urlencoded
+	multipart/form-data
+	text/plain
+	
+------ @ jquery ajax cors ------
+Here's sample code for making a CORS request with JQuery. The comments give more details on how certain properties interact with CORS.
+
+$.ajax({
+
+  // The 'type' property sets the HTTP method.
+  // A value of 'PUT' or 'DELETE' will trigger a preflight request.
+  type: 'GET',
+
+  // The URL to make the request to.
+  url: 'http://updates.html5rocks.com',
+
+  // The 'contentType' property sets the 'Content-Type' header.
+  // The JQuery default for this property is
+  // 'application/x-www-form-urlencoded; charset=UTF-8', which does not trigger
+  // a preflight. If you set this value to anything other than
+  // application/x-www-form-urlencoded, multipart/form-data, or text/plain,
+  // you will trigger a preflight request.
+  contentType: 'text/plain',
+
+  xhrFields: {
+    // The 'xhrFields' property sets additional fields on the XMLHttpRequest.
+    // This can be used to set the 'withCredentials' property.
+    // Set the value to 'true' if you'd like to pass cookies to the server.
+    // If this is enabled, your server must respond with the header
+    // 'Access-Control-Allow-Credentials: true'.
+    withCredentials: false
+  },
+
+  headers: {
+    // Set any custom headers here.
+    // If you set any non-simple headers, your server must include these
+    // headers in the 'Access-Control-Allow-Headers' response header.
+  },
+
+  success: function() {
+    // Here's where you handle a successful response.
+  },
+
+  error: function() {
+    // Here's where you handle an error response.
+    // Note that if the error was due to a CORS issue,
+    // this function will still fire, but there won't be any additional
+    // information about the error.
+  }
+});
+
+
+------ @ font awesome ------
+http://fortawesome.github.io/Font-Awesome/
+
+------@ socket ------
+/**
+ * web-socket
+var Chat = mongoose.model('Message', msgSchema);
+ */
+var server = require('http').createServer(app);
+var io = require('socket.io').listen(server);
+
+io.on('connection', function (socket) {
+    socket.on('send msg', function (data) {
+        var newMsg = new Chat({ msg: data });
+        newMsg.save(function(err) {
+            if (err) {
+                throw err;
+            }
+            else {
+                io.sockets.emit('get msg', data);
+            }
+        });
+    });
+});
+
+-------------------------------
+io.sockets.on('connection', function (socket) {
+    socket.on('send msg', function (data) {
+        var newMsg = new Chat({ msg: data });
+        newMsg.save(function(err) {
+            if (err) {
+                throw err;
+            }
+            else {
+                io.sockets.emit('get msg', data);
+            }
+        });
+        //io.sockets.emit('get msg', data);
+    });
+});
+
+angular.module('demo1App')
+    .factory('socket', function() {
+        var socket = io.connect('http://localhost:9000');
+        return socket;
+    })
+    .controller('NewsCtrl', function ($scope, socket) {
+        $scope.pageHeading = 'News';
+        $scope.msgs = [];
+
+        $scope.sendMsg = function() {
+            socket.emit('send msg', $scope.msg.text);
+            $scope.msg.text = '';
+        };
+        socket.on('get msg', function(data) {
+            $scope.msgs.push(data);
+            //$scope.$digest();
+        });
+    });

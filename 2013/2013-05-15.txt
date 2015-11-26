@@ -1,0 +1,116 @@
+
+<a id="a1" href="javascript:alert('666');" onclick="console.log('111');">Testing...</a>
+
+$(function($) {
+
+    $('a#a1').unbind(); //unbind('click');
+    
+    $('a#a1').bind('click', function() {
+      console.log('222');
+    });
+    $('a#a1').live('click', function() {
+      console.log('333');
+    });
+    $('a#a1').on('click', function() {
+      console.log('444');
+    });
+    $(document).delegate('a#a1', 'click', function() {
+        console.log('555');
+    });
+});
+sequence: 
+111,222,444,333,555
+
+bind->on->delegate->live
+
+-----------------------------
+disabled:
+{ "opacity": 0.5, "pointer-events": none, "cursor": default }
+  
+-----------------------------
+Since the .live() method handles events once they have propagated 
+to the top of the document, it is not possible to stop propagation of 
+live events. Similarly, events handled by .delegate() will propagate to 
+the elements to which they are delegated; 
+event handlers bound on any elements below it in the DOM tree will 
+already have been executed by the time the delegated event handler is 
+called. These handlers, therefore, may prevent the delegated handler 
+from triggering by calling event.stopPropagation() or returning false.  
+
+------------------
+<div class="div_reminder_count">
+  <a id="ReminderCountLink" href="javascript:void(0);" title="Total Reminders">
+	  <span class="reminder_count" data-value="0"></span></a>
+</div>
+
+-----------------
+    // get session token from: https://tpodev13-8i.corp.homestore.net/dataservice/login.svc/?name=canglim30&password=toptop
+    getAjaxReminderCount: function (flag) {
+        var url = this._CountUrl;
+        var currentDate = $.rclHelp.dateToYMD();
+        var self = this;
+
+        // no place to fire.
+        var cbCountError = function (e) {};
+
+        var cbCountBeforeSend = function () {
+            self.$spanCount.html('');
+            $("<img/>").attr("src", self._spinner)
+				.css(rclSettings.spinnerClass)
+				.appendTo(self.$spanCount);
+            $('a#ReminderCountLink').addClass('disabled').removeAttr("href").off('click', self.countLinkHandler);
+            // not work: attr("disabled", "disabled");
+        };
+
+        var cbCountComplete = function (data) {
+            if (self.$spanCount.find('img').length)
+                self.$spanCount.find('img').remove();
+            //.removeAttr("disabled");
+            $('a#ReminderCountLink')
+                .removeClass("disabled")
+                .attr("href", "javascript:void(0);")
+                .on('click', self.countLinkHandler);
+        };
+
+        var cbCountSuccess = function (data) {
+            // compatible with previous non-json data:
+            var count = data.count != undefined ? data.count : data;
+
+            $.rclHelp.debug('<in cbCountSuccess>:' + count + ', ' + self._rCount + ',' + flag);
+            if (typeof (data.exception) !== 'undefined') {
+                msg = data.exception.exceptionType + ': ' + data.exception.message;
+                self.$spanCount.html(msg).show();
+                return false;
+            }
+            else if (flag == 5 || flag == 4) {
+                setCookie("reminderCount", count, 1);
+                self._rCount = count;
+            }
+            else {
+                //var important_count = data.important_count == undefined ? 0 : data.important_count; //no use.
+
+                setCookie("reminderCount", count, 1);
+                self._rCount = count;
+
+                self.showCount(count);
+            }
+            cbCountComplete(data);
+        };
+
+        var data = { "currentDate": currentDate };
+        url += '?' + $.param(data);
+
+        dataServiceGate({
+            httpMethod: "GET",
+            url: url,
+            beforeSend: cbCountBeforeSend,
+            onSuccess: cbCountSuccess
+        });
+
+        return false;
+    },
+--------------------------------------
+
+_action: 0, 
+option: 1-first-time launch afer login, 2-click a#countlink, 3-refresh page, 4-click tab.	
+3. _action: 1-first-time launch afer login, 2-click a#countlink, 3-refresh page, 4-click tab.

@@ -1,0 +1,522 @@
+// http://localhost/dataservice/ImportantDatesReminder.svc/getremindercount 200 Exception detected.
+
+var ReminderCountList = {
+    _CountUrl: "/dataservice/ImportantDatesReminder.svc/getremindercount",
+    _ListUrl: "/dataservice/ImportantDatesReminder.svc/getreminders",
+    _DismissUrl: "/dataservice/ImportantDatesReminder.svc/dismiss",
+    _ContactUrl: "../Contacts/ViewEditContact.aspx?contact_id=",
+
+    _pageSize: 5,
+    _displayTime: 6000, //milliseconds
+    _fadeInOut: 500,
+    _warningMsg: [],
+    _errorMsg: new Array(),
+
+    _UserHash: '', //string
+    _rCount: 0, // reminder count: -1, or integer
+    _action: 0, //option: first-time launch afer login, click a#countlink, refresh page, click tab.
+
+    _lastReminderId: "00000000-0000-0000-0000-000000000000",
+    _recordKeyId: 0,
+    _num: -1000,
+    
+    $spanCount: $('span.reminder_count', 'div.div_reminder_count'),
+    $divPopup:  $('div.reminder-list-popup'),
+    $ulList:    $('ul.reminder-list'),
+
+    //combine: getUserHash()+getUserHashFromCookie. return: {DD1455FD-C8C6-4E90-8A52-8A32B4B7454B}
+    getUserHash: function () {
+        if (gCurrentTP8iUserHash !== undefined)
+            this._UserHash = gCurrentTP8iUserHash;
+        else {
+            cookies = document.cookie.split(';');
+            for (i = cookies.length - 1; i >= 0; i--) {
+                if (/^\s*TPOnline/i.test(cookies[i])) {
+                    this._UserHash = cookies[i].split('&')[0].split('=')[2];
+                }
+            }
+        }
+    },
+    getCookieCount: function () {
+        var rc = getCookie('reminderCount');
+        // if user clear-up cookies, reach it again.
+        if (rc == undefined) {
+            this.getAjaxReminderCount(5);            
+        }
+        // if cookie already exists, assign it.
+        else {
+            this._rCount = rc;
+        }
+    },
+    /**http://stackoverflow.com/questions/1271162/get-refresh-event-from-page:
+     * read a var current_page from cookie
+     * if it's the same as your current page, you have a refresh
+     * write current page to var current_page in cookie
+     */
+    getCookieRefresh: function () {
+        current_page = window.location.pathname;
+        var rf = getCookie('reminderRefresh');
+        if (rf != undefined && (rf == current_page)) {
+            // a refresh
+            this._action = 3;
+            this.getAjaxReminderCount(3);
+        }
+        // new page load.
+        else {
+            setCookie('reminderRefresh', current_page, 1);
+            this._action = 4;
+            this.getAjaxReminderCount(4);
+        }
+    },
+    getCoachText: function () {
+        var coachText = "Never miss an important date again! Just add them to the contact record and we'll remind you here. " +
+            "<a href=\"/campus/top-producer/contacts/important-date-reminders/?utm_source=important-date-reminders&utm_medium=productlink&utm_campaign=tp-help\"  target=\"_blank\">Learn more</a>";
+        return '<li>' +
+		'  <div class="rl-row rl-descr">' + coachText + '</div>' +
+	    '</li>';
+
+    },
+    resetPopup: function () {
+        $('div.nub.nubTopLeft').hide();
+        this.$ulList.html('');
+        $('div.rl-popup-button-row').hide();
+    },
+    resetList: function () {
+        this.$ulList.html('');
+    },
+
+    // get session token from: https://tpodev13-8i.corp.homestore.net/dataservice/login.svc/?name=canglim30&password=toptop
+    getAjaxReminderCount: function (flag) {
+        var url = this._CountUrl;
+        var userHash = this._UserHash;
+        var currentDate = $.rcHelp.dateToYMD(); //getDateServerFormat(new Date());
+
+        try {
+            var jqxhr = $.ajax({
+                type: "GET",
+                url: url,
+                //xhrFields: { withCredentials: true },
+                //beforeSend: function (xhrObj) { xhrObj.setRequestHeader("token", userHash); },
+                headers: { "token": userHash },
+                data: {
+                    "userHash": userHash,
+                    "currentDate": currentDate
+                },
+                contentType: "application/json; charset=utf-8",
+                dataType: "json"
+            })
+            .done(function (data) {
+                if (flag == 5) {
+                    setCookie("reminderCount", data, 1);
+                    this._rCount = data;
+                }
+                else {
+                    setCookie("reminderCount", data, 1);
+                    if (data == 0) {
+                        data = 'No reminders for today';
+                    }
+                    ReminderCountList.$spanCount.text(data);
+                    ReminderCountList.controlCount(flag);
+                }
+            })
+            .fail(function (jqxhr, textStatus, errorThrown) {
+                ReminderCountList._errorMsg.push(jqxhr.textStatus);
+            })
+            .always(function (data) {
+                ReminderCountList._warningMsg.push(data);
+            });
+        }
+        catch (e) {}
+        return false;
+    },
+
+    getAjaxReminderList: function (flag) {
+        var url = this._ListUrl;
+        var userHash = this._UserHash;
+        var currentDate = $.rcHelp.dateToYMD();  //$.rcHelp.getDateServerFormat(new Date());
+
+        try {
+            var jqxhr = $.ajax({
+                type: "GET",
+                url: url,
+                //xhrFields: { withCredentials: true },
+                //beforeSend: function (xhrObj) { xhrObj.setRequestHeader("token", userHash); },
+                headers: { "token": userHash },
+                data: {
+                    "userHash": userHash,
+                    "startDate": currentDate,
+                    "pageSize": ReminderCountList._pageSize,
+                    "lastReminderId": ReminderCountList._lastReminderId,
+                    "recordKeyId": ReminderCountList._recordKeyId
+                },
+                contentType: "application/json; charset=utf-8",
+                dataType: "json"
+            })
+            .done(function (data) {
+                if (data.count == 0) {
+                    ReminderCountList.showCoachText();
+                }
+                else {
+                    var items = [];
+                    $.each(data.reminders, function (key, val) {
+                        items.push(ReminderCountList.assembleListLi(val));
+                    });
+                    $('ul.reminder-list').append(items.join(''));
+
+                    // first list screen.
+                    if (ReminderCountList._rCount == -1) {
+                        ReminderCountList.controlList(1);
+                        ReminderCountList._num = parseInt(data.count) - ReminderCountList._pageSize;
+                    }
+                    else {
+                        ReminderCountList._num -= ReminderCountList._pageSize;
+                    }
+                    $.debug('_num: ' + ReminderCountList._num);
+                    
+                    // $.debug(ReminderCountList._num + ',' + ReminderCountList._pageSize);
+                    if (ReminderCountList._num > 0) {
+                        $('div.rl-popup-button-row').show();
+                        var a = data.reminders;
+                        ReminderCountList._recordKeyId = a[a.length - 1].keyrecid;
+                        ReminderCountList._lastReminderId = a[a.length - 1].reminder_id;
+                    }
+                    else {
+                        $('div.rl-popup-button-row').hide();
+                    }
+
+                }
+            })
+            .fail(function (jqxhr, textStatus, errorThrown) {})
+            .always(function (data) {});
+        }
+        catch (e) {}
+        return false;
+    },
+
+    setAjaxDismissReminders: function (reminderIds) {
+        var url = this._DismissUrl;
+        var userHash = this._UserHash;
+        var reminderIds = reminderIds;
+
+        var $pos = $('span.reminder_count', 'div.div_reminder_count');
+        try {
+            var jqxhr = $.ajax({
+                type: "POST",
+                url: url,
+                data: JSON.stringify(reminderIds),
+                contentType: "application/json; charset=utf-8",
+                headers: { "token": userHash },
+                dataType: "json"
+            })
+            .done(function (data) {
+                var num = parseInt($pos.text()) - 1;
+                $pos.text(num);
+                $('a.rl-button.rl-button-secondary[id=' + reminderIds[0] + ']')
+                    .closest('li')
+                    .fadeOut(ReminderCountList._fadeInOut);
+                setCookie("reminderCount", num, 1);
+            })
+            .fail(function (jqxhr, textStatus, errorThrown) {})
+            .always(function (data) {});
+        }
+        catch (e) {}
+        return false;
+    },
+
+    // plus_minus could be: 1/-1
+    updateAjaxReminderCount: function (plus_minus) {
+        var $pos = $('span.reminder_count', 'div.div_reminder_count');
+        try {
+            $pos.text(parseInt($pos.text()) + parseInt(plus_minus));
+        }
+        catch (e) {
+            $.debug(JSON.toString(e.message) + ', ' + plus_minus);
+        }
+    },
+
+    showCoachText: function () {
+        this.$ulList.append(this.getCoachText());
+        if ($('div.rl-popup-button-row').is(':visible')) {
+            $('div.rl-popup-button-row').hide();
+        }
+        if ($('div.reminder-list-popup').is(':visible')) {
+            $('div.reminder-list-popup').hide();
+        }
+        this.$divPopup.slideDown('slow', function () {
+            $(this).delay(ReminderCountList._displayTime).slideUp(ReminderCountList._fadeInOut);
+        });
+    },
+
+    assembleListLi: function(val) {
+        var rid = val.reminder_id;
+        var idate = val.important_date.replace(/\s+.*$/, '');
+        var df = $.rcHelp.getDateDiff(idate);
+        var txt = ReminderCountList.displaySubMenu(idate, val);
+        var li = '<li>' +
+            '  <div class="rl-row rl-contact-name">' +
+            '    <a target="_blank" href="' +
+                  ReminderCountList._ContactUrl +
+                  val.linked_entity_id + '&amp;activeView=0" id="n_' +
+                  rid + '" class="rl-name">' +
+                  val.name + '</a>' +
+            '  </div>' +
+             txt +
+            '  <div class="rl-row rl-descr">' + val.description +
+            '    <span class="rl-dayCount">' + df + '</span>' +
+            '  </div>' +
+            '</li>';
+
+        return li;
+    },
+
+    displaySubMenu: function(idate, val) {
+        var rid = val.reminder_id;
+
+        var txt = 
+        '  <div class="rl-row rl-item-expanded" style="display:none;">' +
+        '    <span class="rl-date"> ' + idate + ' </span>' +
+        '    <div class="rl-contact-details">' +
+        '        <a href="' +
+                  this._ContactUrl +
+                  val.linked_entity_id + '&amp;activeView=0" class="rl-contactImage">' +
+        '          <img style="width:50px;" src="' + val.photo + '" />' +
+        '        </a>' +
+        '        <ul class="rl-contact-info">' +
+        '          <li>' + val.phone + '</li>' +
+        '          <li> <a id="e_' + rid + '" href="#">' + val.email + '</a> </li>' +
+        '        </ul>' +
+        '        <div class="rl-button-row"> ' +
+        '          <a href="#" id="d_' + rid + '" class="rl-button rl-button-secondary">Dismiss</a> ' +
+        '          <a href="#" id="w_' + rid + '" class="rl-button rl-button-primary">Wrap Up</a>' +
+        '        </div>' +
+        '    </div>' +
+        '  </div>';
+        return txt;
+    },
+
+    controlCount: function (flag) {
+        $scount = this.$spanCount;
+        if (flag == 1) {
+            $scount.fadeIn(this._fadeInOut);
+        }
+        else if (flag == 2) {
+            $scount.fadeIn(this._fadeInOut);
+        }
+        else if (flag == 3) {
+            $scount.fadeIn(this._fadeInOut);
+        }
+        else if (flag == 4) {
+            $scount.hide().delay(this._displayTime).fadeIn(this._fadeInOut);
+        }
+        else if (flag == 5) {
+            $scount.show();
+        }
+        else {
+            $.debug("What's the problem ??? ");
+        }
+    },
+
+    controlList: function (flag) {
+        $dpopup = this.$divPopup;
+        if (flag == 1) {
+            if (!$('div.rl-row.rl-item-expanded:first').is(':visible')) {
+                $('div.rl-row.rl-item-expanded:first').show();
+            }
+            $('div.reminder-list-popup').slideDown('slow', function () {
+                $(this).delay(ReminderCountList._displayTime).slideUp(ReminderCountList._fadeInOut);
+            });
+        }
+        else if (flag == 2) {
+            $dpopup.hide();
+        }
+        else if (flag == 3) {
+            $dpopup.hide();
+        }
+        else if (flag == 4) {
+            $dpopup.hide();
+        }
+        else {
+        }
+    }
+}
+
+jQuery.rcHelp = {
+
+    //toISOString:2013-04-17T21:18:01.999Z, 2013-04-19T22:32:16.496Z
+    //LOG: toLocaleString:Wednesday, April 17, 2013 2:26:25 PM 
+    //<=IE8: toLocaleString(), >IE8: toISOString()
+    getDateServerFormat: function (oDate) {
+        var sFormatDate = "";
+        if ($.browser.msie && parseInt($.browser.version, 10) <= 8) {
+            sFormatDate = oDate.toLocaleString();
+        } else {
+            sFormatDate = oDate.toISOString();
+        }
+        return sFormatDate;
+    },
+
+    dateToYMD: function (date) {
+        if (date == undefined)
+            date = new Date();
+        var d = date.getDate();
+        var m = date.getMonth() + 1;
+        var y = date.getFullYear();
+        return '' + y + '-' + (m <= 9 ? '0' + m : m) + '-' + (d <= 9 ? '0' + d : d);
+    },
+
+    getYMDByServerFormat: function (sDate) {
+        var s = [];
+        if (sDate) {
+            var arayDate = sDate.split("-");
+            var arayDay = arayDate[2].split(" ");
+
+            var iYear = parseInt(arayDate[0]);
+            var iMonth = parseInt(arayDate[1]);
+            var iDay = parseInt(arayDay);
+            s = [iYear, iMonth, iDay];
+        }
+        else {
+            var dDate = new Date();
+            s = [dDate.getFullYear(), dDate.getMonth() + 1, dDate.getDate()];
+        }
+        return s;
+    },
+
+    getDateDiff: function (sDate) {
+        var cDate = new Date();
+
+        var s = $.rcHelp.getYMDByServerFormat(sDate);
+        var iYear = s[0];
+        var iMonth = parseInt(s[1] - 1);
+        var iDay = s[2];
+        var oDate = new Date(iYear, iMonth, iDay);
+        // important_date - current_date
+        var day = oDate.getDate() - cDate.getDate();
+
+        var df;
+        if (day == 0) {
+            df = ' today';
+        }
+        else if (day == -1) {
+            df = ' yesterday';
+        }
+        else if (day < -1) {
+            df = ' in ' + Math.abs(day) + ' days ago';
+        }
+        else if (day == 1) {
+            df = ' in 1 day';
+        }
+        else if (day > 1) {
+            df = ' in ' + Math.abs(day) + ' days';
+        }
+        else {
+            df = ' in ' + Math.abs(day) + ' days...';
+        }
+        return df;
+    }
+};
+
+String.prototype.trim = String.prototype.trim || function trim() {
+    return this.replace(/^\s+/, '').replace(/\s+$/, '');
+};
+jQuery.fn.extractID = function () {
+    return idStr.substr(2);
+    //return idStr.replace(/\D/g, '');
+};
+jQuery.fn.trim = function () {
+    return this.replace(/^\s*/, '').replace(/\s*$/, '');
+};
+jQuery.debug = function (log_txt) {
+    if (typeof (window.console) != 'undefined' || window.console == undefined) {
+        console.log(log_txt);
+    }
+};
+
+$(function() {
+    ///////////////// register all events //////////////////
+
+    // register 'click' event.
+    $('a#ReminderCountLink').bind('click', function () {
+        ReminderCountList.getAjaxReminderCount(2);
+        ReminderCountList.getAjaxReminderList(2);
+        return false;
+    });
+
+    // register 'Show More' event.
+    $('a.rl-button', 'div.rl-popup-button-row').bind('click', function (e) {
+        e.stopPropagation();
+        ReminderCountList.getAjaxReminderList(6);
+        $('div.reminder-list-popup').slideDown(ReminderCountList._fadeInOut);
+        return false;
+    });
+
+    // register 'Dismiss' event.
+    $('a.rl-button.rl-button-secondary').live('click', function () {
+        ReminderCountList.setAjaxDismissReminders([$(this).attr('id')]);
+        return false;
+    });
+
+    // register 'mouseover' for popup list.
+    $('div.reminder-list-popup').live('mouseover', function (e) {
+        $(this).stop(true, true).show(ReminderCountList._fadeInOut);
+        return false;
+    });
+
+    // hover not work, try:
+    // bind('mouseenter',function(){}).bind('mouseleave',function(){})
+    $('ul.reminder-list > li')
+    .hover(function () { $(this).css('cursor', 'pointer'); },
+           function () { $(this).css('cursor', 'auto');    })
+    .live('click', function (e) {
+        console.log(e.target.nodeName);
+        //e.stopPropagation();
+        $('div.rl-row.rl-item-expanded')
+        $('div.rl-row.rl-item-expanded').slideUp(ReminderCountList._fadeInOut);
+        $(this).find('div.rl-row.rl-item-expanded').slideDown(ReminderCountList._fadeInOut);
+        return false;
+    });
+
+    // register 'click' screen to close popup list.    
+    $('*').live('click', function (e) {
+        console.log(e.target.nodeName);
+        var $popup = ReminderCountList.$divPopup;
+        if (! $popup.is(':visible'))
+            return true;
+        if ($popup.find($(this)).length) {
+            return true; // if children, ignore.
+        }
+        e.stopPropagation();
+        if (!$(e.target).is('div.reminder-list-popup')) {
+            $('div.reminder-list-popup').slideUp(ReminderCountList._fadeInOut);
+        }
+        return true;
+    });
+
+    ///////////////// MAIN ENTRY to process //////////////////
+
+    // first of first, get UserHash:
+    ReminderCountList.getUserHash();
+    
+    // second, get cookie['reminderCount']:
+    ReminderCountList.getCookieCount();
+
+    if (ReminderCountList._rCount == -1) {
+        ReminderCountList.getAjaxReminderCount(1);
+        ReminderCountList.getAjaxReminderList(1);
+        setCookie('reminderRefresh', window.location.pathname, 1);
+    }
+    else {
+        current_page = window.location.pathname;
+        var rf = getCookie('reminderRefresh');
+        if (rf != undefined && (rf == current_page)) {
+            ReminderCountList.getAjaxReminderCount(3); //refresh
+        }
+        else {
+            setCookie('reminderRefresh', current_page, 1);
+            ReminderCountList.getAjaxReminderCount(4);
+        }
+    }
+
+});
+
+if (typeof (Sys) !== 'undefined') { Sys.Application.notifyScriptLoaded(); }

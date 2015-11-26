@@ -1,0 +1,206 @@
+
+------------------------------------------
+$ rails new sample_app --skip-test-unit
+$ cd sample_app
+------------------------------------------
+
+Here the --skip-test-unit option to the rails command tells Rails not to generate a test 
+directory associated with the default Test::Unit framework. 
+This is not because we won’t be writing tests; on the contrary, 
+starting in Section 3.2 we will be using an alternate testing framework called RSpec 
+to write a thorough test suite.
+
+------------------------------------------
+group :development do
+ gem 'rspec-rails', '2.11.0'
+ gem 'guard-rspec', '1.2.1' 
+end
+------------------------------------------
+This includes rspec-rails in development mode so that we have access to RSpec-specific generators, 
+and it includes it in test mode in order to run the tests. 
+We don’t have to install RSpec itself because it is a dependency of rspec-rails and will thus be installed automatically. 
+We also include the Capybara gem, which allows us to simulate a user’s interaction with the sample application using a 
+natural English-like syntax.
+
+------------------------------------------
+$ bundle update
+$ bundle install --without production
+------------------------------------------
+
+
+Next, we need to configure Rails to use RSpec in place of Test::Unit. 
+This can be accomplished with rails generate rspec:install:
+------------------------------------------
+$ rails generate rspec:install
+
+$ git init
+$ git add .
+$ git commit -m "Initial commit"
+$ git mv README.rdoc README.md
+$ git commit -a -m "Improve the README"
+$ git remote add origin git@github.com:<username>/sample_app.git
+$ git push -u origin master
+------------------------------------------
+
+
+------------------------------------------
+$ rails generate controller StaticPages home help --no-test-framework
+------------------------------------------
+Here we’ve used the option --no-test-framework to suppress the generation of the default RSpec tests, which we won’t be using. 
+Instead, we’ll create the tests by hand starting in Section 3.2. 
+so that we can see how to add it using test-driven development, or TDD
+
+ CamelCase
+ Sanke case
+ integration tests
+ Unit tests
+ 
+ The Rails Tutorial takes an intuitive approach to testing that emphasizes the behavior 
+ of the application rather than its precise implementation, 
+ a variant of test-driven development (TDD) known as behavior-driven development (BDD). 
+ Our main tools will be integration tests (starting in this section) and unit tests 
+ (starting in Chapter 6). 
+ 
+ Integration tests, known as request specs in the context of RSpec, allow us to simulate the 
+ actions of a user interacting with our application using a web browser. 
+ Together with the natural-language syntax provided by Capybara, integration tests provide a 
+ powerful method to test our application’s functionality without having to manually check 
+ each page with a browser.(Another popular choice for BDD, called Cucumber, is introduced in Section 8.3.)
+ 
+------------------------------------------
+$ rails generate integration_test static_pages
+------------------------------------------
+domain-specific language (DSL)
+This is because RSpec uses the general malleability of Ruby to define a domain-specific 
+language (DSL) built just for testing. The important point is that you do not need to 
+understand RSpec’s syntax to be able to use RSpec. It may seem like magic at first, 
+but RSpec and Capybara are designed to read more or less like English.
+
+------------------------------------------
+$ bundle exec rspec spec/requests/static_pages_spec.rb
+$ rspec spec/requests/static_pages_spec.rb
+------------------------------------------
+
+Ruby doesn’t care about newlines.
+
+Embeded Ruby:
+<% provide(:title, 'Home') %>
+<%= yield(:title) %>
+
+string interpolation
+------------------------------------------
+group :development, :test do
+  gem 'rspec-rails', '2.11.0'
+  gem 'guard-rspec', '1.2.1'
+  gem 'guard-spork', '1.2.0'
+  gem 'spork', '0.9.2'  
+end
+
+group :development do
+  gem 'annotate', '2.5.0'
+end
+
+group :test do
+  gem 'capybara', '1.1.2'
+  gem 'rb-inotify', '0.8.8'
+  gem 'libnotify', '0.5.9'  
+  gem 'factory_girl_rails', '4.1.0'
+end
+------------------------------------------
+
+
+To use Guard to automate the running of the tests. Guard monitors changes in the filesystem so 
+that, for example, when we change the static_pages_spec.rb file only those tests get run. 
+Even better, we can configure Guard so that when, say, the home.html.erb file is modified, 
+the static_pages_spec.rb automatically runs.
+
+------------------------------------------
+$ bundle install
+$ bundle exec guard init rspec
+guard 'rspec', :version => 2, :all_after_pass => false do
+$ bundle exec guard
+$ bundle exec spork --bootstrap
+------------------------------------------
+ensures that Guard doesn’t run all the tests after a failing test passes (to speed up the Red-Green-Refactor cycle).
+
+When running bundle exec rspec, you may have noticed that it takes several seconds just to start running the tests, but once they start running they finish quickly. This is because each time RSpec runs the tests it has to reload the entire Rails environment. The Spork test server17 aims to solve this problem. Spork loads the environment once, and then maintains a pool of processes for running future tests. Spork is particularly useful when combined with Guard
+------------------------------------------
+$ time bundle exec rspec spec/requests/static_pages_spec.rb
+// start a Spork server
+$ bundle exec spork
+$ time bundle exec rspec spec/requests/static_pages_spec.rb --drb
+------------------------------------------
+
+Spork is especially useful when used with Guard, which we can arrange as follows:
+------------------------------------------
+$ bundle exec guard init spork
+$ bunlde exec guard
+------------------------------------------
+Guard automatically starts a Spork server, dramatically reducing the overhead each time a test gets run.
+A well-configured testing environment with Guard, Spork, and (optionally) test notifications makes test-driven development positively addictive.
+
+The bundle command by itself is an alias for bundle install.
+
+------------------------------------------
+<%= stylesheet_link_tag    "application", :media => "all" %>
+    <%= javascript_include_tag "application" %>
+    <%= csrf_meta_tags %>
+------------------------------------------
+(1) built-in Rails methods, 
+(2) method invocation with missing parentheses, 
+(3) symbols, 
+(4) and hashes. 
+Factory Girl
+
+RVM: Ruby Version Manager
+irb:
+
+
+app/helpers/application_helper.rb
+=======================================
+module ApplicationHelper
+  
+end
+---------------------------------------
+
+
+
+=======================================
+before { visit root_path }
+before { @user = User.new(name: "Example User", email: "user@example.com") }
+subject { page }
+let(:)
+
+Because of subject { page }, the call to should automatically uses the page variable supplied 
+by Capybara.
+
+$ rake spec
+$ rake
+---------------------------------------
+
+We’ll put all our Factory Girl factories in the file spec/factories.rb, which automatically 
+gets loaded by RSpec.
+we can create a User factory in the tests using the let command (Box 6.3) and the FactoryGirl 
+method supplied by Factory Girl:
+let(:user) { FactoryGirl.create(:user) }
+
+
+Technically, Rails uses the underscore method to convert the class name to an id. 
+=======================================
+---------------------------------------
+
+
+=======================================
+---------------------------------------
+
+
+=======================================
+---------------------------------------
+
+
+=======================================
+---------------------------------------
+
+
+=======================================
+---------------------------------------

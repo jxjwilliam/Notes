@@ -1,0 +1,60 @@
+a_ary=["Investor1","Listing prospect","Listing prospect investor","Service provider"];
+b_ary=[{"itemFlag":3,"itemValue":"Master Contact Types"},{"itemFlag":2,"itemValue":"Buyer"},{"itemFlag":2,"itemValue":"Past client"},{"itemFlag":2,"itemValue":"Seller"},{"itemFlag":2,"itemValue":"Sphere of influence"},{"itemFlag":1,"itemValue":"User Contact Types"},{"itemFlag":0,"itemValue":"Absentee owner"},{"itemFlag":0,"itemValue":"Active listing"},{"itemFlag":0,"itemValue":"Buyer - investor"},{"itemFlag":0,"itemValue":"Expired listing"},{"itemFlag":0,"itemValue":"First time buyer(s)"},{"itemFlag":0,"itemValue":"For sale by owner"},{"itemFlag":0,"itemValue":"Foreclosure"},{"itemFlag":0,"itemValue":"Friend"},{"itemFlag":0,"itemValue":"Gardener"},{"itemFlag":0,"itemValue":"Home warranty rep"},{"itemFlag":0,"itemValue":"Insurance rep"},{"itemFlag":0,"itemValue":"Investor"},{"itemFlag":0,"itemValue":"Lawyer"},{"itemFlag":0,"itemValue":"Listing prospect"},{"itemFlag":0,"itemValue":"Listing prospect investor"},{"itemFlag":0,"itemValue":"Listing prospect leaving town"},{"itemFlag":0,"itemValue":"Listing prospect moving down"},{"itemFlag":0,"itemValue":"Listing prospect moving up"},{"itemFlag":0,"itemValue":"Listing prospect wants strata"},{"itemFlag":0,"itemValue":"Loan rep"},{"itemFlag":0,"itemValue":"Moving company rep"},{"itemFlag":0,"itemValue":"Other realtor's expired"},{"itemFlag":0,"itemValue":"Out of town buyer"},{"itemFlag":0,"itemValue":"Out of town listing prospect"},{"itemFlag":0,"itemValue":"Out of town Realtor"},{"itemFlag":0,"itemValue":"Pending sale"},{"itemFlag":0,"itemValue":"Realtor"},{"itemFlag":0,"itemValue":"Realtor.com Lead"},{"itemFlag":0,"itemValue":"Referral"},{"itemFlag":0,"itemValue":"Relative"},{"itemFlag":0,"itemValue":"Relocation"},{"itemFlag":0,"itemValue":"Renter(s)"},{"itemFlag":0,"itemValue":"Retired"},{"itemFlag":0,"itemValue":"Seller - currently listed"},{"itemFlag":0,"itemValue":"Service provider"},{"itemFlag":0,"itemValue":"Termite inspector"},{"itemFlag":0,"itemValue":"Title rep"}];
+
+
+
+function matchHandler(searched, list) {
+  if (searched == undefined || !list.length) {
+    console.log('aaa');
+    return 0;
+  }
+  return jQuery.grep(list, function (v) {
+    return searched.toUpperCase() == v.itemValue.toUpperCase();
+  }).length;
+}; 
+
+$.each(a_ary, function(i,v) {
+   if(matchHandler(v, b_ary)>0) {
+     console.log('matched for [' + v + ']');     
+   }
+   else {
+     console.log('*NOT* matched for [' + v + ']');     
+   };
+});
+
+
+            .done(function () {
+                $("#picklist_contact_type")
+                //.on("select2-focus", function (e) {alert("focus");})
+                //.on("change", function (e) { alert('change');})
+                .on("select2-opening", function (e) {
+                    var choices = $('ul.select2-results').find(".select2-result"),
+                        compound = $('ul.select2-results').find(".select2-result-with-children");
+                    PickList.debug(PickList.predata);
+                    $.each(PickList.predata, function (i, v) {
+                        console.log(v);
+                            PickList.processDuplicated(v);
+                        });
+                });
+            });
+
+			
+			processDuplicated: function (searched, list) {
+	var val = searched,
+		choices = $('ul.select2-results').find(".select2-result"),
+		compound = $('ul.select2-results').find(".select2-result-with-children");
+
+	choices.each(function (i, choice) {
+		if (searched.toUpperCase() == choice.itemValue.toUpperCase()) {
+			choice.addClass("select2-selected");
+			choice.find(".select2-result-selectable").addClass("select2-selected");
+		}
+	});
+
+	compound.each(function(i, choice) {
+		if (!choice.is('.select2-result-selectable')
+			&& choice.find(".select2-result-selectable:not(.select2-selected)").length === 0) {
+			choice.addClass("select2-selected");
+		}
+	});
+},

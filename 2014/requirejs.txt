@@ -1,0 +1,29 @@
+
+package dependency manager
+injector 
+javascript file loader
+concatenate/Uglify
+
+RequireJS manages: Load dependency, Runtime dependency
+AngularJS manages: Construction dependency(Ioc), Angular Module dependency
+
+
+define() - define dependencies & register factory function
+
+require() - callback function to be invoked; when the tree of all define()s have completed
+
+requirejs.config() - configure source paths & aliases
+
+require(['jquery'], function($) {
+	$(document).ready(function() {
+	...
+});
+
+require(['app'], function(app) {
+	app.init();
+});
+
+// work fine.
+require(['jquery', 'someJqueryPlugin'], function($) {
+	/* $ is mapped to the first dependency, which is jquery */
+});

@@ -1,0 +1,18 @@
+
+$ compound init tests && cd tests
+
+$ npm install -l
+
+[movedev@move-linux-dev tests]$ compound generate crud test name first_name last_name phone e_mail contacts:Number prospects:Number closings:Number listings:Number createdAt:Date active:Boolean
+
+$ npm install mongodb
+
+$ npm install jugglingdb-mongodb
+
+-----------------------------------
+
+mongoexport -d tests -c tpouser | mongoimport -d tests -c test --drop
+
+http://192.168.56.32:3000/tests/new
+
+Tests.Test

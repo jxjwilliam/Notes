@@ -1,0 +1,13 @@
+
+1. Webstorm:
+ VCS ->  Check from Version Control -> Github:
+  https://github.com/angular/angular-seed.git
+ 
+ 
+2. https://github.com/angular/angular-seed
+
+npm install
+bower install
+
+3. 
+npm start

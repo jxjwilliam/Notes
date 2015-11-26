@@ -1,0 +1,24 @@
+            .done(function (list) {
+                $("#picklist_contact_type")
+                .on("select2-opening", function (e) {
+                    var choices = $('ul.select2-results').find(".select2-result"),
+                        compound = $('ul.select2-results').find(".select2-result-with-children");
+                    console.log(choices);
+                    console.log(PickList.predata);
+                    $.each(PickList.predata, function (i, v) {
+                        PickList.processDuplicated(v);
+                    });
+
+                });
+            });
+
+			
+		change {"val":["0","2"],"removed":{"id":1,"text":"bug"}}
+		focus
+		change {"val":["0"],"removed":{"id":2,"text":"task"}}
+		change {"val":[],"removed":{"id":0,"text":"story"}}
+
+			
+			
+			change {"val":["1","0"],"removed":{"id":2,"text":"task"}}
+			.on("change", function(e) { log("change "+JSON.stringify({val:e.val, added:e.added, removed:e.removed})); })

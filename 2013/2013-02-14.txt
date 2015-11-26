@@ -1,0 +1,75 @@
+var restify = require('restify');
+
+function respond(req, res, next) {
+  res.send('hello ' + req.params.name);
+}
+
+var server = restify.createServer();
+server.get('/hello/:name', respond);
+server.head('/hello/:name', respond);
+
+server.listen(8080, function() {
+  console.log('%s listening at %s', server.name, server.url);
+});
+
+npm install jugglingdb-mongodb
+
+
+
+compound init dir && cd dir
+npm install -l
+
+compound generate crud goals username fname lname email phone createdAt:date
+
+
+npm install mongodb
+npm install mongoose
+
+
+---------------------------------
+ 1182  curl http://localhost:8080/user/williamjxj
+ 1183  curl http://localhost:8080/user/william
+ 1184  curl http://localhost:8080/email/william
+ 1185  curl http://localhost:8080/email/william.jiang@move.com
+ 1186  curl http://localhost:8080/email/william
+ 1187  curl -is http://localhost:8080/id/511d5a2d7674417d22000001
+ 1188  curl -is http://localhost:8080/id/511d5a2d7674417d2200000
+ 1189  curl -is http://localhost:8080/id/511d5a2d7674417d22000001
+ 1190  curl  http://localhost:8080/id/511d5a2d7674417d2200000
+ 1193  curl  http://localhost:8080/sdjkjkgf
+ 1194  curl  http://localhost:8080/id/511d5a2d7674417d2200000
+ 1195  curl  http://localhost:8080/id/511d5a2d7674417d22000002
+ 1197  curl  http://localhost:8080/user/username
+ 1198  curl  http://localhost:8080/user/
+ 1199  curl  http://localhost:8080/user/william
+ 1200  curl  http://localhost:8080/user/williamjxj
+ 1201  curl  http://localhost:8080/user/guo
+ 1202  curl  http://localhost:8080/user/
+ 1203  curl  http://localhost:8080/
+---------------------------------
+
+$ bin/run.bash
+$ mongo
+> db.Goal.find({_id:ObjectId('511d401d2dfa1f5e1f000001')});
+> db.Goal.find()
+> show dbs
+> use goals
+
+--------------------------------
+WEB ADDING:
+
+$ cd $HOME/goals/
+$ node server.js
+
+
+WEB Services(Restful)
+$ cd $HOME/restful/restify/
+$ node server.js
+
+---------------------------------
+node install node-inspector
+
+node --break-brk
+---------------------------------
+
+sudo yum install unixODBC freetds freetds-devel unixODBC-devel

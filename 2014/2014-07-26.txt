@@ -1,0 +1,13 @@
+/**
+ * You can't do a XMLHttpRequest to another domain (crossdomain). 
+ * You would have to try to use JSONP but not sure if that API accepts the parameter &callback=
+ */
+var xhr = new XMLHttpRequest();
+var oauthToken = gapi.auth.getToken();
+xhr.open('GET',
+   'https://www.google.com/m8/feeds/profiles/domain/ditotest.com/full');
+   xhr.setRequestHeader('Authorization','Bearer ' + oauthToken.access_token);
+   xhr.setRequestHeader('Gdata-version', '3.0');
+xhr.send(null);
+
+console.log(xhr.status);
