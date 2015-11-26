@@ -1,6 +1,3 @@
-{{((a||{}).b||{}).c}}
-
-
 
 var $compile = ...; // injected into your code
 var scope = ...;

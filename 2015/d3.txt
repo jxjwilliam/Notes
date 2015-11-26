@@ -1,0 +1,79 @@
+SVG:
+It is part of DOM, can be styled using CSS
+Becuase its part of DOM, events can be attached via JavaScript.
+Vectors can be scaled and becuase of that they look beautiful on retina displays.
+Ability to use images as SVG format and even fonts.
+
+<svg>"magic"</svg>
+
+SVG (elements & attributes)
+Scales (linear, log, exp, ordinal, ...)
+Utility functions(max, min, extent)
+Bolerplate process
+
+
+
+sudo npm install -g yo  generator-angular-fullstackack grunt-cli bower
+
+cd Webstorm
+yo angular-fullstack yod3
+
+
+------ yo angular-fullstack ng-app-name
+
+# Client
+
+? What would you like to write scripts with? JavaScript
+? Would you like to use Javascript ES6 in your client by preprocessing it with Babel? No
+? What would you like to write markup with? HTML
+? What would you like to write stylesheets with? Sass
+? What Angular router would you like to use? uiRouter
+? Would you like to include Bootstrap? Yes
+? Would you like to include UI Bootstrap? Yes
+
+# Server
+
+? Would you like to use mongoDB with Mongoose for data modeling? Yes
+? Would you scaffold out an authentication boilerplate? Yes
+? Would you like to include additional oAuth strategies? 
+? Would you like to use socket.io? Yes
+
+
+------ mobile ------
+
+ionic  - Build hybrid mobile apps using the Ionic Framework
+
+
+
+------ csv and mongodb ------
+mongoimport -h staff.mongohq.com --port 10097 -d import_example -c brazil_players -u mongohq -p****** --type csv --file ~/path/brazil_players.csv
+
+
+
+mongoexport -d export_example -c brazil_players -f name,age --csv -o brazil_players.csv
+
+
+------ css ------
+The translate() method moves an element from its current position.
+
+transform: translate(20px, 20px);
+transform: translate(12px, 50%);
+transform: translate(100px) rotate(20deg);
+
+CSS3 transforms allow you to translate, rotate, scale, and skew elements.
+
+A transformation is an effect that lets an element change shape, size and position.
+CSS3 supports 2D and 3D transformations.
+
+------ d3.xhr ------
+ d3.text for plain text, 
+ d3.json for JSON, 
+ d3.xml for XML, 
+ d3.html for HTML, 
+ d3.csv for comma-separated values, and 
+ d3.tsv for tabulation-separated values.
+
+
+ ------ svg responsive ------
+ 
+ Make-SVG-Responsive
