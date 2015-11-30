@@ -32,3 +32,6 @@ karma start --browsers PhantomJS
 
 
 npm install jquery@1.11.2 --save-dev
+
+
+### Why SLOW? YSlow

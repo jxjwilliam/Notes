@@ -8,25 +8,29 @@
 	"buffers":
 	[
 		{
-			"contents": "\npackage dependency manager\ninjector \njavascript file loader\nconcatenate/Uglify\n\nRequireJS manages: Load dependency, Runtime dependency\nAngularJS manages: Construction dependency(Ioc), Angular Module dependency\n\n\ndefine() - define dependencies & register factory function\n\nrequire() - callback function to be invoked; when the tree of all define()s have completed\n\nrequirejs.config() - configure source paths & aliases\n\nrequire(['jquery'], function($) {\n	$(document).ready(function() {\n	...\n});\n\nrequire(['app'], function(app) {\n	app.init();\n});\n\n// work fine.\nrequire(['jquery', 'someJqueryPlugin'], function($) {\n	/* $ is mapped to the first dependency, which is jquery */\n});\n\n\n// WRONG!\n        it('should requirejs define works', function () {\n            var defined = define(function () {\n                return {\n                    color: \"black\",\n                    size: \"unisize\"\n                }\n            });\n            expect(require('defined').color).toBe('black');\n        });\n\n        it('should require exports module work', function() {\n           define(function(require, exports, module) {\n              var config = require('js/api/config');\n\n               return function() {};\n           });\n        });\n\n        it('should require work', function() {\n            define(['require'], function(require) {\n                var vedioAd = require('js/api/vedio-ad');\n            })\n        })\n\n",
-			"file": "2014/requirejs.txt",
-			"file_size": 708,
-			"file_write_time": 130928501630000000,
+			"file": "webmd/11-18-2015.txt",
 			"settings":
 			{
-				"buffer_size": 1420,
-				"line_ending": "Windows"
+				"buffer_size": 828,
+				"line_ending": "Unix"
 			}
 		},
 		{
-			"contents": "If async is present: The script is executed asynchronously with the rest of the page (the script will be executed while the page continues the parsing)\n\n	script = document.createElement(\"script\");\n	script.type = 'text/javascript';\n	script.async = true;\n	script.defer = true;\n	script.src = protocol + 'marvilias.com/adBlockDetector/12265';\n	$('body').append(script);\n\n	////////\n	put <script></script> in the bottom of <body/> will make the page render faster.\n\n\n\n\nGetVideoCollectio\n\n//\ncd webmd-video\nsudo npm install karma-cli -g\nnpm install karma --save-dev\nnpm install karma-jasmine karma-chrome-launcher --save-dev\n\nkarma init\n\nsudo npm install phantomjs -g\nnpm install karma-phantomjs-launcher --save-dev\n\nkarma start --browsers PhantomJS\n\n\nnpm install jquery@1.11.2 --save-dev\n\n$ npm install karma-fixture --save-dev\n\n$ npm install karma-html2js-preprocessor --save-dev\n$ npm install karma-json-fixtures-preprocessor --save-dev",
-			"file": "webmd/11-18-2015.txt",
-			"file_size": 781,
-			"file_write_time": 130928501030000000,
+			"contents": "DOMContentLoaded.txt",
 			"settings":
 			{
-				"buffer_size": 932,
-				"line_ending": "Unix"
+				"buffer_size": 20,
+				"line_ending": "Unix",
+				"name": "DOMContentLoaded.txt"
+			}
+		},
+		{
+			"contents": "DOMContentLoaded.txt",
+			"settings":
+			{
+				"buffer_size": 20,
+				"line_ending": "Unix",
+				"name": "DOMContentLoaded.txt"
 			}
 		}
 	],
@@ -67,14 +71,16 @@
 	},
 	"expanded_folders":
 	[
-		"/Users/wjiang/Notes",
-		"/Users/wjiang/Notes/2015",
-		"/Users/wjiang/Notes/webmd"
+		"/Users/wjiang/Notes"
 	],
 	"file_history":
 	[
-		"/Users/wjiang/Notes/2014/requirejs1.txt",
+		"/Users/wjiang/Notes/2015/react.txt",
+		"/Users/wjiang/Notes/markdown/react.md",
+		"/Users/wjiang/Notes/2014/test.txt",
+		"/Users/wjiang/Notes/2014/requirejs.txt",
 		"/Users/wjiang/Notes/webmd/11-18-2015.txt",
+		"/Users/wjiang/Notes/2014/requirejs1.txt",
 		"/Users/wjiang/Notes/2015/09-12.txt",
 		"/Users/wjiang/Notes/2014/11-08.txt"
 	],
@@ -95,6 +101,10 @@
 		"case_sensitive": false,
 		"find_history":
 		[
+			"babel",
+			"commentsList",
+			"commentList",
+			"babel",
 			"requre",
 			"phantomjs",
 			"karma"
@@ -115,24 +125,24 @@
 	"groups":
 	[
 		{
-			"selected": 1,
+			"selected": 2,
 			"sheets":
 			[
 				{
 					"buffer": 0,
-					"file": "2014/requirejs.txt",
-					"semi_transient": false,
+					"file": "webmd/11-18-2015.txt",
+					"semi_transient": true,
 					"settings":
 					{
-						"buffer_size": 1420,
+						"buffer_size": 828,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								926,
-								926
+								828,
+								828
 							]
 						],
 						"settings":
@@ -143,32 +153,62 @@
 						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 1,
+					"stack_index": 2,
 					"type": "text"
 				},
 				{
 					"buffer": 1,
-					"file": "webmd/11-18-2015.txt",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 932,
+						"buffer_size": 20,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								932,
-								932
+								20,
+								20
 							]
 						],
 						"settings":
 						{
+							"auto_name": "DOMContentLoaded.txt",
+							"default_dir": "/Users/wjiang/Notes/webmd",
 							"syntax": "Packages/Text/Plain text.tmLanguage"
 						},
 						"translation.x": 0.0,
-						"translation.y": 163.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 1,
+					"type": "text"
+				},
+				{
+					"buffer": 2,
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 20,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								20,
+								20
+							]
+						],
+						"settings":
+						{
+							"auto_name": "DOMContentLoaded.txt",
+							"default_dir": "/Users/wjiang/Notes/webmd",
+							"syntax": "Packages/Text/Plain text.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
 					"stack_index": 0,
