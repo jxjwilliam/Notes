@@ -3,34 +3,39 @@
 	{
 		"selected_items":
 		[
+			[
+				"Re",
+				"regEx"
+			]
 		]
 	},
 	"buffers":
 	[
 		{
-			"file": "webmd/11-18-2015.txt",
+			"file": "webmd/12-10.txt",
 			"settings":
 			{
-				"buffer_size": 828,
+				"buffer_size": 2233,
 				"line_ending": "Unix"
 			}
 		},
 		{
-			"contents": "DOMContentLoaded.txt",
+			"file": "webmd/DFP.txt",
 			"settings":
 			{
-				"buffer_size": 20,
-				"line_ending": "Unix",
-				"name": "DOMContentLoaded.txt"
+				"buffer_size": 469,
+				"line_ending": "Unix"
 			}
 		},
 		{
-			"contents": "DOMContentLoaded.txt",
+			"contents": "### libxslt\n\n$ npm install libxslt\n\nparseXml\nparseHtml\nDocument\nfeatures\nparseXmlString\nparseHtmlString\nparse\nparseFile\n\n\n### node-gyp\n\n$ npm install -g node-gyp\n\nnode-gyp is a cross-platform command-line tool written in Node.js for compiling native addon modules for Node.js.\n\n\n\n\n'<?xml version=\"1.0\" encoding=\"UTF-8\"?>' + \n'<xsl:stylesheet version=\"1.0\" xmlns:xsl=\"http://www.w3.org/1999/XSL/Transform\">' + \n'	<xsl:output method=\"xml\" omit-xml-declaration=\"yes\" indent=\"yes\" encoding=\"utf-8\"></xsl:output>' + \n'	<xsl:param name=\"image_server_url\">' + \n'		<xsl:text>http://img.preview.webmd.com/dtmcms/preview</xsl:text>' + \n'	</xsl:param>' + \n'</xsl:stylesheet>';\n",
+			"file": "webmd/nodexml.txt",
+			"file_size": 276,
+			"file_write_time": 130946714360000000,
 			"settings":
 			{
-				"buffer_size": 20,
-				"line_ending": "Unix",
-				"name": "DOMContentLoaded.txt"
+				"buffer_size": 666,
+				"line_ending": "Unix"
 			}
 		}
 	],
@@ -71,15 +76,26 @@
 	},
 	"expanded_folders":
 	[
-		"/Users/wjiang/Notes"
+		"/Users/wjiang/Notes",
+		"/Users/wjiang/Notes/webmd"
 	],
 	"file_history":
 	[
+		"/Users/wjiang/Notes/webmd/12-08.txt",
+		"/Users/wjiang/Notes/webmd/DFP.txt",
+		"/Users/wjiang/Notes/html/watcher.html",
+		"/Users/wjiang/Notes/webmd/12-10.txt",
+		"/Users/wjiang/Notes/webmd/12-02.txt",
+		"/Users/wjiang/Notes/webmd/11-18.txt",
+		"/Users/wjiang/Notes/webmd/DOMContentLoaded.txt",
+		"/Users/wjiang/Notes/webmd/11-18-2015.txt",
+		"/Users/wjiang/Charles/nativo-testing8.js",
+		"/Users/wjiang/Notes/webmd/poarewWaw",
+		"/Users/wjiang/Notes/webmd/inherit.js",
 		"/Users/wjiang/Notes/2015/react.txt",
 		"/Users/wjiang/Notes/markdown/react.md",
 		"/Users/wjiang/Notes/2014/test.txt",
 		"/Users/wjiang/Notes/2014/requirejs.txt",
-		"/Users/wjiang/Notes/webmd/11-18-2015.txt",
 		"/Users/wjiang/Notes/2014/requirejs1.txt",
 		"/Users/wjiang/Notes/2015/09-12.txt",
 		"/Users/wjiang/Notes/2014/11-08.txt"
@@ -101,6 +117,11 @@
 		"case_sensitive": false,
 		"find_history":
 		[
+			"Charles",
+			"class=\"article",
+			"mac",
+			"macbook",
+			"image",
 			"babel",
 			"commentsList",
 			"commentList",
@@ -130,27 +151,29 @@
 			[
 				{
 					"buffer": 0,
-					"file": "webmd/11-18-2015.txt",
-					"semi_transient": true,
+					"file": "webmd/12-10.txt",
+					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 828,
+						"buffer_size": 2233,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								828,
-								828
+								0,
+								0
 							]
 						],
 						"settings":
 						{
-							"syntax": "Packages/Text/Plain text.tmLanguage"
+							"syntax": "Packages/Text/Plain text.tmLanguage",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
-						"translation.y": 0.0,
+						"translation.y": 651.0,
 						"zoom_level": 1.0
 					},
 					"stack_index": 2,
@@ -158,24 +181,23 @@
 				},
 				{
 					"buffer": 1,
+					"file": "webmd/DFP.txt",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 20,
+						"buffer_size": 469,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								20,
-								20
+								0,
+								0
 							]
 						],
 						"settings":
 						{
-							"auto_name": "DOMContentLoaded.txt",
-							"default_dir": "/Users/wjiang/Notes/webmd",
 							"syntax": "Packages/Text/Plain text.tmLanguage"
 						},
 						"translation.x": 0.0,
@@ -187,24 +209,23 @@
 				},
 				{
 					"buffer": 2,
+					"file": "webmd/nodexml.txt",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 20,
+						"buffer_size": 666,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								20,
-								20
+								103,
+								103
 							]
 						],
 						"settings":
 						{
-							"auto_name": "DOMContentLoaded.txt",
-							"default_dir": "/Users/wjiang/Notes/webmd",
 							"syntax": "Packages/Text/Plain text.tmLanguage"
 						},
 						"translation.x": 0.0,
@@ -294,7 +315,7 @@
 	"show_open_files": false,
 	"show_tabs": true,
 	"side_bar_visible": true,
-	"side_bar_width": 150.0,
+	"side_bar_width": 153.0,
 	"status_bar_visible": true,
 	"template_settings":
 	{
