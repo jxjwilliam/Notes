@@ -58,7 +58,12 @@ An alternative suggestion that often comes up is to use deferred scripts. The *D
 
 ###
 
+Yahoo research showed some browsers try to load script files when they hit the script tag and therefore don't load the rest of the page until they have finished. 
+
 1. For external scripts (Google analytics, 3rd party marketing trackers, etc.) place them before the </body> tag.
 1. For scripts that affect page layout, place in head.
 1. For scripts that rely on 'dom ready' (like jquery), consider placing before </body> unless you have an edge-case reason to place scripts in head.
 1. If there are inline scripts with dependencies, place the required scripts in head.
+
+
+If you put it at the bottom, it loads last, hence speeding up the speed that the user can see the page. It does need to be before the final </html> though otherwise it won't be part of the DOM.

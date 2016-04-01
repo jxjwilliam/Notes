@@ -1,0 +1,96 @@
+mnTest: "1"
+mnetCID: "8CU66J63J"
+mnetCrid: "656615527"
+mnetPageID: "0|pos"
+mnetSize: "300x250"
+mnet_placement: "ads2-pos-121-ad_right"
+mnetbidID: "99"
+mnetbidPrice: "15.00"
+mnetbidderID: "mnet"
+
+
+prev_scp:
+pos=101&mnetCrid=356136642&mnetbidID=99&mnetbidderID=mnet&mnetbidPrice=15.00&mnet_placement=ads2-pos-101-bannerAd&mnetCID=8CU66J63J&mnetSize=728x90&mnTest=1&mnetPageID=0|pos=113|pos=121&mnetCrid=656615527&mnetbidID=99&mnetbidderID=mnet&mnetbidPrice=15.00&mnet_placement=ads2-pos-121-ad_right&mnetCID=8CU66J63J&mnetSize=300x250&mnTest=1&mnetPageID=0|pos=901
+
+
+mnetDNB:1
+mnetPageID:0
+
+///////////////////
+
+Q1) Does all parameters fire always?
+No, not all parameters fire on all pages.
+ 
+Q2) What is the use case when it has to fire only few in this case it shows only mnetPageID and mnetDNB and not tracking all others.
+mnetPageID and mnetDNB appear when there is no valid bid for that particular slot.
+ 
+Q3) Can we compare the values we received in our DFP call to that’s tracked in media.net call – what is the call that we need to look at?
+All the values in the DFP call can be traced in the prev_scp call too.
+ 
+Parameters:
+CPM:"mnetbidPrice",
+BIDDER_TYPE:"mnetbidderID",
+CREATIVE_ID:"mnetCrid",
+PLACEMENT_ID:"mnet_placement",
+DFP_SIZE:"mnetSize"
+PAGE_ID:"mnetPageID",
+CUSTOMER_ID:"mnetCID",
+BIDDER_ID:"mnetbidID",
+NO_BID:"mnetDNB",
+WINNER:"mnetDW"
+ 
+The understanding of Key Names is accurate. However, note that not all the parameters appear on all pages and the presence/absence of these parameters will not be significant from a testing perspective. 
+
+Also, we recommend appending the get param force_hbtest=1 to the URL which will enable Media.net test bidder to kick in.
+
+
+//////////////////////////////////
+
+
+prev_scp:pos=101&mnetDNB=1&mnetPageID=0|pos=121&mnetDNB=1&mnetPageID=0
+
+All the values in the DFP call can be traced in the prev_scp call too.
+ 
+Parameters:
+CPM:"mnetbidPrice",
+BIDDER_TYPE:"mnetbidderID",
+CREATIVE_ID:"mnetCrid",
+PLACEMENT_ID:"mnet_placement",
+DFP_SIZE:"mnetSize"
+PAGE_ID:"mnetPageID",
+CUSTOMER_ID:"mnetCID",
+BIDDER_ID:"mnetbidID",
+NO_BID:"mnetDNB",
+WINNER:"mnetDW"
+
+
+
+3. Following is a list of keys that we pass to DFP:
+a. mnetbidPrice 
+b. mnetbidderID 
+c. mnetCrid 
+d.mnet_placement 
+e. mnetSize 
+f. mnetPageID 
+g. mnetCID 
+h. mnTest
+
+
+Also, we recommend appending the get param force_hbtest=1 to the URL which will enable Media.net test bidder to kick in.
+
+
+
+
+so we can create the release branch with the date
+you can merge your code with integration-prod-staging and deploy to staign
+
+pull down integration-prod-staging branch
+and merge your branch into it
+then deploy
+but we still need to crate a deployment item for when it goes to production live
+so i need the date for that
+owe can go to staging today
+
+
+////////////////////////////
+Header Bidding media.netparameters are shown in prev_scp on Desktop urls but not on MOBILE urls. prev_scp:pos=101&mnetCrid=356136642&mnetbidID=99&mnetbidderID=mnet&mnetbidPrice=15.00&mnet_placement=ads2-pos-101-bannerAd&mnetCID=8CU66J63J&mnetSize=728x90&mnTest=1&mnetPageID=0|pos=113|pos=121&mnetCrid=656615527&mnetbidID=99&mnetbidderID=mnet&mnetbidPrice=15.00&mnet_placement=ads2-pos-121-ad_right&mnetCID=8CU66J63J&mnetSize=300x250&mnTest=1&mnetPageID=0|pos=901

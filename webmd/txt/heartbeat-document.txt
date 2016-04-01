@@ -1,0 +1,243 @@
+(*) The JIRA story (40719):
+---------------------------
+https://jira.webmd.net/browse/PPE-40719
+Video 1.5 Heartbeat Upgrade
+
+
+(*) The js file:
+-----------------
+video-heartbeat.js
+
+
+(*) the call:
+----------------
+in video.js:
+define([..., 'video2/1/api/video-heartbeat'], function(..., videoHeartbeat) {
+    var heartbeat = new videoHeartbeat();
+    heartbeat.init(videoApi);
+});
+
+(*) the documents:
+-------------------
+Adobe Heartbeat Appmeasurement and version 1.5.2 have very detailed document which can be found at:
+
+- https://marketing.adobe.com/resources/help/en_US/sc/appmeasurement/hbvideo/
+- https://marketing.adobe.com/resources/help/en_US/sc/appmeasurement/hbvideo/video.pdf
+
+Beside the documents, I added details for the story Video 1.5 Heartbeat Upgrade implementation.
+
+
+(*) file structure:
+--------------------
+There are 2 constructor functions and 1 public function.
+
+(1) constructor functions:
+- WebmdHeartbeat:
+  wrap all heartbeat-1.5.2 stuff here, update or extend this function for adobe heartbeat analysis purpose, mostly its prototype.
+- WebmdHBVideo:
+  wrap all video information here: video, ad, adBreak, Chapter, QoE etc.
+(2) public function:
+  - the bridge to connect (1)
+  - the interface API for outside calling
+  - and provide events trigger to call heartbeat.
+
+
+(*) events triggered:
+----------------------
+The following are video events which heartbeat triggers
+- play
+- seeking
+- seeked
+- paused
+- ended
+
+When these video events are fired, heartbeat-codes will be triggered to send data to analysis server.
+
+
+(*) Heartbeat-1.5.2 Internal events:
+------------------------------------
+The following are heartbeat-1.5.2 internal events which are fired automatically when a video event is triggered.
+
+EVENT_TYPE_AA_START="aa_start"
+EVENT_TYPE_AA_AD_START="aa_ad_start"
+EVENT_TYPE_START="start"
+EVENT_TYPE_CHAPTER_START="chapter_start"
+EVENT_TYPE_CHAPTER_COMPLETE="chapter_complete"
+EVENT_TYPE_PLAY="play"
+EVENT_TYPE_PAUSE="pause"
+EVENT_TYPE_BUFFER="buffer"
+EVENT_TYPE_BITRATE_CHANGE="bitrate_change"
+EVENT_TYPE_ERROR="error"
+EVENT_TYPE_COMPLETE="complete"
+
+Notices: The events are different from Heartbeat v-1.4, some V-1.4 events like 'Active', 'Load', 'Unload' not exist in this version.
+
+
+(*) Heartbeat calls:
+---------------------
+Wen a video is playing, The following heartbeat internal tracking functions are called:
+
+heartbeat._playerPlugin.trackPlay();
+heartbeat._playerPlugin.trackPause();
+heartbeat._playerPlugin.trackSeekStart();
+heartbeat._playerPlugin.trackSeekComplete();
+heartbeat._playerPlugin.trackComplete();
+heartbeat._playerPlugin.trackVideoUnload();
+heartbeat._playerPlugin.trackVideoLoad();
+heartbeat._playerPlugin.trackChapterStart();
+heartbeat._playerPlugin.trackChapterComplete();
+heartbeat._playerPlugin.trackAdStart();
+heartbeat._playerPlugin.trackAdComplete();
+
+They are not called at the same time: they are called based on what video event and what kind of video is playing.
+
+
+(*) data-structure to pass to Hearbeat-1.5.2 server:
+------------------------------------------------------
+
+There are total 5 video-objects which need to be filled up with everytime the tracking-events happens.
+- Video Information
+- Chapter Information
+- Ads Information
+- AdBreak Information
+- Quality Information
+
+Each of them has a fix structure (key-value pairs):
+- Video Core: id, name, length, playerName, playhead, streamType
+- Chapters:   name, length, position, startTime
+- Ads:        id, length, position, name
+- AdBreak:    playerName, name, position, startTime
+- QoE:        bitrate, fps, droppedFrames, startupTime
+
+
+(*) Reference:
+---------------
+- https://confluence.webmd.net/display/ConsumerDev/WebMD+Video+Framework+Developer+Guide
+- http://sharepoint.webmd.net/Consumer Portals/omniture/Shared Documents/Metric Implementation Documents/video/video-time-spent_metrics.docx.docx
+- https://marketing.adobe.com/resources/help/en_US/sc/appmeasurement/hbvideo/video.pdf
+- http://www.staging.medscape.com/viewarticle/855857
+- http://staging.medscape.com/viewarticle/855857,   (TestPhysician2,  tester)
+- https://stash.portal.webmd.com/projects/CONSUI/repos/webmd-video/browse/js/api/video-heartbeat.js?at=refs%2Fheads%2Fsprint16
+- https://my.omniture.com/login/
+
+After the video/ad is completed and/or abandoned, the heartbeat service calculates time-spent metrics and then sends the data to Analytics.
+
+
+Video Core: Core video measurement is used for video content. This will use Solution (or Custom) Evars to keep track of
+Content, Content Type, Content Player Name, and Content Channel. Solution (or Custom) Events will be used for Video
+Initiates, Content Starts, Content Completes, and Content Time Spent.
+
+
+
+(*) Custom data Requirements:
+------------------------------
+11.	Pass the following prop values in the Heartbeat “open” call (pe=ms_s): props 3, 6, 33, 47, 48, 50 for Core, OO, Professional, and Connect.
+11.1.	Additionally, for Professional, pass props channel, 19, 37, 38. If the video is sponsored, pass props 29, 30.
+11.2.	Additionally, for Core and OO, if the video is sponsored, pass prop28, 29, 30, 31.
+
+var getCustomVariables = function() {
+    var customData = {};
+    if (typeof s_md === 'object') {
+        try {
+            customData = {
+                SiteName: s_site,
+                EmbeddedAssetFlag: s_eRef,
+                SponsorProgramName: s_sponsor_program,
+                SponsorPakcage: s_package_type,
+                AudioFlag: s_md.prop64,
+                RegisteredUserID: Array.isArray(buID) ? buID[0] : s_md.prop47,
+                MobileDisplayFlag: s_md.prop48,
+                ReportSuite: _suit
+            };
+            //if (/professional/i.test(s_site)) {
+            //    customData.UserProfession = s_user_group;
+            //    customData.UserCountry = s_channel_super_portal;
+            //    customData.UserOccupation = s_channel_health;
+            //
+            //}
+        } catch (e) {
+            customData = {
+                SiteName: s_md.prop3,
+                EmbeddedAssetFlag: s_md.prop26,
+                SponsorProgramName: s_md.prop29,
+                SponsorPakcage: s_md.prop30,
+                AudioFlag: s_md.prop64,
+                RegisteredUserID: s_md.prop47,
+                MobileDisplayFlag: s_md.prop48,
+                ReportSuite: s_md.prop50
+            };
+            //if (/professional/i.test(s_md.prop3)) {
+            //    customData.UserProfession = s_md.prop19;
+            //    customData.UserCountry = s_md.prop37;
+            //    customData.UserOccupation = s_md.prop38;
+            //}
+        }
+    }
+    return customData;
+}
+
+Then Attaching Custom Metadata:
+
+You can attach your own metadata to calls made to Adobe Analytics.
+
+The video heartbeat library provides support for custom metadata to be attached to the analytics calls. The relevant APIs for
+this functionality are defined on the AdobeAnalyticsPlugin:
+
+AdobeAnalyticsPlugin.prototype.setVideoMetadata = function(data) {};
+AdobeAnalyticsPlugin.prototype.setAdMetadata = function(data) {};
+AdobeAnalyticsPlugin.prototype.setChapterMetadata = function(data) {};
+
+
+(*) Questions ?
+----------------
+
+According to https://marketing.adobe.com/resources/help/en_US/sc/appmeasurement/hbvideo/c_rel_notes.html,
+
+The new tracking server is specific to each customer and should look like this: <Customer Analytics Visitor Namespace>.hb.omtrdc.net
+(the previous version was heartbeats.omtrdc.net). More details can be provided by your Adobe consultant.
+
+So the new tracking server could be: webmd.hb.omtrdc.net ?
+
+
+
+(*) Constant variables:
+----------------------------
+
+marketingCloudOrgId:               16AD4362526701720A490D45@AdobeOrg
+Heartbeat tracking Server:         http://heartbeats.omtrdc.net
+AppMeasurement tracking Server:    std.o.webmd.com
+
+
+(*) static config parameters passed to heartbeat:
+-------------------------------------------------
+The following parameters are configurable.
+
+- jobId: 'sc_va',
+
+- //channel: the name of the syndication channel. Optional. Default value: the empty string
+channel: "webmd-channel", //default: empty string
+
+- //ovp: the name of the online video platform through which content gets distributed. Optional. Default value: "unknown"
+ovp: "unknown",
+
+- //sdk: the version of the video player app/SDK. Optional. Default value: "unknown"
+sdk: 'Heartbeats V-1.5.2',
+
+- //quietMode: activates the "quiet" mode of operation, in which all output HTTP calls are suppressed. Default value: false
+quietMode: false, // No Network Calls Sent When True
+
+- //ssl: Indicates whether the heartbeat calls should be made over HTTPS. Optional. Default value: false
+ssl: false
+
+
+(*) Some explanation:
+----------------------------
+- Heartbeat call is fired every 10 seconds.
+- There is a variable 'debugLogging', if set to true, all the heartbeat tracking calls will be printed in the console.
+
+
+(*) Test URLs:
+----------------
+- http://www.perf.webmd.com/baby/video/eddleman-understanding-pre-natal-screening-tests
+- http://www.perf.webmd.com/diet/weight-loss-surgery/video/sitting-disease
+- http://www.perf.webmd.com/heart-disease/video/how-safe-is-niacin

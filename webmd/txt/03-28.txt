@@ -1,0 +1,88 @@
+Video
+Quiz
+Slide Show
+Physician Finder
+Questions
+
+
+impressions
+Hover
+click
+form-submit
+
+Infinite Article
+Nativo Flow and Setup
+
+
+Campain
+GPT ad tags
+
+
+We are targeting the below DFP slots
+pos=101 (728x90)
+pos=121 (300x250)
+pos=409 (300x250)
+
+DIV ID: 
+
+ads2-pos-101-ad_banner (pos: 101) 
+ads2-pos-121-ad_rr_p1 (pos: 121)
+ads2-pos-101-bannerAd (pos: 101)
+ads2-pos-121-ad  (pos: 121)
+ads2-pos-101-bannerAd   (pos: 101)
+ads2-pos-409-ad  (pos: 409)
+ads2-pos-121-ad  (pos: 121)
+
+ http://www.webmd.com/living-healthy?force_hbtest=1
+
+
+ //////////////////////////////////////////////////
+
+
+$('body').empty();
+
+$('<div id="ads2-pos-101-ad_banner"></div>').appendTo('body');
+
+$('<div id="ads2-pos-121-ad_rr_p1"></div>').appendTo('body');
+
+
+webmd.ads2Consumer.defineAd({targets:{art:'091e9c5e80eff7b3',cc:'83',env:'&amp;env=0',hcent:'',leaf:'&amp;leaf=1257',mcent:'',mic:'',pt:'1728',sec:'',pug:'__',scent:'',tmg:'',tug:'',uri:'%2fdefault'},blockCodes:'__',id:'ads2-pos-101-ad_banner',pos:'101',sizes:[[728,90],[970, 90],[970,250]]});
+
+
+
+
+webmd.ads2Consumer.defineAd({targets:{art:'091e9c5e80eff7b3',cc:'83',env:'&amp;env=0',hcent:'',leaf:'&amp;leaf=1257',mcent:'',mic:'',pt:'1728',sec:'',pug:'__',scent:'',tmg:'',tug:'',uri:'%2fdefault'},blockCodes:'__',id:'ads2-pos-121-ad_rr_p1',pos:'121',sizes:[[300,250],[300, 600],[300,1050]]});
+
+
+webmd.ads2Consumer.display();
+
+
+/////////////////////////////////
+
+
+	/**
+	 * Helper function to set the appropriate Google NetworkCode based on environment and lifecycle.
+	 * Logic:
+	 * Production Live - live network code
+	 * Production Preview/Staging - sandbox network code
+	 * Lower QA environments (QA02/PERF, QA01, QA00) - sandbox network code
+	 */
+	setNetworkCode: function(){
+		var network = {
+				'live': '4312434',
+				'sandbox': '8668145'
+			},
+			env = webmd.url.getEnv() || '';
+
+		// if env is production (or functions errored), there will be no value.
+		// other lower envs return values (eg: .qa00).
+		if(env === '') {
+			return network.live;
+		}
+
+		return network.sandbox;
+	}
+
+
+/////////////////////////////
+

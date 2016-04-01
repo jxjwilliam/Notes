@@ -1,0 +1,27 @@
+// https://developers.google.com/web/tools/setup/setup-buildtools?hl=en
+
+For minification, use the following:
+
+Type of File	Gulp	Grunt
+CSS	gulp-csso	grunt-contrib-cssmin
+JS	gulp-uglify	grunt-contrib-uglify
+HTML	gulp-minify-html	grunt-contrib-htmlmin
+For concatentation, use the following:
+
+Type of File	Gulp	Grunt
+CSS (Sass)	gulp-sass or gulp-useref	grunt-contrib-sass or grunt-usemin
+JS	gulp-useref	grunt-usemin or grunt-codekit
+
+
+
+For optimizing images, you can use these modules.
+
+Gulp	Grunt
+gulp-imagemin	grunt-contrib-imagemin
+
+
+Don’t trip up with vendor prefixes
+It can often become a bit tedious to include all the vendor prefixes for the CSS you use. Use an auto-prefixer to automatically add the prefixes you need to include:
+
+Gulp	Grunt
+gulp-autoprefixer	grunt-autoprefixer

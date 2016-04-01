@@ -1,0 +1,70 @@
+1. li du
+import 'events' from jquery;
+so no need to download tooltips, carousel, popup modal, grid etc.
+
+2. tong gou
+Server-side & Client-side use JavaScript.
+React-native, FLUX.
+
+3. File-System
+
+
+Performance effects:
+(1) server-side:
+- XML 
+- XSL(T)
+- rendering html-snippets into template
+
+(2) Front-end:
+- Download the scripts
+- excute the sccripts
+- DOM.ready event
+- Window.load event
+
+
+
+(a) Use xml2json replace XSL transformation
+
+NodeJS
+ExpressJS as web-server
+FileSystem as static-htmls repository (caching)
+MongoDB / Redis-server (timestamp, search, XML-HTML mapping and path)
+
+(b) Reactjs:
+1. faster, high performance (virtual dom)
+2. Components - reusable, Composable
+3. Virtual DOM
+4. easy managable
+5. it looks like a framework with the benefits of framework, better than jQuery which is just a DOM library.
+6. the most popular front-end solution currently.
+
+
+The other factors out of range:
+- Network speed
+- Server CPU & memory
+- Browser type: mobile, tablet, desktop, laptop
+- 3rd party API factors.
+
+
+The highlights:
+================
+- xml to json without xslt, naturally and faster.
+- Dynamically locating ‘ContentPane’ partials into html-page, easily extending and reusable.. 
+- Multi-paritial rendering at same time.
+- Use js class inheritance, façade pattern
+- Interface for objects injection and integration.
+- Easy to upgrade: MVC-style. Inte
+- Clear structure: controllers folder for parsing and objects assembly, routes folder for rendering, views folder for ejs templates, and modules/ folder for xml-resources 
+- The codes follow webmd-xsd-schemas.
+- Controllers can be reusable, e.g.: editorial1.xml and editorial2.xml share same controller.
+- Test scripts include in test foler (jasmine for unit test)
+- Server-side rendering html-page with ejs template, better performance
+
+
+The app is also available at (which is my machine):
+http://10.46.49.131:3000/webmd
+
+http://03-C02KD3DQDRVG:3000 
+
+
+

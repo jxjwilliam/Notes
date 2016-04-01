@@ -1,0 +1,228 @@
+(1) rblakeley@webmd.net
+(2) OmnitureWrapper
+
+
+(a) General Information
+
+(b) Triggers
+
+(c) Partner Rules
+
+(d) Data to Share
+- Video Core
+- Chapters
+- Ads
+- QoE
+- Enable Catch All
+
+
+var heartbeatConfig = new ADB.va.ConfigData('http://heartbeats.omtrdc.net', 'sc_va', 'webmd'); // Mandatory ConfigData Parameters, Always Same for WebMD/Medscape
+
+
+
+////// HTTP response 204 //////
+204 No Content
+
+The server has fulfilled the request but does not need to return an entity-body, and might want to return updated metainformation. The response MAY include new or updated metainformation in the form of entity-headers, which if present SHOULD be associated with the requested variant.
+
+If the client is a user agent, it SHOULD NOT change its document view from that which caused the request to be sent. This response is primarily intended to allow input for actions to take place without causing a change to the user agent's active document view, although any new or updated metainformation SHOULD be applied to the document currently in the user agent's active view.
+
+The 204 response MUST NOT include a message-body, and thus is always terminated by the first empty line after the header fields.
+
+
+
+/////////////
+The new tracking server is specific to each customer and should look like this: <Customer Analytics Visitor Namespace>.hb.omtrdc.net (the previous version was heartbeats.omtrdc.net). More details can be provided by your Adobe consultant.
+
+
+/////////////
+
+Federated Analytics
+
+Video Analytics Reporting:
+ my.omniture.com/login/
+					
+
+http://www.webmd.com/add-adhd/video/adhd-in-children
+
+http://www.perf.webmd.com/baby/video/eddleman-understanding-pre-natal-screening-tests
+http://www.perf.webmd.com/diet/weight-loss-surgery/video/sitting-disease
+http://www.perf.webmd.com/heart-disease/video/how-safe-is-niacin
+http://www.webmd.com/cholesterol-management/video/ldl-hdl-cholesterol-levels
+http://www.webmd.com/diet/video/bernstein-eat-right-food-statins
+http://www.webmd.com/cholesterol-management/video/manage-hdl-bad-cholesterol
+
+http://www.perf.webmd.com/baby/video/eddleman-pregnancy-too-old
+
+
+s_md.trackingServer
+s_md.trackingServerSecure
+s_md -> AppMeasurement
+s_md.visitor
+s_md.visitorNamespace
+
+// Create Instance of Heartbeat Tracking, passing in PlayerDelegate and Analytics/AppMeasurement Objects
+this.instance = new ADB.va.VideoHearbeat(PlayerDelegateInstance, [new ADB.va.plugins.AdobeAnalyticsPlugin(s_md)]);
+
+
+ConfigData(trackingServer, jobId, publisher);
+
+channel: "",
+debugLogging: false,
+jobId: "sc_va",
+ovp: "unknown",
+publisher: "webmd",
+quietMode: false,
+skd: "unknown
+trackingServer": "http://heartbeats.omtrdc.net"
+
+
+tracking_server: "http://heartbeats.omtrdc.net", check_status_server: "http://heartbeats.omtrdc.net/settings/", job_id: "sc_va", quiet_mode: false
+
+
+
+https://confluence.webmd.net/display/ConsumerDev/WebMD+Video+Framework+Developer+Guide
+https://marketing.adobe.com/resources/help/en_US/sc/appmeasurement/hbvideo/video.pdf
+
+addEventListener is the way to register an event listener.
+- It allows adding more than a single handler for an event.
+- It gives you finer-grained control of the phase when the listener gets activated (capturing vs. bubbling)
+- It works on any DOM element, not just HTML elements.
+
+
+
+/////////// $ is undefined
+var bbb = 'bbbbbbbbbbbbb';
+var Func = function() { return { init: function(param) { console.log('1.', bbb, '2.', param); } } }
+Func().init('william tesging')
+//1. bbbbbbbbbbbbb 2. william tesging
+
+
+////////////////
+
+volumechange
+ready
+volumechange
+ad-ended
+play
+canplay
+waiting
+playing
+waiting
+ended
+
+-------------
+waiting
+seeking
+pause
+seeked
+playing
+play
+waiting
+ended
+
+-------------
+all logic is in Video instance.
+all the Adobe-Heartbeat related processing is in WmdHeartbeat instance
+So they need a bridge to interactive: I use publish/subscribe pattern to implement.
+
+
+I am referencing:
+(1) Current Version 1.4 codes.
+(2) Heartbeat Version 1.5 examples codes.
+(3) amp_debug.js which wraps HeartbeatProxy.
+What I am doing is to integrate the above 3, to generate our codes. So not a mess processing, but need some time to make it better.
+
+
+heartbeat._playerPlugin.trackPlay();
+heartbeat._playerPlugin.trackPause();
+heartbeat._playerPlugin.trackSeekStart();
+heartbeat._playerPlugin.trackSeekComplete();
+heartbeat._playerPlugin.trackComplete();
+heartbeat._playerPlugin.trackVideoUnload();
+heartbeat._playerPlugin.trackVideoLoad();
+heartbeat._playerPlugin.trackChapterStart();
+heartbeat._playerPlugin.trackChapterComplete();
+heartbeat._playerPlugin.trackAdStart();
+heartbeat._playerPlugin.trackAdComplete();
+
+-----------------
+
+getPlayhead
+
+--------------------------------------------------------------------
+// this is guaranteed dynamic VideoInfo is injected.
+WebmdHeartbeat.prototype.createPlayerDelegate1 = function (player) {
+    var playerDelegate = ADB.va.plugins.videoplayer.VideoPlayerPluginDelegate;
+    function F(video_player) {
+        this._player = video_player;
+    };
+    F.prototype = Object.create(playerDelegate.prototype);
+    F.prototype.constructor = F;
+
+    F.prototype.getVideoInfo = function () {
+        return this._player.getVideoInfo();
+    };
+    F.prototype.getAdBreakInfo = function () {
+        return this._player.getAdBreakInfo();
+    };
+    F.prototype.getAdInfo = function () {
+        return this._player.getAdInfo();
+    };
+    F.prototype.getChapterInfo = function () {
+        return this._player.getChapterInfo();
+    };
+    F.prototype.getQoSInfo = function () {
+        return this._player.getQoSInfo();
+    };
+    F.prototype.onError = function (error) {
+        console.error("Heartbeat Error:", error);
+    };
+    return  new F(player);
+};
+
+--------------------------------------------------------------------
+
+// Setup the video-player plugin
+var playerDelegate = ADB.va.plugins.videoplayer.VideoPlayerPluginDelegate;
+
+function VideoPlayerDelegate(player) {
+    this._player = player;
+}
+
+VideoPlayerDelegate.prototype = Object.create(playerDelegate.prototype);
+VideoPlayerDelegate.prototype.constructor = VideoPlayerDelegate;
+
+VideoPlayerDelegate.prototype.getVideoInfo = function () {
+    return this._player.getVideoInfo();
+};
+VideoPlayerDelegate.prototype.getAdBreakInfo = function () {
+    return this._player.getAdBreakInfo();
+};
+VideoPlayerDelegate.prototype.getAdInfo = function () {
+    return this._player.getAdInfo();
+};
+VideoPlayerDelegate.prototype.getChapterInfo = function () {
+    return this._player.getChapterInfo();
+};
+VideoPlayerDelegate.prototype.getQoSInfo = function () {
+    return this._player.getQoSInfo();
+};
+VideoPlayerDelegate.prototype.onError = function (error) {
+    console.error("Heartbeat Error:", error);
+};
+var delegate = new VideoPlayerDelegate(this._player);
+
+--------------------------------------------------------------------
+
+
+video-metrics-1.js (natural work flowing without publisher/subscriber supports)
+video-metrics-2.js (publisher/subscriber pattern, more structured)
+amp_min.js (support file)
+
+You can swith between video-metrics-1.js and video-metrics-2.js to see both them work.
+
+--------------------------------------------------------------------
+
+ staging.medscape.com/viewarticle/855857,   TestPhysician2,  tester
+

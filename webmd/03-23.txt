@@ -1,0 +1,8 @@
+•	Multiple ads can be placed on a page.
+•	Each ad is identified by a “POS” value. Within a single page, each POS must be unique. We will be using the legacy POS values from our old ads system whenever possible.
+•	Each ad can specify a range of ad sizes that are possible. For example, a right ad can specify a single size of 300x200, or it can specify multiple sizes 350x200,350x600, etc.
+•	Targeting information can be set globally for all ads on the page. For example, a topic id can be sent to the ad system. It is technically possible to set targeting information for a single ad on the page, but we are limiting ourselves to send the same targeting information for all ads.
+•	All ad positions on the page can be dynamically refreshed (without the need for reloading the page). In our old ad system, we refreshed selected ad positions on the page, but now we can refresh them all.
+
+
+webmd.lotame.truncatedDMPAudiences

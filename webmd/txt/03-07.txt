@@ -1,0 +1,43 @@
+open chrome -> web-inspector for perf.webmd.com.
+
+(1) in network tab, copy ads?... cust_params.
+
+(2) in console tab, assign the query-string to a variable:
+
+var cust_params = [ the copied ads->cust_params ];
+cust_params = fis=0&fipt=0&pvid=145736467197772160&dmp=...&cui=...
+
+
+(3)
+function verified_cust_params(key) {
+	var custs = {};
+	cust_params.split('&').forEach(function(v) {
+	  var t = v.split('=');
+	  custs[t[0]] = t[1];
+	})
+	var parsed_str = decodeURIComponent(custs[key]);
+
+	console.log(parsed_str);
+	return parsed_str;	
+}
+
+(4) run: verified_cust_params('cui');
+will get:
+"3812_1,44_1,3814_1,28233_3"
+
+(5) run: verified_cust_params('dmp')
+will get:
+"all, 200, 87479"
+
+
+
+
+https://jira.webmd.net/browse/PPE-45936:
+Desktop Brandfeed Pages should not show House Ads on Prod when Tug is shown.
+
+Test url: http://www.staging.webmd.com/brandfeed?prx_adp=6493_3038
+1) Test is basically tug value should never be blank
+2) Test is to check the value of tug value matches the value in DFP vs the value appearing in jadserve.postrelease.com call
+3) Always an house ad should be seen in Staging url but on Prod it should be sponsored ad.
+4) Test on Mobile and Desktop
+5) Test on Brandfeed, Brandcast and Brandcast/brandfeed pages - should not impact on later two - Brandcast and Brandcast/brandfeed pages

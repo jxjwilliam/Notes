@@ -1,0 +1,32 @@
+Working with Varala, Mahesh for the non-apple device defect.
+For same urls such as:
+http://www.m.webmd.com/a-to-z-guides/video/who-can-benefit-from-precision-medicine
+http://www.staging.m.webmd.com/diet/video/eating-organic
+http://www.perf.m.webmd.com/a-to-z-guides/video/destress-for-a-healthy-immune-system
+(1) in desktop, apple device, the video play no problem.
+(2) in non-apple mobile device, there throw an error:
+Error: source not supported.
+Please see the attached.
+The media-type for this is m3u8:
+master.m3u8*" class="external-link" rel="nofollow">http://webmd-vh.akamaihd.net/i/delivery/delivery/e2/34/e234949c-e1ec-46cc-9701-720528ac0442/precision-medicine-who-benefits_,2500k,4500k,1000k,750k,400k,.mp4.csmil/*master.m3u8*
+After searching such as stackoverflow (http://stackoverflow.com/questions/12761499/streaming-m3u8-playlist-on-android-4-0-3), it seems the Streaming m3u8 playlist not supported well on Android.
+Not sure how to fix that. 
+
+
+
+
+fiddler proxy tool (.saz)
+
+sync your mobile device to your proxy tool in the system
+
+
+fiddler, Charles proxy
+10.24.130.28
+8888
+
+
+var cui_str = '', cuih, cuim, cuil;
+cuih = typeof window.s_cuih !== 'undefined' ? window.s_cuih : '';
+cuim = typeof window.s_cuim !== 'undefined' ? window.s_cuim : '';
+cuil = typeof window.s_cuil !== 'undefined' ? window.s_cuil : '';
+targets.cui = cui_str;

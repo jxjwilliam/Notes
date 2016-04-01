@@ -1,0 +1,288 @@
+- Heartbeat-1.5.2 events:
+
+EVENT_TYPE_AA_START="aa_start"
+EVENT_TYPE_AA_AD_START="aa_ad_start"
+EVENT_TYPE_START="start"
+EVENT_TYPE_CHAPTER_START="chapter_start"
+EVENT_TYPE_CHAPTER_COMPLETE="chapter_complete"
+EVENT_TYPE_PLAY="play"
+EVENT_TYPE_PAUSE="pause"
+EVENT_TYPE_BUFFER="buffer"
+EVENT_TYPE_BITRATE_CHANGE="bitrate_change"
+EVENT_TYPE_ERROR="error"
+EVENT_TYPE_COMPLETE="complete"
+
+
+s:event:type:
+
+var f="player",
+g="sourceErrorExternal",
+h="sourceErrorSDK",i="video_load",j="video_unload",k="video_start",l="video_complete",m="play",n="pause",o="ad_start",p="ad_complete",q="buffer_start",r="buffer_complete",s="seek_start",t="seek_complete",u="chapter_start",v="chapter_complete",w="bitrate_change",x="track_error",y="callback",z="source",A="error_id";
+
+
+
+//////////////////////////////////////////////////
+
+http://sharepoint.webmd.net/Consumer Portals/omniture/Shared Documents/Metric Implementation Documents/video/video-time-spent_metrics.docx.docx
+
+http://www.staging.medscape.com/viewarticle/855857 
+
+
+//////////////////////////////////////////////////
+
+After the video/ad is completed and/or
+abandoned, the heartbeat service calculates time-spent metrics and then sends the data to Analytics.
+
+
+Video Core: Core video measurement is used for video content. This will use Solution (or Custom) Evars to keep track of
+Content, Content Type, Content Player Name, and Content Channel. Solution (or Custom) Events will be used for Video
+Initiates, Content Starts, Content Completes, and Content Time Spent.
+
+
+Attaching Custom Metadata
+
+You can attach your own metadata to calls made to Adobe Analytics.
+
+The video heartbeat library provides support for custom metadata to be attached to the analytics calls. The relevant APIs for
+this functionality are defined on the AdobeAnalyticsPlugin:
+
+
+AdobeAnalyticsPlugin.prototype.setVideoMetadata = function(data) {};
+AdobeAnalyticsPlugin.prototype.setAdMetadata = function(data) {};
+AdobeAnalyticsPlugin.prototype.setChapterMetadata = function(data) {};
+
+
+
+//////////////////////////////////////////////////
+
+SiteName
+EmbeddedAssetFlag
+SponsorClientBrand
+SponsorProgramName
+SponsorPakcage
+SponsorPackagename
+AudioFlag
+RegisteredUserID
+MobileDisplayFlag
+ReportSuite
+UserProfession
+UserCountry
+UserOccupation
+
+
+///////////////////////////////////////////////////
+
+// Create a new object whose prototype is a new, empty object
+// and add a single property 'p', with value 42.
+o = Object.create({}, { p: { value: 42 } });
+
+
+//////////////////////////////////////////////////
+
+WebmdHeartbeat.prototype.createPlayerDelegate = function () {
+    var self = this;
+    var PlayerDelegate = ADB.va.plugins.videoplayer.VideoPlayerPluginDelegate;
+    var obj = Object.create(PlayerDelegate.prototype);
+    obj.getVideoInfo = function () {
+        return self._webmdHBObj.getVideoInfo();
+    };
+    obj.getAdBreakInfo = function () {
+        return self._webmdHBObj.getAdBreakInfo();
+    };
+    obj.getAdInfo = function () {
+        return self._webmdHBObj.getAdInfo();
+    };
+    obj.getChapterInfo = function () {
+        return self._webmdHBObj.getChapterInfo();
+    };
+    obj.getQoSInfo = function () {
+        return self._webmdHBObj.getQoSInfo();
+    };
+    obj.onError = function (error) {
+        console.error("Heartbeat error: " + error.getMessage() + " | " + error.getDetails());
+    };
+    return obj;
+};
+
+
+////////////////////////////////////////////////////
+
+https://stash.portal.webmd.com/projects/CONSUI/repos/webmd-video/browse/js/api/video-heartbeat.js?at=refs%2Fheads%2Fsprint16
+
+
+11.	Pass the following prop values in the Heartbeat “open” call (pe=ms_s): props 3, 6, 33, 47, 48, 50 for Core, OO, Professional, and Connect. 
+11.1.	Additionally, for Professional, pass props channel, 19, 37, 38. If the video is sponsored, pass props 29, 30.
+11.2.	Additionally, for Core and OO, if the video is sponsored, pass prop28, 29, 30, 31.
+
+
+1. For all layouts that contain the BI block of code (Flexible, 3-column, Mobile, Responsive, Boots Mobile, Pop Up?), add a new section of variables to the existing block s_xxx variables. The new context variables are listed below along with the s_xxx variable they map to. 
+
+2. The values for each wb.xx variable should match those of the mapped s_xxx variable.
+
+3. In addition the following three variables should be added to the BI Block to support Responsive designs across the site. s 
+(To be finalized Monday)
+wb.brkpt - This will be for responsive break-point and NOT populated by Runtime
+wb.rspd - indication of a responsive design. Should be hard-coded for Responsive design as "true" and NOT populated for other layouts
+TBD - Indicator for device orientation. This will NOT be poulated by Runtime
+
+wb.server / s_server
+wb.site / s_site
+wb.topic / s_topic
+wb.busref / s_business_reference
+wb.asset / s_asset_id
+wb.pubsource / s_publication_source
+wb.pagination / s_page_number
+wb.spbrnd / s_sponsor_brand
+wb.sppgrm / s_sponsor_program
+wb.spclient - should not be populated (requires new Runtime logic)
+Wb.spbrnd - should not be populated (requires new Runtime logic)
+Wb.sppgrm - should not be populated (requires new Runtime logic)
+wb.pkgtyp / s_package_type
+wb.pkgnm / s_package_name
+wb.toolin / s_assetname
+wb.chmicro / s_channel_micro
+wb.chsuper / s_channel_super_portal
+wb.chcntr / s_channel_health
+wb.chmini / s_channel_mini
+wb.spuri / s_sponsored_uri
+
+The variables needed and their mapping to existing s_xxx variables is also attached to this story.
+
+
+
+///////////////////////////////
+
+for (i in window) {
+  if (/^s_/.test(i)) {
+    if(typeof window[i] !== 'function') 
+      console.log(i + ': ' + window[i]);
+    else
+      console.log(i + ': function');
+  }
+}
+
+///////////////////////////////
+s_topic
+s_business_reference
+s_publication_source
+s_sponsor_brand
+s_sponsor_program
+s_package_type
+s_package_name
+s_channel_super_portal
+s_channel_health
+s_channel_topic_miniguide_guide
+s_channel_mini
+s_channel_micro
+s_tug
+s_topic_dir
+s_mrt
+s_site
+s_assetname
+s_searchterm
+s_sensitive
+s_mblv
+s_tagemax
+s_tagemin
+s_cuih
+s_cuil
+s_cuim
+s_sbtyp
+s_tgender
+s_furl
+s_uk_user
+s_before_pv
+s_beaconload
+s_pn
+s_pn_clean
+s_pageview_id
+s_module_impressions
+s_c_il
+s_c_in
+s_gi
+s_pgicq
+s_objectID
+s_giq
+s_account
+s_server_type
+s_server
+s_object_type
+s_page_number
+s_site_class
+s_sponsored_uri
+s_pagename
+s_channel
+s_intended_demographics
+s_stage_condition
+s_asset_id
+s_unique_id
+s_company
+s_refpath
+s_md_doPlugins
+s_ver
+s_beacon_type
+s_live
+s_md
+s_domain
+s_persist40
+s_pageview_sent
+s_ctr_loc
+s_ctr_query
+s_ml
+s_user_group
+s_errAs
+s_eUrl
+s_eRef
+s_visitor
+s_sponUri
+s_hier1_subsite
+s_mobileweb
+s_sc
+s_siteclass
+s_hier1
+s_code
+s_code_length
+s_not_pageview
+s_error
+s_pageType
+s_i_webmddev
+
+/////////////
+var customData = {};
+if (typeof s_md === 'object') {
+    try {
+        customData = {
+            SiteName: s_site,
+            EmbeddedAssetFlag: s_eRef,
+            SponsorClientBrand: s_sponsor_brand,
+            SponsorProgramName: s_sponsor_program,
+            SponsorPakcage: s_package_type,
+            SponsorPackagename: s_package_name,
+            AudioFlag: s_md.prop64,
+            RegisteredUserID: Array.isArray(buID) ? buID[0] : s_md.prop47,
+            MobileDisplayFlag: s_md.prop48,
+            ReportSuite: _suit,
+            UserProfession: s_user_group,
+            UserCountry: s_channel_super_portal,
+            UserOccupation: s_channel_health
+        };
+    } catch (e) {
+        customData = {
+            SiteName: s_md.prop3,
+            EmbeddedAssetFlag: s_md.prop26,
+            SponsorClientBrand: s_md.prop28,
+            SponsorProgramName: s_md.prop29,
+            SponsorPakcage: s_md.prop30,
+            SponsorPackagename: s_md.prop31,
+            AudioFlag: s_md.prop64,
+            RegisteredUserID: s_md.prop47,
+            MobileDisplayFlag: s_md.prop48,
+            ReportSuite: s_md.prop50,
+            UserProfession: s_md.prop19,
+            UserCountry: s_md.prop37,
+            UserOccupation: s_md.prop38
+        };
+    }
+}
+return customData;
+        

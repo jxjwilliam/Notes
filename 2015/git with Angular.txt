@@ -12,6 +12,7 @@ Install and configure git on your local machine. (I found the Mac GUI client a w
 Install node.js (you’ll need this for npm)
 Create a fork of angular/angular.dart.git (or angularjs, or whichever)
 Clone your fork: git clone https://github.com/username/angular.dart.git
+
 In your local repository, set up a remote for upstream:
 $ git remote add upstream git@github.com:angular/angular.dart.git
 Create ssh keys: ssh-keygen -t rsa -C "youremail@somedomain.com"

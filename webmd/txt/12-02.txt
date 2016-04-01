@@ -1,0 +1,158 @@
+(1) player-shared.js [line 466]:
+videoData[field] = webmd.object.get(metadataLegend[field], metadata) || "";
+
+
+(2) metadata.webmd_rendition.content.wbmd_asset.metadata_section.wbmd_c_duration
+when field==='duration', 
+videoData['duration'] = 203;
+
+
+////////////////
+
+(1) in player-shared.js [line 466]:
+videoData[field] = webmd.object.get(metadataLegend[field], metadata) || "";
+
+when field='duration', then:
+videoData['duration'] will return Akamai video duration time (seconds), such as 203, 193 etc.
+
+
+(2) the 'duration' value is from xhr call:
+http://www.staging.webmd.com/api/repository/repositoryservice.svc/getassetxml?chronicleID=091e9c5e80afea5b&cb=1449066706991
+
+<wbmd_c_duration>178</wbmd_c_duration>
+
+
+(3) I wrote a function to retrieve the *video duration* in player-shared.js:
+function getVideoDuration(metadata) {
+  var duration = 0;
+  try {
+    duration = metadata.webmd_rendition.content.wbmd_asset.metadata_section.wbmd_c_duration;
+  } catch(e) {}
+  return duration;
+}
+
+
+/////////////
+
+(1) premium-video.js, player-shared.js, premium-video-base.js, layered-about-box.js:
+http://www.staging.webmd.com/eye-health/eye-vision-tv/video-diabetic-retinopathy
+
+(2) harmony-daily-video.js, player-shared.js, premium-video-base.js:
+http://www.staging.webmd.com/diet/video/town-hall-white-house-garden
+
+(3) daily-player.js, player-shared.js
+http://www.staging.webmd.com/parenting/video/myths-facts-bedwetting
+
+
+/////////////
+
+http://img.webmd.com/dtmcms/live/webmd/PageBuilder_Assets/JS/tools/video/video.playlist30.js
+
+https://stash.portal.webmd.com/projects/CONSUI/repos/video-api/browse/daily_player
+
+http://www.webmd.com/a-to-z-guides/video/bubonic-plague 
+
+
+
+//////////////
+www.staging.webmd.co/allergies/default.htm
+members.perf.webmd.com/subscriptions.aspx
+
+
+//////////////
+
+I don’t know how to give you permissions to the page without also giving you permission to the parent folder.
+Attached are the requirements. Below are links to the specs.
+
+Desktop:  https://invis.io/SH4VNV98W
+Mobile:  https://invis.io/N54VP5SQ7
+Folder for Assets:  https://webmd.box.com/s/nhtrql7j18ov6nqpu4pn7n3ufd6rdzpf
+
+
+//////////////
+
+Brandcast, Brandfeed pages are created through 3rd party tool.
+Brandcast/Nativo tool
+
+pagebuilder template
+PageBuilder, UMT mappping in Pagebuilder
+
+
+/////////////////
+Brandcast have a pagebuilder template. you can copy/paste a brandcast url into the url field in pagebuilder to see the template. So when the page is rendered, it's originally empty. Nativo JS kicks in and then drops content in it by replacing some custom tags we added as part of the template.
+
+/////////////////
+
+Please correct me if I am not correct.
+
+It would be great if the settings can solve this issue. However, I found a backdoor operation to make the story work.
+I read and research the emails and story, now have a better understanding on this story:
+
+
+(.) Pagebuilder inserts the brandcast/default.htm?prx_t to the template.
+
+
+
+(.) When rendering, the brandcast/default.htm fill the content depending on prx_t parameter.
+
+
+
+The http://www.webmd.com/brandcast/default.htm has a entry point:
+
+<div class="article"><!-- @Content --></div>
+
+which leaves to 3rd party to inject their contents into template tag (@Content) by using Navito/Brandcast tool.
+
+
+(.)
+This lets the 3rd-party content (include html, script) to decide content links to support desktop/mobile version or not.
+
+
+(.)
+When page rendering, UMT mapping tool import the html, and run the attached script.
+UMT mapping tool can map default url to the content links, either www.webmd.com or www.m.webmd.com, but not both. Such as:
+<a href="http://www.m.webmd.com/brandcast/brandfeed-cough-treatment" rel="nofollow">here</a>
+
+
+(.) For desktop or mobile access, it generates dynamically, should process by javascript.
+
+Actually it is
+
+
+(.) Since the content is dynamiclly, it is hard to say write a script to include every case. So the scripts should come with content. Different content should have different script processing.
+
+
+(.) for story PPE-37444, Redirect Brandcast Pages by Device, the script is like this:
+
+$(window).load(function() {
+
+  switch(window.navigator.userAgent) {
+    case 'mobile':
+       url = 'www.m.webmd.com';
+       // render links within $('.article a') to 'www.m.webmd.com'
+       break;
+    case 'desktop or tablet':
+       url = 'www.mobile.com';
+       // render the links within $('.article a') to 'www.webmd.com'
+       break;
+  }
+});
+
+or:
+$(document).ready(function() {
+  $('.article').on('click', 'a', function(e) {
+    e.preventDefault();
+    //which xhr-request comes from?
+    switch(window.navigator.userAgent) {
+      case 'mobile':
+        // click 'www.m.webmd.com' version processing.
+        break;
+      case 'desktop/tablet':
+        // click 'www.webmd.com' version processing.
+        break;
+    }   
+  }); 
+});
+
+I wrote a script for the first option, tested and it works fine.
+

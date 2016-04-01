@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script type="text/javascript"> 
+var googletag = googletag || {};
+googletag.cmd = googletag.cmd || [];
+(function () {
+    window.advBidxc = window.advBidxc || {};
+    window.advBidxc.renderAd = function () {
+    };
+    window.advBidxc.startTime = new Date().getTime();
+    window.advBidxc.timeout = 300;
+    window.advBidxc.version = 2.4;
+    window.advBidxc.customerId = "Customer Id";
+
+    //Media.net Customer ID
+    function loadScript(tagSrc) {
+        if (tagSrc.substr(0, 4) !== 'http') {
+            var isSSL = 'https:' == document.location.protocol;
+            tagSrc = (isSSL ? 'https:' : 'http:') + tagSrc;
+        }
+        var scriptTag = document.createElement('script'), placeTag = document.getElementsByTagName("script")[0];
+        scriptTag.type = 'text/javascript';
+        scriptTag.async = true;
+        scriptTag.src = tagSrc;
+        placeTag.parentNode.insertBefore(scriptTag, placeTag);
+    }
+
+    function loadGPT() {
+        if (!window.advBidxc.isAdServerLoaded) {
+            loadScript('//www.googletagservices.com/tag/js/gpt.js');
+            window.advBidxc.isAdServerLoaded = true;
+        }
+    }
+
+    function loadGPTAfterDelay(MAX_DELAY) {
+        window.advBidxc.isWebmdGptInit = true;
+        setTimeout(window.advBidxc.loadGPT, MAX_DELAY || window.advBidxc.timeout);
+        //Default 300MS
+    }
+
+    window.advBidxc.loadGPT = loadGPT;
+    window.advBidxc.loadGPTAfterDelay = loadGPTAfterDelay;
+    var mnSrc = ('https:' == document.location.protocol ? 'https:' : 'http:') + '//contextual.media.net/bidexchange.js?cid=' + window.advBidxc.customerId + '&version=' + window.advBidxc.version;
+    document.write('<scr' + 'ipt type="text/javascript" src="' + mnSrc + '"></scr' + 'ipt>');
+})(); </script>
+</body>
+</html>
+
+
+/////////////////////////////////
+
+http://www.googletagservices.com/tag/js/gpt.js
+
+http://partner.googleadservices.com/gpt/pubads_impl_79.js
+
+
+
+
+http://c8stage.media.net/__media__/js/test/webmd-header-bidding-desktop.php
+
+http://c8stage.media.net/__media__/js/test/webmd-header-bidding-mobile.php
+
+
+/////////////////////
+
+mnetbidPrice 
+mnetbidderID 
+mnetCrid
+mnet_placement
+mnetSize
+mnetPageID
+mnetCId
+mnTest 
+
+
+/////////////////////
+
+1. IIFE (Immediately Invoked Function Expression):
+(function() {
+  // fetch gpt.js
+})();
+
+gpt.js is a IIFE itself, so as soon as it is download, it self-executes immediately,  and is immediately available.
+
+(function(exports) {
+
+  var ads2 = {
+    ...
+  };
+
+  exports.ads2 = ads2;  
+
+})(window);
+
+
+
+
+(function(exports) {
+
+  var ads2Consumer = {
+    ...
+  };
+
+  exports.ads2Consumer = ads2Consumer;    
+
+})(window);
+
+
+
+So we get:
+- window.ads2 
+- window.ads2Consumer
+- window.gpt-others
+- ...
+
+
+
+2. document.ready:
+// use jQuery way
+$(function() {
+  // call webmd.ads2, webmd.adsConsumer for render the page
+  // could be ajax calls 
+});
+
+
+3. window.load:
+// use jQuery way
+$(window).load(function() {
+    
+});
+
+
+
+If we google, we can find that js libaray or pluggable components are very common using this solution.
+
+In this way, it is clean, structured and pluggable, easily managable and reading.
+
+- JS codes will become clean and easy management.
+
+- Don't need to locate the place where the code should put into (meta-ahead, top of head, top of home-page etc). 
+
+- setTimeout() is option, depending on we need it or not. 
+
+- pretty safe, all is local variables instead of global, so don't need to worry about naming-conflict.
+
+- if we need use ads2 in ads2Consumer,
+(function(exports, ads2) {
+    
+})(windows, windows.ads2);
+
+
+///////////////////////////
+
+- jQuery-1.8.2
+- requirejs
+- xLazyLoader
+- modernizr
+- define('css')
+- JSON
+
+
+///////////////////////
+
+
+Please ignore the previous email. While reading the document, I am more familiar with it.
+
+The gpt finds the defineAd targets to get the publisher tags then search media.net server to find the correct ad(s).
+
+- 8CU66J63J
+- media.net
+
+
+///////////////////////
+
+Running "tasks" task
+
+Please choose a build:      Creates the following:
+>> grunt webmd          scripts.js, scripts_harmony.js, scripts_mobile.js, oo_shim.js, oo_shim_mobile.js
+>> grunt core           scripts.js
+>> grunt core_harmony   scripts_harmony.js
+>> grunt mobile         scripts_mobile.js
+>> grunt oo_all         oo_shim.js, oo_shim_mobile.js
+>> grunt oo             oo_shim.js
+>> grunt ooMobile       oo_shim_mobile.js
+>> grunt uk             scripts.js,scripts_boots_mobile.js
+>> grunt boots          scripts.js
+>> grunt bootsMobile        scripts_boots_mobile.js
+>> grunt syndicated     scripts_syndicated.js, scripts_harmony_syndicated.js, scripts_mobile_syndicated.js,
+
+Ingestion targets:
+>> grunt webmd-ingest:prodlive
+>> grunt webmd-ingest:prodstaging
+>> grunt webmd-ingest:perflive
+>> grunt webmd-ingest:perfstaging
+>> grunt webmd-ingest:qa00live
+>> grunt webmd-ingest:qa00staging
+>> grunt webmd-ingest:qa01live
+>> grunt webmd-ingest:qa01staging
+
+///////////////
+<script type="text/javascript" class="googleloaded">
+    (function () {
+        if (typeof googletag === 'object') {
+            return;
+        }
+        if ((typeof document.domain !== "undefined") && (document.domain.toLowerCase().indexOf("fit.") < 0) && (document.domain.toLowerCase().indexOf(".webmd.boots.com") < 0)) {
+            var gads, node, useSSL;
+            gads = document.createElement("script");
+            gads.async = true;
+            gads.type = "text/javascript";
+            useSSL = "https:" === document.location.protocol;
+            gads.src = (useSSL ? "https:" : "http:") + "//www.googletagservices.com/tag/js/gpt.js";
+            node = document.getElementsByTagName("script")[0];
+            node.parentNode.insertBefore(gads, node);
+        }
+    })();
+</script>
+///////////////
+
+webmd.debug = function () {
+    var a = Array.prototype.slice.call(arguments);
+    webmd.debug.active && window.console && (console.log.apply ? console.log.apply(console, a) : console.log(a))
+}
+
+
+webmd.debug = (function() {
+    var a = Array.prototype.slice.call(arguments);
+    var print = webmd.debug.active && window.console && (console.log.apply ? console.log.apply(console, a) : console.log(a))
+    return function() {
+        return print;    
+    }
+})();
+
+
+webmd.debug = (function() {
+    var debug=/(localhost|192\.168\.|127\.0\.0)/.test(location.host) && !!window.console;
+    return function() {
+        return debug ? console.log.apply(console, arguments) : null;
+    }
+})();

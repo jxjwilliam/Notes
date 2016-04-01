@@ -1,0 +1,77 @@
+Why we need Chapter?
+
+Because of Advertisement. Advertisement, or Advertisements(Ad Break) divide a video into different piece. So a full video is separated into serveral chapters to cater this case.
+
+I seeked the document and demo carefully, to make sure there is no mistake. Probably there is a common mistake about it.
+
+Chapter always come with Ad. A Ad breaks a Video, so a video divides into chapters to reflect the case. Otherwise we don't need Chapters.
+
+A Ad breaks a video into chapters. In Adobe demo, an Ad is in the middle of a Video, so the video is separated into 2 chapters: 1 in front of the ad, 1 after it.
+
+This is Adobe Analysis define Chapter and Advertisement.
+
+(1) Video
+(2) Video + Ad
+(3) Video + Ad + Chapters
+(4) Video + Ad + Chapters + QoE
+
+There is no nessary for the following:
+Video + Chapters
+
+
+Chapters always come with Ad.
+In what case we need a Chapters?
+The example I have (17 chapters) seem testing purpose, no meanlingful.
+
+
+https://marketing.adobe.com/resources/help/en_US/sc/appmeasurement/hbvideo/video.pdf:
+Video Chapters: Video chapters measurement is used for the measurement of chapters. A chapter is a sub-division of
+content within a single video.
+
+
+What Demo say?
+
+------ Player event: VIDEO_LOAD ------
+------ Player event: PLAY ------
+------ Player event: CHAPTER_START ------
+------ Player event: CHAPTER_COMPLETE ------
+------ Player event: AD_START ------
+------ Player event: AD_COMPLETE ------
+------ Player event: CHAPTER_START ------
+------ Player event: PAUSE ------
+------ Player event: CHAPTER_COMPLETE ------
+------ Player event: COMPLETE ------
+------ Player event: VIDEO_UNLOAD ------
+The completion of the content has been tracked.
+
+
+///////////////////////////////
+
+The custom metadata set on the AdobeAnalyticsPlugin is persistent. It is not
+reset automatically by the video heartbeat library. To clear the custom metadata, you can pass NULL as the input argument
+for each of the set...Metadata() methods. For example, you should do this for ads and chapters once they are complete.
+Otherwise, the custom metadata will be applied to subsequent ads / chapters. It is your responsibility to ensure that the
+appropriate metadata is set before the trackVideoLoad() / trackAdStart() / trackChapterStart() call.
+
+
+You need to set the metadata prior to calling the relevant track...() method on the VideoPlayerPlugin, as follows:
+• Set the video metadata before calling trackVideoLoad()
+• Set the ad metadata before calling trackAdStart()
+• Set the chapter metadata before calling trackChapterStart()
+
+This will ensure that the metadata is taken into consideration by the video heartbeat library when processing the track...() call.
+
+
+///////////////////////////////
+
+http://www.perf.webmd.com/oral-health/healthy-mouth-14/expert-answers/video-dental-products
+http://www.perf.webmd.com/diet/weight-loss-surgery/video/sitting-disease
+http://www.perf.webmd.com/zztestx/wku/video-test-chapter
+
+///////////////////////////////
+
+
+The 2 dynamic data are important for Adobe Aanalysis, in theory, they vary when every 10 seconds xhr call happens.
+I don't know your dev env, for me, I worked in perf env, capture Chapters and apply to heartbeat chapterInfo onject.
+However, I don't think the example I have is a suitable one.
+

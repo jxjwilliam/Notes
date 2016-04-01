@@ -1,0 +1,81 @@
+### DFP
+
+Google DFPP (Dart For Publishers Premium) ad system
+
+
+### Solr
+
+
+
+### Message Queue
+
+
+
+
+### 
+
+node-apac - Node.js client for the Amazon Product Advertising API, including support of Request Signatures
+
+
+### Charles
+
+
+
+
+PPE-38021
+Disclaimer Text on BC Pages
+
+http://www.webmd.com/brandcast/default.htm
+nativo-tags-poc-title
+module in content pane 20. The location of the module may change, but in any case, that’s the module that needs changing. 
+html module. 
+
+
+
+///////////
+npm install hoverboard
+bower install hoverboard-flux
+
+
+
+
+<script type="text/javascript">
+    var googletag = googletag || {};
+    googletag.cmd = googletag.cmd || [];
+
+    (function () {
+        window.advBidxc = window.advBidxc || {};
+        window.advBidxc.renderAd = function () {
+        };
+        window.advBidxc.startTime = new Date().getTime();
+        window.advBidxc.timeout = 300;
+        window.advBidxc.version = 2.4;
+
+        var ismobile = navigator.userAgent.match(/(iPad)|(iPhone)|(iPod)|(android)|(webOS)/i);
+        if (ismobile) {
+            window.advBidxc.customerId = '8CUF3O331';
+        }
+        else {
+            window.advBidxc.customerId = '8CU66J63J';
+        }
+
+        var mnSrc = ('https:' == document.location.protocol ? 'https:' : 'http:') + '//contextual.media.net/bidexchange.js?cid=' + window.advBidxc.customerId + '&version=' + window.advBidxc.version;
+        document.write('<scr' + 'ipt type="text/javascript" src="' + mnSrc + '"></scr' + 'ipt>');
+
+        window.advBidxc.isWebmdGptInit = true;
+        setTimeout(function () {
+            if (!window.advBidxc.isAdServerLoaded) {
+                var gads, node, useSSL;
+                gads = document.createElement("script");
+                gads.async = true;
+                gads.type = "text/javascript";
+                useSSL = "https:" === document.location.protocol;
+                gads.src = (useSSL ? "https:" : "http:") + "//www.googletagservices.com/tag/js/gpt.js";
+                node = document.getElementsByTagName("script")[0];
+                node.parentNode.insertBefore(gads, node);
+                window.advBidxc.isAdServerLoaded = true;
+            }
+        }, 0);
+    })();
+</script>
+

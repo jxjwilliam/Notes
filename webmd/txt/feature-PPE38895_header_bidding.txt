@@ -1,0 +1,52 @@
+
+<script class="googleloaded">
+    var googletag = googletag || {};
+    googletag.cmd = googletag.cmd || [];
+    (function () {
+        if((typeof document.domain !== "undefined") && (document.domain.toLowerCase().indexOf("fit.") < 0) && (document.domain.toLowerCase().indexOf(".webmd.boots.com") < 0)) {
+            window.$googleloaded = true;
+            window.advBidxc = window.advBidxc || {};
+            window.advBidxc.renderAd = function () {
+            };
+            window.advBidxc.startTime = new Date().getTime();
+            window.advBidxc.timeout = 300;
+            window.advBidxc.version = 2.4;
+
+            var ismobile = navigator.userAgent.match(/(iPad)|(iPhone)|(iPod)|(android)|(webOS)/i);
+            if (ismobile) {
+                window.advBidxc.customerId = '8CUF3O331';
+            }
+            else {
+                window.advBidxc.customerId = '8CU66J63J';
+            }
+
+            var mnSrc = ('https:' == document.location.protocol ? 'https:' : 'http:') + '//contextual.media.net/bidexchange.js?cid=' + window.advBidxc.customerId + '&version=' + window.advBidxc.version;
+            document.write('<scr' + 'ipt type="text/javascript" async src="' + mnSrc + '"></scr' + 'ipt>');
+
+            window.advBidxc.isWebmdGptInit = true;
+
+            setTimeout(function () {
+                var gads, node, useSSL;
+                gads = document.createElement("script");
+                gads.async = true;
+                gads.type = "text/javascript";
+                useSSL = "https:" === document.location.protocol;
+                gads.src = (useSSL ? "https:" : "http:") + "//www.googletagservices.com/tag/js/gpt.js";
+                node = document.getElementsByTagName("script")[0];
+                node.parentNode.insertBefore(gads, node);
+            });
+        }
+    })();
+</script>
+
+
+For the tickets PPE-38894 (GPT Tag Update with Media.net wrapper), PPE-38895 (Add Header Bidding Function), the following is the updating:
+
+In stash 'scripts' project, https://stash.portal.webmd.com/projects/CONSUI/repos/scripts/browse:
+- update src/common/webmd.ads2.js to add media.net bidding codes.
+- update home-page in perf.webmd.com to pre-load pubads_impl.js and gpt.js library. 
+- tested in a Charles env with perf, the media.net work correctly.
+- created a new branch 'feature-PPE38895_header_bidding', and push to stash to reflect these changes.
+- so it is ready for test.
+
+

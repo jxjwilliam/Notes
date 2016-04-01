@@ -35,3 +35,16 @@ npm install jquery@1.11.2 --save-dev
 
 
 ### Why SLOW? YSlow
+
+
+### grunt-requirejs-config, grunt-requirejs
+npm install grunt-requirejs-config --save-dev
+
+//////////
+var ua = navigator.userAgent;
+for (var re in RULES) {
+  if (ua.match(re)) {
+    device = RULES[re];
+    return;
+  }
+}
