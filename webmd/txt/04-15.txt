@@ -1,0 +1,109 @@
+#1 You should not use https://github.iad1.webmd.com/pages/webmd/ingestion-service-ui anymore. You should use: 
+
+
+http://ingestionui.portal.webmd.com/ (requires VPN)
+
+
+
+#2 from the deployed files I can see you didn't run the right build
+
+
+it will depend on what you're doing but... grunt webmd is the more common one you will use
+that will build almost everything
+
+
+here's an example of the files that get created when you run grunt webmd: http://ingestionui.portal.webmd.com/#jobs/PROD/show/staticfileingest-20160411113445040AM
+
+
+http://ats.staging.webmd.com/StatusChecker.aspx?Status=Reprocess
+
+
+$ git checkout integration-prod-staging
+
+$ git pull origin integration-prod-staging
+
+$ git merge feature-PPE-54966-IE9Below
+
+$ git push origin integration-prod-staging
+
+
+$ grunt webmd
+
+ingest/ingest.zip
+
+///////////////////////////////////
+
+Media: MW Ad rules
+
+Sponsored- Paginated – 2025, 2026, 1901
+ 
+Sponsored & topic targeted – Infinite – 2025, 1901,   In line 2026
+ 
+Non Sponsored – Infinite  – 2025, 1901,               In line 2026
+
+
+
+///////////////////////////////////
+
+webmd.visit.visitView(), isNewVisit()
+
+
+webmd.cookie.getJson('ui');
+// 24382935, 24382946, 24382946
+
+
+(new Date().getTime() - webmd.visit._lastView)/3600, Math.floor((+new Date()) / 60000);
+
+window.sessionStorage['krux_views']
+
+webmd.adsCookie.get('sess').pim
+
+
+/////////////////////////////////////
+
+http://www.m.webmd.com/allergies/news/20160203/new-drug-shows-promise-against-severe-sinusitis
+
+
+o.type
+o.prefix
+o.value
+
+
+sess, pim, m
+sess, pim, t
+sess, pim, c
+
+webmd.adsCookie.remove({type:'sess', prefix:'fi'});
+
+
+-------------------------
+webmd.cookie.js
+webmd.adCookie.js
+webmd.cookietrack.js
+webmd.m.firstimpression.js
+webmd.visit.js
+
+
+
+/////////////////////////////////////
+
+Pass WHS Demographic 3 Variables to Lotame BCP call
+s_tagemax, s_tagemin, s_tgender
+
+
+
+{code:java}
+//javascript
+{code}
+
+
+
+var uri ='%2fzztest%2fresponsive%2fmed-ref'
+decodeURIComponent(uri):  "/zztest/responsive/med-ref"
+
+
+
+
+if (!webmd.isIE9AndBelow) {
+	self.setResponsive(targets);
+}

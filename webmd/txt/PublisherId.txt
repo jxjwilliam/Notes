@@ -1,0 +1,21 @@
+PublisherId
+PlacementId
+AdvertiserId
+topicId
+admin.nativo.net/Admin/Users
+
+
+
+Below mentioned two urls are not correct as these should be brandcast urls and not brandfeed.
+Brandfeed Desktop: http://www.webmd.com/brandfeed?prx_t=SacBAzDgCAfYcLA 
+Brandfeed Mobile: http://www.m.webmd.com/brandfeed?prx_t=SacBAzDgCAfYcLA
+This is the structure of Brandfeed urls:
+Desktop: http://www.webmd.com/brandfeed?prx_adp=6617_3038
+Mobile: http://www.m.webmd.com/brandfeed?prx_adp=6617_3105
+prx_advertiser_publisher
+3038 is desktop
+3015 is mobile
+
+Advertisers keep changing.
+
+So I think the two urls are not correct format. 

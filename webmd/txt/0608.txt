@@ -1,0 +1,98 @@
+2 parameters are going to be added to DFP cust_params query-string:
+
+- rd
+- bp
+
+1. rd:
+
+The story is https://jira.webmd.net/browse/PPE-63134
+add paramater *rd=1* only for responsive-page, which means if template includes 'rd' data-responsive attribute, we use it, otherwise we ignore this parameter.
+
+/**
+    * PPE-63134: Identify Responsive Pages to DFP
+    *  When DFP Ad calls are made we should pass the appropriate rd value,
+    * The rd =1 scenario should only be on responsive pages.
+    * Does this really need?
+    * if ('rd' in targets) {
+    *      targets.rd = 1;
+    * }
+    */
+
+
+If the page includes responsive option rd, we use it. In other word, a html page data-property key-value will be passed to DMP-ad-call. If no this rd data-property key-value, we don't pass rd to DFP call.
+
+
+
+
+2. bp:
+
+The story is https://jira.webmd.net/browse/PPE-61965
+
+(a) *bp*
+Pass a single digit (numeric) value to the ad server using the variable "bp" based on the criteria below:
+
+- Screen size width >1239, then set bp=1
+- Screen size width  btw 1024 - 1239, then set bp=2
+- Screen size width  768 - 1023, then set  bp=3
+- Screen size width  640 - 767, then set  bp=4
+- Screen size width  <640, then set  bp=5
+
+
+
+3. test:
+
+3.1 with rd parameter:
+- http://www.staging.webmd.com/zztest/responsive/med-ref
+- http://www.preview.webmd.com/sleep-disorders/guide/understanding-sleep-problems-basics
+- http://www.preview.webmd.com/sleep-disorders/guide/children-sleep-problems
+
+<div id="ads2-pos-101-ad-banner" 
+	class="module ad ad-101" 
+	data-is-mobile="false" 
+	data-targets="{...,'uri':'%2fzztest%2fresponsive%2fmed-ref','rd':'1'}" 
+	data-block-codes="_cust011_f518_m32_gen1_cust4_g473_" 
+	data-pos="101"
+	data-sizes="[[728,90],[970, 90],[970,250]]">
+</div>
+
+
+3.2 without rd parameter:
+
+
+- the DFP ad calls cust_params will add the following: ..bp=3&rd=1&...
+- bp and rd are all numeric
+- We should not see mobile ad values on desktop pages. POS 2025, 2026 should be seen on mobile devices only. 
+
+
+
+There is an object targets from homepage div's data-targets attribute or definedAd() function, e.g.:
+targets: {
+	'art':'091e9c5e80007a8a',
+	'pug':'__',
+	'tug':'',
+	'uri':'%2fsleep-disorders%2fguide%2fchildren-sleep-problems',
+	'rd':'1'
+}
+
+In webmd.ads2.consumer.js, we extend this targets by adding more key-value pairs, in this case: bp=numeric:
+
+	targets.bp = responsive-number;
+
+
+We can add as many key-value pairs to targets as we can. After this we call webmd.ads2.setPageTarget(key, value).
+
+In webmd.ads2.setPageTarget function, we process the *targets' object:
+
+	googletag.pubads().setTargeting(targets.key, targets.value);
+	webmd.ads2.pageTargets[targets.key] = targets.value;
+
+The targets will be sent to DFP ad calls cust_params query-string, while save a copy locally in webmd.ads2.pageTargets object.
+
+The above is the basic process to add bp and rd to DFP ad call.
+
+
+
+To prevent this params in IE9 & below, webmd.ads2.consumer.js should be like this:
+if (!webmd.isIE9AndBelow) {
+	targets.bp = responsive-number;
+}

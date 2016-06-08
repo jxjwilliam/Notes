@@ -1,81 +1,44 @@
-### DFP
-
-Google DFPP (Dart For Publishers Premium) ad system
-
-
-### Solr
-
+slotRenderEnded: This event fires just after the ad's Iframe is constructed.
+slot: Returns everything google knows about this ad.
+getSlotId: Returns the slot's long identifier from the googletag object.
+getDomId: Returns the html ID of this ad's container.
+getContentUrl: Returns the URL we want.
 
 
-### Message Queue
+I was using EcmaScript5 shimming (prototype library does similar). Remove any such shims, and use something like lodash or underscore.
 
 
 
-
-### 
-
-node-apac - Node.js client for the Amazon Product Advertising API, including support of Request Signatures
+http://www.javascriptkit.com/javatutors/navigator.shtml
 
 
-### Charles
+www.qa00.webmd.com/beauty/eyes/ss/slideshow-brows-lashes
 
 
+http://www.monetizemore.com/blog/stop-using-internet-explorer-for-dfp/
 
 
-PPE-38021
-Disclaimer Text on BC Pages
-
-http://www.webmd.com/brandcast/default.htm
-nativo-tags-poc-title
-module in content pane 20. The location of the module may change, but in any case, that’s the module that needs changing. 
-html module. 
+upcate common beacon 
 
 
 
-///////////
-npm install hoverboard
-bower install hoverboard-flux
+////////////////////////////
+
+1. webmd.adsCookie.js define: ads_perm
+
+webmd.adsCookie.config.perm = {
+	name: 'ads_perm', expire: 365 
+}
+
+2. webmd.lotame.js:
+
+ads_perm_value = webmd.cookie.getJson('ads_perm',{domain: "webmd.com"});
+
+// drop that value into the ads_perm cookie and make it persistent
+webmd.cookie.setJson('ads_perm', ads_perm_value, {domain: "webmd.com", expires:365});
 
 
+cookieValue = webmd.cookie.getJson('ads_perm', {domain: "webmd.com"}).segvar;
 
 
-<script type="text/javascript">
-    var googletag = googletag || {};
-    googletag.cmd = googletag.cmd || [];
-
-    (function () {
-        window.advBidxc = window.advBidxc || {};
-        window.advBidxc.renderAd = function () {
-        };
-        window.advBidxc.startTime = new Date().getTime();
-        window.advBidxc.timeout = 300;
-        window.advBidxc.version = 2.4;
-
-        var ismobile = navigator.userAgent.match(/(iPad)|(iPhone)|(iPod)|(android)|(webOS)/i);
-        if (ismobile) {
-            window.advBidxc.customerId = '8CUF3O331';
-        }
-        else {
-            window.advBidxc.customerId = '8CU66J63J';
-        }
-
-        var mnSrc = ('https:' == document.location.protocol ? 'https:' : 'http:') + '//contextual.media.net/bidexchange.js?cid=' + window.advBidxc.customerId + '&version=' + window.advBidxc.version;
-        document.write('<scr' + 'ipt type="text/javascript" src="' + mnSrc + '"></scr' + 'ipt>');
-
-        window.advBidxc.isWebmdGptInit = true;
-        setTimeout(function () {
-            if (!window.advBidxc.isAdServerLoaded) {
-                var gads, node, useSSL;
-                gads = document.createElement("script");
-                gads.async = true;
-                gads.type = "text/javascript";
-                useSSL = "https:" === document.location.protocol;
-                gads.src = (useSSL ? "https:" : "http:") + "//www.googletagservices.com/tag/js/gpt.js";
-                node = document.getElementsByTagName("script")[0];
-                node.parentNode.insertBefore(gads, node);
-                window.advBidxc.isAdServerLoaded = true;
-            }
-        }, 0);
-    })();
-</script>
-
+webmd.lotame.truncatedDMPAudiences;

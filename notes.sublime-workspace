@@ -8,77 +8,48 @@
 	"buffers":
 	[
 		{
-			"contents": "https://securepubads.g.doubleclick.net/gampad/ads?gdfp_req=1&correlator=208…82&vrp=82&ga_vid=1050008334.1458585540&ga_sid=1458585540&ga_hid=1421773109\n\n\n\n\n\nPPE-51568's supplement:\n\nWe can call, refresh ad(s) at any time and any place. e.g., for slideshow, pagination, we can custom the ad display: \n\n(1) We send pubads() no matter how many and when; and all the return jsonp-data will be stored in googletag.cmd queue.\n\n(2) from googletag.cmd, We just selectively fetch all or part of them to show or hide; or cache them to a new array to do the custom.\nThis gives us the convenient to use these ads.\n\n\n\n\n\n\ns_cuih\n// \"497_3491_26466\"\ns_cuim\n// \"1101_1551_3151_4338_29619_14177_1100_21192\"\ns_cuil\n// \"1786_8897_9045_592_4892_5319_509_596_9040_9043_9046_32784_1761_4386_8898_15115_32772_32792_9044\"\n\n\nvar len = 0;\n[s_cuih, s_cuim, s_cuil].forEach(function(cui) {\n   len += cui.split('_').length;\n});\nconsole.log(len);\n// 30\n\n\n\nvar targets = {};\nvar setCUIs = function (targets) {\n	var cui_str = '', cuih, cuim, cuil;\n	cuih = typeof window.s_cuih !== 'undefined' ? window.s_cuih : '';\n	cuim = typeof window.s_cuim !== 'undefined' ? window.s_cuim : '';\n	cuil = typeof window.s_cuil !== 'undefined' ? window.s_cuil : '';\n	[cuih, cuim, cuil].forEach(function (cui, index) {\n		if (cui) {\n			cui_str += ',' + cui.split('_').map(function (v) {\n					return v + '_' + (index + 1);\n				}).join(',');\n		}\n	});\n	if (cui_str) {\n		cui_str = cui_str.replace(/^,/, '').replace(/,$/, '');\n		targets.cui = cui_str;\n	}\n	return targets;\n};\nsetCUIs(targets);\n\n\ntargets.cui.split(',').length\n//30\n\n\n\nvar cui_string=targets.cui.replace(/_\\d,/g, '_').replace(/_\\d$/, '')\n\n\ns_cuih+'_'+s_cuim+'_'+s_cuil === cui_string\n//\ntrue\n\nThis means the order and number all match.",
-			"file": "webmd/1.",
-			"file_size": 782,
-			"file_write_time": 131030426170000000,
+			"contents": "Searching 199 files for \"targets\"\n\n/Users/wjiang/Notes/2016/03-24.txt:\n   32: This can be done using file ingest for the following targets:\n\n/Users/wjiang/Notes/webmd/iri.txt:\n   31: if (targets.hasOwnProperty(pug) && ((targets.pug === '' || targets.pug === '__'))){\n   32: 	delete targets.pug;\n\n/Users/wjiang/Notes/webmd/DFP/ads.txt:\n   15:     targets: {\n   75: webmd.ads2Consumer.defineAd({targets:{art:'091e9c5e80f67e80',cc:'148',env:'&amp;env=1',hcent:'1004',leaf:'&amp;leaf=',mcent:'',mic:'',pt:'2731',sec:'1637',pug:'__',scent:'',tmg:'',tug:'',uri:'%2fdiet%2fdefault'},blockCodes:'_diet_e1_food_',id:'ads2-pos-101-ad_banner',pos:'101',sizes:[[728,90],[970, 90],[970,250]]});\n   78: webmd.ads2Consumer.defineAd({targets:{art:'091e9c5e80f67e80',cc:'148',env:'&amp;env=1',hcent:'1004',leaf:'&amp;leaf=',mcent:'',mic:'',pt:'2731',sec:'1637',pug:'__',scent:'',tmg:'',tug:'',uri:'%2fdiet%2fdefault'},blockCodes:'_diet_e1_food_',id:'ads2-pos-121-ad_rr_p1',pos:'121',sizes:[[300,250],[300, 600],[300,1050]]});\n   82: webmd.ads2Consumer.defineAd({targets:{art:'091e9c5e80f67e80',cc:'148',env:'&amp;env=1',hcent:'1004',leaf:'&amp;leaf=',mcent:'',mic:'',pt:'2731',sec:'1637',pug:'__',scent:'',tmg:'',tug:'',uri:'%2fdiet%2fdefault'},blockCodes:'_diet_e1_food_',id:'ads2-pos-137-ad_rr_p2',pos:'137',sizes:[[300,251],[300, 250]]});\n   85: webmd.ads2Consumer.defineAd({targets:{art:'091e9c5e80f67e80',cc:'148',env:'&amp;env=1',hcent:'1004',leaf:'&amp;leaf=',mcent:'',mic:'',pt:'2731',sec:'1637',pug:'__',scent:'',tmg:'',tug:'',uri:'%2fdiet%2fdefault'},blockCodes:'_diet_e1_food_',id:'ads2-pos-5002-ad_rr1_icm',pos:'5002',sizes:[1,2]});\n   88: webmd.ads2Consumer.defineAd({targets:{art:'091e9c5e80f67e80',cc:'148',env:'&amp;env=1',hcent:'1004',leaf:'&amp;leaf=',mcent:'',mic:'',pt:'2731',sec:'1637',pug:'__',scent:'',tmg:'',tug:'',uri:'%2fdiet%2fdefault'},blockCodes:'_diet_e1_food_',id:'ads2-pos-5003-ad_rr2_icm',pos:'5003',sizes:[1,2]});\n   91: webmd.ads2Consumer.defineAd({targets:{art:'091e9c5e80f67e80',cc:'148',env:'&amp;env=1',hcent:'1004',leaf:'&amp;leaf=',mcent:'',mic:'',pt:'2731',sec:'1637',pug:'__',scent:'',tmg:'',tug:'',uri:'%2fdiet%2fdefault'},blockCodes:'_diet_e1_food_',id:'ads2-pos-5000-ad_cw1_icm',pos:'5000',sizes:[1,2]});\n   94: webmd.ads2Consumer.defineAd({targets:{art:'091e9c5e80f67e80',cc:'148',env:'&amp;env=1',hcent:'1004',leaf:'&amp;leaf=',mcent:'',mic:'',pt:'2731',sec:'1637',pug:'__',scent:'',tmg:'',tug:'',uri:'%2fdiet%2fdefault'},blockCodes:'_diet_e1_food_',id:'ads2-pos-901-1x1ad',pos:'901',sizes:[1,1]});\n  114: webmd.ads2Consumer.defineAd({targets:{art:'091e9c5e80eff7b3',cc:'83',env:'&amp;env=1',hcent:'',leaf:'&amp;leaf=1257',mcent:'',mic:'',pt:'1728',sec:'',pug:'__',scent:'',tmg:'',tug:'',uri:'%2fdefault'},blockCodes:'__',id:'ads2-pos-101-ad_banner',pos:'101',sizes:[[728,90],[970, 90],[970,250]]});\n  116: webmd.ads2Consumer.defineAd({targets:{art:'091e9c5e80eff7b3',cc:'83',env:'&amp;env=1',hcent:'',leaf:'&amp;leaf=1257',mcent:'',mic:'',pt:'1728',sec:'',pug:'__',scent:'',tmg:'',tug:'',uri:'%2fdefault'},blockCodes:'__',id:'ads2-pos-121-ad_rr_p1',pos:'121',sizes:[[300,250],[300, 600],[300,1050]]});\n\n/Users/wjiang/Notes/webmd/js/scripts_harmony.js:\n 7015:     pageTargets: {},\n 7049:                 c.pageTargets[a] = b\n 7052:             c.pageTargets[a] = b)\n 7207:         d = a.targets || {},\n 7312:         c = webmd.ads2.pageTargets,\n 8631:         top.location === location && -1 !== location.hostname.indexOf(\"webmd.com\") && (a.checkNewVisit().setTopicImpression().setPageTargets().addLotameMeta(),\n 8633:             webmd.m.firstImpression.checkNewVisit().setTopicImpression().setPageTargets()\n 8665:     setPageTargets: function() {\n 9165:                 a._processCookieIntoAds2PageTargets()\n 9238:             a._processAudsIntoAds2PageTargets(b),\n 9271:     _processAudsIntoAds2PageTargets: function(a) {\n 9344:     _processCookieIntoAds2PageTargets: function() {\n\n/Users/wjiang/Notes/webmd/txt/03-14.txt:\n  121: - iu_parts contains the network code and ad targets for all the ads. For example: 4312434,Consumer,WebMDCore\n\n/Users/wjiang/Notes/webmd/txt/03-28.txt:\n   49: webmd.ads2Consumer.defineAd({targets:{art:'091e9c5e80eff7b3',cc:'83',env:'&amp;env=0',hcent:'',leaf:'&amp;leaf=1257',mcent:'',mic:'',pt:'1728',sec:'',pug:'__',scent:'',tmg:'',tug:'',uri:'%2fdefault'},blockCodes:'__',id:'ads2-pos-101-ad_banner',pos:'101',sizes:[[728,90],[970, 90],[970,250]]});\n   54: webmd.ads2Consumer.defineAd({targets:{art:'091e9c5e80eff7b3',cc:'83',env:'&amp;env=0',hcent:'',leaf:'&amp;leaf=1257',mcent:'',mic:'',pt:'1728',sec:'',pug:'__',scent:'',tmg:'',tug:'',uri:'%2fdefault'},blockCodes:'__',id:'ads2-pos-121-ad_rr_p1',pos:'121',sizes:[[300,250],[300, 600],[300,1050]]});\n\n/Users/wjiang/Notes/webmd/txt/03-30.txt:\n   49: webmd.ads2Consumer.defineAd({targets:{art:'091e9c5e80eff7b3',cc:'83',env:'&amp;env=0',hcent:'',leaf:'&amp;leaf=1257',mcent:'',mic:'',pt:'1728',sec:'',pug:'__',scent:'',tmg:'',tug:'',uri:'%2fdefault'},blockCodes:'__',id:'ads2-pos-101-ad_banner',pos:'101',sizes:[[728,90],[970, 90],[970,250]]});\n   54: webmd.ads2Consumer.defineAd({targets:{art:'091e9c5e80eff7b3',cc:'83',env:'&amp;env=0',hcent:'',leaf:'&amp;leaf=1257',mcent:'',mic:'',pt:'1728',sec:'',pug:'__',scent:'',tmg:'',tug:'',uri:'%2fdefault'},blockCodes:'__',id:'ads2-pos-121-ad_rr_p1',pos:'121',sizes:[[300,250],[300, 600],[300,1050]]});\n\n/Users/wjiang/Notes/webmd/txt/apt.txt:\n  172: The gpt finds the defineAd targets to get the publisher tags then search media.net server to find the correct ad(s).\n  195: Ingestion targets:\n\n/Users/wjiang/Notes/webmd/txt/gpt.txt:\n   32: targets.cui = cui_str;\n\n/Users/wjiang/Notes/webmd/txt/header-bidding.txt:\n   15:     targets: {}\n\n/Users/wjiang/Notes/webmd/txt/pug.txt:\n   22: var targets = webmd.drugs.adConfig.targets\n   24: targets.pug\n   27: if (targets.hasOwnProperty('pug')) {\n   28: 	if (!targets.pug || targets.pug === '__') {\n   29: 		delete targets.pug;\n   33: var targets = {pug: 000000}\n   34: var targets = {pug: '000000'}\n\n45 matches across 11 files\n",
 			"settings":
 			{
-				"buffer_size": 1742,
+				"buffer_size": 6033,
 				"line_ending": "Unix",
-				"name": "1."
+				"name": "Find Results",
+				"scratch": true
 			}
 		},
 		{
-			"contents": "•	Multiple ads can be placed on a page.\n•	Each ad is identified by a “POS” value. Within a single page, each POS must be unique. We will be using the legacy POS values from our old ads system whenever possible.\n•	Each ad can specify a range of ad sizes that are possible. For example, a right ad can specify a single size of 300x200, or it can specify multiple sizes 350x200,350x600, etc.\n•	Targeting information can be set globally for all ads on the page. For example, a topic id can be sent to the ad system. It is technically possible to set targeting information for a single ad on the page, but we are limiting ourselves to send the same targeting information for all ads.\n•	All ad positions on the page can be dynamically refreshed (without the need for reloading the page). In our old ad system, we refreshed selected ad positions on the page, but now we can refresh them all.\n",
-			"file": "webmd/03-23.txt",
-			"file_size": 0,
-			"file_write_time": 131032294530000000,
+			"contents": "The PUG update codes are solid, no problem.\n\nI visit staging page, both scripts and scripts_harmony are updated as expected.\n\nHowever for url http://www.staging.webmd.com/drugs/2/drug-144593/tylenol-day--night-oral/details:\n\nThere are 2 scripts call:\n\nscripts1217.js - details:63\n<script type=\"text/javascript\" src=\"http://js.staging.webmd.com/dtmcms/staging/webmd/PageBuilder_Assets/JS/scripts1217.js\"></script>\n\n\nscripts1218.js -  sponsor-box:50\n<script type=\"text/javascript\" src=\"http://js.staging.webmd.com/dtmcms/staging/webmd/PageBuilder_Assets/JS/scripts1218.js\"></script>\n\n\nThis maybe not correct, 2 calls are not neccessary and may cause consistant-issues.\n\n\n\nvar targets = webmd.drugs.adConfig.targets\n\ntargets.pug\n\"\"\n\nif (targets.hasOwnProperty('pug')) {\n	if (!targets.pug || targets.pug === '__') {\n		delete targets.pug;\n	}\n}\n\nvar targets = {pug: 000000}\n!! targets.pug --> false\n\nvar targets = {pug: '000000'}\n!! targets.pug --> true\n\n\n\n\nvar targets = {pug: '', dmp:'all,10,20', fis:0}\nif (targets.hasOwnProperty('pug')) {\n	if (!targets.pug || targets.pug === '__') {\n		console.log('111: ', targets);\n		delete targets.pug;\n		console.log('222: ', targets);\n	}\n}\n\n\n\n\nfis=0&fipt=0&pvid=146480358654720704&pt=1832&dmp=all%2C161%2C30302%2C32920%2C32921%2C33194%2C134229%2C110%2C205%2C207%2C2784%2C30143%2C30295&art=&cc=&env=1&hcent=&leaf=&mcent=&mic=&sec=&scent=&tmg=&tug=&uri=%2Fdrugs%2F2%2Fdrug-144593%2Ftylenol-day--night-oral%2Fdetails&app=8&segm=1&pug=&kw=&drg=144593&excl_cat=_r52_h52_h101_j30_m32_\n\n\n\n\n",
+			"file": "webmd/txt/pug.txt",
+			"file_size": 883,
+			"file_write_time": 131088528390000000,
 			"settings":
 			{
-				"buffer_size": 885,
+				"buffer_size": 1518,
 				"line_ending": "Unix"
 			}
 		},
 		{
-			"contents": "### DFP\n\nGoogle DFPP (Dart For Publishers Premium) ad system\n\n\n### Solr\n\n\n\n### Message Queue\n\n\n\n\n### \n\nnode-apac - Node.js client for the Amazon Product Advertising API, including support of Request Signatures\n\n\n### Charles\n\n\n\n\nPPE-38021\nDisclaimer Text on BC Pages\n\nhttp://www.webmd.com/brandcast/default.htm\nnativo-tags-poc-title\nmodule in content pane 20. The location of the module may change, but in any case, that’s the module that needs changing. \nhtml module. \n\n\n\n///////////\nnpm install hoverboard\nbower install hoverboard-flux\n\n\n\n\n<script type=\"text/javascript\">\n    var googletag = googletag || {};\n    googletag.cmd = googletag.cmd || [];\n\n    (function () {\n        window.advBidxc = window.advBidxc || {};\n        window.advBidxc.renderAd = function () {\n        };\n        window.advBidxc.startTime = new Date().getTime();\n        window.advBidxc.timeout = 300;\n        window.advBidxc.version = 2.4;\n\n        var ismobile = navigator.userAgent.match(/(iPad)|(iPhone)|(iPod)|(android)|(webOS)/i);\n        if (ismobile) {\n            window.advBidxc.customerId = '8CUF3O331';\n        }\n        else {\n            window.advBidxc.customerId = '8CU66J63J';\n        }\n\n        var mnSrc = ('https:' == document.location.protocol ? 'https:' : 'http:') + '//contextual.media.net/bidexchange.js?cid=' + window.advBidxc.customerId + '&version=' + window.advBidxc.version;\n        document.write('<scr' + 'ipt type=\"text/javascript\" src=\"' + mnSrc + '\"></scr' + 'ipt>');\n\n        window.advBidxc.isWebmdGptInit = true;\n        setTimeout(function () {\n            if (!window.advBidxc.isAdServerLoaded) {\n                var gads, node, useSSL;\n                gads = document.createElement(\"script\");\n                gads.async = true;\n                gads.type = \"text/javascript\";\n                useSSL = \"https:\" === document.location.protocol;\n                gads.src = (useSSL ? \"https:\" : \"http:\") + \"//www.googletagservices.com/tag/js/gpt.js\";\n                node = document.getElementsByTagName(\"script\")[0];\n                node.parentNode.insertBefore(gads, node);\n                window.advBidxc.isAdServerLoaded = true;\n            }\n        }, 0);\n    })();\n</script>\n\n",
-			"file": "webmd/DFP.txt",
-			"file_size": 2194,
-			"file_write_time": 131027029710000000,
+			"contents": "fis=0&fipt=0&pvid=146480386602502969&pt=1832&art=&cc=&env=1&hcent=&leaf=&mcent=&mic=&sec=&scent=&tmg=&tug=&uri=%2Fdrugs%2F2%2Fdrug-144593%2Ftylenol-day--night-oral%2Fdetails&app=8&segm=1&dmp=all%2C161%2C30302%2C32920%2C32921%2C33194%2C134229%2C110%2C205%2C207%2C2784%2C30143%2C30295&pug=&kw=&drg=144593&excl_cat=_r52_h52_h101_j30_m32_\n\n\n\nfis=0&fipt=0&pvid=146480414046157400&pt=1832&art=&cc=&env=1&hcent=&leaf=&mcent=&mic=&sec=&pug=111%2C000000&scent=&tmg=&tug=&uri=%2Fdrugs%2F2%2Fdrug-144593%2Ftylenol-day--night-oral%2Fdetails&app=8&segm=1&dmp=all%2C161%2C30302%2C32920%2C32921%2C33194%2C134229%2C110%2C205%2C207%2C2784%2C30143%2C30295&kw=&drg=144593&excl_cat=_r52_h52_h101_j30_m32_\n\n\n\nfis=0&fipt=0&pvid=146480423700622030&pt=1832&dmp=all%2C161%2C30302%2C32920%2C32921%2C33194%2C134229%2C110%2C205%2C207%2C2784%2C30143%2C30295&art=&cc=&env=1&hcent=&leaf=&mcent=&mic=&sec=&scent=&tmg=&tug=&uri=%2Fdrugs%2F2%2Fdrug-144593%2Ftylenol-day--night-oral%2Fdetails&app=8&segm=1&pug=&kw=&drg=144593&excl_cat=_r52_h52_h101_j30_m32_\n\n\n\nfis=0&fipt=0&pvid=146480498083383853&pt=1832&art=&cc=&env=1&hcent=&leaf=&mcent=&mic=&sec=&scent=&tmg=&tug=&uri=%2Fdrugs%2F2%2Fdrug-144593%2Ftylenol-day--night-oral%2Fdetails&app=8&segm=1&dmp=all%2C161%2C30302%2C32920%2C32921%2C33194%2C134229%2C110%2C205%2C207%2C2784%2C30143%2C30295&pug=5555555&kw=&drg=144593&excl_cat=_r52_h52_h101_j30_m32_\n\n\nfis=0&fipt=0&pvid=146480517617858013&pt=1832&dmp=all%2C161%2C30302%2C32920%2C32921%2C33194%2C134229%2C110%2C205%2C207%2C2784%2C30143%2C30295&art=&cc=&env=1&hcent=&leaf=&mcent=&mic=&sec=&scent=&tmg=&tug=&uri=%2Fdrugs%2F2%2Fdrug-144593%2Ftylenol-day--night-oral%2Fdetails&app=8&segm=1&pug=&kw=&drg=144593&excl_cat=_r52_h52_h101_j30_m32_\n\n\nfis=0&fipt=0&pvid=146480552373507073&dmp=all%2C161%2C30302%2C32920%2C32921%2C33194%2C134229%2C110%2C205%2C207%2C2784%2C30143%2C30295&pt=1832&art=&cc=&env=1&hcent=&leaf=&mcent=&mic=&sec=&scent=&tmg=&tug=&uri=%2Fdrugs%2F2%2Fdrug-144593%2Ftylenol-day--night-oral%2Fdetails&app=8&segm=1&pug=__&kw=&drg=144593&excl_cat=_r52_h52_h101_j30_m32_",
 			"settings":
 			{
-				"buffer_size": 2192,
+				"buffer_size": 2043,
+				"line_ending": "Unix",
+				"name": "fis=0&fipt=0&pvid=146480386602502969&pt=1832&art=&"
+			}
+		},
+		{
+			"file": "2016/03-24.txt",
+			"settings":
+			{
+				"buffer_size": 1353,
 				"line_ending": "Unix"
 			}
 		},
 		{
-			"contents": "<!DOCTYPE html>\n<html lang=\"en\">\n<head>\n    <meta charset=\"UTF-8\">\n    <title>Title</title>\n</head>\n<body>\n<script type=\"text/javascript\"> \nvar googletag = googletag || {};\ngoogletag.cmd = googletag.cmd || [];\n(function () {\n    window.advBidxc = window.advBidxc || {};\n    window.advBidxc.renderAd = function () {\n    };\n    window.advBidxc.startTime = new Date().getTime();\n    window.advBidxc.timeout = 300;\n    window.advBidxc.version = 2.4;\n    window.advBidxc.customerId = \"Customer Id\";\n\n    //Media.net Customer ID\n    function loadScript(tagSrc) {\n        if (tagSrc.substr(0, 4) !== 'http') {\n            var isSSL = 'https:' == document.location.protocol;\n            tagSrc = (isSSL ? 'https:' : 'http:') + tagSrc;\n        }\n        var scriptTag = document.createElement('script'), placeTag = document.getElementsByTagName(\"script\")[0];\n        scriptTag.type = 'text/javascript';\n        scriptTag.async = true;\n        scriptTag.src = tagSrc;\n        placeTag.parentNode.insertBefore(scriptTag, placeTag);\n    }\n\n    function loadGPT() {\n        if (!window.advBidxc.isAdServerLoaded) {\n            loadScript('//www.googletagservices.com/tag/js/gpt.js');\n            window.advBidxc.isAdServerLoaded = true;\n        }\n    }\n\n    function loadGPTAfterDelay(MAX_DELAY) {\n        window.advBidxc.isWebmdGptInit = true;\n        setTimeout(window.advBidxc.loadGPT, MAX_DELAY || window.advBidxc.timeout);\n        //Default 300MS\n    }\n\n    window.advBidxc.loadGPT = loadGPT;\n    window.advBidxc.loadGPTAfterDelay = loadGPTAfterDelay;\n    var mnSrc = ('https:' == document.location.protocol ? 'https:' : 'http:') + '//contextual.media.net/bidexchange.js?cid=' + window.advBidxc.customerId + '&version=' + window.advBidxc.version;\n    document.write('<scr' + 'ipt type=\"text/javascript\" src=\"' + mnSrc + '\"></scr' + 'ipt>');\n})(); </script>\n</body>\n</html>\n\n\n/////////////////////////////////\n\nhttp://www.googletagservices.com/tag/js/gpt.js\n\nhttp://partner.googleadservices.com/gpt/pubads_impl_79.js\n\n\n\n\nhttp://c8stage.media.net/__media__/js/test/webmd-header-bidding-desktop.php\n\nhttp://c8stage.media.net/__media__/js/test/webmd-header-bidding-mobile.php\n\n\n/////////////////////\n\nmnetbidPrice \nmnetbidderID \nmnetCrid\nmnet_placement\nmnetSize\nmnetPageID\nmnetCId\nmnTest \n\n\n/////////////////////\n\n1. IIFE (Immediately Invoked Function Expression):\n(function() {\n  // fetch gpt.js\n})();\n\ngpt.js is a IIFE itself, so as soon as it is download, it self-executes immediately,  and is immediately available.\n\n(function(exports) {\n\n  var ads2 = {\n    ...\n  };\n\n  exports.ads2 = ads2;  \n\n})(window);\n\n\n\n\n(function(exports) {\n\n  var ads2Consumer = {\n    ...\n  };\n\n  exports.ads2Consumer = ads2Consumer;    \n\n})(window);\n\n\n\nSo we get:\n- window.ads2 \n- window.ads2Consumer\n- window.gpt-others\n- ...\n\n\n\n2. document.ready:\n// use jQuery way\n$(function() {\n  // call webmd.ads2, webmd.adsConsumer for render the page\n  // could be ajax calls \n});\n\n\n3. window.load:\n// use jQuery way\n$(window).load(function() {\n    \n});\n\n\n\nIf we google, we can find that js libaray or pluggable components are very common using this solution.\n\nIn this way, it is clean, structured and pluggable, easily managable and reading.\n\n- JS codes will become clean and easy management.\n\n- Don't need to locate the place where the code should put into (meta-ahead, top of head, top of home-page etc). \n\n- setTimeout() is option, depending on we need it or not. \n\n- pretty safe, all is local variables instead of global, so don't need to worry about naming-conflict.\n\n- if we need use ads2 in ads2Consumer,\n(function(exports, ads2) {\n    \n})(windows, windows.ads2);\n\n\n///////////////////////////\n\n- jQuery-1.8.2\n- requirejs\n- xLazyLoader\n- modernizr\n- define('css')\n- JSON\n\n\n///////////////////////\n\n\nPlease ignore the previous email. While reading the document, I am more familiar with it.\n\nThe gpt finds the defineAd targets to get the publisher tags then search media.net server to find the correct ad(s).\n\n- 8CU66J63J\n- media.net\n\n\n///////////////////////\n\nRunning \"tasks\" task\n\nPlease choose a build:      Creates the following:\n>> grunt webmd          scripts.js, scripts_harmony.js, scripts_mobile.js, oo_shim.js, oo_shim_mobile.js\n>> grunt core           scripts.js\n>> grunt core_harmony   scripts_harmony.js\n>> grunt mobile         scripts_mobile.js\n>> grunt oo_all         oo_shim.js, oo_shim_mobile.js\n>> grunt oo             oo_shim.js\n>> grunt ooMobile       oo_shim_mobile.js\n>> grunt uk             scripts.js,scripts_boots_mobile.js\n>> grunt boots          scripts.js\n>> grunt bootsMobile        scripts_boots_mobile.js\n>> grunt syndicated     scripts_syndicated.js, scripts_harmony_syndicated.js, scripts_mobile_syndicated.js,\n\nIngestion targets:\n>> grunt webmd-ingest:prodlive\n>> grunt webmd-ingest:prodstaging\n>> grunt webmd-ingest:perflive\n>> grunt webmd-ingest:perfstaging\n>> grunt webmd-ingest:qa00live\n>> grunt webmd-ingest:qa00staging\n>> grunt webmd-ingest:qa01live\n>> grunt webmd-ingest:qa01staging\n\n///////////////\n<script type=\"text/javascript\" class=\"googleloaded\">\n    (function () {\n        if (typeof googletag === 'object') {\n            return;\n        }\n        if ((typeof document.domain !== \"undefined\") && (document.domain.toLowerCase().indexOf(\"fit.\") < 0) && (document.domain.toLowerCase().indexOf(\".webmd.boots.com\") < 0)) {\n            var gads, node, useSSL;\n            gads = document.createElement(\"script\");\n            gads.async = true;\n            gads.type = \"text/javascript\";\n            useSSL = \"https:\" === document.location.protocol;\n            gads.src = (useSSL ? \"https:\" : \"http:\") + \"//www.googletagservices.com/tag/js/gpt.js\";\n            node = document.getElementsByTagName(\"script\")[0];\n            node.parentNode.insertBefore(gads, node);\n        }\n    })();\n</script>\n///////////////\n\nwebmd.debug = function () {\n    var a = Array.prototype.slice.call(arguments);\n    webmd.debug.active && window.console && (console.log.apply ? console.log.apply(console, a) : console.log(a))\n}\n\n\nwebmd.debug = (function() {\n    var a = Array.prototype.slice.call(arguments);\n    var print = webmd.debug.active && window.console && (console.log.apply ? console.log.apply(console, a) : console.log(a))\n    return function() {\n        return print;    \n    }\n})();\n\n\nwebmd.debug = (function() {\n    var debug=/(localhost|192\\.168\\.|127\\.0\\.0)/.test(location.host) && !!window.console;\n    return function() {\n        return debug ? console.log.apply(console, arguments) : null;\n    }\n})();\n",
-			"file": "webmd/apt.txt",
-			"file_size": 6506,
-			"file_write_time": 131008979940000000,
+			"file": "webmd/DFP/ads.txt",
 			"settings":
 			{
-				"buffer_size": 6506,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"contents": "",
-			"file": "webmd/untitled",
-			"file_size": 1506,
-			"file_write_time": 131021242720000000,
-			"settings":
-			{
-				"buffer_size": 0,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"contents": "\n\n\n\nfunction getDMP() {\n	return webmd.cookie.getJson('ads_perm', {domain: \"webmd.com\"}).segvar;\n}\n\nfunction getDMPLength() {\n	return webmd.cookie.getJson('ads_perm', {domain: \"webmd.com\"}).segvar.length;\n}\n\nfunction setDMP(dmp) {\n\n	var ads_perm_value = '';\n	dmp.split(',').forEach(function(v) {\n	  ads_perm_value += 'l_' + v + 'x';\n	});\n	var ads_perm_obj = { 'segvar': ads_perm_value };\n	webmd.cookie.setJson('ads_perm', ads_perm_obj, {domain: \"webmd.com\"});\n	return webmd.cookie.getJson('ads_perm', {domain: \"webmd.com\"}).segvar;\n}\n\n\nfunction appendDMP(dmp) {\n\n	//(1) get old-dmp from cookie['ads_perm']:\n	var cookieValue = webmd.cookie.getJson('ads_perm', {domain: \"webmd.com\"}).segvar;\n	var splitCookie = cookieValue.split(/(x)?l_/);\n\n	var old_dmp = splitCookie.forEach(function(v) {\n	  if( (typeof v !== 'undefined') && (v !== 'segvar') && (v !== 'x') ){\n	    dmp.push(v);\n	  }\n	}).join(',');\n\n	dmp += old_dmp;\n	var ads_perm_value = '';\n	dmp.split(',').forEach(function(v) {\n	  ads_perm_value += 'l_' + v + 'x';\n	});\n\n	var ads_perm_obj = { 'segvar': ads_perm_value };\n	webmd.cookie.setJson('ads_perm', ads_perm_obj, {domain: \"webmd.com\"});\n	return webmd.cookie.getJson('ads_perm', {domain: \"webmd.com\"}).segvar;\n}\n\n\n// Test:\n\ngetDMP();\n\ngetDMPLength();\n\nvar dmp = \"a2816,a32925,a131179,a127022,z00182,a118963,a2790,z030159,a00087,a2836,z00127,a2804,a2808,a2800,a33116,a32934,a123035,a2865,a129792,a01503,a2828,a33079,a2794,z30287,a2900,a32930,z00200,z02999,a2798,a32965\";\n\n\nsetDMP(dmp);\n\nappendDMP(dmp);\n",
-			"file": "webmd/js/03-31.jx",
-			"file_size": 0,
-			"file_write_time": 131039061640000000,
-			"settings":
-			{
-				"buffer_size": 1508,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "webmd/txt/01-28.txt",
-			"settings":
-			{
-				"buffer_size": 7986,
+				"buffer_size": 7478,
 				"line_ending": "Unix"
 			}
 		}
@@ -120,23 +91,53 @@
 	},
 	"expanded_folders":
 	[
-		"/Users/wjiang/Notes",
-		"/Users/wjiang/Notes/2016",
-		"/Users/wjiang/Notes/webmd",
-		"/Users/wjiang/Notes/webmd/js",
-		"/Users/wjiang/Notes/webmd/txt"
+		"/Users/wjiang/Notes"
 	],
 	"file_history":
 	[
-		"/Users/wjiang/Notes/webmd/txt/03-07.txt",
+		"/Users/wjiang/Notes/webmd/js/scripts_harmony.js",
+		"/Users/wjiang/Notes/webmd/txt/dfp.txt",
+		"/Users/wjiang/Notes/webmd/txt/03-23.txt",
+		"/Users/wjiang/Notes/webmd/DFP/ads.txt",
+		"/Users/wjiang/Notes/webmd/txt/pug.txt",
+		"/Users/wjiang/Notes/webmd/iri.txt",
+		"/Users/wjiang/Notes/webmd/txt/03-28.txt",
 		"/Users/wjiang/Notes/2016/03-24.txt",
-		"/Users/wjiang/Notes/webmd/03-14.txt",
+		"/Users/wjiang/Notes/webmd/doc/consumer-desktop-mobile-position.txt",
+		"/Users/wjiang/Notes/jsfiddle/AngularJS Debounce Service.html",
+		"/Users/wjiang/Notes/webmd/txt/11-18.txt",
+		"/Users/wjiang/Notes/webmd/txt/04-15.txt",
+		"/Users/wjiang/Notes/2014/2014-09-17.txt",
+		"/Users/wjiang/Notes/webmd/DFP/stackoverflow.txt",
+		"/Users/wjiang/Notes/webmd/txt/heartbeat-document.txt",
+		"/Users/wjiang/Notes/webmd/txt/PublisherId.txt",
+		"/Users/wjiang/Notes/webmd/txt/nodexml.txt",
+		"/Users/wjiang/Notes/webmd/txt/12-08.txt",
+		"/Users/wjiang/Notes/webmd/txt/04-06.txt",
+		"/Users/wjiang/Notes/webmd/js/header-fix-ie8.js",
+		"/Users/wjiang/Notes/webmd/js/header-fix-ie8.txt",
+		"/Users/wjiang/Notes/webmd/js/header.js",
+		"/Users/wjiang/Notes/webmd/js/header.txt",
+		"/Users/wjiang/Notes/webmd/txt/01-28.txt",
+		"/Users/wjiang/Notes/webmd/DFP/stackoverflow.js",
+		"/Users/wjiang/Notes/webmd/DFP/stackoverflow.html",
+		"/Users/wjiang/Notes/webmd/txt/03-07.txt",
+		"/Users/wjiang/Notes/webmd/js/heartbeat.js",
+		"/Users/wjiang/Notes/webmd/txt/03-14.txt",
+		"/Users/wjiang/Notes/webmd/txt/dfp1.txt",
+		"/Users/wjiang/Notes/webmd/03-23.txt",
+		"/Users/wjiang/Notes/webmd/txt/DFP.txt",
+		"/Users/wjiang/Notes/webmd/03-30.txt",
+		"/Users/wjiang/Notes/webmd/03-28.txt",
 		"/Users/wjiang/Notes/webmd/DFP.txt",
-		"/Users/wjiang/Notes/2014/git.txt",
+		"/Users/wjiang/Notes/webmd/apt.txt",
 		"/Users/wjiang/Notes/webmd/untitled",
+		"/Users/wjiang/Notes/webmd/js/03-31.jx",
+		"/Users/wjiang/Notes/webmd/1.",
+		"/Users/wjiang/Notes/webmd/03-14.txt",
+		"/Users/wjiang/Notes/2014/git.txt",
 		"/Users/wjiang/Notes/webmd/header-bidding.txt",
 		"/Users/wjiang/Notes/webmd/gpt.txt",
-		"/Users/wjiang/Notes/webmd/apt.txt",
 		"/Users/wjiang/Notes/webmd/questions.txt",
 		"/Users/wjiang/Notes/webmd/ppe-41041.txt",
 		"/Users/wjiang/Notes/webmd/sprint20.txt",
@@ -196,6 +197,75 @@
 		"case_sensitive": false,
 		"find_history":
 		[
+			"pug",
+			"targets",
+			"DFP",
+			"webmd.lotame",
+			"refresh",
+			"reresh",
+			"'121'",
+			"pug",
+			"/1234567/sports",
+			"adUnit",
+			"feature-ppe-xxx",
+			"feature_jira_no_story_defect",
+			"pug",
+			"defineAd",
+			"pug",
+			"vtime",
+			"4312434/consumer/webmd",
+			"4312434",
+			"uri",
+			"art",
+			"enc_prev_",
+			"o&O",
+			"o & o",
+			"sl",
+			"timeout",
+			"debounce",
+			"cui",
+			"CUI",
+			"cui",
+			"sl(",
+			"git rebase",
+			"sessionStorage",
+			"debug",
+			"webmd_debug",
+			"_debug",
+			"force_console",
+			"webmd.debug",
+			"webmd_debug",
+			"debug",
+			"fis",
+			"baby",
+			"prostate",
+			"baby",
+			"parent.",
+			"postre",
+			"postrelease",
+			"brandcast",
+			"pageView",
+			"google_console",
+			"google_force_console",
+			"img",
+			"<img",
+			"opacity",
+			"TXT",
+			"TXT_",
+			"get-page-container",
+			"fadeNext",
+			"PostRelease",
+			"testing8",
+			"brandcast",
+			"click",
+			"googleloaded",
+			"cui",
+			"pvid",
+			"ads_perm",
+			"nativo",
+			"50077",
+			"disableInitialLoad",
+			"ads2",
 			"nwids",
 			"t[0]",
 			"immidiate",
@@ -254,24 +324,7 @@
 			"configure",
 			"ADB.va.",
 			"appMeasurement",
-			"visitor",
-			"config.",
-			"HeartbeatProxy",
-			"AdobeHeartbeatPlugin",
-			"perf.",
-			"pagebuilder",
-			"user",
-			"npm",
-			"request",
-			"request\nrequest",
-			"node-gyp",
-			"babel",
-			"commentsList",
-			"commentList",
-			"babel",
-			"requre",
-			"phantomjs",
-			"karma"
+			"visitor"
 		],
 		"highlight": true,
 		"in_selection": false,
@@ -279,6 +332,10 @@
 		"regex": false,
 		"replace_history":
 		[
+			"121",
+			"/4312434/consumer/webmd/hp-conwbmd",
+			"feature_ppe_xxx-keywords",
+			"feature-ppe-xxx",
 			"",
 			"heartbeat.",
 			"WebmdHeartbeat"
@@ -292,171 +349,246 @@
 	"groups":
 	[
 		{
-			"selected": 6,
+			"selected": 2,
 			"sheets":
 			[
 				{
 					"buffer": 0,
-					"file": "webmd/1.",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 1742,
+						"buffer_size": 6033,
 						"regions":
 						{
+							"match":
+							{
+								"flags": 112,
+								"regions":
+								[
+									[
+										131,
+										138
+									],
+									[
+										187,
+										194
+									],
+									[
+										220,
+										227
+									],
+									[
+										242,
+										249
+									],
+									[
+										282,
+										289
+									],
+									[
+										346,
+										353
+									],
+									[
+										393,
+										400
+									],
+									[
+										718,
+										725
+									],
+									[
+										1045,
+										1052
+									],
+									[
+										1361,
+										1368
+									],
+									[
+										1664,
+										1671
+									],
+									[
+										1967,
+										1974
+									],
+									[
+										2270,
+										2277
+									],
+									[
+										2566,
+										2573
+									],
+									[
+										2867,
+										2874
+									],
+									[
+										3199,
+										3206
+									],
+									[
+										3241,
+										3248
+									],
+									[
+										3281,
+										3288
+									],
+									[
+										3318,
+										3325
+									],
+									[
+										3367,
+										3374
+									],
+									[
+										3516,
+										3523
+									],
+									[
+										3630,
+										3637
+									],
+									[
+										3658,
+										3665
+									],
+									[
+										3731,
+										3738
+									],
+									[
+										3786,
+										3793
+									],
+									[
+										3833,
+										3840
+									],
+									[
+										3893,
+										3900
+									],
+									[
+										4008,
+										4015
+									],
+									[
+										4151,
+										4158
+									],
+									[
+										4452,
+										4459
+									],
+									[
+										4797,
+										4804
+									],
+									[
+										5098,
+										5105
+									],
+									[
+										5439,
+										5446
+									],
+									[
+										5546,
+										5553
+									],
+									[
+										5602,
+										5609
+									],
+									[
+										5687,
+										5694
+									],
+									[
+										5750,
+										5757
+									],
+									[
+										5781,
+										5788
+									],
+									[
+										5796,
+										5803
+									],
+									[
+										5819,
+										5826
+									],
+									[
+										5865,
+										5872
+									],
+									[
+										5880,
+										5887
+									],
+									[
+										5920,
+										5927
+									],
+									[
+										5944,
+										5951
+									],
+									[
+										5979,
+										5986
+									]
+								],
+								"scope": ""
+							}
 						},
 						"selection":
 						[
 							[
-								605,
-								605
+								6004,
+								6004
 							]
 						],
 						"settings":
 						{
-							"auto_name": "1.",
-							"syntax": "Packages/Text/Plain text.tmLanguage",
-							"translate_tabs_to_spaces": false
+							"detect_indentation": false,
+							"line_numbers": false,
+							"output_tag": 1,
+							"result_base_dir": "",
+							"result_file_regex": "^([^ 	].*):$",
+							"result_line_regex": "^ +([0-9]+):",
+							"scroll_past_end": true,
+							"syntax": "Packages/Default/Find Results.hidden-tmLanguage"
 						},
 						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 6,
-					"type": "text"
-				},
-				{
-					"buffer": 1,
-					"file": "webmd/03-23.txt",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 885,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								885,
-								885
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/Text/Plain text.tmLanguage"
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 5,
-					"type": "text"
-				},
-				{
-					"buffer": 2,
-					"file": "webmd/DFP.txt",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 2192,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								0,
-								0
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/Text/Plain text.tmLanguage",
-							"tab_size": 4,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 4,
-					"type": "text"
-				},
-				{
-					"buffer": 3,
-					"file": "webmd/apt.txt",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 6506,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								0,
-								0
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/HTML/HTML.sublime-syntax",
-							"tab_size": 4,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 3081.0,
+						"translation.y": 542.0,
 						"zoom_level": 1.0
 					},
 					"stack_index": 3,
 					"type": "text"
 				},
 				{
-					"buffer": 4,
-					"file": "webmd/untitled",
+					"buffer": 1,
+					"file": "webmd/txt/pug.txt",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 0,
+						"buffer_size": 1518,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								0,
-								0
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/Text/Plain text.tmLanguage",
-							"translate_tabs_to_spaces": false
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 2,
-					"type": "text"
-				},
-				{
-					"buffer": 5,
-					"file": "webmd/js/03-31.jx",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 1508,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								294,
-								294
+								1179,
+								1179
 							]
 						],
 						"settings":
@@ -464,27 +596,83 @@
 							"syntax": "Packages/Text/Plain text.tmLanguage"
 						},
 						"translation.x": 0.0,
-						"translation.y": 0.0,
+						"translation.y": 268.0,
 						"zoom_level": 1.0
 					},
 					"stack_index": 1,
 					"type": "text"
 				},
 				{
-					"buffer": 6,
-					"file": "webmd/txt/01-28.txt",
+					"buffer": 2,
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 7986,
+						"buffer_size": 2043,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								7140,
-								7140
+								2043,
+								2043
+							]
+						],
+						"settings":
+						{
+							"auto_name": "fis=0&fipt=0&pvid=146480386602502969&pt=1832&art=&",
+							"syntax": "Packages/Text/Plain text.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 0,
+					"type": "text"
+				},
+				{
+					"buffer": 3,
+					"file": "2016/03-24.txt",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 1353,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								533,
+								533
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Text/Plain text.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 58.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 4,
+					"type": "text"
+				},
+				{
+					"buffer": 4,
+					"file": "webmd/DFP/ads.txt",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 7478,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								406,
+								978
 							]
 						],
 						"settings":
@@ -494,10 +682,10 @@
 							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
-						"translation.y": 3801.0,
+						"translation.y": 2308.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 0,
+					"stack_index": 2,
 					"type": "text"
 				}
 			]
@@ -538,6 +726,10 @@
 	{
 		"height": 0.0
 	},
+	"output.unsaved_changes":
+	{
+		"height": 100.0
+	},
 	"pinned_build_system": "",
 	"project": "notes.sublime-project",
 	"replace":
@@ -556,12 +748,12 @@
 	},
 	"select_project":
 	{
-		"height": 0.0,
+		"height": 500.0,
 		"last_filter": "",
 		"selected_items":
 		[
 		],
-		"width": 0.0
+		"width": 380.0
 	},
 	"select_symbol":
 	{
@@ -580,7 +772,7 @@
 	"show_open_files": false,
 	"show_tabs": true,
 	"side_bar_visible": true,
-	"side_bar_width": 207.0,
+	"side_bar_width": 149.0,
 	"status_bar_visible": true,
 	"template_settings":
 	{

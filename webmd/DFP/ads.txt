@@ -1,0 +1,178 @@
+in PERF-env: (http://www.perf.webmd.com/)
+
+// 1. clear the screen, to have a better display
+$('body').empty();
+
+
+// 2. append 3 ad-slots divs
+$('<div id="ads2-pos-101-bannerAd-1" class="ad_placeholder"></div>').appendTo('body');
+$('<div id="ads2-pos-121-ss_ad_module-2" class="ad_placeholder"></div>').appendTo('body');
+$('<div id="ads2-pos-901-1x1ad-3" class="ad_placeholder"></div>').appendTo('body');
+
+
+// 3. define 1st ad, no display
+webmd.ads2Consumer.defineAd({
+    targets: {
+        art: '091e9c5e80f08fcf',
+        cc: '56',
+        env: '&amp;env=0',
+        hcent: '737',
+        leaf: '&amp;leaf=12652',
+        mcent: '',
+        mic: '',
+        pt: '1681',
+        sec: '',
+        pug: '__',
+        scent: '1194',
+        tmg: '',
+        tug: '',
+        uri: '%2fosteoarthritis%2fss%2fslideshow-hip-surgery-recovery-timeline'
+    },
+    blockCodes: '_m150_',
+    id: 'ads2-pos-101-bannerAd-1',
+    pos: '101',
+    sizes: [[728, 90], [970, 90], [970, 250]]
+});
+
+
+// 4. display the ad, DFP pubads() call is made
+webmd.ads2Consumer.display();
+
+
+// 5. define More, and display, since 
+webmd.ads2Consumer.defineAd({
+    id: 'ads2-pos-121-ss_ad_module-2', pos: '121', sizes: [300, 250]
+});
+
+googletag.pubads().refresh();
+
+
+// 6. define more, not display
+webmd.ads2Consumer.defineAd({
+     id: 'ads2-pos-901-1x1ad-3', pos: '901', sizes: [1, 1]
+}); 
+
+
+// 7. this not work anymore.
+webmd.ads2Consumer.display();
+
+
+// 8. the following work
+googletag.pubads().refresh();
+webmd.ads2Consumer.refresh();
+
+
+// 9. this also work
+
+googletag.pubads().clear();
+googletag.pubads().refresh();
+
+
+//////////////////////////////////
+
+
+
+webmd.ads2Consumer.defineAd({targets:{art:'091e9c5e80f67e80',cc:'148',env:'&amp;env=1',hcent:'1004',leaf:'&amp;leaf=',mcent:'',mic:'',pt:'2731',sec:'1637',pug:'__',scent:'',tmg:'',tug:'',uri:'%2fdiet%2fdefault'},blockCodes:'_diet_e1_food_',id:'ads2-pos-101-ad_banner',pos:'101',sizes:[[728,90],[970, 90],[970,250]]});
+
+
+webmd.ads2Consumer.defineAd({targets:{art:'091e9c5e80f67e80',cc:'148',env:'&amp;env=1',hcent:'1004',leaf:'&amp;leaf=',mcent:'',mic:'',pt:'2731',sec:'1637',pug:'__',scent:'',tmg:'',tug:'',uri:'%2fdiet%2fdefault'},blockCodes:'_diet_e1_food_',id:'ads2-pos-121-ad_rr_p1',pos:'121',sizes:[[300,250],[300, 600],[300,1050]]});
+
+
+$('<div id="ads2-pos-137-ad_rr_p2" class="ad_placeholder"></div>').appendTo('body');
+webmd.ads2Consumer.defineAd({targets:{art:'091e9c5e80f67e80',cc:'148',env:'&amp;env=1',hcent:'1004',leaf:'&amp;leaf=',mcent:'',mic:'',pt:'2731',sec:'1637',pug:'__',scent:'',tmg:'',tug:'',uri:'%2fdiet%2fdefault'},blockCodes:'_diet_e1_food_',id:'ads2-pos-137-ad_rr_p2',pos:'137',sizes:[[300,251],[300, 250]]});
+
+
+webmd.ads2Consumer.defineAd({targets:{art:'091e9c5e80f67e80',cc:'148',env:'&amp;env=1',hcent:'1004',leaf:'&amp;leaf=',mcent:'',mic:'',pt:'2731',sec:'1637',pug:'__',scent:'',tmg:'',tug:'',uri:'%2fdiet%2fdefault'},blockCodes:'_diet_e1_food_',id:'ads2-pos-5002-ad_rr1_icm',pos:'5002',sizes:[1,2]});
+
+
+webmd.ads2Consumer.defineAd({targets:{art:'091e9c5e80f67e80',cc:'148',env:'&amp;env=1',hcent:'1004',leaf:'&amp;leaf=',mcent:'',mic:'',pt:'2731',sec:'1637',pug:'__',scent:'',tmg:'',tug:'',uri:'%2fdiet%2fdefault'},blockCodes:'_diet_e1_food_',id:'ads2-pos-5003-ad_rr2_icm',pos:'5003',sizes:[1,2]});
+
+
+webmd.ads2Consumer.defineAd({targets:{art:'091e9c5e80f67e80',cc:'148',env:'&amp;env=1',hcent:'1004',leaf:'&amp;leaf=',mcent:'',mic:'',pt:'2731',sec:'1637',pug:'__',scent:'',tmg:'',tug:'',uri:'%2fdiet%2fdefault'},blockCodes:'_diet_e1_food_',id:'ads2-pos-5000-ad_cw1_icm',pos:'5000',sizes:[1,2]});
+
+
+webmd.ads2Consumer.defineAd({targets:{art:'091e9c5e80f67e80',cc:'148',env:'&amp;env=1',hcent:'1004',leaf:'&amp;leaf=',mcent:'',mic:'',pt:'2731',sec:'1637',pug:'__',scent:'',tmg:'',tug:'',uri:'%2fdiet%2fdefault'},blockCodes:'_diet_e1_food_',id:'ads2-pos-901-1x1ad',pos:'901',sizes:[1,1]});
+
+
+
+
+$('<div id="ads2-pos-101-ad_banner" class="ad_placeholder"></div>').appendTo('body');
+$('<div id="ads2-pos-121-ad_rr_p1" class="ad_placeholder"></div>').appendTo('body');
+$('<div id="ads2-pos-137-ad_rr_p2" class="ad_placeholder"></div>').appendTo('body');
+$('<div id="ads2-pos-5002-ad_rr1_icm" class="ad_placeholder"></div>').appendTo('body');
+$('<div id="ads2-pos-5003-ad_rr2_icm" class="ad_placeholder"></div>').appendTo('body');
+$('<div id="ads2-pos-5000-ad_cw1_icm" class="ad_placeholder"></div>').appendTo('body');
+$('<div id="ads2-pos-901-1x1ad" class="ad_placeholder"></div>').appendTo('body');
+
+
+
+
+/////////////////////
+
+
+
+webmd.ads2Consumer.defineAd({targets:{art:'091e9c5e80eff7b3',cc:'83',env:'&amp;env=1',hcent:'',leaf:'&amp;leaf=1257',mcent:'',mic:'',pt:'1728',sec:'',pug:'__',scent:'',tmg:'',tug:'',uri:'%2fdefault'},blockCodes:'__',id:'ads2-pos-101-ad_banner',pos:'101',sizes:[[728,90],[970, 90],[970,250]]});
+
+webmd.ads2Consumer.defineAd({targets:{art:'091e9c5e80eff7b3',cc:'83',env:'&amp;env=1',hcent:'',leaf:'&amp;leaf=1257',mcent:'',mic:'',pt:'1728',sec:'',pug:'__',scent:'',tmg:'',tug:'',uri:'%2fdefault'},blockCodes:'__',id:'ads2-pos-121-ad_rr_p1',pos:'121',sizes:[[300,250],[300, 600],[300,1050]]});
+
+
+$('<div id="ads2-pos-101-ad_banner" class="ad_placeholder"></div>').appendTo('body');
+$('<div id="ads2-pos-121-ad_rr_p1" class="ad_placeholder"></div>').appendTo('body');
+
+
+
+////////////////////
+
+
+
+$('body').empty();
+$('<div id="ContentPane5" class="ad_placeholder"></div>').appendTo('body');
+$('<div id="ContentPane6" class="ad_placeholder"></div>').appendTo('body');
+$('<div id="ContentPane7" class="ad_placeholder"></div>').appendTo('body');
+$('<div id="ContentPane8" class="ad_placeholder"></div>').appendTo('body');
+$('<div id="ContentPane9" class="ad_placeholder"></div>').appendTo('body');
+$('<div id="ContentPane10" class="ad_placeholder"></div>').appendTo('body');
+$('<div id="ContentPane11" class="ad_placeholder"></div>').appendTo('body');
+$('<div id="ContentPane12" class="ad_placeholder"></div>').appendTo('body');
+$('<div id="ContentPane13" class="ad_placeholder"></div>').appendTo('body');
+$('<div id="ContentPane14" class="ad_placeholder"></div>').appendTo('body');
+
+
+
+//**********************
+webmd.ads2.defineAd({id:'ContentPane5', pos:121, sizes:[300,250]});
+
+webmd.ads2.defineAd({id:'ContentPane6', pos:121, sizes:[300,250], immediate: true});
+
+webmd.ads2.refresh();
+
+webmd.ads2.display(); //no work anymore.
+//**********************
+
+var adSlot7 = googletag.defineSlot('/4312434/consumer/webmd/hp-conwbmd', [300,250], 'ContentPane7')
+    .setTargeting('pos', 121)
+    .addService(googletag.pubads());
+googletag.display('ContentPane7');
+
+
+var adSlot8 = googletag.defineSlot('/4312434/consumer/webmd/hp-conwbmd', [300,250], 'ContentPane8')
+    .setTargeting('pos', 121)
+    .addService(googletag.pubads());
+
+var adSlot9 = googletag.defineSlot('/4312434/consumer/webmd/hp-conwbmd', [300,250], 'ContentPane9')
+    .setTargeting('pos', 121)
+    .addService(googletag.pubads());
+
+var adSlot10 = googletag.defineSlot('/4312434/consumer/webmd/hp-conwbmd', [300,250], 'ContentPane10')
+    .setTargeting('pos', 121)
+    .addService(googletag.pubads());
+
+
+var slot11 = googletag.pubads().display('/4312434/consumer/webmd/hp-conwbmd', [300,250], 'ContentPane11');
+
+var slot12 = googletag.pubads().display('/4312434/consumer/webmd/hp-conwbmd', [300,250], 'ContentPane12');
+
+var slot13 = googletag.pubads().display('/4312434/consumer/webmd/hp-conwbmd', [300,250], 'ContentPane13');
+
+var slot14 = googletag.pubads().display('/4312434/consumer/webmd/hp-conwbmd', [300,250], 'ContentPane14');
+

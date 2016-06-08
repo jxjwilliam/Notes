@@ -1,0 +1,57 @@
+The PUG update codes are solid, no problem.
+
+I visit staging page, both scripts and scripts_harmony are updated as expected.
+
+However for url http://www.staging.webmd.com/drugs/2/drug-144593/tylenol-day--night-oral/details:
+
+There are 2 scripts call:
+
+scripts1217.js - details:63
+<script type="text/javascript" src="http://js.staging.webmd.com/dtmcms/staging/webmd/PageBuilder_Assets/JS/scripts1217.js"></script>
+
+
+scripts1218.js -  sponsor-box:50
+<script type="text/javascript" src="http://js.staging.webmd.com/dtmcms/staging/webmd/PageBuilder_Assets/JS/scripts1218.js"></script>
+
+
+This maybe not correct, 2 calls are not neccessary and may cause consistant-issues.
+
+
+
+var targets = webmd.drugs.adConfig.targets
+
+targets.pug
+""
+
+if (targets.hasOwnProperty('pug')) {
+	if (!targets.pug || targets.pug === '__') {
+		delete targets.pug;
+	}
+}
+
+var targets = {pug: 000000}
+!! targets.pug --> false
+
+var targets = {pug: '000000'}
+!! targets.pug --> true
+
+
+
+
+var targets = {pug: '', dmp:'all,10,20', fis:0}
+if (targets.hasOwnProperty('pug')) {
+	if (!targets.pug || targets.pug === '__') {
+		console.log('111: ', targets);
+		delete targets.pug;
+		console.log('222: ', targets);
+	}
+}
+
+
+
+
+fis=0&fipt=0&pvid=146480358654720704&pt=1832&dmp=all%2C161%2C30302%2C32920%2C32921%2C33194%2C134229%2C110%2C205%2C207%2C2784%2C30143%2C30295&art=&cc=&env=1&hcent=&leaf=&mcent=&mic=&sec=&scent=&tmg=&tug=&uri=%2Fdrugs%2F2%2Fdrug-144593%2Ftylenol-day--night-oral%2Fdetails&app=8&segm=1&pug=&kw=&drg=144593&excl_cat=_r52_h52_h101_j30_m32_
+
+
+
+

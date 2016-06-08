@@ -1,0 +1,9 @@
+top.googletag.pubads().refresh([slot1]); 
+or parent.googletag.pubads().refresh([slot1]); from within that iframe?
+
+
+When you are using Google Publisher Tags (GPT), your ads will automatically load into iframes.
+
+
+chrome has a extensions: Google Publisher Toolbar.
+It is another  helpful tool besides query-param: google_force_console=1
