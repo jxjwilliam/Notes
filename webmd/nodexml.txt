@@ -1,0 +1,19 @@
+### libxslt
+
+$ npm install libxslt
+
+parseXml
+parseHtml
+Document
+features
+parseXmlString
+parseHtmlString
+parse
+parseFile
+
+
+### node-gyp
+
+$ npm install -g node-gyp
+
+node-gyp is a cross-platform command-line tool written in Node.js for compiling native addon modules for Node.js.

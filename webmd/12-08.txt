@@ -1,0 +1,82 @@
+///////////////////
+As a publisher we work to drive as many visitors as possible to our sponsored pages.  As part of some campaigns we may use external drivers (Facebook, Twitter) to drive visitors to our Brandcast pages.  These pages do not redirect based on device (mobile, desktop) and that creates a bad user experience therefore if a user arrives to a brandcast page from a mobile device they should be redirected to the mobile version of the page and vice versa.  
+
+The base URL for Brandcast pages is http://www.webmd.com/brandcast/default.htm
+
+Requirements
+1) If a user clicks http://www.webmd.com/brandcast/default.htm?prx_t=cdsBAVyYEAG9kLA from a mobile device they should be redirected to http://www.m.webmd.com/brandcast/default.htm?prx_t=cdsBAVyYEAG9kLA
+2) If a user clicks http://www.m.webmd.com/brandcast/default.htm?prx_t=cdsBAVyYEAG9kLA from a desktop computer or tablet they should redirect to http://www.webmd.com/brandcast/default.htm?prx_t=cdsBAVyYEAG9kLA
+///////////////////
+
+http://www.webmd.com/brandcast/default.htm?prx_t=cdsBAVyYEAG9kLA
+http://www.webmd.com/brandcast/default.htm?prx_t=cdsBAVyYEAG9kLA 
+http://www.m.webmd.com/brandcast/default.htm?prx_t=cdsBAVyYEAG9kLA 
+http://www.m.webmd.com/brandcast/default.htm?prx_t=cdsBAVyYEAG9kLA
+
+prx_t
+
+oas
+contentPrimier, Nativo
+
+Today on WebMD, the second section
+
+inified_right_inner_v2_rdr
+
+
+s_sponsor_barnch, s_sponsor_program
+
+
+postrelease, sponsor-page
+
+
+////////////////
+
+1. Not Sponsor
+s_brand=null
+
+TODAY
+Naptive -> OK
+
+Yes - Postrelease
+
+
+2. Sponsor
+s_brand=some-thirdparty-link
+
+TODY
+Naptive -> NOT OK
+
+NO Postrelase
+
+
+ISO estimulator
+
+
+////////////////////
+
+(1) Request URL:http://www.m.webmd.com/brandcast/default.htm?prx_t=cdsBAVyYEAG9kLA
+
+User-Agent:Mozilla/5.0 (iPhone; CPU iPhone OS 8_0 like Mac OS X) AppleWebKit/600.1.3 (KHTML, like Gecko) Version/8.0 Mobile/12A4345d Safari/600.1.4
+
+
+"Mozilla/5.0 (Macintosh; Intel Mac OS X 10_10_5) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/46.0.2490.86 Safari/537.36"
+
+(2)
+
+/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+
+
+http://jadserve.postrelease.com/trk.gif?ntv_at=4&ntv_a=cdsBAVyYEAG9kLA&ord=-439032495&prx_r=
+http://www.m.webmd.com/brandcast/brandfeed-cough-treatment
+
+
+------ Environement ------
+
+1. Perf
+1. Staging
+1. QA00
+1. QA01
+1. Prod
+
+
+so pagebuilder1.webmd.com = pagebuilder2.webmd.com = pagebuilder3.webmd.com

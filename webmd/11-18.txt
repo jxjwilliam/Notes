@@ -1,0 +1,50 @@
+If async is present: The script is executed asynchronously with the rest of the page (the script will be executed while the page continues the parsing)
+
+script = document.createElement("script");
+script.type = 'text/javascript';
+script.async = true;
+script.defer = true;
+script.src = protocol + 'marvilias.com/adBlockDetector/12265';
+$('body').append(script);
+
+////////
+put <script></script> in the bottom of <body/> will make the page render faster.
+
+## gitbucket:
+git push -u upstream william
+
+
+## 
+cd webmd-video
+sudo npm install karma-cli -g
+npm install karma --save-dev
+npm install karma-jasmine karma-chrome-launcher --save-dev
+
+karma init
+or:
+karma init karma.conf.js
+
+
+sudo npm install phantomjs -g
+npm install karma-phantomjs-launcher --save-dev
+
+karma start --browsers PhantomJS
+
+
+npm install jquery@1.11.2 --save-dev
+
+
+### Why SLOW? YSlow
+
+
+### grunt-requirejs-config, grunt-requirejs
+npm install grunt-requirejs-config --save-dev
+
+//////////
+var ua = navigator.userAgent;
+for (var re in RULES) {
+  if (ua.match(re)) {
+    device = RULES[re];
+    return;
+  }
+}
