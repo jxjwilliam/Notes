@@ -68,19 +68,3 @@ if (!Array.prototype.some) {
 }
 
 
-var notLoadGPT = (function() {
-	var domainBlackList = [
-	    /fit\.(\w+\.){0,1}webmd\.com/i,
-	    /\w+\.(m\.)?webmd\.boots\.com/i
-	];
-	var wmdDomain = document.domain;
-
-	for(var i=0; i<domainBlackList.length; i++) {
-		if(domainBlackList[i].test(wmdDomain)) {
-			return true;
-		}
-		return false;
-	}	
-})();
-
-

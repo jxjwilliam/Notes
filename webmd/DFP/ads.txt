@@ -168,6 +168,7 @@ var adSlot10 = googletag.defineSlot('/4312434/consumer/webmd/hp-conwbmd', [300,2
     .addService(googletag.pubads());
 
 
+
 var slot11 = googletag.pubads().display('/4312434/consumer/webmd/hp-conwbmd', [300,250], 'ContentPane11');
 
 var slot12 = googletag.pubads().display('/4312434/consumer/webmd/hp-conwbmd', [300,250], 'ContentPane12');
@@ -175,4 +176,17 @@ var slot12 = googletag.pubads().display('/4312434/consumer/webmd/hp-conwbmd', [3
 var slot13 = googletag.pubads().display('/4312434/consumer/webmd/hp-conwbmd', [300,250], 'ContentPane13');
 
 var slot14 = googletag.pubads().display('/4312434/consumer/webmd/hp-conwbmd', [300,250], 'ContentPane14');
+
+
+
+
+/////////// https://jira.webmd.net/browse/PPE-67784
+http://www.m.webmd.com/psoriasis/psoriasis-16/action-plan/video-care-for-your-heart?webmddebug=1
+
+webmd.ads2.refresh();
+
+googletag.pubads().clear();
+googletag.pubads().refresh();
+
+
 

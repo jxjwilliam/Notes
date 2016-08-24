@@ -1,0 +1,277 @@
+(1) webmd.ads2.js -> defineAd:
+
+// Check for required settings
+if (!(settings.id && settings.sizes && settings.pos)) {
+    throw('Missing id, pos, or sizes for defineAd');
+}
+
+if(settings.sizes.indexOf('fluid') === -1) {
+    settings.sizes.push('fluid');
+}
+
+// Save these settings because we will use them later to actually display the ads
+self.ads[settings.id] = settings;
+
+
+
+
+(2) Testing:
+for (var i in webmd.ads2.ads) {
+  var ss = webmd.ads2.ads[i].sizes;
+  console.log(JSON.stringify(ss));
+}
+
+// [[728,90],[970,90],[970,250],"fluid"]
+// [[300,250],[300,600],[300,1050],"fluid"]
+
+
+$(function () {
+	var defaults = {
+		AdhesiveNumber: 5000,
+		ScrollHeight: undefined
+	};
+
+	var adhesive = webmd.url.getParam('adhesive') || defaults.AdhesiveNumber;
+
+	var scrollHeight = webmd.url.getParam('scrollHeight') || defaults.ScrollHeight;
+
+	var $topAd = $('div.ad_rdr.top_ad_rdr');
+
+	var currentHeight = function () {
+		return function () {
+			return null;
+		}
+	};
+
+	//$topAd.css({"position":"fixed", "": "", "":""});
+	$topAd.css({position: "sticky", top: "60px"});
+
+	if (scrollHeight) {
+		if (currentHeight >= scrollHeight) {
+			$topAd.removeAttr('style');
+		}
+	}
+	else if (adhesive) {
+		setTimeout(function () {
+			$topAd.removeAttr('style');
+		}, adhesive);
+	}
+	else {
+		setTimeout(function () {
+			$topAd.removeAttr('style');
+		}, adhesive);
+	}
+
+});
+
+
+
+
+$(function () {
+    var  stickyHead = {
+        killStickyHead: '',
+        stickySettings: {
+            $adtagheader: $("#adtagheader"),
+            $headerbox: $("#headerbox"),
+            $window: $(window),
+            originalTopAdTop: '', //$("#adtagheader").offset().top,
+            originalAdHeight: ($("#adtagheader").outerHeight() + 90),
+            stopStickyHeight: 300,
+            stopStichyTime: 20000
+        },
+        init: function () {
+            var self = this;
+            // Do a check to make sure nobody tries to run init twice,
+            if (self.init.flag) {
+                return;
+            }
+            self.init.flag = true;
+
+            // hardcode a default height for now to prevent the sticky jumpiness if user scrolls.
+            // Also, use timeout to get the original value if the header is not sticky yet
+            stickyHead.stickySettings.originalTopAdTop = 104;//$("#adtagheader").offset().top;
+            var tmp = setTimeout(function () {
+                if ($("#adtagheader").hasClass("stickHeader") == false) {
+                    stickyHead.stickySettings.originalTopAdTop = $("#adtagheader").offset().top;
+                }
+                clearTimeout(tmp);
+            }, 1000);
+
+            $(window).on('scroll', stickyHead.stickyHeadscrollHandler).load(function () {
+                stickyHead.killStickyHead = setTimeout(function () {
+                    if ($("#adtagheader").hasClass("stickHeader")) {
+                        stickyHead.animateOffSticky();
+                    }
+                    else {
+                        stickyHead.disableSticky();
+                    }
+                }, adTime);
+            });
+        },
+        stickyRefresh: function () {
+            clearTimeout(stickyHead.killStickyHead);
+            $(window).on('scroll', stickyHead.stickyHeadscrollHandler);
+            stickyHead.killStickyHead = setTimeout(function () {
+                if ($("#adtagheader").hasClass("stickHeader")) {
+                    stickyHead.animateOffSticky();
+                }
+                else {
+                    stickyHead.disableSticky();
+                }
+            }, adTime);
+            $(document).trigger("stickyRefresh");
+        },
+        stickyHeadscrollHandler: function () {
+            //clearTimeout(stickyHead.killStickyHead);
+            var winScrollTop = stickyHead.stickySettings.$window.scrollTop();
+            if (winScrollTop > stickyHead.stickySettings.$adtagheader.offset().top) {
+                stickyHead.addSticky();
+            } else if ($("#adtagheader").offset().top <= stickyHead.stickySettings.originalTopAdTop) {
+                stickyHead.removeSticky();
+            }
+            else if (winScrollTop > adHeight) {
+                stickyHead.animateOffSticky();
+            }
+        },
+        animateOffSticky: function () {
+            stickyHead.disableSticky();
+            stickyHead.stickySettings.$adtagheader.slideUp({
+                duration: "slow", step: function () {
+                    $(document).trigger("animateOffStickyStep");
+                }, complete: function () {
+                    //stickyHead.stickySettings.$adtagheader.slideUp("slow", function () {
+                    stickyHead.stickySettings.$adtagheader.hide();
+                    stickyHead.stickySettings.$adtagheader.slideDown(function () {
+                        stickyHead.stickySettings.$adtagheader.removeClass("stickHeader").addClass("unStickHeader");
+                        stickyHead.stickySettings.$headerbox.css({
+                            "padding-bottom": "0px"
+                        });
+                    });
+                    stickyHead.stickySettings.$adtagheader.show();
+                }
+            });
+            $(document).trigger("animationOffSticky");
+        },
+        stickyKillSwitch: function () {
+            stickyHead.disableSticky();
+            stickyHead.removeSticky();
+        },
+        disableSticky: function () {
+            $(window).off('scroll', stickyHead.stickyHeadscrollHandler);
+        },
+        addSticky: function () {
+            stickyHead.stickySettings.$headerbox.css({
+                "padding-bottom": stickyHead.stickySettings.originalAdHeight + "px"
+            });
+            stickyHead.stickySettings.$adtagheader.removeClass("unStickHeader").addClass("stickHeader");
+        },
+        removeSticky: function () {
+            stickyHead.stickySettings.$adtagheader.removeClass("stickHeader").addClass("unStickHeader");
+            stickyHead.stickySettings.$headerbox.css({
+                "padding-bottom": "0px"
+            });
+        }
+    };
+
+    var adTime = webmd.url.getParam('adhesive')  || stickyHead.stickySettings.stopStichyTime;
+    var adHeight = webmd.url.getParam('adheight')  || stickyHead.stickySettings.stopStickyHeight;
+
+    stickyHead.init();
+
+});
+
+
+<style>
+    .stickHeader {
+        position: fixed;
+        width: 100%;
+        top: 20;
+        /*background-color: #fff;*/
+        z-index: 500;
+    }
+
+    #adtagheader.stickHeader {
+        margin-top:0;
+    }
+    .unStickHeader {
+        position: relative;
+        /*background-color: #fff;*/
+        top: auto;
+    }
+    #mses #authordisclosures {
+        margin-top: 175px;
+    }
+</style>
+
+
+http://www.perf.m.webmd.com/depression/news/20130513/daily-gene-rhythms-may-be-off-in-depressed-people?adhesive=10000&adheight=600
+
+$('#adtagheader').addClass('stickHeader')
+
+$("div.stickHeader").css({
+    "position": "fixed",
+    "width": "100%",
+    "top": "20px",
+    "zIndex": 500,
+    "marginTop": 0
+});
+
+
+media.net header-bidding
+
+refresh: ad lost
+cui
+dmp
+pg=
+
+nativo
+
+
+fis=0&fipt=0&pvid=147042476783029394&art=091e9c5e800090e4&cc=16&env=0&hcent=1170&leaf=713&mcent=&mic=&pt=1688&sec=1688%2C2946%2C1685%2C1688&scent=848&tmg=3&tug=&uri=%2Fprostate-cancer%2Fguide%2Fprostate-cancer-recurrence&segm=0&cui=23003_1%2C3227_1%2C19140_1%2C19373_2%2C19374_3&bp=5&dmp=all%2C40%2C55%2C2788%2C2791%2C2805%2C2812%2C2819%2C2889%2C30302%2C32920%2C32921%2C32926%2C32951%2C129794%2C130910%2C110%2C135%2C139%2C2784%2C30276&excl_cat=n952%2Ccust014%2Cvac%2Cc509%2Cgen1%2Ccust4%2Cc61
+
+
+if (!$('div.ad_rdr.top_ad_rdr').prop('id')) {
+    $('div.ad_rdr.top_ad_rdr').prop('id', 'adtagheader');
+    //.css({
+    //    "marginTop": "28px",
+    //    "backgroundColor": "#f4f8f9",
+    //    "paddingBottom": "3px"
+    //});
+}
+
+
+
+
+I created a new branch 'feature-PPE-68463-AdhesiveTop2025Ad' for this story.
+Code review with [~rlu], and it works as expected.
+
+I did a PR to stash (feature-PPE-68463-AdhesiveTop2025Ad against develop), also deployed to PERF-env.
+
+For QA test, there are 2 URL params can be added:  
+- adhesive: default is 5000 (5 seconds)
+- threshold: default is 1200 (1200px)
+
+The testing URL can be:
+- http://www.perf.m.webmd.com/depression/news/20130513/daily-gene-rhythms-may-be-off-in-depressed-people?adhesive=6000&threshold=500
+  adhesive 6 seconds, or scroll down to 500px
+- http://www.perf.m.webmd.com/depression/news/20130513/daily-gene-rhythms-may-be-off-in-depressed-people
+ using default values: adhesive 5 seconds, or scroll down to 1200px
+- http://www.perf.m.webmd.com/depression/news/20130513/daily-gene-rhythms-may-be-off-in-depressed-people?adhesive=20000
+  adhesive 20 seconds, or scroll down to default 1200px
+- http://www.perf.m.webmd.com/depression/news/20130513/daily-gene-rhythms-may-be-off-in-depressed-people?threshold=1500
+  adhesive default 5 seconds, or scroll down to 1500px
+
+
+
+
+
+webmd.addFluid = function(settings) {
+    // PPE-73708: Defect_Staging_Variable ‘Fluid’ is not getting tracked as separate variable in DFP call.
+    if ((['2026', '5000'].indexOf(settings.pos) !== -1) && (settings.sizes.indexOf('fluid') === -1)) {
+        settings.sizes.push('fluid');
+    }
+    return settings;
+}
+
+
+webmd.addFluid.bind(this, settings);

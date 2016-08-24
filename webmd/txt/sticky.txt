@@ -1,0 +1,91 @@
+If we open the pubads() in Chrome -> Network -> Headers, we see Google DFP Query String Parameters:
+*prev_scp*: *pos=...|pos=..*.
+
+This requests Google DPF to get these 'pos' advertisements. So nothing wrong here, *multiple 2026* is acceptable.
+
+What we need to focus is the Google DFP 'callbackProxy' return. The return like this:
+{code:java}
+[
+/8668145/consmobileweb/webmdmobileweb: {Ad-Object},
+/8668145/consmobileweb/webmdmobileweb: {Ad-Object},
+...
+]
+{code}
+These Ad-Objects are related to the 'pos' in the request 'headers'. If the number match, it would be OK, successful DFP call.
+
+- iu_parts: Comma separated list of the ad path elements of the page.
+- prev_iu_szs: A comma separated list of the sizes of each ad slot on the page, slots that have multiple sizes will have a pipe separating each size.
+- prev_scp - Slot specific targeting parameters.
+- cust_params - Global targeting parameters.
+- biw/bih: Browser width/height.
+
+
+The following is some message I get from confluence articles regarding on prev_scp.
+*prev_scp contains slot specific parameters.*
+
+- prev_scp contains ad targeting values used for individual ads. For example, it contains the pos value for each ad.
+- prev_iu_sza contains the sizes requested for individual ads.
+- iu_parts contains the network code and ad targets for all the ads. For example: 4312434,Consumer,WebMDCore
+- cust_params contains ad targeting values used for all ads on the page. For example, it contains the topic id for the page and other information.
+
+
+
+
+
+
+
+{ position: sticky; top: 10px; }
+
+$('div#ads2-pos-101-ad_banner').css('position', 'sticky');
+
+
+
+$('div.ad_rdr.top_ad_rdr').css({"position":"fixed"});
+setTimeout(function() {
+    $('div.ad_rdr.top_ad_rdr').removeAttr('style');
+}, 5000);
+
+
+setTimeout(function() {
+	var wstyle = {
+		'position': 'fixed',
+		'zIndex': 10
+	}
+	$('div#ads2-pos-101-ad_banner').css(wstyle);	
+}, 20000);
+
+
+getDebounceNumber: function (str) {
+    if (!str) {
+        return;
+    }
+    var qs = decodeURI(str).split('&').filter(function (param) {
+        return param.toLowerCase().indexOf('debounce') !== -1;
+    })[0];
+    if (qs) {
+        return parseInt(qs.replace(/^[\?#]?\w+=/, ''));
+    }
+},
+
+
+webmd.debug.activate();
+$(this).css({color: 'blue'});
+webmd.debug('Page Number: ', pid, 'Debounce: ', dnumber);
+webmd.debug.deactivate();
+
+
+
+prev_iu_szs:300x50|320x50,1x1,.......,.....
+prev_scp:pos=2025|pos=1901|pos=2026|pos=2026
+
+If we observe the pubads() responses, the callbackProxy return 4  objects.
+1. 2025
+2. 1901
+3. 2026 (for page-4)
+4. 2026 (for page-1 preloading)
+
+So when refresh, the pubads() call return 4 ads, each is marked.
+
+
+
+tackling

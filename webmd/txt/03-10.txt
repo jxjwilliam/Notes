@@ -76,9 +76,6 @@ g. mnetCID
 h. mnTest
 
 
-Also, we recommend appending the get param force_hbtest=1 to the URL which will enable Media.net test bidder to kick in.
-
-
 
 
 so we can create the release branch with the date

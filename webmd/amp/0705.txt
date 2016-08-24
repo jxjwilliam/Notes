@@ -1,0 +1,69 @@
+https://confluence.webmd.net/display/WEBOPS/Deploying+Google+AMP
+
+
+https://www.ampproject.org/
+
+https://www.ampproject.org/docs/get_started/about-amp.html
+
+
+1. No pagination
+2. scroll-down auto triggerred
+3. query-string is different with desktop gpt. e.g., no cust_params,
+instead use scp
+
+4. googletag is not available
+
+
+5.  in AMP HTML page although I know "script tag is Prohibited unless the type is application/ld+json". 
+
+
+https://securepubads.g.doubleclick.net/gampad/ads?gdfp_req=1&correlator=3431418276393896
+https://securepubads.g.doubleclick.net/gampad/ads?gdfp_req=1&glade_req=1&glv=13&output=html&impl=ifr&is_amp=1&iu=%2F3379%2F
+
+
+///////////////////////////////////////
+
+1. Issue:
+
+https://www.ampproject.org/how-it-works/:
+
+ we realized early on is that many performance issues are caused by the integration of multiple JavaScript libraries, tools, embeds, etc. into a page. This isn’t saying that JavaScript immediately leads to bad performance, but once arbitrary JavaScript is in play, most bets are off because anything could happen at any time and it is hard to make any type of performance guarantee. With this in mind we made the tough decision that AMP HTML documents would not include any author-written JavaScript, nor any third-party scripts.
+
+
+To summarize: AMP HTML is a specialized subset of HTML with custom elements that provides reliable performance and instant loading of static content. 
+
+
+
+
+AMP Validator:
+===============
+The AMP validator isn’t just a convenience for you during development. It’s also used by platforms who integrate your AMP pages into their content and search results. More so, they usually don’t request the pages directly from your server but make use of the Google AMP Cache, a free service that caches your pages and makes them available across the world, so they load even faster.
+
+If the AMP validation service detects that there’s something wrong with your page, it won’t get discovered and distributed by third party websites and won’t appear in the Google AMP Cache. So not only would you lose the speed benefits of the cache, it’s likely that your page will not be seen in many places! That would be a shame, so let’s make sure it doesn’t happen.
+
+
+
+
+The whole point of AMP is to only allow a subset of web technologies to stop your page being slow.
+
+Javascript is often the cause of slow websites and so AMP pages do not allow them (except for the AMP scripts themselves), though they've tried to fill in the gap this leaves with amp components which are specially written to not be slow.
+
+So if you want to use Javascript you've several choices:
+
+1. Don't use AMP. Nobody is forcing this on you.
+2. Remove the script tag from your amp document and live without that functionality.
+3. Find an amp-component which does the same as your JavaScript and use that instead. 
+4. Use your Javascript in an amp iframe. These are allowed in amp pages but will presumable be loaded with a lower priority to ensure they don't slow down the main page.
+
+
+
+- https://jira.webmd.net/browse/PPE-68265
+- https://confluence.webmd.net/pages/viewpage.action?spaceKey=ConsumerDev&title=DFP+-+ad+units+for+AMP+project
+- http://ampas01p-con-08.portal.webmd.com:8080/amp/DCTM_091e9c5e81354bea#development=1
+- https://docs.newrelic.com/docs/browser/new-relic-browser/troubleshooting/google-amp-validator-fails-due-3rd-party-script
+- https://www.ampproject.org/docs/reference/spec.html
+
+
+
+- https://cdn.ampproject.org/v/s/www.wired.com/2016/07/sanders-endorses-clinton-supporters-still-claim-win/amp/?amp_js_v=5
+- https://cdn.ampproject.org/v/mobile.nytimes.com/2016/07/13/us/politics/bernie-sanders-hillary-clinton.amp.html?amp_js_v=5

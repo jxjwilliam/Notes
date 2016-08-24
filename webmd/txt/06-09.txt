@@ -1,0 +1,208 @@
+1. Issue:
+
+
+1. CORRECT (in Apple iOS, it works):
+--------------------------------------
+
+
+<video class="akamai-html5 akamai-media-element" controls="" poster="http://img.webmd.com/dtmcms/live/webmd/consumer_assets/site_images/video/black640x360.jpg" src="http://webmd-a.akamaihd.net/delivery/delivery/05/b3/05b3305c-93ef-458e-ad45-407735a40fb7/vd-3007-cntv-ed-1001_750k.mp4"></video>
+
+
+<video class="akamai-html5 akamai-media-element" controls="" poster="http://img.webmd.com/dtmcms/live/webmd/consumer_assets/site_images/video/black640x360.jpg" src="http://webmd-a.akamaihd.net/delivery/delivery/1d/db/1ddb681a-3c51-4c68-9e3d-ac9335b79b6c/morris-3-things-protect-brain-health_750k.mp4"></video>
+
+
+
+
+2. WRONG (in Android, it doesn't work): Error: Source not supported
+--------------------------------------------------------
+
+<video class="akamai-html5 akamai-media-element" poster="http://img.webmd.com/dtmcms/live/webmd/consumer_assets/site_images/video/black640x360.jpg" src="http://webmd-vh.akamaihd.net/i/delivery/delivery/1d/db/1ddb681a-3c51-4c68-9e3d-ac9335b79b6c/morris-3-things-protect-brain-health_,400k,1000k,4500k,2500k,750k,.mp4.csmil/master.m3u8" data-isad="false" controls=""></video>
+
+
+<video class="akamai-html5 akamai-media-element" controls="" poster="http://img.webmd.com/dtmcms/live/webmd/consumer_assets/site_images/video/black640x360.jpg" src="http://webmd-vh.akamaihd.net/i/delivery/delivery/1d/db/1ddb681a-3c51-4c68-9e3d-ac9335b79b6c/morris-3-things-protect-brain-health_,400k,1000k,4500k,2500k,750k,.mp4.csmil/master.m3u8"></video>
+
+
+The source file '...master.m3u8' means it just contains text - nothing that can actually "play" like how an MP4 or MP3 file can play in a media player.
+
+------------------------------------------------------------
+
+.M3U8 -  application/x-mpegURL or vnd.apple.mpegURL
+
+A file with the M3U8 file extension is a UTF-8 Encoded Audio Playlist file, the Unicode version of M3U.
+
+M3U8 files are plain text files that can be used by both audio and video players to describe where media files are located.
+
+
+
+application/x-mpegURL:
+
+
+
+/////////////////////////////////
+
+Android (Nexus 6P)
+1. www.m.webmd.com:
+<a class="type_vid" href="http://www.m.webmd.com/a-to-z-guides/video/sharp-mind" onclick="return sl(this,'','ed-sptlghtcrsl-hp');">
+  <div class="imgCont">
+    <img alt="3 Ways to Keep Your Mind Sharp" src="http://img.webmd.com/dtmcms/live/webmd/consumer_assets/site_images/article_thumbnails/news/2015/05_2015/diabetes_and_dementia/493x335_diabetes_and_dementia.jpg?resize=493:335">
+  </div>
+  <span class="content_type">WebMD Video</span>
+  <h3>3 Ways to Keep Your Mind Sharp</h3>
+</a>
+
+
+2. click to /video/sharp-mind page:
+
+<video class="akamai-html5 akamai-media-element" controls="" poster="http://img.webmd.com/dtmcms/live/webmd/consumer_assets/site_images/video/black640x360.jpg" src="http://webmd-vh.akamaihd.net/i/delivery/delivery/1d/db/1ddb681a-3c51-4c68-9e3d-ac9335b79b6c/morris-3-things-protect-brain-health_,400k,1000k,4500k,2500k,750k,.mp4.csmil/master.m3u8"></video>
+
+WRONG format.
+
+
+
+
+iOS (iPhone 6 Plus)
+1. http://www.m.webmd.com/
+<a class="type_vid" href="http://www.m.webmd.com/a-to-z-guides/video/sharp-mind" onclick="return sl(this,'','ed-sptlghtcrsl-hp');">
+  <div class="imgCont">
+    <img alt="3 Ways to Keep Your Mind Sharp" src="http://img.webmd.com/dtmcms/live/webmd/consumer_assets/site_images/article_thumbnails/news/2015/05_2015/diabetes_and_dementia/493x335_diabetes_and_dementia.jpg?resize=493:335">
+  </div>
+  <span class="content_type">WebMD Video</span>
+  <h3>3 Ways to Keep Your Mind Sharp</h3>
+</a>
+
+2. click to http://www.m.webmd.com/a-to-z-guides/video/sharp-mind
+
+<video class="akamai-html5 akamai-media-element" controls="" poster="http://img.webmd.com/dtmcms/live/webmd/consumer_assets/site_images/video/black640x360.jpg" src="http://webmd-a.akamaihd.net/delivery/delivery/1d/db/1ddb681a-3c51-4c68-9e3d-ac9335b79b6c/morris-3-things-protect-brain-health_750k.mp4"></video>
+
+CORRECT format.
+
+
+
+3) The HTML5 <video> element specifies a standard way to embed a video in a web page.
+
+- http://www.w3schools.com/html/html5_video.asp
+- https://developer.mozilla.org/en-US/docs/Web/HTML/Element/video
+
+
+
+
+4) Tests
+- Chrome Simulators
+- Xcode Simulator -> iPone 6s Plus works.
+- my Android cell phone doesn't show the video, which is correct.
+
+
+5) If using Charles
+
+
+
+6) Reference:
+
+- iOS Developer Library:
+https://developer.apple.com/library/ios/documentation/NetworkingInternet/Conceptual/StreamingMediaGuide/DeployingHTTPLiveStreaming/DeployingHTTPLiveStreaming.html
+
+- HTML 5 Video:
+
+  - http://www.w3schools.com/html/html5_video.asp
+  - https://developer.mozilla.org/en-US/docs/Web/HTML/Element/video
+
+- a M3U8 File:
+#EXTM3U
+#EXT-X-STREAM-INF:PROGRAM-ID=1, BANDWIDTH=200000
+gear1/prog_index.m3u8
+#EXT-X-STREAM-INF:PROGRAM-ID=1, BANDWIDTH=311111
+gear2/prog_index.m3u8
+#EXT-X-STREAM-INF:PROGRAM-ID=1, BANDWIDTH=484444
+gear3/prog_index.m3u8
+#EXT-X-STREAM-INF:PROGRAM-ID=1, BANDWIDTH=737777
+gear4/prog_index.m3u8
+
+
+This means it just contains text - nothing that can actually "play" like how an MP4 or MP3 file can play in a media player.
+
+---------------------------------------------------------
+
+/**
+ * Determine the mobile operating system.
+ * This function either returns 'iOS', 'Android' or 'unknown'
+ *
+ * @returns {String}
+ */
+function getMobileOperatingSystem() {
+  var userAgent = navigator.userAgent || navigator.vendor || window.opera;
+
+  if( userAgent.match( /iPad/i ) || userAgent.match( /iPhone/i ) || userAgent.match( /iPod/i)) {
+    return 'iOS';
+  } else if( userAgent.match( /Android/i)) {
+    return 'Android';
+  } else {
+    return 'unknown';
+  }
+}
+
+---------------------------------------------------------
+
+amp.premier.js:
+m3u8: "application/x-mpegURL",
+
+var config = {
+    
+    autoplay: false,
+    media: {
+      title: "HD World",
+      source: 
+      [
+        {src: "http://multiplatform-f.akamaihd.net/z/multi/april11/hdworld/hdworld_,512x288_450_b,640x360_700_b,768x432_1000_b,1024x576_1400_m,1280x720_1900_m,1280x720_2500_m,1280x720_3500_m,.mp4.csmil/manifest.f4m", type: "video/f4m"},
+
+        {src: "http://multiplatform-f.akamaihd.net/i/multi/april11/hdworld/hdworld_,512x288_450_b,640x360_700_b,768x432_1000_b,1024x576_1400_m,1280x720_1900_m,1280x720_2500_m,1280x720_3500_m,.mp4.csmil/master.m3u8", type: "application/x-mpegURL"}
+
+      ]
+    },
+    mediaanalytics: {
+      dimensions: { title: "TITLE1", eventName: "EVENTNAME1" }
+    }
+  },
+config2 = {
+    autoplay: false,
+    feed:
+    {
+        url: "/feeds/multi-feed-1.json"
+    }
+};
+
+
+//////////////////////
+
+You should put the Content-Type type specified in the RFC: 
+application/vnd.apple.mpegurl
+application/x-mpegurl
+application/x-mpegURL
+
+
+Android code (ICS, JB) looks at the URL to determine player selection! If the URL contains the keyword m3u8, then and only then, will it play HLS. This is obviously a bug in Android.
+
+
+
+
+
+
+
+
+
+/////////////////////
+
+<video id="example_video_1" class="video-js vjs-default-skin" controls autoplay preload="auto" webkit-playsinline="true" x-webkit-airplay="true" width="750" height="460" poster="" data-setup="{}">
+
+
+
+<video class="akamai-html5 akamai-media-element" controls="" poster="http://img.webmd.com/dtmcms/live/webmd/consumer_assets/site_images/video/black640x360.jpg" src="http://webmd-a.akamaihd.net/delivery/delivery/05/b3/05b3305c-93ef-458e-ad45-407735a40fb7/vd-3007-cntv-ed-1001_750k.mp4"></video>
+
+
+<video class="akamai-html5 akamai-media-element"
+poster="http://img.webmd.com/dtmcms/live/webmd/consumer_assets/site_images/video/black640x360.jpg"
+src="http://webmd-a.akamaihd.net/delivery/delivery/95/c2/95c21d57-c5c7-4951-ad83-489df741868d/alzheimers-special-report-knowing-and-managing-your-risk-for-alzheimers_750k.mp4"
+data-isad="false" controls=""></video>
+
+
+
+http://webmd-a.akamaihd.net/delivery/delivery/a0/4a/a04a2d08-f086-4619-b178-b1b27e835b27/video-rogen-surprise-alzheimers-2016
