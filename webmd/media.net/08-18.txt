@@ -127,3 +127,14 @@ No media.net, no bitexcahnge.js
 meida.net, bitexchange.js, mnet*: http://contextual.media.net/bidexchange.js?cid=8CU66J63J&version=3.1
 
 
+
+
+webmd.infiniteScrollDebounce.metricsCall({
+  moduleName: 'pg-n-swipe',
+  pageName: document.location.href.replace(/[\?#].*/, ''),
+  iCount: pageNumber,
+  refresh: false
+});
+
+
+////////////////////////

@@ -46,8 +46,8 @@ Auto-merging src/common/webmd.ads2.consumer.js
 CONFLICT (content): Merge conflict in src/common/webmd.ads2.consumer.js
 Automatic merge failed; fix conflicts and then commit the result.
 
-(integration-perf) $ git checkout --theirs src/common/webmd.ads2.consumer.js 
-(integration-perf) $ git checkout --theirs src/common/webmd.ads2.js 
+(integration-perf) $ git checkout --theirs PPE-74074-media.net src/common/webmd.ads2.consumer.js 
+(integration-perf) $ git checkout --theirs PPE-74074-media.net src/common/webmd.ads2.js 
 
 
 

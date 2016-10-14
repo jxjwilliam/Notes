@@ -1,0 +1,47 @@
+I call components encapsulated React components that are driven solely by props and don't talk to Redux. Same as “dumb components”. They should stay the same regardless of your router, data fetching library, etc.
+
+I call containers React components that are aware of Redux, Router, etc. They are more coupled to the app. Same as “smart components”.
+
+
+ it’s totally fine to use container components inside presentational components. The reason for this is simple: you want to be able to turn a presentational component into a container component at any time it needs too much information, and it would be a bummer if you had to convert all call sites when you do that. Therefore whether a component is presentational or a container is its implementation detail, and any components, whether presentational or containers, can use it just fine.
+
+
+redux-saga, redux-thunk
+
+
+
+///////////////////////////////////////////
+------ react-router-redux source code:
+
+import React from 'react'
+import ReactDOM from 'react-dom'
+import { createStore, combineReducers } from 'redux'
+import { Provider } from 'react-redux'
+import { Router, Route, browserHistory } from 'react-router'
+import { syncHistoryWithStore, routerReducer } from 'react-router-redux'
+
+import reducers from '<project-path>/reducers'
+
+// Add the reducer to your store on the `routing` key
+const store = createStore(
+  combineReducers({
+    ...reducers,
+    routing: routerReducer
+  })
+)
+
+// Create an enhanced history that syncs navigation events with the store
+const history = syncHistoryWithStore(browserHistory, store)
+
+ReactDOM.render(
+  <Provider store={store}>
+    { /* Tell the Router to use our enhanced history */ }
+    <Router history={history}>
+      <Route path="/" component={App}>
+        <Route path="foo" component={Foo}/>
+        <Route path="bar" component={Bar}/>
+      </Route>
+    </Router>
+  </Provider>,
+  document.getElementById('mount')
+)

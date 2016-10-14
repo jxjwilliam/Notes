@@ -57,7 +57,7 @@ The highlights:
 - Clear structure: controllers folder for parsing and objects assembly, routes folder for rendering, views folder for ejs templates, and modules/ folder for xml-resources 
 - The codes follow webmd-xsd-schemas.
 - Controllers can be reusable, e.g.: editorial1.xml and editorial2.xml share same controller.
-- Test scripts include in test foler (jasmine for unit test)
+- Test scripts include in test folder (jasmine for unit test)
 - Server-side rendering html-page with ejs template, better performance
 
 

@@ -16,3 +16,57 @@ googletag.pubads().addEventListener('slotRenderEnded', function(event) {
     tries++;
   }
 });
+
+
+///////// broker.js /////////////
+// http://siterecruit.comscore.com/sr/synvisc/broker.js
+// https://siterecruit.comscore.com/sr/synvisc/broker.js
+// http://siterecruit.comscore.com/sr/synvisc/broker.js
+// https://siterecruit.comscore.com/sr/synvisc/broker.js
+
+
+// -------- original: broker.js --------
+
+function addEvent(elem, event, fn) {
+    if (elem.addEventListener) {
+        elem.addEventListener(event, fn, false);
+    } else {
+    elem.attachEvent("on" + event, function() {
+        // set the this pointer same as addEventListener when fn is called
+        return(fn.call(elem, window.event));   
+    });
+  }
+}
+// event, fn are undefined.
+
+
+// ------------- new: broker.js -------------
+
+function addEvent(elem, event, fn) {
+    if (elem.addEventListener) {
+        elem.addEventListener(event, fn, false);
+    } else {
+      if (/msie (8|7)/i.test(navigator.userAgent)) { 
+        elem.attachEvent("on" + event, function() {
+            // set the this pointer same as addEventListener when fn is called
+            return(fn.call(elem, window.event));   
+        });
+      }
+    }
+}
+
+
+// ------------- updated: broker.js -------------
+
+function addEvent(elem, event, fn) {
+    if (elem.addEventListener) {
+        elem.addEventListener(event, fn, false);
+    } else {
+        if (typeof event !== 'undefined' && typeof fn !== 'undefined') {
+            elem.attachEvent("on" + event, function () {
+                // set the this pointer same as addEventListener when fn is called
+                return (fn.call(elem, window.event));
+            });
+        }
+    }
+}

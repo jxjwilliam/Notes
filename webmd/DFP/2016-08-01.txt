@@ -263,8 +263,8 @@ The testing URL can be:
 
 
 
-
-
+webmd.ads2.js:
+===============
 webmd.addFluid = function(settings) {
     // PPE-73708: Defect_Staging_Variable ‘Fluid’ is not getting tracked as separate variable in DFP call.
     if ((['2026', '5000'].indexOf(settings.pos) !== -1) && (settings.sizes.indexOf('fluid') === -1)) {

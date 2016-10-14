@@ -1,1 +1,4 @@
-reactjs.txt
+React+Webpack+Babel
+
+
+Mocha is the test framework we'll be using and Chai is an assertion/expectation library we'll use inside our tests to specify what we expect to happen.

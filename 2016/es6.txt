@@ -1,0 +1,77 @@
+`const` means that the identifier can’t be reassigned.
+
+Unlike true immutable datatypes such as those produced by Immutable.js and Mori, a `const` object can have properties mutated.
+
+
+`const` is my default choice over `let` because I want the usage to be as clear as possible in the code.
+
+
+`const` is a signal that the identifier won’t be reassigned.
+
+`let`, is a signal that the variable may be reassigned, such as a counter in a loop, or a value swap in an algorithm. It also signals that the variable will be used only in the block it’s defined in, which is not always the entire containing function.
+
+
+
+<App />
+
+<Comments />
+
+<Main />
+
+<Phone />
+
+<PhoneGrid />
+
+<Single />
+
+
+<!------>
+
+<Provider store={store}>
+  <Router path="/" component={App}>
+    <IndexRoute component={PhotoGrid} />
+    <Route path="/view/:postId" component={Single}></Route>
+  </Router>
+</Provider>
+
+<!------>
+npm config ls -l
+npm config list
+
+
+
+
+
+Module parse failed: Unexpected token 
+You may need an appropriate loader to handle this file type.
+
+
+If you use NodeJS version 5.3.0, you probably don't need Babel at all.
+
+
+The TC39 categorises proposals into 4 stages:
+
+stage-0 - Strawman: just an idea, possible Babel plugin.
+stage-1 - Proposal: this is worth working on.
+stage-2 - Draft: initial spec.
+stage-3 - Candidate: complete spec and initial browser implementations.
+stage-4 - Finished: will be added to the next yearly release.
+
+
+
+// .babelrc
+{
+  "presets": ["es2015", "react", "stage-2"]
+}
+$ npm install babel-preset-es2015 babel-preset-react babel-preset-stage-2 --save-dev
+
+
+{
+	test: /\.jsx?$/,
+	exclude: /node_modules/,
+	loader: "babel-loader",
+	query: {
+		cacheDirectory: true,
+		presets: ['es2015', "stage-0", 'react']
+    }
+}

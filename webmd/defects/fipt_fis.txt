@@ -1,0 +1,47 @@
+webmd.visit.isNewVisit()
+
+https://stash.portal.webmd.com/projects/CONSUI/repos/scripts/browse/src/common/webmd.m.firstImpression.js
+
+webmd.metrics.dpv()
+
+webmd.m.firstImpression.topicImpression
+
+https://jira.webmd.net/browse/PPE-81583
+
+
+
+self.topicImpression = 0;
+
+webmd.ads2.setPageTarget(self.siteImpressionTarget, self.siteImpression);
+webmd.ads2.setPageTarget(self.topicImpressionTarget, self.topicImpression);
+
+
+
+/**
+ * https://jira.webmd.net/browse/PPE-81583:
+ *   First Impression Parameter not resetting on page two
+ */
+if (!webmd.visit.isNewVisit()) {
+	webmd.ads2.setPageTarget('fis', 0);
+	//webmd.ads2.setPageTarget('fipt', 0);
+}			
+// webmd.metrics.js
+console.log('=== william testing: === ', webmd.visit.isNewVisit());
+
+
+(1) The version is available for core, mobile, responsive
+
+(2) Test URLs:
+http://www.perf.webmd.com/multiple-sclerosis/ss/slideshow-multiple-sclerosis-overview
+http://www.perf.webmd.com/diet/rm-quiz-caffeine-myths
+
+(3) For the testing, it is not necessary to clear browser cache every time. Here seems an easy way:
+
+in http://www.webmd.com/multiple-sclerosis/ss/slideshow-multiple-sclerosis-overview
+Chrome -> Application -> Cookies -> 
+delete '*ui*'
+
+Then refresh the page, *fipt* and *fis* will be reset, like first-time visit.
+
+/////////////////////////
+

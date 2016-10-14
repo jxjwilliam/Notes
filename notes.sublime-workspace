@@ -3,53 +3,34 @@
 	{
 		"selected_items":
 		[
+			[
+				"arg",
+				"arguments"
+			]
 		]
 	},
 	"buffers":
 	[
 		{
-			"contents": "Searching 213 files for \"fixed\"\n\n/Users/wjiang/Notes/2013/2013-03-03.txt:\n   41:  but prefixed with a colon instead of surrounded by quotes. . For example, :name is a symbol. \n\n/Users/wjiang/Notes/2014/inzite_argument.txt:\n    6: Because many new stuff were introduced and the site need to be fixed in details.\n\n/Users/wjiang/Notes/webmd/DFP/{ position: sticky; top: 10px; }:\n   10: 		'position': 'fixed',\n\n/Users/wjiang/Notes/webmd/doc/AMP Generator Solution Document - Consumer Development - WebMD Confluence.html:\n   41:             <style>.ia-fixed-sidebar, .ia-splitter-left {width: 231px;}.theme-default .ia-splitter #main {margin-left: 231px;}.ia-fixed-sidebar {visibility: hidden;}</style>\n  481:     			<div class=\"ia-fixed-sidebar\">\n\n/Users/wjiang/Notes/webmd/mobile-viewability/infinite-article-origin.js:\n  475:                 // making an 8 digit random number (using toFixed to make sure it's always 8)\n  476:                     randomNumber = Math.random().toFixed(8).substr(2, 8);\n\n8 matches across 5 files\n\n\nSearching 213 files for \"prev_scp\"\n\n/Users/wjiang/Notes/webmd/DFP/{ position: sticky; top: 10px; }:\n    1: prev_scp contains slot specific parameters \n   49: prev_scp:pos=2025|pos=1901|pos=2026|pos=2026\n\n/Users/wjiang/Notes/webmd/mobile-viewability/06-28.txt:\n   84: prev_scp: pos=2025|pos=1901\n   92: prev_scp: pos=2026\n\n/Users/wjiang/Notes/webmd/txt/03-10.txt:\n   12: prev_scp:\n   28: All the values in the DFP call can be traced in the prev_scp call too.\n   50: prev_scp:pos=101&mnetDNB=1&mnetPageID=0|pos=121&mnetDNB=1&mnetPageID=0\n   52: All the values in the DFP call can be traced in the prev_scp call too.\n   96: Header Bidding media.netparameters are shown in prev_scp on Desktop urls but not on MOBILE urls. prev_scp:pos=101&mnetCrid=356136642&mnetbidID=99&mnetbidderID=mnet&mnetbidPrice=15.00&mnet_placement=ads2-pos-101-bannerAd&mnetCID=8CU66J63J&mnetSize=728x90&mnTest=1&mnetPageID=0|pos=113|pos=121&mnetCrid=656615527&mnetbidID=99&mnetbidderID=mnet&mnetbidPrice=15.00&mnet_placement=ads2-pos-121-ad_right&mnetCID=8CU66J63J&mnetSize=300x250&mnTest=1&mnetPageID=0|pos=901\n\n/Users/wjiang/Notes/webmd/txt/03-14.txt:\n  116: - prev_scp - Slot specific targeting parameters.\n  123: - prev_scp contains ad targeting values used for individual ads. For example, it contains the pos value for each ad.\n  165: (B.1) In desktop version, the media.net header-bidding params are passed into 'prev_scp', like this:\n  167: prev_scp:prev_scp:pos=101&mnetDNB=1&mnetPageID=0|pos=121&mnetDNB=1&mnetPageID=0\n  171: (B.2) In mobile version, there is now media.net header-bdding params are passed to 'prev_scp', like this:\n  173: prev_scp:pos=1901|pos=2026\n\n17 matches across 4 files\n\n\nSearching 213 files for \"webmd.ads2\"\n\n/Users/wjiang/Notes/webmd/DFP/2016-08-01.txt:\n    1: (1) webmd.ads2.js -> defineAd:\n   19: for (var i in webmd.ads2.ads) {\n   20:   var ss = webmd.ads2.ads[i].sizes;\n\n/Users/wjiang/Notes/webmd/DFP/ads.txt:\n   14: webmd.ads2Consumer.defineAd({\n   39: webmd.ads2Consumer.display();\n   43: webmd.ads2Consumer.defineAd({\n   51: webmd.ads2Consumer.defineAd({\n   57: webmd.ads2Consumer.display();\n   62: webmd.ads2Consumer.refresh();\n   75: webmd.ads2Consumer.defineAd({targets:{art:'091e9c5e80f67e80',cc:'148',env:'&amp;env=1',hcent:'1004',leaf:'&amp;leaf=',mcent:'',mic:'',pt:'2731',sec:'1637',pug:'__',scent:'',tmg:'',tug:'',uri:'%2fdiet%2fdefault'},blockCodes:'_diet_e1_food_',id:'ads2-pos-101-ad_banner',pos:'101',sizes:[[728,90],[970, 90],[970,250]]});\n   78: webmd.ads2Consumer.defineAd({targets:{art:'091e9c5e80f67e80',cc:'148',env:'&amp;env=1',hcent:'1004',leaf:'&amp;leaf=',mcent:'',mic:'',pt:'2731',sec:'1637',pug:'__',scent:'',tmg:'',tug:'',uri:'%2fdiet%2fdefault'},blockCodes:'_diet_e1_food_',id:'ads2-pos-121-ad_rr_p1',pos:'121',sizes:[[300,250],[300, 600],[300,1050]]});\n   82: webmd.ads2Consumer.defineAd({targets:{art:'091e9c5e80f67e80',cc:'148',env:'&amp;env=1',hcent:'1004',leaf:'&amp;leaf=',mcent:'',mic:'',pt:'2731',sec:'1637',pug:'__',scent:'',tmg:'',tug:'',uri:'%2fdiet%2fdefault'},blockCodes:'_diet_e1_food_',id:'ads2-pos-137-ad_rr_p2',pos:'137',sizes:[[300,251],[300, 250]]});\n   85: webmd.ads2Consumer.defineAd({targets:{art:'091e9c5e80f67e80',cc:'148',env:'&amp;env=1',hcent:'1004',leaf:'&amp;leaf=',mcent:'',mic:'',pt:'2731',sec:'1637',pug:'__',scent:'',tmg:'',tug:'',uri:'%2fdiet%2fdefault'},blockCodes:'_diet_e1_food_',id:'ads2-pos-5002-ad_rr1_icm',pos:'5002',sizes:[1,2]});\n   88: webmd.ads2Consumer.defineAd({targets:{art:'091e9c5e80f67e80',cc:'148',env:'&amp;env=1',hcent:'1004',leaf:'&amp;leaf=',mcent:'',mic:'',pt:'2731',sec:'1637',pug:'__',scent:'',tmg:'',tug:'',uri:'%2fdiet%2fdefault'},blockCodes:'_diet_e1_food_',id:'ads2-pos-5003-ad_rr2_icm',pos:'5003',sizes:[1,2]});\n   91: webmd.ads2Consumer.defineAd({targets:{art:'091e9c5e80f67e80',cc:'148',env:'&amp;env=1',hcent:'1004',leaf:'&amp;leaf=',mcent:'',mic:'',pt:'2731',sec:'1637',pug:'__',scent:'',tmg:'',tug:'',uri:'%2fdiet%2fdefault'},blockCodes:'_diet_e1_food_',id:'ads2-pos-5000-ad_cw1_icm',pos:'5000',sizes:[1,2]});\n   94: webmd.ads2Consumer.defineAd({targets:{art:'091e9c5e80f67e80',cc:'148',env:'&amp;env=1',hcent:'1004',leaf:'&amp;leaf=',mcent:'',mic:'',pt:'2731',sec:'1637',pug:'__',scent:'',tmg:'',tug:'',uri:'%2fdiet%2fdefault'},blockCodes:'_diet_e1_food_',id:'ads2-pos-901-1x1ad',pos:'901',sizes:[1,1]});\n  114: webmd.ads2Consumer.defineAd({targets:{art:'091e9c5e80eff7b3',cc:'83',env:'&amp;env=1',hcent:'',leaf:'&amp;leaf=1257',mcent:'',mic:'',pt:'1728',sec:'',pug:'__',scent:'',tmg:'',tug:'',uri:'%2fdefault'},blockCodes:'__',id:'ads2-pos-101-ad_banner',pos:'101',sizes:[[728,90],[970, 90],[970,250]]});\n  116: webmd.ads2Consumer.defineAd({targets:{art:'091e9c5e80eff7b3',cc:'83',env:'&amp;env=1',hcent:'',leaf:'&amp;leaf=1257',mcent:'',mic:'',pt:'1728',sec:'',pug:'__',scent:'',tmg:'',tug:'',uri:'%2fdefault'},blockCodes:'__',id:'ads2-pos-121-ad_rr_p1',pos:'121',sizes:[[300,250],[300, 600],[300,1050]]});\n  143: webmd.ads2.defineAd({id:'ContentPane5', pos:121, sizes:[300,250]});\n  145: webmd.ads2.defineAd({id:'ContentPane6', pos:121, sizes:[300,250], immediate: true});\n  147: webmd.ads2.refresh();\n  149: webmd.ads2.display(); //no work anymore.\n  186: webmd.ads2.refresh();\n\n/Users/wjiang/Notes/webmd/js/ajax.js:\n  103: 								webmd.ads2.setPageTarget(options);\n  106: 								webmd.ads2.refresh();\n  121: 					webmd.ads2.setPageTarget(options);\n  124: 					webmd.ads2.refresh();\n\n/Users/wjiang/Notes/webmd/mobile-viewability/infinite-article-origin.js:\n  272:                 if (typeof webmd.ads2 != 'undefined' && webmd.ads2.isInitialized()) {\n  452:                 webmd.ads2.setPageTarget('pg', isNaN(num) ? 1 : num);\n  454:                 webmd.ads2.defineAd({\n  718:                 webmd.ads2.setPageTarget({\n  724:                 webmd.ads2.defineAd({\n  733:                 if (webmd.ads2.pageTarget.hasOwnProperty('al')) {\n  734:                     delete webmd.ads2.pageTargets.al;\n\n/Users/wjiang/Notes/webmd/mobile-viewability/page1.html:\n  325: 				webmd.ads2Consumer.defineAd({targets:{art:'091e9c5e80cacf6a',cc:'17',env:'&amp;env=1',hcent:'11065',leaf:'&amp;leaf=',mcent:'',mic:'',pt:'1663',sec:'',pug:'__',scent:'',tmg:'',tug:'',uri:'%2fdepression%2fnews%2f20130513%2fdaily-gene-rhythms-may-be-off-in-depressed-people'},blockCodes:'_r96_i_f33_gen1_',id:'ads2-pos-2025-ad_top',pos:'2025',sizes:[[300,50], [320, 50]]});\n  466:         webmd.ads2.setPageTarget('pg', 1);\n  573: 				webmd.ads2Consumer.defineAd({targets:{art:'091e9c5e80cacf6a',cc:'17',env:'&amp;env=1',hcent:'11065',leaf:'&amp;leaf=',mcent:'',mic:'',pt:'1663',sec:'',pug:'__',scent:'',tmg:'',tug:'',uri:'%2fdepression%2fnews%2f20130513%2fdaily-gene-rhythms-may-be-off-in-depressed-people'},blockCodes:'_r96_i_f33_gen1_',id:'ads2-pos-2026-ad_btm',pos:'2026',sizes:[[300,50], [300, 51], [300,250], [300,253], [320, 50], [320, 51]]});\n  691: 				webmd.ads2Consumer.defineAd({targets:{art:'091e9c5e80cacf6a',cc:'17',env:'&amp;env=1',hcent:'11065',leaf:'&amp;leaf=',mcent:'',mic:'',pt:'1663',sec:'',pug:'__',scent:'',tmg:'',tug:'',uri:'%2fdepression%2fnews%2f20130513%2fdaily-gene-rhythms-may-be-off-in-depressed-people'},blockCodes:'_r96_i_f33_gen1_',id:'ads2-pos-1901-1x1ad',pos:'1901',sizes:[1,1]});\n  862:     if (webmd.ads2 && webmd.ads2.isInitialized()) {\n  863:         webmd.ads2Consumer.display();\n\n/Users/wjiang/Notes/webmd/txt/03-28.txt:\n   49: webmd.ads2Consumer.defineAd({targets:{art:'091e9c5e80eff7b3',cc:'83',env:'&amp;env=0',hcent:'',leaf:'&amp;leaf=1257',mcent:'',mic:'',pt:'1728',sec:'',pug:'__',scent:'',tmg:'',tug:'',uri:'%2fdefault'},blockCodes:'__',id:'ads2-pos-101-ad_banner',pos:'101',sizes:[[728,90],[970, 90],[970,250]]});\n   54: webmd.ads2Consumer.defineAd({targets:{art:'091e9c5e80eff7b3',cc:'83',env:'&amp;env=0',hcent:'',leaf:'&amp;leaf=1257',mcent:'',mic:'',pt:'1728',sec:'',pug:'__',scent:'',tmg:'',tug:'',uri:'%2fdefault'},blockCodes:'__',id:'ads2-pos-121-ad_rr_p1',pos:'121',sizes:[[300,250],[300, 600],[300,1050]]});\n   57: webmd.ads2Consumer.display();\n\n/Users/wjiang/Notes/webmd/txt/03-30.txt:\n   49: webmd.ads2Consumer.defineAd({targets:{art:'091e9c5e80eff7b3',cc:'83',env:'&amp;env=0',hcent:'',leaf:'&amp;leaf=1257',mcent:'',mic:'',pt:'1728',sec:'',pug:'__',scent:'',tmg:'',tug:'',uri:'%2fdefault'},blockCodes:'__',id:'ads2-pos-101-ad_banner',pos:'101',sizes:[[728,90],[970, 90],[970,250]]});\n   54: webmd.ads2Consumer.defineAd({targets:{art:'091e9c5e80eff7b3',cc:'83',env:'&amp;env=0',hcent:'',leaf:'&amp;leaf=1257',mcent:'',mic:'',pt:'1728',sec:'',pug:'__',scent:'',tmg:'',tug:'',uri:'%2fdefault'},blockCodes:'__',id:'ads2-pos-121-ad_rr_p1',pos:'121',sizes:[[300,250],[300, 600],[300,1050]]});\n   57: webmd.ads2Consumer.display();\n\n/Users/wjiang/Notes/webmd/txt/06-08.txt:\n   77: In webmd.ads2.consumer.js, we extend this targets by adding more key-value pairs, in this case: bp=numeric:\n   82: We can add as many key-value pairs to targets as we can. After this we call webmd.ads2.setPageTarget(key, value).\n   84: In webmd.ads2.setPageTarget function, we process the *targets' object:\n   87: 	webmd.ads2.pageTargets[targets.key] = targets.value;\n   89: The targets will be sent to DFP ad calls cust_params query-string, while save a copy locally in webmd.ads2.pageTargets object.\n   95: To prevent this params in IE9 & below, webmd.ads2.consumer.js should be like this:\n\n/Users/wjiang/Notes/webmd/txt/apt.txt:\n  126:   // call webmd.ads2, webmd.adsConsumer for render the page\n\n/Users/wjiang/Notes/webmd/txt/DFP.txt:\n  105: webmd.ads2.defineAd({\n\n/Users/wjiang/Notes/webmd/txt/feature-PPE38895_header_bidding.txt:\n   46: - update src/common/webmd.ads2.js to add media.net bidding codes.\n\n/Users/wjiang/Notes/webmd/txt/iri.txt:\n   36: git diff integration-perf -- src/common/webmd.ads2.consumer.js\n   39: git diff --cc src/common/webmd.ads2.consumer.js\n   45: Auto-merging src/common/webmd.ads2.consumer.js\n   46: CONFLICT (content): Merge conflict in src/common/webmd.ads2.consumer.js\n   49: (integration-perf) $ git checkout --theirs src/common/webmd.ads2.consumer.js \n   50: (integration-perf) $ git checkout --theirs src/common/webmd.ads2.js \n\n/Users/wjiang/Notes/webmd/txt/questions.txt:\n   46: (2) gpt.js is total 3286 bytes. We just download and put in webmd.ads2.js file:\n   47: So the scripts/webmd.ads2.js like this:\n   52: // webmd.ads2 stuff…\n   55: webmd.ads2 = {…}\n\n67 matches across 13 files\n\n\nSearching 213 files for \"'fluid'\"\n\n/Users/wjiang/Notes/webmd/DFP/2016-08-01.txt:\n    8: if(settings.sizes.indexOf('fluid') === -1) {\n    9:     settings.sizes.push('fluid');\n\n2 matches in 1 file\n\n\nSearching 213 files for \"sticky\"\n\n/Users/wjiang/Notes/2014/javascript-collection.txt:\n   17: https://github.com/simpulton/angular-sticky-notes\n   24: angularjs sticky notes localstorage\n\n/Users/wjiang/Notes/webmd/DFP/2016-08-01.txt:\n   47: 	$topAd.css({position: \"sticky\", top: \"60px\"});\n   71:     var  stickyHead = {\n   72:         killStickyHead: '',\n   73:         stickySettings: {\n   79:             stopStickyHeight: 300,\n   90:             // hardcode a default height for now to prevent the sticky jumpiness if user scrolls.\n   91:             // Also, use timeout to get the original value if the header is not sticky yet\n   92:             stickyHead.stickySettings.originalTopAdTop = 104;//$(\"#adtagheader\").offset().top;\n   95:                     stickyHead.stickySettings.originalTopAdTop = $(\"#adtagheader\").offset().top;\n  100:             $(window).on('scroll', stickyHead.stickyHeadscrollHandler).load(function () {\n  101:                 stickyHead.killStickyHead = setTimeout(function () {\n  103:                         stickyHead.animateOffSticky();\n  106:                         stickyHead.disableSticky();\n  111:         stickyRefresh: function () {\n  112:             clearTimeout(stickyHead.killStickyHead);\n  113:             $(window).on('scroll', stickyHead.stickyHeadscrollHandler);\n  114:             stickyHead.killStickyHead = setTimeout(function () {\n  116:                     stickyHead.animateOffSticky();\n  119:                     stickyHead.disableSticky();\n  122:             $(document).trigger(\"stickyRefresh\");\n  124:         stickyHeadscrollHandler: function () {\n  125:             //clearTimeout(stickyHead.killStickyHead);\n  126:             var winScrollTop = stickyHead.stickySettings.$window.scrollTop();\n  127:             if (winScrollTop > stickyHead.stickySettings.$adtagheader.offset().top) {\n  128:                 stickyHead.addSticky();\n  129:             } else if ($(\"#adtagheader\").offset().top <= stickyHead.stickySettings.originalTopAdTop) {\n  130:                 stickyHead.removeSticky();\n  133:                 stickyHead.animateOffSticky();\n  136:         animateOffSticky: function () {\n  137:             stickyHead.disableSticky();\n  138:             stickyHead.stickySettings.$adtagheader.slideUp({\n  140:                     $(document).trigger(\"animateOffStickyStep\");\n  142:                     //stickyHead.stickySettings.$adtagheader.slideUp(\"slow\", function () {\n  143:                     stickyHead.stickySettings.$adtagheader.hide();\n  144:                     stickyHead.stickySettings.$adtagheader.slideDown(function () {\n  145:                         stickyHead.stickySettings.$adtagheader.removeClass(\"stickHeader\").addClass(\"unStickHeader\");\n  146:                         stickyHead.stickySettings.$headerbox.css({\n  150:                     stickyHead.stickySettings.$adtagheader.show();\n  153:             $(document).trigger(\"animationOffSticky\");\n  155:         stickyKillSwitch: function () {\n  156:             stickyHead.disableSticky();\n  157:             stickyHead.removeSticky();\n  159:         disableSticky: function () {\n  160:             $(window).off('scroll', stickyHead.stickyHeadscrollHandler);\n  162:         addSticky: function () {\n  163:             stickyHead.stickySettings.$headerbox.css({\n  164:                 \"padding-bottom\": stickyHead.stickySettings.originalAdHeight + \"px\"\n  166:             stickyHead.stickySettings.$adtagheader.removeClass(\"unStickHeader\").addClass(\"stickHeader\");\n  168:         removeSticky: function () {\n  169:             stickyHead.stickySettings.$adtagheader.removeClass(\"stickHeader\").addClass(\"unStickHeader\");\n  170:             stickyHead.stickySettings.$headerbox.css({\n  176:     var adTime = webmd.url.getParam('adhesive')  || stickyHead.stickySettings.stopStichyTime;\n  177:     var adHeight = webmd.url.getParam('adheight')  || stickyHead.stickySettings.stopStickyHeight;\n  179:     stickyHead.init();\n\n/Users/wjiang/Notes/webmd/txt/sticky.txt:\n   37: { position: sticky; top: 10px; }\n   39: $('div#ads2-pos-101-ad_banner').css('position', 'sticky');\n\n95 matches across 3 files\n",
+			"contents": "`const` means that the identifier can’t be reassigned.\n\nUnlike true immutable datatypes such as those produced by Immutable.js and Mori, a `const` object can have properties mutated.\n\n\n`const` is my default choice over `let` because I want the usage to be as clear as possible in the code.\n\n\n`const` is a signal that the identifier won’t be reassigned.\n\n`let`, is a signal that the variable may be reassigned, such as a counter in a loop, or a value swap in an algorithm. It also signals that the variable will be used only in the block it’s defined in, which is not always the entire containing function.\n\n\n\n<App />\n\n<Comments />\n\n<Main />\n\n<Phone />\n\n<PhoneGrid />\n\n<Single />\n\n\n<!------>\n\n<Provider store={store}>\n  <Router path=\"/\" component={App}>\n    <IndexRoute component={PhotoGrid} />\n    <Route path=\"/view/:postId\" component={Single}></Route>\n  </Router>\n</Provider>\n\n<!------>\nnpm config ls -l\nnpm config list\n\n\n\n\n\nModule parse failed: Unexpected token \nYou may need an appropriate loader to handle this file type.\n\n\nIf you use NodeJS version 5.3.0, you probably don't need Babel at all.\n\n\nThe TC39 categorises proposals into 4 stages:\n\nstage-0 - Strawman: just an idea, possible Babel plugin.\nstage-1 - Proposal: this is worth working on.\nstage-2 - Draft: initial spec.\nstage-3 - Candidate: complete spec and initial browser implementations.\nstage-4 - Finished: will be added to the next yearly release.\n\n\n\n// .babelrc\n{\n  \"presets\": [\"es2015\", \"react\", \"stage-2\"]\n}\n$ npm install babel-preset-es2015 babel-preset-react babel-preset-stage-2 --save-dev\n\n\n{\n	test: /\\.jsx?$/,\n	exclude: /node_modules/,\n	loader: \"babel-loader\",\n	query: {\n		cacheDirectory: true,\n		presets: ['es2015', \"stage-0\", 'react']\n    }\n}",
+			"file": "2016/es6.txt",
+			"file_size": 1676,
+			"file_write_time": 131206905310000000,
 			"settings":
 			{
-				"buffer_size": 15715,
+				"buffer_size": 1721,
 				"line_ending": "Unix",
-				"name": "Find Results",
-				"scratch": true
+				"name": "es6.txt"
 			}
 		},
 		{
-			"file": "webmd/DFP/2016-08-01.txt",
+			"contents": "npm init -y --> package.json\n\n\nnpm install --save-dev mocha chai\nMocha is the test framework we'll be using and Chai is an assertion/expectation library we'll use inside our tests to specify what we expect to happen.\n\n\n$ babel client/reduxstagram.js --presets es2015,react,stage-0\n\n$ npm install babel-preset-stage-0\n\n.babelrc:\n{\n  \"presets\": [\"es2015\", \"stage-0\", \"react\"]\n}\n\n\nnpm install webpack-dev-server",
+			"file": "2016/cmd.txt",
+			"file_size": 271,
+			"file_write_time": 131206857060000000,
 			"settings":
 			{
-				"buffer_size": 8819,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"contents": "\nSkip to end of metadata\nCreated by McBride, Jeffrey (Jeff), last modified by Pearson, Carlo on Aug 05, 2016 Go to start of metadata\n \n The Condition Management project is using a NodeJS front end that talks to a restful API on the back end.We are using React with Redux to create an isomorphic application for the front end architecture.  \nReact\nWeb framework\nthe V in MVC\nResponds to events\nUpdates virutal DOM and renders only relevevant parts of the real DOM\nMade up of composable components\nEssentially a state machine\nAs of React 15 ie8 support is discontinued\nRedux\nImplementation of the Facebook flux pattern that has a single source of truth for state\nMade up of actions that are dispatched through a reducer\nThe reducer is made up of pure functions\nMaintains implied immutable state\nstate is passed through a store vs passed between components\nJSX\nshould be pre-compiled into es3 javascript for production use\nif you use babel to transpile your jsx into vanilla javascript be aware of the caveats.\nIsomorphic Application\nUses same code on client and server\nif this error shows up on browser console:  Cannot read property '_ansicursor' of undefined, this means you are requiring a node ONLY module on browser\nCan run either as a SPA or Postback type of application\nAdds application resiliency when javascript is not available on the browser or browser support is lacking\nIf client browser does not have js, the application renders the page server side\nIf client browser supports js, the application is run client side\nREACT-Client-Side  \n\n\n9 things every React.js should know:\n=====================================\n1. It is just a view library\n\n2. Keep your components small\n\n3. Write functional components\n\n4. Write stateless components\n\nState makes components difficult to test\nState makes components difficult to reason about\nState makes it too easy to put business logic in the component\nState makes it difficult to share information to other parts of the app\n\n5. Use Redux.js\n\n- Components are given callback functions as props, which they call when a UI event happens\n- Those callbacks create and dispatch actions based on the event\n- Reducers process the actions, computing the new state\n- The new state of the whole application goes into a single store.\n- Components receive the new state as props and re-render themselves where needed.\n\n\nImmutable.js, redux-thunk, reselect\n\n\n6. Always use propTypes\n\n\n7. Use shallow rendering\n\nRender logic\nProp transformations\nUser interaction\nIntegration testing\non TDD\n\n\n8. Use JSX, ES6, Babel, Webpack, and NPM\n\n9. Use the React and Redux dev tools\n\n\n\n5 essential reactjs questions\n======================================\n\n// When the component is added to the DOM:\ncomponentDidMount() {...}\n\n// When the component is removed from the DOM:\ncomponentWillUnmount() {...}\n\n\nBabel will compile our ECMAScript 6 code into browser-compatible ECMAScript 5, and webpack will bundle the compiled JavaScript, as well as just generally make development faster. \n\n\n\ntap, taphold\nswipe, swipeleft, swiperight\ntouchstart touchmove\n\n\n\n    <style>\n        .stickHeader {\n            position: fixed;\n            width: 100%;\n            top: 48px;\n            z-index: 5500000;\n            margin-top: 28px;\n            background-color: #f4f8f9;\n            padding-bottom: 3px;\n        }\n\n        .unStickHeader {\n            position: relative;\n            top: auto;\n        }\n    </style>\n",
-			"file": "2016/reactjs.txt",
-			"file_size": 11,
-			"file_write_time": 131152380880000000,
-			"settings":
-			{
-				"buffer_size": 3434,
-				"line_ending": "Unix",
-				"name": "reactjs.txt"
-			}
-		},
-		{
-			"file": "webmd/txt/03-14.txt",
-			"settings":
-			{
-				"buffer_size": 7343,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "webmd/txt/03-10.txt",
-			"settings":
-			{
-				"buffer_size": 3244,
+				"buffer_size": 408,
 				"line_ending": "Unix"
 			}
 		}
@@ -92,34 +73,80 @@
 	"expanded_folders":
 	[
 		"/Users/wjiang/Notes",
-		"/Users/wjiang/Notes/css"
+		"/Users/wjiang/Notes/2016",
+		"/Users/wjiang/Notes/webmd",
+		"/Users/wjiang/Notes/webmd/mobile-viewability",
+		"/Users/wjiang/Notes/webmd/txt"
 	],
 	"file_history":
 	[
-		"/Users/wjiang/Notes/webmd/DFP/sticky.txt",
-		"/Users/wjiang/Notes/webmd/DFP/2016-08-01.txt",
-		"/Users/wjiang/Notes/webmd/txt/DFP.txt",
-		"/Users/wjiang/Notes/webmd/amp/0705.txt",
-		"/Users/wjiang/Notes/2016/03-24.txt",
-		"/Users/wjiang/Notes/webmd/amp/0712.txt",
-		"/Users/wjiang/Notes/webmd/reports/07-19.txt",
-		"/Users/wjiang/Notes/webmd/mobile-viewability/07-24.html",
-		"/Users/wjiang/Notes/webmd/mobile-viewability/topicId.txt",
-		"/Users/wjiang/Notes/webmd/mobile-viewability/07-20.txt",
-		"/Users/wjiang/Notes/webmd/mobile-viewability/debounce.js",
-		"/Users/wjiang/Notes/webmd/mobile-viewability/infinite-article-origin.js",
+		"/Users/wjiang/Notes/javascript/j10-05.js",
+		"/Users/wjiang/Notes/webmd/defects/fipt_fis.txt",
+		"/Users/wjiang/Notes/webmd/webmd.txt",
+		"/Users/wjiang/Notes/jsbin/parse-compile-interpolate.html",
+		"/Users/wjiang/Notes/javascript/j10-05",
+		"/Users/wjiang/Notes/webmd/media.net/08-31.txt",
 		"/Users/wjiang/Notes/webmd/mobile-viewability/06-28.txt",
+		"/Users/wjiang/Notes/webmd/js/video-heartbeat.js",
+		"/Users/wjiang/Notes/2016/reactjs.txt",
+		"/Users/wjiang/Notes/webmd/media.net/old-PERF-header-bidding-boots-fit.js.txt",
+		"/Users/wjiang/Notes/webmd/media.net/PERF-header-bidding.js.txt",
+		"/Users/wjiang/Notes/webmd/js/oas.js",
+		"/Users/wjiang/Notes/webmd/txt/03-07.txt",
+		"/Users/wjiang/Notes/webmd/amp/0712.txt",
+		"/Users/wjiang/Notes/webmd/DFP/2016-08-01.txt",
+		"/Users/wjiang/Notes/webmd/txt/pug.txt",
+		"/Users/wjiang/Notes/webmd/DFP/stackoverflow.html",
+		"/Users/wjiang/Notes/2016/redux",
+		"/Users/wjiang/Notes/webmd/DFP/ads.txt",
+		"/Users/wjiang/Notes/webmd/txt/DFP.txt",
+		"/Users/wjiang/Notes/webmd/mobile-viewability/07-24.html",
+		"/Users/wjiang/Notes/debounce.js",
+		"/Users/wjiang/Notes/webmd/defects/09-12.txt",
+		"/Users/wjiang/Notes/plunkr/contactCard.html",
+		"/Users/wjiang/Notes/plunkr/checkList.html",
+		"/Users/wjiang/Notes/webmd/media.net/08-18.txt",
+		"/Users/wjiang/Notes/2013/2013-05-24.txt",
+		"/Users/wjiang/Notes/webmd/media.net/09-12.txt",
 		"/Users/wjiang/Notes/webmd/mobile-viewability/page1.html",
+		"/Users/wjiang/Notes/webmd/txt/02-22.txt",
+		"/Users/wjiang/Notes/webmd/txt/03-10.txt",
+		"/Users/wjiang/Notes/webmd/txt/03-14.txt",
+		"/Users/wjiang/Notes/webmd/media.net/new-PERF-header-bidding-boots-fit.js.txt",
+		"/Users/wjiang/Notes/webmd/media.net/PERF-header-bidding-boots-fit.js.txt",
+		"/Users/wjiang/Notes/webmd/txt/feature-PPE38895_header_bidding.txt",
+		"/Users/wjiang/Notes/webmd/txt/header.txt",
+		"/Users/wjiang/Notes/webmd/DFP/stackoverflow.js",
+		"/Users/wjiang/Notes/.gitignore",
+		"/Users/wjiang/Notes/webmd/txt/iri.txt",
+		"/Users/wjiang/Notes/webmd/js/header.js",
+		"/Users/wjiang/Notes/webmd/mobile-viewability/07-20.txt",
+		"/Users/wjiang/Notes/2015/test.txt",
+		"/Users/wjiang/Notes/protractor/spec2.js",
+		"/Users/wjiang/Notes/webmd/DFP/objectEquals.txt",
+		"/Users/wjiang/Notes/protractor/conf.js",
+		"/Users/wjiang/Notes/webmd/txt/nodeApp.txt",
+		"/Users/wjiang/Notes/webmd/txt/performance.txt",
+		"/Users/wjiang/Notes/webmd/txt/apt.txt",
+		"/Users/wjiang/Notes/webmd/txt/header-bidding.txt",
+		"/Users/wjiang/Notes/webmd/txt/sprint20.txt",
+		"/Users/wjiang/Notes/webmd/js/header-fix-ie8.js",
+		"/Users/wjiang/Notes/webmd/js/ajax.js",
+		"/Users/wjiang/Notes/webmd/mobile-viewability/topicId.txt",
+		"/Users/wjiang/Notes/webmd/mediaNet.txt",
+		"/Users/wjiang/Notes/webmd/amp/0705.txt",
+		"/Users/wjiang/Notes/webmd/txt/03-23.txt",
+		"/Users/wjiang/Notes/webmd/mobile-viewability/infinite-article-origin.js",
+		"/Users/wjiang/Notes/webmd/DFP/function objectEquals(obj1, obj2) {",
+		"/Users/wjiang/Notes/webmd/DFP/sticky.txt",
+		"/Users/wjiang/Notes/2016/03-24.txt",
+		"/Users/wjiang/Notes/webmd/reports/07-19.txt",
+		"/Users/wjiang/Notes/webmd/mobile-viewability/debounce.js",
 		"/Users/wjiang/Notes/webmd/mobile-viewability/page2.html",
 		"/Users/wjiang/Notes/webmd/mobile-viewability/.infinite-article-origin.js.swp",
-		"/Users/wjiang/Notes/plunkr/contactCard.html",
 		"/Users/wjiang/Notes/2014/css3.txt",
 		"/Users/wjiang/Notes/webmd/doc/consumer-desktop-mobile-position.txt",
-		"/Users/wjiang/Notes/webmd/DFP/ads.txt",
 		"/Users/wjiang/Notes/webmd/DFP/stackoverflow.txt",
-		"/Users/wjiang/Notes/webmd/txt/apt.txt",
-		"/Users/wjiang/Notes/webmd/txt/iri.txt",
-		"/Users/wjiang/Notes/webmd/DFP/stackoverflow.html",
 		"/Users/wjiang/Notes/webmd/js/debounce.js",
 		"/Users/wjiang/Notes/webmd/txt/06-28.txt",
 		"/Users/wjiang/Notes/debounce",
@@ -129,16 +156,11 @@
 		"/Users/wjiang/Notes/webmd/txt/0628.txt",
 		"/Users/wjiang/Notes/webmd/txt/0608.txt",
 		"/Users/wjiang/Notes/webmd/iri.txt",
-		"/Users/wjiang/Notes/webmd/js/ajax.js",
 		"/Users/wjiang/Notes/webmd/js/:::::: 63010",
-		"/Users/wjiang/Notes/webmd/js/header-fix-ie8.js",
-		"/Users/wjiang/Notes/webmd/js/header.js",
 		"/Users/wjiang/Notes/webmd/js/heartbeat.js",
 		"/Users/wjiang/Notes/webmd/js/ajax",
-		"/Users/wjiang/Notes/webmd/txt/pug.txt",
 		"/Users/wjiang/Notes/webmd/js/scripts_harmony.js",
 		"/Users/wjiang/Notes/webmd/txt/dfp.txt",
-		"/Users/wjiang/Notes/webmd/txt/03-23.txt",
 		"/Users/wjiang/Notes/webmd/txt/03-28.txt",
 		"/Users/wjiang/Notes/webmd/txt/11-18.txt",
 		"/Users/wjiang/Notes/2014/2014-09-17.txt",
@@ -150,9 +172,6 @@
 		"/Users/wjiang/Notes/webmd/js/header-fix-ie8.txt",
 		"/Users/wjiang/Notes/webmd/js/header.txt",
 		"/Users/wjiang/Notes/webmd/txt/01-28.txt",
-		"/Users/wjiang/Notes/webmd/DFP/stackoverflow.js",
-		"/Users/wjiang/Notes/webmd/txt/03-07.txt",
-		"/Users/wjiang/Notes/webmd/txt/03-14.txt",
 		"/Users/wjiang/Notes/webmd/txt/dfp1.txt",
 		"/Users/wjiang/Notes/webmd/03-23.txt",
 		"/Users/wjiang/Notes/webmd/03-30.txt",
@@ -188,25 +207,7 @@
 		"/Users/wjiang/Notes/webmd/webmd-header-bdding.html",
 		"/Users/wjiang/Notes/webmd/video-heartbeat.txt",
 		"/Users/wjiang/Notes/webmd/video-heartbeat.js",
-		"/Users/wjiang/Notes/webmd/heartbeat.js",
-		"/Users/wjiang/Notes/webmd/newsletter.txt",
-		"/Users/wjiang/Notes/javascript/react.js",
-		"/Users/wjiang/Notes/webmd/12-10.txt",
-		"/Users/wjiang/Notes/javascript/js-call.js",
-		"/Users/wjiang/Notes/2015/react.txt",
-		"/Users/wjiang/Notes/server/rest.js",
-		"/Users/wjiang/Notes/etc/bash_profile",
-		"/Users/wjiang/Notes/webmd/11-18-2015.txt",
-		"/Users/wjiang/Notes/webmd/DOMContentLoaded.txt",
-		"/Users/wjiang/Notes/javascript/john_papa.js",
-		"/Users/wjiang/Notes/javascript/general1.js",
-		"/Users/wjiang/Notes/jsbin/direcitves-product.html",
-		"/Users/wjiang/Notes/markdown/react.md",
-		"/Users/wjiang/Notes/2014/test.txt",
-		"/Users/wjiang/Notes/2014/requirejs.txt",
-		"/Users/wjiang/Notes/2014/requirejs1.txt",
-		"/Users/wjiang/Notes/2015/09-12.txt",
-		"/Users/wjiang/Notes/2014/11-08.txt"
+		"/Users/wjiang/Notes/webmd/heartbeat.js"
 	],
 	"find":
 	{
@@ -225,6 +226,105 @@
 		"case_sensitive": false,
 		"find_history":
 		[
+			"pg",
+			"jsfiddle",
+			"jsbin",
+			"fis=",
+			"fipt",
+			"tug=",
+			"tug",
+			"tug=",
+			"tug",
+			"fipt",
+			"fis",
+			"getDFP",
+			".map",
+			"fis",
+			"fipt",
+			"trackingPixel",
+			"git diff",
+			"googletag.cmd",
+			"defineSlot",
+			"clearTimer",
+			"setInterval",
+			"std.",
+			"o.std",
+			"webmdp1thekidneyvista",
+			"test",
+			"588770247",
+			"ppe-",
+			"50%",
+			"debounce",
+			"component",
+			"encodeURIComponent",
+			"8CU62R962",
+			"mnet",
+			"pos",
+			"sl_",
+			"l_",
+			"sl_",
+			"nl",
+			"s_nl",
+			"try",
+			"try {",
+			"sd_",
+			"encodeURIComponent",
+			"encode",
+			"pvid",
+			"debounce",
+			"amp.",
+			"mnet",
+			"whitelist",
+			"mnetDNB",
+			"mnet",
+			"2026",
+			"5000",
+			"googleloaded",
+			"boots",
+			".idea",
+			"mnet",
+			"var $googleloaded = $googleloaded || false;",
+			"googleloaded",
+			"even",
+			"event8",
+			"event",
+			"event8",
+			"--theirs",
+			"--their",
+			"force_test",
+			"beforeEach",
+			"jasmine",
+			"param",
+			"media.net",
+			"mnet",
+			"mnTest",
+			"test",
+			"domainBlackList",
+			"blacklist",
+			"webmd.boots.com",
+			"boots",
+			"--theirs",
+			"force_hbtest",
+			"mnet",
+			"mntest",
+			"rtbsapub.php",
+			"mnet",
+			"8CU66J63J",
+			"m",
+			"mnet",
+			"development=1",
+			"rtbsapub.php",
+			".php",
+			"fluid",
+			"googletag.pubads()",
+			"googletag",
+			"8CUF3O331",
+			"mnet",
+			"8CU66J63J",
+			"mnet",
+			"mediaNet",
+			"medianet",
+			"loadScript",
 			"sticky",
 			"'fluid'",
 			"webmd.ads2",
@@ -253,108 +353,9 @@
 			"pg=",
 			"refresh(",
 			"pg",
-			"efineAd",
-			"page-number",
-			"box-sizing: border-box",
-			"box-sizing",
-			"2026",
-			"5000",
-			"debounce",
-			"fixed",
-			"git rebase",
-			"--theirs",
-			"<p>",
-			"<amp-ad",
-			"adSlot7",
-			"defineSlot",
-			"cmd",
-			"googletag.defineSlot",
-			"pubads().refres",
-			"$('body').empty()",
-			"defineSlot",
-			"300x250",
-			"2026",
-			"sra",
-			"2026",
-			"ui",
-			"pos",
-			"%22",
-			"$22",
-			"%3A",
-			"iu_parts",
-			"amp",
-			"8668145",
-			"pg",
-			"top-",
-			"inStreamAd",
-			"inStrea",
-			"webmd.ads2",
-			"webmd.ads2.",
-			"defineAd",
-			"<iframe",
-			"defineAd",
-			"google_ads_i",
-			"top_ad",
-			"iframe",
-			"defineAd",
-			"pg",
-			"cons_bot",
-			"con",
-			"jsfiddle",
-			"5100",
-			"consumer",
-			"defineAd",
-			"brandcast",
-			"debounce",
-			"pre-fetch",
-			"prefetch",
-			"video_thumb_",
-			"'",
-			"theirs",
-			"WHS",
-			"debounce",
-			"getMobileOperatingSystem",
-			"m3u",
-			"sp-",
-			"xpg",
-			"sp-",
-			"sp",
-			"ga_",
-			"maxlength",
-			"google maxleng",
-			"max",
-			"maxlength",
-			"DFP max",
-			"tpid",
-			"//tags.crwdcntrl.net/c/932/cc.js?ns=_cc932&autobcp=1",
-			"s_mrt",
-			"william",
-			"s_mrt",
-			"s_sponsor_program",
-			"william",
-			"s_tagemax",
-			"s_mrt",
-			"s_tagemin",
-			"s_mrt",
-			"rand",
-			"?",
-			"william",
-			"int=",
-			"s_",
-			"bp",
-			"bp=",
-			"rd=",
-			"+",
-			"r",
-			"rd",
-			"bp=",
-			"rt=",
-			"bp=",
-			"rd=",
-			"rd",
-			"bp="
+			"efineAd"
 		],
-		"highlight": true,
+		"highlight": false,
 		"in_selection": false,
 		"preserve_case": false,
 		"regex": false,
@@ -373,926 +374,69 @@
 		"show_context": false,
 		"use_buffer2": true,
 		"whole_word": false,
-		"wrap": true
+		"wrap": false
 	},
 	"groups":
 	[
 		{
-			"selected": 2,
+			"selected": 1,
 			"sheets":
 			[
 				{
 					"buffer": 0,
+					"file": "2016/es6.txt",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 15715,
-						"regions":
-						{
-							"match":
-							{
-								"flags": 112,
-								"regions":
-								[
-									[
-										89,
-										94
-									],
-									[
-										293,
-										298
-									],
-									[
-										398,
-										403
-									],
-									[
-										547,
-										552
-									],
-									[
-										654,
-										659
-									],
-									[
-										727,
-										732
-									],
-									[
-										884,
-										889
-									],
-									[
-										976,
-										981
-									],
-									[
-										1134,
-										1142
-									],
-									[
-										1185,
-										1193
-									],
-									[
-										1294,
-										1302
-									],
-									[
-										1329,
-										1337
-									],
-									[
-										1397,
-										1405
-									],
-									[
-										1466,
-										1474
-									],
-									[
-										1492,
-										1500
-									],
-									[
-										1622,
-										1630
-									],
-									[
-										1696,
-										1704
-									],
-									[
-										1745,
-										1753
-									],
-									[
-										2162,
-										2170
-									],
-									[
-										2218,
-										2226
-									],
-									[
-										2419,
-										2427
-									],
-									[
-										2448,
-										2456
-									],
-									[
-										2457,
-										2465
-									],
-									[
-										2619,
-										2627
-									],
-									[
-										2648,
-										2656
-									],
-									[
-										2799,
-										2809
-									],
-									[
-										2847,
-										2857
-									],
-									[
-										2883,
-										2893
-									],
-									[
-										2955,
-										2965
-									],
-									[
-										2992,
-										3002
-									],
-									[
-										3029,
-										3039
-									],
-									[
-										3066,
-										3076
-									],
-									[
-										3103,
-										3113
-									],
-									[
-										3140,
-										3150
-									],
-									[
-										3177,
-										3187
-									],
-									[
-										3502,
-										3512
-									],
-									[
-										3829,
-										3839
-									],
-									[
-										4145,
-										4155
-									],
-									[
-										4448,
-										4458
-									],
-									[
-										4751,
-										4761
-									],
-									[
-										5054,
-										5064
-									],
-									[
-										5350,
-										5360
-									],
-									[
-										5651,
-										5661
-									],
-									[
-										5954,
-										5964
-									],
-									[
-										6029,
-										6039
-									],
-									[
-										6121,
-										6131
-									],
-									[
-										6150,
-										6160
-									],
-									[
-										6198,
-										6208
-									],
-									[
-										6274,
-										6284
-									],
-									[
-										6324,
-										6334
-									],
-									[
-										6358,
-										6368
-									],
-									[
-										6405,
-										6415
-									],
-									[
-										6535,
-										6545
-									],
-									[
-										6564,
-										6574
-									],
-									[
-										6617,
-										6627
-									],
-									[
-										6694,
-										6704
-									],
-									[
-										6739,
-										6749
-									],
-									[
-										6789,
-										6799
-									],
-									[
-										6838,
-										6848
-									],
-									[
-										6918,
-										6928
-									],
-									[
-										7014,
-										7024
-									],
-									[
-										7401,
-										7411
-									],
-									[
-										7447,
-										7457
-									],
-									[
-										7874,
-										7884
-									],
-									[
-										8244,
-										8254
-									],
-									[
-										8258,
-										8268
-									],
-									[
-										8303,
-										8313
-									],
-									[
-										8382,
-										8392
-									],
-									[
-										8683,
-										8693
-									],
-									[
-										8986,
-										8996
-									],
-									[
-										9065,
-										9075
-									],
-									[
-										9366,
-										9376
-									],
-									[
-										9669,
-										9679
-									],
-									[
-										9751,
-										9761
-									],
-									[
-										9939,
-										9949
-									],
-									[
-										9987,
-										9997
-									],
-									[
-										10063,
-										10073
-									],
-									[
-										10219,
-										10229
-									],
-									[
-										10296,
-										10306
-									],
-									[
-										10397,
-										10407
-									],
-									[
-										10494,
-										10504
-									],
-									[
-										10611,
-										10621
-									],
-									[
-										10744,
-										10754
-									],
-									[
-										10799,
-										10809
-									],
-									[
-										10853,
-										10863
-									],
-									[
-										10932,
-										10942
-									],
-									[
-										11016,
-										11026
-									],
-									[
-										11101,
-										11111
-									],
-									[
-										11229,
-										11239
-									],
-									[
-										11271,
-										11281
-									],
-									[
-										11306,
-										11316
-									],
-									[
-										11331,
-										11341
-									],
-									[
-										11492,
-										11499
-									],
-									[
-										11542,
-										11549
-									],
-									[
-										11705,
-										11711
-									],
-									[
-										11735,
-										11741
-									],
-									[
-										11839,
-										11845
-									],
-									[
-										11879,
-										11885
-									],
-									[
-										11913,
-										11919
-									],
-									[
-										11944,
-										11950
-									],
-									[
-										11985,
-										11991
-									],
-									[
-										12075,
-										12081
-									],
-									[
-										12196,
-										12202
-									],
-									[
-										12226,
-										12232
-									],
-									[
-										12237,
-										12243
-									],
-									[
-										12336,
-										12342
-									],
-									[
-										12347,
-										12353
-									],
-									[
-										12455,
-										12461
-									],
-									[
-										12466,
-										12472
-									],
-									[
-										12533,
-										12539
-									],
-									[
-										12548,
-										12554
-									],
-									[
-										12617,
-										12623
-									],
-									[
-										12638,
-										12644
-									],
-									[
-										12679,
-										12685
-									],
-									[
-										12697,
-										12703
-									],
-									[
-										12722,
-										12728
-									],
-									[
-										12783,
-										12789
-									],
-									[
-										12798,
-										12804
-									],
-									[
-										12853,
-										12859
-									],
-									[
-										12864,
-										12870
-									],
-									[
-										12909,
-										12915
-									],
-									[
-										12924,
-										12930
-									],
-									[
-										12989,
-										12995
-									],
-									[
-										13010,
-										13016
-									],
-									[
-										13047,
-										13053
-									],
-									[
-										13065,
-										13071
-									],
-									[
-										13115,
-										13121
-									],
-									[
-										13147,
-										13153
-									],
-									[
-										13220,
-										13226
-									],
-									[
-										13235,
-										13241
-									],
-									[
-										13286,
-										13292
-									],
-									[
-										13297,
-										13303
-									],
-									[
-										13371,
-										13377
-									],
-									[
-										13382,
-										13388
-									],
-									[
-										13449,
-										13455
-									],
-									[
-										13463,
-										13469
-									],
-									[
-										13537,
-										13543
-									],
-									[
-										13548,
-										13554
-									],
-									[
-										13606,
-										13612
-									],
-									[
-										13623,
-										13629
-									],
-									[
-										13656,
-										13662
-									],
-									[
-										13677,
-										13683
-									],
-									[
-										13712,
-										13718
-									],
-									[
-										13753,
-										13759
-									],
-									[
-										13771,
-										13777
-									],
-									[
-										13800,
-										13806
-									],
-									[
-										13811,
-										13817
-									],
-									[
-										13907,
-										13913
-									],
-									[
-										13950,
-										13956
-									],
-									[
-										13961,
-										13967
-									],
-									[
-										14046,
-										14052
-									],
-									[
-										14057,
-										14063
-									],
-									[
-										14120,
-										14126
-									],
-									[
-										14131,
-										14137
-									],
-									[
-										14214,
-										14220
-									],
-									[
-										14225,
-										14231
-									],
-									[
-										14338,
-										14344
-									],
-									[
-										14349,
-										14355
-									],
-									[
-										14408,
-										14414
-									],
-									[
-										14419,
-										14425
-									],
-									[
-										14507,
-										14513
-									],
-									[
-										14532,
-										14538
-									],
-									[
-										14583,
-										14589
-									],
-									[
-										14601,
-										14607
-									],
-									[
-										14630,
-										14636
-									],
-									[
-										14647,
-										14653
-									],
-									[
-										14679,
-										14685
-									],
-									[
-										14744,
-										14750
-									],
-									[
-										14755,
-										14761
-									],
-									[
-										14799,
-										14805
-									],
-									[
-										14840,
-										14846
-									],
-									[
-										14851,
-										14857
-									],
-									[
-										14924,
-										14930
-									],
-									[
-										14935,
-										14941
-									],
-									[
-										14993,
-										14999
-									],
-									[
-										15004,
-										15010
-									],
-									[
-										15107,
-										15113
-									],
-									[
-										15148,
-										15154
-									],
-									[
-										15159,
-										15165
-									],
-									[
-										15260,
-										15266
-									],
-									[
-										15271,
-										15277
-									],
-									[
-										15362,
-										15368
-									],
-									[
-										15373,
-										15379
-									],
-									[
-										15465,
-										15471
-									],
-									[
-										15476,
-										15482
-									],
-									[
-										15495,
-										15501
-									],
-									[
-										15520,
-										15526
-									],
-									[
-										15601,
-										15607
-									],
-									[
-										15678,
-										15684
-									]
-								],
-								"scope": ""
-							}
-						},
-						"selection":
-						[
-							[
-								11793,
-								11793
-							]
-						],
-						"settings":
-						{
-							"detect_indentation": false,
-							"line_numbers": false,
-							"output_tag": 5,
-							"result_base_dir": "",
-							"result_file_regex": "^([^ 	].*):$",
-							"result_line_regex": "^ +([0-9]+):",
-							"scroll_past_end": true,
-							"syntax": "Packages/Default/Find Results.hidden-tmLanguage"
-						},
-						"translation.x": 0.0,
-						"translation.y": 3689.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 2,
-					"type": "text"
-				},
-				{
-					"buffer": 1,
-					"file": "webmd/DFP/2016-08-01.txt",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 8819,
+						"buffer_size": 1721,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								8139,
-								8139
+								1650,
+								1650
 							]
 						],
 						"settings":
 						{
-							"syntax": "Packages/Text/Plain text.tmLanguage",
-							"tab_size": 4,
-							"translate_tabs_to_spaces": true
+							"auto_name": "es6.txt",
+							"syntax": "Packages/Text/Plain text.tmLanguage"
 						},
 						"translation.x": 0.0,
-						"translation.y": 3670.0,
+						"translation.y": 597.0,
 						"zoom_level": 1.0
 					},
 					"stack_index": 1,
 					"type": "text"
 				},
 				{
-					"buffer": 2,
-					"file": "2016/reactjs.txt",
+					"buffer": 1,
+					"file": "2016/cmd.txt",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 3434,
+						"buffer_size": 408,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								3433,
-								3075
+								376,
+								376
 							]
 						],
 						"settings":
 						{
-							"auto_name": "reactjs.txt",
 							"syntax": "Packages/Text/Plain text.tmLanguage"
 						},
 						"translation.x": 0.0,
-						"translation.y": 1210.0,
+						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
 					"stack_index": 0,
-					"type": "text"
-				},
-				{
-					"buffer": 3,
-					"file": "webmd/txt/03-14.txt",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 7343,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								3456,
-								4241
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/Text/Plain text.tmLanguage",
-							"translate_tabs_to_spaces": false
-						},
-						"translation.x": 0.0,
-						"translation.y": 702.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 3,
-					"type": "text"
-				},
-				{
-					"buffer": 4,
-					"file": "webmd/txt/03-10.txt",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 3244,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								1047,
-								1047
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/Text/Plain text.tmLanguage"
-						},
-						"translation.x": 0.0,
-						"translation.y": 217.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 4,
 					"type": "text"
 				}
 			]
@@ -1383,7 +527,7 @@
 	"show_open_files": false,
 	"show_tabs": true,
 	"side_bar_visible": true,
-	"side_bar_width": 97.0,
+	"side_bar_width": 161.0,
 	"status_bar_visible": true,
 	"template_settings":
 	{

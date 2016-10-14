@@ -1,0 +1,34 @@
+npm init -y --> package.json
+
+
+npm install --save-dev mocha chai
+Mocha is the test framework we'll be using and Chai is an assertion/expectation library we'll use inside our tests to specify what we expect to happen.
+
+
+$ babel client/reduxstagram.js --presets es2015,react,stage-0
+
+$ npm install babel-preset-stage-0
+
+.babelrc:
+{
+  "presets": ["es2015", "stage-0", "react"]
+}
+
+
+npm install webpack-dev-server
+
+git diff 8c702b7..c06604d src/common/webmd.metrics.js
+
+
+To update npm, run npm -g install npm@latest
+
+
+/////////////////////////////////////////////////
+
+
+git checkout integration-prod-staging
+git pull origin integration-prod-staging
+grunt webmd
+grunt responsive
+
+sudo npm install -g create-react-app

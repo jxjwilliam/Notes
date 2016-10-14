@@ -1,0 +1,72 @@
+
+$ cd /Users/wjiang/webmdApp/mediaNetTest
+
+$ sudo npm install jasmine-node -g
+
+$ jasmine-node test/blacklist.spec.js
+
+$ uglifyjs header-bidding.js 
+
+
+- evernote
+- Beyond Compare
+
+300ms, ~50ms, <50ms
+
+
+Google Is Beta Testing Its Answer To Header Bidding, Called 'DFP First Look'
+
+
+googletag.pubads().setTargeting('interests', 'sports');
+webmd.ads2.refresh()
+check ads? -> cust_params: interets=sports
+
+/////////////////////////////
+
+function getDFP(wmdurl) {
+	return function(key) {
+		var qs = wmdurl.split('&').filter(function(item) { 
+		    return item.indexOf(key) >= 0; 
+		  })[0].split('=')[1];
+		return decodeURIComponent(qs);
+	}
+}
+ 
+var url="copy & paste query-string";
+var qs = getDFP(url);
+ 
+qs('prev_scp');  // "pos=101|pos=5000|pos=701|pos=113|pos=121|pos=700|pos=901"
+ 
+qs('prev_iu_szs'); // "728x90|970x90|970x250,1x2,145x199,160x600,300x250|300x600|300x1050,300x198,1x1"
+ 
+qs('cust_params'); // "pvid=147343668022776528&art=091e9c5e80319fa7&cc=10&env=0&hcent=6028&leaf=&mcent=&mic=&pt=1630&sec=4209&pug=&scent=&tmg=&tug=&uri=%2Fskin-problems-and-treatments%2Ffeatures%2Feffects-of-stress-on-your-skin&segm=0&gwd="
+
+
+encodeURIComponent(window.location.href) 
+
+
+------ desktop ------
+
+prev_iu_szs:
+728x90|970x90|970x250,160x600,300x250|300x600|300x1050,1x2,1x1
+
+prev_scp:
+
+pos=101&mnetCrid=588770247&mnetbidID=99&mnetbidderID=mnet&mnetbidPrice=10.00&mnet_placement=ads2-pos-101-bannerAd&mnetCID=8CU62R962&mnetAct=headerBid&mnetScpvid=&mnetTd=%257C&mnetSize=728x90&mnTest=1&mnetPageID=0&mnetCC=US&mnetUGD=4|
+
+pos=113&mnetCrid=190111125&mnetbidID=99&mnetbidderID=mnet&mnetbidPrice=10.00&mnet_placement=ads2-pos-113-ad-left&mnetCID=8CU62R962&mnetAct=headerBid&mnetScpvid=&mnetTd=%257C&mnetSize=160x600&mnTest=1&mnetPageID=0&mnetCC=US&mnetUGD=4|
+
+pos=121&mnetCrid=453105899&mnetbidID=99&mnetbidderID=mnet&mnetbidPrice=10.00&mnet_placement=ads2-pos-121-ad_right&mnetCID=8CU62R962&mnetAct=headerBid&mnetScpvid=&mnetTd=%257C&mnetSize=300x250&mnTest=1&mnetPageID=0&mnetCC=US&mnetUGD=4|
+
+pos=5002|
+pos=901
+
+
+------ mobile ------
+prev_iu_szs:300x50|320x50,1x1
+prev_scp:pos=2025&mnetCrid=643112355&mnetbidID=99&mnetbidderID=mnet&mnetbidPrice=10.00&mnet_placement=ads2-pos-2025-ad_top&mnetCID=8CU62R962&mnetAct=headerBid&mnetScpvid=&mnetTd=%257C&mnetSize=320x50&mnTest=1&mnetPageID=0&mnetCC=US&mnetUGD=3|pos=1901
+
+
+prev_iu_szs:300x50|300x51|300x250|300x253|320x50|320x51
+prev_scp:pos=2026&mnetCrid=902465253&mnetbidID=99&mnetbidderID=mnet&mnetbidPrice=10.00&mnet_placement=infinite-ad-5&mnetCID=8CU62R962&mnetAct=headerBid&mnetScpvid=&mnetTd=%257C&mnetSize=300x250&mnTest=1&mnetPageID=0&mnetCC=US&mnetUGD=3
+
