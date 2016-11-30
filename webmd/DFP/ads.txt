@@ -190,3 +190,10 @@ googletag.pubads().refresh();
 
 
 
+Here is in media.net bidexchange.js:
+
+function g(e) {
+    var n;
+    for (n = 0; n < t.bidder.length; n++)if (t.bidder[n].code === e)return t.bidder[n];
+    return {}
+}

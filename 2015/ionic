@@ -31,3 +31,7 @@ ios-sim version: 5.0.3
 OS: Mac OS X El Capitan
 Node Version: v0.12.7
 Xcode version: Xcode 7.1 Build version 7B91b 
+
+
+Ionic is both a CSS framework and a Javascript UI library. Many components need Javascript in order to produce magic, though often components can easily be used without coding through framework extensions such as our AngularIonic extensions.
+

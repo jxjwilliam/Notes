@@ -1,0 +1,28 @@
+82599: next-page
+http://www.staging.webmd.com/diabetes/features/diabetic-diet-6-foods-control-blood-sugar#1
+
+
+81583: First Impression Parameter not resetting on page two
+http://www.staging.webmd.com/multiple-sclerosis/ss/slideshow-multiple-sclerosis-overview
+
+
+
+84192: Defect - fipt=0 passing in DFP call on initial page load for drug pages
+http://www.staging.webmd.com/drugs/2/drug-63163/adderall-oral/details#side-effects
+
+
+84078: Defect - fis=0 and fipt=0 passing in DFP call on initial page load for slideshow
+http://www.staging.webmd.com/men/ss/slideshow-mens-body-problems
+
+
+84185: Defect - fis=0 and fipt=0 passing in DFP call on initial page load for Quizzes
+http://www.staging.webmd.com/men/rm-quiz-manly-myths
+
+
+82711: Defect - fis and fipt are passing '0' for Brandfeed page on initial page load
+http://www.staging.webmd.com/brandfeed?prx_adp=1510_3038
+
+
+[4:52 PM] William Jiang: his seems a big improvement for the page: the scripts codes is +200k.
+[4:55 PM] William Jiang: since gpt.js is 5k, and header bidding bidexchange.js  124k, pubads_impl.js 159k.
+[4:57 PM] William Jiang: http://img.perf.webmd.com/dtmcms/live/webmd/PageBuilder_Assets/JS/scripts501.js is 254k.

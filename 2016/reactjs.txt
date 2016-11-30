@@ -2,3 +2,87 @@ React+Webpack+Babel
 
 
 Mocha is the test framework we'll be using and Chai is an assertion/expectation library we'll use inside our tests to specify what we expect to happen.
+
+// ES6
+class SayHello extends React.Component {
+	constructor(props, doSearchClick) {
+		super(props);
+		this.state = {};
+		// This line is important:
+		this.handleClick = this.handleClick.bind(this);
+		this.search = this.search.bind(this);
+		this.doSearchClick = doSearchClick;
+	}
+	search() {
+		this.doSearchClick('')
+	}
+	handleClick() {}
+	hancelChange(event) {
+		this.setState({value: event.target.value});
+	}
+	render() {
+		return (
+			<input 
+				value={this.state.value}
+				onChange={this.handleChange} 
+			/>
+		)
+	}
+}
+
+// Babel
+var SayHello = React.createClass({
+	handleClick: function() {},
+	render: function() {}
+});
+
+// Class Properties
+class SayHello extends React.Component {
+	//Using an arrow to bind method:
+	handleClick => () {}
+
+	render() {}
+}
+
+
+
+//////////////////////////////////////////
+Refs and findDOMNode()
+To interact with the browser, you'll need a reference to a DOM node. You can attach a ref to any element, which allows you to reference the backing instance of the component. This is useful if you need to invoke imperative functions on the component, or want to access the underlying DOM nodes.
+
+
+
+Component Lifecycle (will / did)
+---------------------------------
+Mounting:
+	- getInitialState()
+	- compoentWillMount()
+	- componentDidMount()
+
+Updating:
+	- componentWillReceiveProps
+	- shouldComponentUpdate
+	- componentWillUpdate
+	- componentDidUpdate
+
+Unmounting:
+	- componentWillUnmount
+
+
+
+We don't support older browsers that don't support ES5 methods, but you may find that your apps do work in older browsers if polyfills such as es5-shim and es5-sham are included in the page. 	
+
+
+/////////////////////////
+A portal permits you to render directly inside document.body an element that is deeply nested in your React tree.
+
+A portal is particularly helpful for displaying elements that should go on top of your existing React components: popups, modals, dropdowns, suggestions, hotspots, overlays
+
+- react-portal
+- react-modal
+- react-redux-form
+
+
+
+react-scripts
+webpack-dev-server

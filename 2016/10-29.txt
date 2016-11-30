@@ -1,0 +1,22 @@
+http://jsfiddle.net/8y8e427g/13/
+
+redux.min.js
+bootstrap.min.css
+fetch.min.js
+font-awesome.min.css
+sweetalert.min.css
+sweetalert.min.js
+
+
+
+redux-logger
+redux-thunk
+react-scripts
+object-assign
+node-fetch
+lodash
+
+
+
+USE the dispatcher for all actions
+-----------------------------------

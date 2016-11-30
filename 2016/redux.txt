@@ -1,3 +1,9 @@
+
+TO be able to integrate redux with asynchronos actions (AJAX), you need a library to help. The most popular 2 are redux-thunk and redux-saga.
+
+
+///////////////////////////////
+
 I call components encapsulated React components that are driven solely by props and don't talk to Redux. Same as “dumb components”. They should stay the same regardless of your router, data fetching library, etc.
 
 I call containers React components that are aware of Redux, Router, etc. They are more coupled to the app. Same as “smart components”.
@@ -8,18 +14,22 @@ I call containers React components that are aware of Redux, Router, etc. They ar
 
 redux-saga, redux-thunk
 
+applyMiddleward(ReduxPromise, thunk)(createStore);
+
+const store = createStore(reducer, applyMiddleward([ReduxPromise, thunk]));
 
 
 ///////////////////////////////////////////
 ------ react-router-redux source code:
 
-import React from 'react'
+import React, {PropTypes} from 'react'
 import ReactDOM from 'react-dom'
-import { createStore, combineReducers } from 'redux'
-import { Provider } from 'react-redux'
+import { createStore, combineReducers, applyMiddleware, bindActionCreators, compose } from 'redux'
+import { Provider, connect } from 'react-redux'
 import { Router, Route, browserHistory } from 'react-router'
 import { syncHistoryWithStore, routerReducer } from 'react-router-redux'
 
+import thunk from 'redux-thunk'
 import reducers from '<project-path>/reducers'
 
 // Add the reducer to your store on the `routing` key
@@ -45,3 +55,78 @@ ReactDOM.render(
   </Provider>,
   document.getElementById('mount')
 )
+
+const finalCreateStore = compose(
+  applyMiddleware(
+    middleware,
+    thunk
+  ),
+  DevTools.instrument()
+)(createStore);
+const store = finalCreateStore(reducer)
+
+
+///////////////////////////////
+
+const persistedState = localStorage.getItem('reduxState') ? JSON.parse(localStorage.getItem('reduxState')) : {}
+
+const store = createStore(
+  reducer, 
+  persistedState,
+  /* any middleware... */
+);
+
+const store = createStore(reducer, persistedState);
+store.subscribe(() => {
+  // persist your state
+  // localStorage
+  localStorage.setItem(''reduxState', JSON.stringify(store.getState()));
+});
+
+
+To make it clear: the state computed from reducers to drive React renderings should absolutly stay pure! But not all state of your app has the purpose of triggering renderings, and this is the case here where the need is to synchronise different decoupled parts of your app with complex rules. The state of this "saga" should not trigger a React rendering!
+
+
+
+Delete 
+items: [
+  ...state.items.slice(0, action.payload),
+  ...state.items.slice(action.payload+1)
+]
+
+
+function fetchPosts (subreddit) {
+  return dispatch => {
+    dispatch(requestPoss(subreddit))
+
+    return fetch(`http://www.reddit.com/r/${subreddit}.json`)
+    .then(response => response.json())
+    .then(json => dispatch(receivePost(subreddit, json)))
+  }
+}
+
+
+
+class AsyncApp extends Component {
+  constructor(props) {
+    super(props)
+  }
+  componentDidMount() {
+    const { dispatch, selectedSubreddit } = this.props
+    dispatch(fetchPostsIfNeeded(selectedSubreddit))
+  }
+
+  componentWillReceiveProps(nextProps) {
+
+  }
+
+  handleRefreshClick(e) {
+    e.preventDefault()
+    dispatch(invalidateSubreddit(selectedSubreddit))
+    dispatch(fetchPostsIfNeeded(selectedSubreddit))
+  }
+
+  render() {
+    const {}
+  }
+}

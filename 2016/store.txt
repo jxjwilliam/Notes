@@ -1,0 +1,96 @@
+export const store = createStore(rootReducer);
+
+ReactDOM.render(
+	<Provider store={store}>
+		{() => <Component />}
+	</Provider>,
+	document.getElementById('root')
+);
+
+
+///////
+import {store} from 'the above file';
+Component.store.dispatch({ type: 'SET_VAL', value: 'some_val' });
+
+
+//////
+import { combineReducers } from 'redux';
+import { connect } from 'react-redux';
+
+
+dispath(action).then( callback );
+
+
+/////////////////////////////////
+
+<form action="#" onSubmitLogin={(e) => this.handleSubmit(e)}>
+</form>
+
+handleSubmit(e) {
+  e.preventDefault();
+  this.props.onSubmitLogin(this.login.value, this.password.value);
+}
+
+const mapDispatchToProps = (dispatch) => {
+	return {
+		onSubmitLogin: (id,pass) => dispatch(login(id, pass))
+	}
+};
+
+
+<LoginForm onSubmitLogin={ (id, pass) => dispatch(login(id, pass)) } />
+
+
+/////////////
+
+{this.props.posts.map((post, i) => 
+	<li key={i}>{post.title}</li>
+)}
+
+
+return Object.assign({}, state, {
+	[action.subreddit]: posts(state[action.subreddit], action);
+});
+
+
+
+export function fetchPosts(subreddit) {
+	
+	return function (dispatch) {
+
+		dispatch(requestPosts(subreddit))
+
+		return fetch('.../.json')
+			.then(response => response.json())
+			.then(json => dispatch(receivePosts(subreddit, json))
+		)
+	}
+}
+
+
+const store = createStore(
+	rootReducer,
+	applyMiddleware(
+		thunkMiddleware,
+		loggerMiddleware
+	)
+);
+
+store.dispatch(selectSubreddit('reactjs'))
+store.dispatch(fetchPosts('reactjs')).then(() => console.log(store.getState()));
+
+
+
+
+ an action is a payload of information, and an action creator is a factory that creates an action.
+
+
+ Calling an action creator only produces an action, but does not dispatch it. You need to call the store's dispatch function to actually cause the mutation. Sometimes we say bound action creators to mean functions that call an action creator and immediately dispatch its result to a specific store instance.
+
+
+An async action is a value that is sent to a dispatching function, but is not yet ready for consumption by the reducer. It will be transformed by middleware into an action (or a series of actions) before being sent to the base dispatch() function. Async actions may have different types, depending on the middleware you use. They are often asynchronous primitives, like a Promise or a thunk, which are not passed to the reducer immediately, but trigger action dispatches once an operation has completed.
+
+
+Technically, a container component is just a React component that uses store.subscribe() to read a part of the Redux state tree and supply props to a presentational component it renders.
+connect()
+
