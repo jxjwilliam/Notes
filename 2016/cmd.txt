@@ -32,3 +32,58 @@ grunt webmd
 grunt responsive
 
 sudo npm install -g create-react-app
+
+////////////////////////////////////
+
+react-redux-starter-kit
+
+<Provider store={this.props.store}>
+{() =>
+	<Router>
+		<Route path="/" component={LoginContainer} />
+	</Rouer>
+}
+  <Container className={styles.Root}>
+    <NavBar>
+    <LinkContainer>
+
+render() {
+	const styles = require('./containers/Root.css');
+	return (
+
+	)
+}    
+
+
+redux-router
+react-router
+redux-socket.io
+React + Redux + Normalizr
+
+
+socket.on('incidents', state => {
+	boundActionSetIncidentsList(state);
+});
+boundActionSetIncidentsList(incidents) {
+	store.dispatch(actionSetIncidentsList(incidents));
+}
+
+function reducer(appState, action) {
+	switch(action.type) {
+		case: CANCEL_EDIT:
+			if (!appState.isSaving) {
+				return {...appState, editingRecord: null }
+			} else {
+				return appState;
+			}
+	}
+}
+
+
+let todoApp = combineReducers(reducers);
+let store = createStore(
+	todoApp,
+	applyMiddleware(
+		thunk, logger
+	)
+)

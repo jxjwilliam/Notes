@@ -4,6 +4,54 @@
 		"selected_items":
 		[
 			[
+				"map",
+				"mapDispatchToProps"
+			],
+			[
+				"st",
+				"store"
+			],
+			[
+				"get",
+				"getState"
+			],
+			[
+				"jqe",
+				"jquery-ui"
+			],
+			[
+				"post",
+				"PostListPage"
+			],
+			[
+				"han",
+				"handleDeletePost"
+			],
+			[
+				"sho",
+				"showAddPost"
+			],
+			[
+				"showAdd",
+				"getShowAddPost"
+			],
+			[
+				"del",
+				"deletePost"
+			],
+			[
+				"ren",
+				"renderComment"
+			],
+			[
+				"PostL",
+				"PostListPage"
+			],
+			[
+				"action",
+				"actionCreators"
+			],
+			[
 				"arg",
 				"arguments"
 			]
@@ -12,25 +60,28 @@
 	"buffers":
 	[
 		{
-			"contents": "`const` means that the identifier can’t be reassigned.\n\nUnlike true immutable datatypes such as those produced by Immutable.js and Mori, a `const` object can have properties mutated.\n\n\n`const` is my default choice over `let` because I want the usage to be as clear as possible in the code.\n\n\n`const` is a signal that the identifier won’t be reassigned.\n\n`let`, is a signal that the variable may be reassigned, such as a counter in a loop, or a value swap in an algorithm. It also signals that the variable will be used only in the block it’s defined in, which is not always the entire containing function.\n\n\n\n<App />\n\n<Comments />\n\n<Main />\n\n<Phone />\n\n<PhoneGrid />\n\n<Single />\n\n\n<!------>\n\n<Provider store={store}>\n  <Router path=\"/\" component={App}>\n    <IndexRoute component={PhotoGrid} />\n    <Route path=\"/view/:postId\" component={Single}></Route>\n  </Router>\n</Provider>\n\n<!------>\nnpm config ls -l\nnpm config list\n\n\n\n\n\nModule parse failed: Unexpected token \nYou may need an appropriate loader to handle this file type.\n\n\nIf you use NodeJS version 5.3.0, you probably don't need Babel at all.\n\n\nThe TC39 categorises proposals into 4 stages:\n\nstage-0 - Strawman: just an idea, possible Babel plugin.\nstage-1 - Proposal: this is worth working on.\nstage-2 - Draft: initial spec.\nstage-3 - Candidate: complete spec and initial browser implementations.\nstage-4 - Finished: will be added to the next yearly release.\n\n\n\n// .babelrc\n{\n  \"presets\": [\"es2015\", \"react\", \"stage-2\"]\n}\n$ npm install babel-preset-es2015 babel-preset-react babel-preset-stage-2 --save-dev\n\n\n{\n	test: /\\.jsx?$/,\n	exclude: /node_modules/,\n	loader: \"babel-loader\",\n	query: {\n		cacheDirectory: true,\n		presets: ['es2015', \"stage-0\", 'react']\n    }\n}",
-			"file": "2016/es6.txt",
-			"file_size": 1676,
-			"file_write_time": 131206905310000000,
+			"file": "2013/2013-02-04.txt",
 			"settings":
 			{
-				"buffer_size": 1721,
-				"line_ending": "Unix",
-				"name": "es6.txt"
+				"buffer_size": 1032,
+				"line_ending": "Windows"
 			}
 		},
 		{
-			"contents": "npm init -y --> package.json\n\n\nnpm install --save-dev mocha chai\nMocha is the test framework we'll be using and Chai is an assertion/expectation library we'll use inside our tests to specify what we expect to happen.\n\n\n$ babel client/reduxstagram.js --presets es2015,react,stage-0\n\n$ npm install babel-preset-stage-0\n\n.babelrc:\n{\n  \"presets\": [\"es2015\", \"stage-0\", \"react\"]\n}\n\n\nnpm install webpack-dev-server",
-			"file": "2016/cmd.txt",
-			"file_size": 271,
-			"file_write_time": 131206857060000000,
+			"contents": "Searching 240 files for \"webpack\"\n\n/Users/wjiang/Notes/2015/08-03.txt:\n  150: webpack\n\n/Users/wjiang/Notes/2016/cmd.txt:\n   18: npm install webpack-dev-server\n\n/Users/wjiang/Notes/2016/reactjs.txt:\n    1: React+Webpack+Babel\n   88: webpack-dev-server\n\n/Users/wjiang/Notes/2016/recruit-info.txt:\n    1: Even though Zenly's main product is a mobile app, a lot of Web components have been developed and many others are in the making. Their frontend stack is based on React (w/ Redux when necessary) written in ES6 bundled by Webpack using Babel for transpilation, Flow for static typing and ESlint for linting.\n\n/Users/wjiang/Notes/webmd/js/thunk.js:\n   41: // webpack\n\n6 matches across 5 files\n",
 			"settings":
 			{
-				"buffer_size": 408,
+				"buffer_size": 692,
+				"line_ending": "Unix",
+				"name": "Find Results",
+				"scratch": true
+			}
+		},
+		{
+			"file": "2015/08-03.txt",
+			"settings":
+			{
+				"buffer_size": 4278,
 				"line_ending": "Unix"
 			}
 		}
@@ -73,22 +124,50 @@
 	"expanded_folders":
 	[
 		"/Users/wjiang/Notes",
-		"/Users/wjiang/Notes/2016",
-		"/Users/wjiang/Notes/webmd",
-		"/Users/wjiang/Notes/webmd/mobile-viewability",
-		"/Users/wjiang/Notes/webmd/txt"
+		"/Users/wjiang/Notes/webmd"
 	],
 	"file_history":
 	[
-		"/Users/wjiang/Notes/javascript/j10-05.js",
-		"/Users/wjiang/Notes/webmd/defects/fipt_fis.txt",
+		"/Users/wjiang/Notes/javascript/todoFooter.js",
+		"/Users/wjiang/Notes/2014/linkedin.txt",
+		"/Users/wjiang/Notes/samples/filters.js",
+		"/Users/wjiang/Notes/webmd/js/footer.js",
+		"/Users/wjiang/Notes/webmd/js/snippet.js",
 		"/Users/wjiang/Notes/webmd/webmd.txt",
+		"/Users/wjiang/Notes/2016/redux.txt",
+		"/Users/wjiang/Notes/2016/TOP.txt",
+		"/Users/wjiang/Notes/2016/10-29.txt",
+		"/Users/wjiang/Notes/javascript/thunk.js",
+		"/Users/wjiang/Notes/webmd/media.net/11-17.txt",
+		"/Users/wjiang/Notes/2016/store.txt",
+		"/Users/wjiang/Notes/2016/es6.txt",
+		"/Users/wjiang/Notes/2015/ionic",
+		"/Users/wjiang/Notes/2016/03-24.txt",
+		"/Users/wjiang/Notes/webmd/defects/09-12.txt",
+		"/Users/wjiang/Notes/webmd/DFP/ads.txt",
+		"/Users/wjiang/Notes/webmd/js/react-redux.js",
+		"/Users/wjiang/Notes/javascript/configSettings.JS",
+		"/Users/wjiang/Notes/webmd/js/thunk.js",
+		"/Users/wjiang/Notes/2016/reactjs.txt",
+		"/Users/wjiang/Notes/webmd/js/footer",
+		"/Users/wjiang/Notes/webmd/js/ampsgen.js",
+		"/Users/wjiang/Notes/debounce.js",
+		"/Users/wjiang/Notes/2016/information.txt",
+		"/Users/wjiang/Notes/2016/cmd.txt",
+		"/Users/wjiang/Notes/2016/recruit-info.txt",
+		"/Users/wjiang/Notes/webmd/mobile-viewability/07-20.txt",
+		"/Users/wjiang/Notes/webmd/mobile-viewability/infinite-article-origin.js",
+		"/Users/wjiang/Notes/webmd/defects/fipt_fis.txt",
+		"/Users/wjiang/Notes/2016/untitled",
+		"/Users/wjiang/Notes/webmd/txt/82599 - next page.txt",
+		"/Users/wjiang/Notes/webmd/txt/fis-fipt.txt",
+		"/Users/wjiang/Notes/2016/redux",
+		"/Users/wjiang/Notes/javascript/j10-05.js",
 		"/Users/wjiang/Notes/jsbin/parse-compile-interpolate.html",
 		"/Users/wjiang/Notes/javascript/j10-05",
 		"/Users/wjiang/Notes/webmd/media.net/08-31.txt",
 		"/Users/wjiang/Notes/webmd/mobile-viewability/06-28.txt",
 		"/Users/wjiang/Notes/webmd/js/video-heartbeat.js",
-		"/Users/wjiang/Notes/2016/reactjs.txt",
 		"/Users/wjiang/Notes/webmd/media.net/old-PERF-header-bidding-boots-fit.js.txt",
 		"/Users/wjiang/Notes/webmd/media.net/PERF-header-bidding.js.txt",
 		"/Users/wjiang/Notes/webmd/js/oas.js",
@@ -97,12 +176,8 @@
 		"/Users/wjiang/Notes/webmd/DFP/2016-08-01.txt",
 		"/Users/wjiang/Notes/webmd/txt/pug.txt",
 		"/Users/wjiang/Notes/webmd/DFP/stackoverflow.html",
-		"/Users/wjiang/Notes/2016/redux",
-		"/Users/wjiang/Notes/webmd/DFP/ads.txt",
 		"/Users/wjiang/Notes/webmd/txt/DFP.txt",
 		"/Users/wjiang/Notes/webmd/mobile-viewability/07-24.html",
-		"/Users/wjiang/Notes/debounce.js",
-		"/Users/wjiang/Notes/webmd/defects/09-12.txt",
 		"/Users/wjiang/Notes/plunkr/contactCard.html",
 		"/Users/wjiang/Notes/plunkr/checkList.html",
 		"/Users/wjiang/Notes/webmd/media.net/08-18.txt",
@@ -120,7 +195,6 @@
 		"/Users/wjiang/Notes/.gitignore",
 		"/Users/wjiang/Notes/webmd/txt/iri.txt",
 		"/Users/wjiang/Notes/webmd/js/header.js",
-		"/Users/wjiang/Notes/webmd/mobile-viewability/07-20.txt",
 		"/Users/wjiang/Notes/2015/test.txt",
 		"/Users/wjiang/Notes/protractor/spec2.js",
 		"/Users/wjiang/Notes/webmd/DFP/objectEquals.txt",
@@ -136,10 +210,8 @@
 		"/Users/wjiang/Notes/webmd/mediaNet.txt",
 		"/Users/wjiang/Notes/webmd/amp/0705.txt",
 		"/Users/wjiang/Notes/webmd/txt/03-23.txt",
-		"/Users/wjiang/Notes/webmd/mobile-viewability/infinite-article-origin.js",
 		"/Users/wjiang/Notes/webmd/DFP/function objectEquals(obj1, obj2) {",
 		"/Users/wjiang/Notes/webmd/DFP/sticky.txt",
-		"/Users/wjiang/Notes/2016/03-24.txt",
 		"/Users/wjiang/Notes/webmd/reports/07-19.txt",
 		"/Users/wjiang/Notes/webmd/mobile-viewability/debounce.js",
 		"/Users/wjiang/Notes/webmd/mobile-viewability/page2.html",
@@ -183,31 +255,7 @@
 		"/Users/wjiang/Notes/webmd/1.",
 		"/Users/wjiang/Notes/webmd/03-14.txt",
 		"/Users/wjiang/Notes/2014/git.txt",
-		"/Users/wjiang/Notes/webmd/header-bidding.txt",
-		"/Users/wjiang/Notes/webmd/gpt.txt",
-		"/Users/wjiang/Notes/webmd/questions.txt",
-		"/Users/wjiang/Notes/webmd/ppe-41041.txt",
-		"/Users/wjiang/Notes/webmd/sprint20.txt",
-		"/Users/wjiang/Notes/webmd/header.txt",
-		"/Users/wjiang/Notes/webmd/03-07.txt",
-		"/Users/wjiang/Notes/webmd/performance.txt",
-		"/Users/wjiang/Notes/webmd/nodexml.txt",
-		"/Users/wjiang/Notes/webmd/nodeApp.txt",
-		"/Users/wjiang/Notes/webmd/Working with Varala, Mahesh for the non-apple devi",
-		"/Users/wjiang/Notes/webmd/feature-PPE38895_header_bidding.txt",
-		"/Users/wjiang/Notes/webmd/medianet.txt",
-		"/Users/wjiang/Notes/webmd/meeting-02-22.txt",
-		"/Users/wjiang/Notes/webmd/01-28-2016.txt",
-		"/Users/wjiang/Notes/webmd/02-16.txt",
-		"/Users/wjiang/Notes/webmd/metrics.txt",
-		"/Users/wjiang/Notes/webmd/heartbeat-document.txt",
-		"/Users/wjiang/Notes/webmd/12-08.txt",
-		"/Users/wjiang/Notes/webmd/11-18.txt",
-		"/Users/wjiang/Notes/webmd/12-02.txt",
-		"/Users/wjiang/Notes/webmd/webmd-header-bdding.html",
-		"/Users/wjiang/Notes/webmd/video-heartbeat.txt",
-		"/Users/wjiang/Notes/webmd/video-heartbeat.js",
-		"/Users/wjiang/Notes/webmd/heartbeat.js"
+		"/Users/wjiang/Notes/webmd/header-bidding.txt"
 	],
 	"find":
 	{
@@ -226,6 +274,73 @@
 		"case_sensitive": false,
 		"find_history":
 		[
+			"webpack",
+			"passport",
+			"Object.keys",
+			"export ",
+			"Link",
+			"visibilityFilter",
+			"ionic",
+			"teads",
+			"bindActionCreators",
+			"bindActionCreatorsToStore",
+			"mapDispatchToProps",
+			"bindAction",
+			"brandcast",
+			"2_co",
+			"fetchPost",
+			"dispatch",
+			"thunk",
+			"Container",
+			"super",
+			"combineReducers",
+			"componentDidMount",
+			"dispatch",
+			"configSettings.bidder",
+			"configSetting",
+			"configSettings",
+			"window.advBidxc.isLoaded",
+			"pagination",
+			"mapDispatchToProps",
+			"browserHistory",
+			"Router, Route, browserHistory",
+			"boundActionSet",
+			"boundActionSetIncidentsList",
+			"mapStateToProps",
+			"mapStateTo",
+			"sponsor-box",
+			"sponsor_box",
+			"history",
+			"bindAcion",
+			"react-redux",
+			"connect",
+			"react-router",
+			"combineReducers",
+			"import",
+			"combineReducers",
+			"import { Provider",
+			"applyMiddleware",
+			"compose(",
+			"mapDispatch",
+			"mapDis",
+			"extends React.Component",
+			"import ",
+			"import React, { Component, PropTypes } from 'react';",
+			"sessCookie",
+			"react-scripts",
+			"export default class ",
+			"mongod",
+			"webmd.visit.isNewVisit(1)",
+			"(1)",
+			"(1",
+			"refreshDFP",
+			"fipt",
+			"#webmdHoverOverlay",
+			"react-redux-scripts",
+			"combineReducers",
+			"typeof",
+			"webmd.",
+			"webmd.ads2.setPageTarget('fis', 0);",
 			"pg",
 			"jsfiddle",
 			"jsbin",
@@ -286,74 +401,7 @@
 			"var $googleloaded = $googleloaded || false;",
 			"googleloaded",
 			"even",
-			"event8",
-			"event",
-			"event8",
-			"--theirs",
-			"--their",
-			"force_test",
-			"beforeEach",
-			"jasmine",
-			"param",
-			"media.net",
-			"mnet",
-			"mnTest",
-			"test",
-			"domainBlackList",
-			"blacklist",
-			"webmd.boots.com",
-			"boots",
-			"--theirs",
-			"force_hbtest",
-			"mnet",
-			"mntest",
-			"rtbsapub.php",
-			"mnet",
-			"8CU66J63J",
-			"m",
-			"mnet",
-			"development=1",
-			"rtbsapub.php",
-			".php",
-			"fluid",
-			"googletag.pubads()",
-			"googletag",
-			"8CUF3O331",
-			"mnet",
-			"8CU66J63J",
-			"mnet",
-			"mediaNet",
-			"medianet",
-			"loadScript",
-			"sticky",
-			"'fluid'",
-			"webmd.ads2",
-			"prev_scp",
-			"fixed",
-			"position",
-			"\"position\"",
-			"'position'",
-			"fix:",
-			"fixed",
-			"googletag.cmd",
-			"amp",
-			"ampproject",
-			"amp",
-			"svc",
-			"svcs",
-			"svcserver",
-			"svc",
-			"http://searchsvc-web-qa02.con.iad1.webmd.com",
-			"1688",
-			"1663",
-			"pg=2",
-			"pg=",
-			"dmp=",
-			"art",
-			"pg=",
-			"refresh(",
-			"pg",
-			"efineAd"
+			"event8"
 		],
 		"highlight": false,
 		"in_selection": false,
@@ -384,48 +432,19 @@
 			[
 				{
 					"buffer": 0,
-					"file": "2016/es6.txt",
+					"file": "2013/2013-02-04.txt",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 1721,
+						"buffer_size": 1032,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								1650,
-								1650
-							]
-						],
-						"settings":
-						{
-							"auto_name": "es6.txt",
-							"syntax": "Packages/Text/Plain text.tmLanguage"
-						},
-						"translation.x": 0.0,
-						"translation.y": 597.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 1,
-					"type": "text"
-				},
-				{
-					"buffer": 1,
-					"file": "2016/cmd.txt",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 408,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								376,
-								376
+								522,
+								522
 							]
 						],
 						"settings":
@@ -436,7 +455,103 @@
 						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
+					"stack_index": 2,
+					"type": "text"
+				},
+				{
+					"buffer": 1,
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 692,
+						"regions":
+						{
+							"match":
+							{
+								"flags": 112,
+								"regions":
+								[
+									[
+										78,
+										85
+									],
+									[
+										140,
+										147
+									],
+									[
+										211,
+										218
+									],
+									[
+										232,
+										239
+									],
+									[
+										522,
+										529
+									],
+									[
+										658,
+										665
+									]
+								],
+								"scope": ""
+							}
+						},
+						"selection":
+						[
+							[
+								78,
+								78
+							]
+						],
+						"settings":
+						{
+							"detect_indentation": false,
+							"line_numbers": false,
+							"output_tag": 1,
+							"result_base_dir": "",
+							"result_file_regex": "^([^ 	].*):$",
+							"result_line_regex": "^ +([0-9]+):",
+							"scroll_past_end": true,
+							"syntax": "Packages/Default/Find Results.hidden-tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
 					"stack_index": 0,
+					"type": "text"
+				},
+				{
+					"buffer": 2,
+					"file": "2015/08-03.txt",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 4278,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								3096,
+								3096
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Text/Plain text.tmLanguage",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 1900.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 1,
 					"type": "text"
 				}
 			]
@@ -527,7 +642,7 @@
 	"show_open_files": false,
 	"show_tabs": true,
 	"side_bar_visible": true,
-	"side_bar_width": 161.0,
+	"side_bar_width": 144.0,
 	"status_bar_visible": true,
 	"template_settings":
 	{

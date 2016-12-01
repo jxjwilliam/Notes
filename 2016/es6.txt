@@ -13,15 +13,10 @@ Unlike true immutable datatypes such as those produced by Immutable.js and Mori,
 
 
 <App />
-
 <Comments />
-
 <Main />
-
 <Phone />
-
 <PhoneGrid />
-
 <Single />
 
 
@@ -37,9 +32,6 @@ Unlike true immutable datatypes such as those produced by Immutable.js and Mori,
 <!------>
 npm config ls -l
 npm config list
-
-
-
 
 
 Module parse failed: Unexpected token 
@@ -75,3 +67,223 @@ $ npm install babel-preset-es2015 babel-preset-react babel-preset-stage-2 --save
 		presets: ['es2015', "stage-0", 'react']
     }
 }
+
+
+//////// ES 6 ////////
+
+export function sum(a, b) { return ...}
+import * as calculator from 'calculator';
+
+
+
+import React, { PropTypes, Component } from 'react'
+export default class Footer extends Component {
+	renderFilterLink = (filter) => {
+
+	}
+
+	render = () => {
+		<footer className="footer">
+			{this.renderTodoCount()}
+			<ul className="filters">
+				{[]}.map(filter => 
+					<li key={filter}>
+						{this.renderFilterLink(filter)}
+					</li>
+				)
+			</ul>
+			{this.renderClearButton()}
+		</footer>
+		)
+	}
+}
+
+
+////// 1. presentation: CommentList.js
+
+class CommentList extends React.Component {
+	constructor(props) {
+		super(props);
+	}
+
+	render() {
+		return <ul> {
+			this.props.comments.map(renderComment)
+		} </ul>;
+	}
+
+	renderComment({body, author}) {
+		return <li>{body} - {author}</li>;
+	}
+	}
+}
+
+////// 2. CommentListContainer.js
+
+class CommentListContainer extends React.Component {
+	constructor() {
+		super();
+		this.state = { comments: [] }
+	}
+
+	componentDidMount() {
+		$.ajax({
+			url: "/my-comments.json",
+			dataType: 'json',
+			success: function(comments) {
+				this.setState({comments: comments});
+			}.bind(this)
+		})
+	}
+
+	render() {
+		render <CommentList comments={this.state.comments} />
+		// return React.createElement(CommentList, { comments: this.state.comments });
+	}
+}
+
+
+//////
+<Nav dispatch={this.props.dispatch} about={this.props.about} projects={this.props.projects} />
+
+
+<div className="navButton" onClick={this.handleClick}
+	style={this.styleUpdate()}>...</div>
+
+handleClick() {
+	let data = this.props.data;
+	this.props.dispatch(activeBox())
+}	
+
+
+//////////
+
+class BankAppContainer extends Component {
+	render() {
+		return (
+		  <BankApp
+			balance={balance}
+			onDeposit={()=>}
+			onWithdraw={(amount)=>this.props.onWithdraw(amount)}
+		  />
+		)
+	}
+}
+
+const mapStateToProps = (state) => {
+	return {
+		state
+		pages: state.entities.pages
+	}
+}
+const mapDispatchToProps = (dispatch) => {
+	return {
+		doSearchClick: (criteria) => {
+			dispatch(action_doSearch(criteria));
+		}
+	}
+}
+
+
+export default connect(mapStateToProps, mapDispatchToProps)(BankAppContainer);
+
+const SearchFormConnected = connect(
+	mapStateToProps,
+	mapDispatchToEvents
+)(SearchForm);
+
+
+/////////////
+import {connect} from 'react-redux';
+
+// export default connect(mapStateToProps, mapDispatchToProps)(App);
+
+
+function mapDispatchToProps(dispatch, ownProps) {
+	return {
+		getDueDate: dispatch(getDueDate(ownProps.id))
+	}
+}
+
+
+//If an object is passed, each function inside it will be assumed to be a Redux action creator
+const mapDispatchToProps = dispatch => ({
+	callback: () => dispatch(actionCreator())
+});
+const mapDispatchToProps = dispatch => {
+	return bindActionCreators({
+		callback: actionCreator
+	}, dispatch)
+};
+
+/**
+ * Not the reducer, use thunk-middleware which allows you to dispatch functions. This function has 2 params, dispathc and getState. This allows you to do whatever and dispatch whatever you want in the function.
+*/
+
+
+
+items: [
+	...state.items.splice(0, action.payload), ...state.items.splice(1)
+]
+
+
+items: [
+    ...state.items.slice(0, action.payload),
+    ...state.items.slice(action.payload + 1)
+],
+
+
+
+import { createStore, combineReducers } from 'redux'
+
+const userReducer = (state={}, action) => ({
+	return state
+});
+
+const widgetReducer = (state={}, action) => {
+	return state;
+}
+
+const reducers = combineReducers({
+	userState,
+	widgetState
+});
+
+const store = createStore(reducers);
+
+
+var args = [ 1,2, ...params ]
+function f(x, y, ...a) {}
+Array.prototype.slice.call(arguments, 2);
+
+
+/////////////////////////////////
+class Rectangle extends Shape {
+    constructor (id, x, y, width, height) {
+        super(id, x, y)
+        this.width  = width
+        this.height = height
+    }
+}
+class Circle extends Shape {
+    constructor (id, x, y, radius) {
+        super(id, x, y)
+        this.radius = radius
+    }
+}
+
+
+var Rectangle = function (id, x, y, width, height) {
+    Shape.call(this, id, x, y);
+    this.width  = width;
+    this.height = height;
+};
+Rectangle.prototype = Object.create(Shape.prototype);
+Rectangle.prototype.constructor = Rectangle;
+
+var Circle = function (id, x, y, radius) {
+    Shape.call(this, id, x, y);
+    this.radius = radius;
+};
+Circle.prototype = Object.create(Shape.prototype);
+Circle.prototype.constructor = Circle;

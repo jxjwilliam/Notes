@@ -1,0 +1,13 @@
+Even though Zenly's main product is a mobile app, a lot of Web components have been developed and many others are in the making. Their frontend stack is based on React (w/ Redux when necessary) written in ES6 bundled by Webpack using Babel for transpilation, Flow for static typing and ESlint for linting.
+
+Their backend relies heavily on Apache Kafka as the central message bus and Google Protobuf as the data format. It is written entirely in Go using a microservices architecture and communication with clients and internal standalone services is done using gRPC (RPC layer on top of HTTP/2 and Protobuf). The production datastores currently include Cassandra and Redis.
+
+For the data pipeline, they built a custom dynamic processing messaging system on top of Kafka and Protobuf (basically rebuilding some parts of the Confluent platform on top of Go and Protobuf instead of Java and Avro) which they plan to open-source. All real time processing and ETL is done in Go as well.
+
+Long-term data is stored in Hadoop and post processing is currently using Spark (Exploration in Python, Production code in Scala). 
+
+Deployment-wise, everything runs on Docker in Kubernetes (managed by Google Container Engine). A CI builds and publish the docker images into a registry for further deployments which allows them to deploy/rollback multiple times a day without constraints.
+
+The main mobile applications are native and they are migrating their iOS app to Swift planning to finish it before the end of this year. Moreover, amongst their plans is releasing a web version of the application that will be written in JavaScript with React. 
+
+react-redux-scripts

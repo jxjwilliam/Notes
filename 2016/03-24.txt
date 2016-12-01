@@ -41,3 +41,7 @@ AD Unit Level1 = site
 AD Unit Level2 = affiliate
 AD Unit Level3 = sensitive topics
 The site and affiliate values will change from being a number to a readable text format. (ex: instead of site=2 the value will be "Consumer" and instead of affiliate=20 the value will be "WebMD"). The ADModule XSL will continue to pass "site" and "affiliate" XSL params.
+
+
+"ads2-pos-101-bannerAd"
+ads2-pos-101-banner_ad
