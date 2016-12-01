@@ -1,0 +1,31 @@
+mkdir react-todo & cd 
+
+npm init -y
+
+npm i -S react react-dome
+
+npm i -D babel-core babel-loader babel-preset-es2015 babel-preset-react react-hot-loader webpack webpack-dev-server
+
+//npm -i -g webpack webpack-dev-server
+
+
+src/components
+webpack.config.js
+index.hml
+
+
+
+
+
+--------- ProveIt ----------------
+
+Test Results for:	William Jiang
+Company Name:	Parallel HR Maxhire Integration
+Test Administrator/Recruiter's Email:	tiffany.bowling@parallelhr.com
+Test Name:	JavaScript
+Test Date:	10/16/2016
+Elapsed Time:	01:03:20
+Questions Correct:	34 out of 40
+Percent Correct:	85%
+Percentile Ranking:	70
+Global Average:	77%
