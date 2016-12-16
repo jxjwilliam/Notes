@@ -3,3 +3,6 @@ node_modules
 Notes.sublime-project
 Notes.sublime-workspace
 notes.sublime-*
+.DS_Store/
+.idea/
+
