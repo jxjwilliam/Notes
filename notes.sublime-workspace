@@ -4,6 +4,26 @@
 		"selected_items":
 		[
 			[
+				"R",
+				"Reset"
+			],
+			[
+				"pro",
+				"profits"
+			],
+			[
+				"de",
+				"deferred"
+			],
+			[
+				"fa",
+				"factory"
+			],
+			[
+				"fun",
+				"function"
+			],
+			[
 				"map",
 				"mapDispatchToProps"
 			],
@@ -60,29 +80,44 @@
 	"buffers":
 	[
 		{
-			"file": "2013/2013-02-04.txt",
+			"contents": "var sort = {};\nvar tmp1 = {};\nvar tmp2 = {};\nvar first_2026 = 'infinite-ad-1';\n\nwebmd.ads2Consumer.defineAd({\n    id: first_2026,\n    pos: '2026',\n    sizes: [[300, 50], [300, 51], [300, 250], [300, 253], [320, 50], [320, 51]],\n    refresh: false,\n    immediate: true\n});\n\n\nfor (i in googletag.slot_manager_instance.l) {\n\n  if(/2025/.test(i)) {\n	sort[i] = googletag.slot_manager_instance.l[i];\n  }\n  else if (i !== first_2026) {\n    tmp1[i] = googletag.slot_manager_instance.l[i]\n  }\n  else {\n    tmp2 = googletag.slot_manager_instance.l[first_2026]\n  }\n}\n\nsort[first_2026] = tmp2;\n\nfor (i in tmp1) {\n  sort[i] = tmp1[i];\n}\n\nconsole.log(sort);\ngoogletag.slot_manager_instance.l = sort;\n\ngoogletag.pubads().refresh();\n\n\ngoogletag.destroySlots();\n\n\n\nwebmd.ads2Consumer.defineAd({targets:{art:'091e9c5e80eff7b3',cc:'83',env:'&amp;env=0',hcent:'',leaf:'&amp;leaf=1257',mcent:'',mic:'',pt:'1728',sec:'',pug:'',scent:'',tmg:'',tug:'',uri:'%2fdefault'},blockCodes:'__',id:'ads2-pos-101-ad_banner',pos:'101',sizes:[[728,90],[970, 90],[970,250]]});\n\nwebmd.ads2Consumer.defineAd({id: 'infinite-ad-1',pos: '2026',sizes: [[300, 50], [300, 51], [300, 250], [300, 253], [320, 50], [320, 51]],refresh:false,immediate: true});\n\nwebmd.ads2Consumer.defineAd({id:'ads2-pos-121-ad_rr_p1',pos:'121',sizes:[[300,250],[300, 600],[300,1050]]});\n\n\n\n\n\n//////////////////////////////////////////////////\n\n(1) in HTML page:\n\n  googletag.cmd.push(function() {	defineSlot1(); });\n  googletag.cmd.push(function() { defineSlot2(); });\n  googletag.cmd.push(function() { defineSlot3(); });\n  googletag.cmd.push(function() { defineSlot4(); });\n\n(2) in other js, I dynamically add:\ngoogletag.cmd.push(function() { defineSlot5(); });\n\n\n(3) right now in the queue, there is a sequence like this:\n[slot1, slot2, slot3, slot4, slot5];\n\nMy question is, how to move the slot5 the second place after slot1, like this:\n[slot1, slot5, slot2, slot3, slot4];\n\nin https://developers.google.com/doubleclick-gpt/reference,\ngoogletag.commandArray only has push(f) method, and the googletag.cmd is not a standard array.\n\n\n//////////////////////////////////////////////////\n\ngoogletag.pubads().getSlots().forEach(function(s) {\n  console.log( s.getSlotElementId());\n});\n\ngoogletag.pubads().getTargetingKeys();\n\n\ngoogletag.getResponseInformation()\n\n\n////////////////////////////////\n\nvar slot = googletag.slot_manager_instance.l['ads2-pos-2026-ad_btm']\n//googletag.pubads().clear([slot]);\ngoogletag.destroySlots([slot]);\n\n\nvar slot1 = googletag.slot_manager_instance.l['ads2-pos-1901-1x1ad']\ngoogletag.destroySlots([slot1]);\n\nwebmd.ads2Consumer.defineAd({\n  id:'ads2-pos-1901-1x1ad',\n  pos:'1901',\n  sizes:[1,1],\n});\n\n\n////////////////////////////////\nvar slots = [];\ngoogletag.pubads().getSlots().forEach(function(s) {\n  var exclusive_s = s.getSlotElementId();\n  if(!/2025/.test(exclusive_s)) {\n    slots.push(googletag.slot_manager_instance.l[exclusive_s]);\n  }\n});\ngoogletag.destroySlots(slots);\n\n// \"/4312434/consmobileweb/webmdmobileweb/hp-cmbwwbmd\"\nvar adUnit = '/' + webmd.ads2.networkCode + '/' + webmd.ads2.adTarget.join('/');\n\n\ngoogletag.defineSlot(adUnit, [[300, 50], [300, 51], [300, 250], [300, 253], [320, 50], [320, 51]], 'infinite-ad-1')\n  .addService(googletag.pubads())\n  .setTargeting('pos', '2026');\n\n\ngoogletag.defineSlot(adUnit, [1,2], 'ads2-pos-5000-ad-cw1-icm')\n  .addService(googletag.pubads())\n  .setTargeting('pos', '5000');\n\n\ngoogletag.defineSlot(adUnit, [1,2], 'ads2-pos-1901-1x1ad')\n  .addService(googletag.pubads())\n  .setTargeting('pos', '5001');\n\ngoogletag.pubads().refresh();\n\n\n/**\ngoogletag.defineSlot('/4312434/consumer/webmd/hp-conwbmd', [[300, 50], [300, 51], [300, 250], [300, 253], [320, 50], [320, 51]], 'ads2-pos-2026-ad_btm')\n  .addService(googletag.pubads())\n  .setTargeting('pos', '2026');\n*/\n\n////////////////////////////////\n\n\n///////////\n// https://developers.google.com/doubleclick-gpt/reference#googletag.Slot_getResponseInformation\n// https://developers.google.com/doubleclick-gpt/reference#googletag.ResponseInformation_lineItemId\n\n// lineItemId, creativeId, size, slot, isEmpty\n\n\n// http://www.webmd.com/diabetes/features/diabetic-diet-6-foods-control-blood-sugar#1\ngoogletag.pubads().addEventListener('slotRenderEnded', function(event) {\n\n  if(event.lineItemId) {\n    googletag.pubads().setTargeting('TBD', event.lineItemId);\n    webmd.ads2.pageTargets['TBD'] = event.lineItemId;\n    webmd.ads2.setPageTarget('TBD', event.lineItemId);\n    console.log('Creative with id: ' + event.creativeId +\n      ' is rendered to slot of size: ' + event.size[0] + 'x' + event.size[1], 'lineItemId: ', event.lineItemId);\n  }\n\n});\n// Creative with id: 127629745754 is rendered to slot of size: 300x250 lineItemId:  101778194\n\n",
+			"file": "jsbin/google-dfp.txt",
+			"file_size": 4816,
+			"file_write_time": 131257724150000000,
 			"settings":
 			{
-				"buffer_size": 1032,
-				"line_ending": "Windows"
+				"buffer_size": 4709,
+				"line_ending": "Unix",
+				"name": "googletag.pubads().addEventListener('slotRenderEnd"
 			}
 		},
 		{
-			"contents": "Searching 240 files for \"webpack\"\n\n/Users/wjiang/Notes/2015/08-03.txt:\n  150: webpack\n\n/Users/wjiang/Notes/2016/cmd.txt:\n   18: npm install webpack-dev-server\n\n/Users/wjiang/Notes/2016/reactjs.txt:\n    1: React+Webpack+Babel\n   88: webpack-dev-server\n\n/Users/wjiang/Notes/2016/recruit-info.txt:\n    1: Even though Zenly's main product is a mobile app, a lot of Web components have been developed and many others are in the making. Their frontend stack is based on React (w/ Redux when necessary) written in ES6 bundled by Webpack using Babel for transpilation, Flow for static typing and ESlint for linting.\n\n/Users/wjiang/Notes/webmd/js/thunk.js:\n   41: // webpack\n\n6 matches across 5 files\n",
+			"contents": "\nvar slots = googletag.pubads().getSlots()[0]\n\n\nslots.getSlotId().getDomId()\nslots.getSlotId().getId()\n\nslots.getSlotElementId() //\"ads2-pos-2025-ad-banner\"\n\nslots.getSizes();\n\nslots.getSlotId().getAdUnitPath();  \"/4312434/consmobileweb/webmdmobileweb\"\n\n\n\nwebmd.ads2Consumer.defineAd({targets:{art:'091e9c5e80f2253d',cc:'83',env:'&amp;env=0',hcent:'',leaf:'&amp;leaf=11025',mcent:'',mic:'',pt:'1728',sec:'',pug:'',scent:'',tmg:'',tug:'',uri:'%2fdefault'},blockCodes:'__',id:'ads2-pos-2025-ad_top',pos:'2025',sizes:[[300,50], [320, 50]]});\n\n\nwebmd.ads2Consumer.defineAd({targets:{art:'091e9c5e80f2253d',cc:'83',env:'&amp;env=0',hcent:'',leaf:'&amp;leaf=11025',mcent:'',mic:'',pt:'1728',sec:'',pug:'',scent:'',tmg:'',tug:'',uri:'%2fdefault'},blockCodes:'__',id:'ads2-pos-1901-1x1ad',pos:'1901',sizes:[1,1]});\n\nwebmd.ads2Consumer.defineAd({targets:{art:'091e9c5e80f2253d',cc:'83',env:'&amp;env=0',hcent:'',leaf:'&amp;leaf=11025',mcent:'',mic:'',pt:'1728',sec:'',pug:'',scent:'',tmg:'',tug:'',uri:'%2fdefault'},blockCodes:'__',id:'ads2-pos-2026-ad_btm',pos:'2026',sizes:[[300,50], [300, 51], [300,250], [300,253], [320, 50], [320, 51]]});\n\n\n\nwebmd.ads2Consumer.defineAd({id:'ads2-pos-2025-ad_top',pos:'2025',sizes:[[300,50], [320, 50]]});\n\n\nwebmd.ads2Consumer.defineAd({id:'ads2-pos-1901-1x1ad',pos:'1901',sizes:[1,1]});\n\nwebmd.ads2Consumer.defineAd({id:'ads2-pos-2026-ad_btm',pos:'2026',sizes:[[300,50], [300, 51], [300,250], [300,253], [320, 50], [320, 51]]});\n\n\nif(firstAd) {\n\n	var first_2026_ad = 'infinite-ad-1',\n	    adContainer = $(target).find('.inStreamAd');\n\n	adContainer.append('<div id=\"' + first_2026_ad + '\"></div>');\n\n	window.ads2_ignore = {2026: false};\n	webmd.ads2.setPageTarget('pg', 1);\n	this.index = 1;\n\n	console.info('IN PAGE 1 (1)', googletag.slot_manager_instance.l);\n\n	try{\n		//TODO: adjust the sequence of googletag.slot_manager_instance.l\n		var slots = [], ids = {}, adUnit;\n		//googletag.pubads().getSlots().forEach(function(s) {\n		//	var exclusive_s = s.getSlotElementId();\n		//	if(!/2025/.test(exclusive_s)) {\n		//		var pos = exclusive_s.match(/pos-(\\d+)-/)[1];\n		//		ids[exclusive_s] = pos;\n		//		slots.push(googletag.slot_manager_instance.l[exclusive_s]);\n		//	}\n		//});\n		googletag.destroySlots();\n		googletag.pubads().clear();\n		console.info('IN PAGE 1 (2)', googletag.slot_manager_instance.l);\n\n		webmd.ads2Consumer.defineAd({targets:{art:'091e9c5e80f2253d',cc:'83',env:'&amp;env=0',hcent:'',leaf:'&amp;leaf=11025',mcent:'',mic:'',pt:'1728',sec:'',pug:'',scent:'',tmg:'',tug:'',uri:'%2fdefault'},blockCodes:'__',id:'ads2-pos-2025-ad_top',pos:'2025',sizes:[[300,50], [320, 50]]});\n\n		webmd.ads2Consumer.defineAd({id:'infinite-ad-1',pos:'2026',sizes:[[300,50], [300, 51], [300,250], [300,253], [320, 50], [320, 51]],\n			refresh:false,\n			immediate:false});\n\n		webmd.ads2Consumer.defineAd({id:'ads2-pos-1901-1x1ad',pos:'1901',sizes:[1,1]});\n\n		webmd.ads2Consumer.defineAd({id:'ads2-pos-1901-ad-1x1-1x6',pos:'1920',sizes:[1,6]});\n\n		console.info('IN PAGE 1 (3)', googletag.slot_manager_instance.l);\n\n	} catch(e) {}\n}\nelse {\n	console.info('NOT IN PAGE 1', googletag.slot_manager_instance.l);\n	this.callDFPHouseAd(target);\n}\n\n",
 			"settings":
 			{
-				"buffer_size": 692,
+				"buffer_size": 3150,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"contents": "<body ng-app>\n  <label><input type=\"checkbox\" ng-model=\"checked\" />Disable Button<\\/label>\n  <button ng-disabled=\"checked\">Select me<\\/button>\n<\\/body>\n\n\nfunction MyCtrl($scope) {\n	$scope.email = \"\";\n\n	$scope.$watch(\"email\", function(newValue, oldValue) {\n		if ($scope.email.length > 0) {\n			console.log(\"User has started writing into email\");\n		}\n	});\n}\n\n<div ng-controller=\"MyCtrl\">\n  <button ng-click=\"hide()\">Hide element<\\/button>\n  <p ng-hide=\"isHide\">Hide or Show<\\/p>\n<\\/div>\n\nfunction MyCtrl($scope) {\n	$scope.isHide = false;\n	$scope.hide = function() {\n		$scope.isHide = true;\n	}\n}\n\n\nmyApp.factory('$exceptionHandler', function($log, ErrorService) {\n    return function(exception, cause) {\n        \n        if (console) {\n            $log.error(exception);\n            $log.error(cause);\n        }\n\n        ErrorService.send(exception, cause);\n    };\n});\n\n\nvar directiveDefinitionObject = {\n    priority: 0,\n    template: '<div></div>', // or // function(tElement, tAttrs) { ... },\n    // or\n    // templateUrl: 'directive.html', // or // function(tElement, tAttrs) { ... },\n    transclude: false,\n    restrict: 'A',\n    templateNamespace: 'html',\n    scope: false,\n    controller: function($scope, $element, $attrs, $transclude, otherInjectables) { ... },\n    controllerAs: 'stringIdentifier',\n    bindToController: false,\n    require: 'siblingDirectiveName', // or // ['^parentDirectiveName', '?optionalDirectiveName', '?^optionalParent'],\n    compile: function compile(tElement, tAttrs, transclude) {\n      return {\n        pre: function preLink(scope, iElement, iAttrs, controller) { ... },\n        post: function postLink(scope, iElement, iAttrs, controller) { ... }\n      }\n      // or\n      // return function postLink( ... ) { ... }\n    },\n    // or\n    // link: {\n    //  pre: function preLink(scope, iElement, iAttrs, controller) { ... },\n    //  post: function postLink(scope, iElement, iAttrs, controller) { ... }\n    // }\n    // or\n    // link: function postLink( ... ) { ... }\n  };\n\n\n  angular.factory('testService', function($q) {\n  	return {\n  		getName: function() {\n  			var deferred = $q.defer();\n\n  			testApi.getName().then(function(name) {\n  				deferred.resolve(name);\n  			});\n\n  			return deferred.promise;\n  		}\n  	}\n  });\n\n\n\n\n///////////////\nvar prices = [105, 101, 102, 104, 109, 110, 99, 101];\n\nfunction maxProfit(prices) {\n  let profit = 0;\n  if (prices) {\n    let minSoFar = prices[0];\n        \n    for (let i = 1; i < prices.length; ++i) {\n      if (prices[i] < minSoFar) {\n        minSoFar = prices[i]; \n      }\n      \n      let currentProfit = prices[i] - minSoFar;\n      if (currentProfit > profit) {\n        profit = currentProfit\n      }\n    }\n  }  \n  return profit;\n}\n\nconsole.log(maxProfit(prices));\n\n\n\n//2.\nfunction MyP(cb) {\n    var resolve = function(msg) {\n        console.log('resolve: ', msg);\n    }\n    var reject = function(msg) {\n        console.log('reject: ', msg);\n    }\n    cb.call(this, resolve, reject);\n}\n\nMyP.prototype.then = function() {\n    console.log('then');\n    return this;\n}\n\nMyP.prototype.catch = function() {\n    console.log('catch');\n}\n\nvar mp = new MyP(function(resolve, reject) {\n    if(true) {\n        resolve({username: 'william'});\n    }\n    if(!false) {\n        reject({error: 'something wrong'})\n    }\n});\n\nmp.then().then().catch();\n\n\n\nvar App = React.createClass({\n  getInitialState: function () {\n    return {count: this.props.maxCounters};\n  },\n\n  onIncrement: function () {\n    this.setState({'count': this.state.count+1})\n  },\n\n  onDecrement: function () {\n    this.setState({'count': this.state.count-1});\n  },\n\n  render: function () {\n    return (\n      <div>\n        <div>{this.state.count}</div>\n        <button onClick={this.onIncrement}> + </button>\n        <button onClick={this.onDecrement}> - </button>\n      </div>\n    );\n  }\n});\n\n\n\nclass App extends React.Component {\n  getInitialState() {\n    return {count: this.props.maxCounters};\n  }\n onIncrement() {\n   this.setState({'count': this.state.count-1});\n   },\n  onDecrement() {\n   this.setState({'count': this.state.count-1});\n  }\n  \n  render() {\n    return (\n      <div>\n        <button onClick={this.onIncrement}> + </button>\n        <button onClick={this.onDecrement}> - </button>\n      </div>\n    );\n  }\n}\n\nReactDOM.render(<App maxCounters={3} />, document.getElementById('app'));\n\n\n",
+			"file": "interview/12-01.js",
+			"file_size": 2851,
+			"file_write_time": 131261466730000000,
+			"settings":
+			{
+				"buffer_size": 4337,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"contents": "Searching 246 files for \"Counter\"\n\n/Users/wjiang/Notes/2013/2013-05-10.txt:\n  168:         var cbCountError = function (e) {};\n\n/Users/wjiang/Notes/2013/2013-05-14.txt:\n  174:         var cbCountError = function (e) {};\n\n/Users/wjiang/Notes/2013/2013-05-15.txt:\n   54:         var cbCountError = function (e) {};\n\n/Users/wjiang/Notes/2013/2013-06-16.txt:\n    4:         var counter = 100;\n    6:             return counter++;\n\n/Users/wjiang/Notes/2013/2013-06-19.txt:\n    4:         var counter = 100;\n    6:             return counter++;\n\n/Users/wjiang/Notes/2013/2013-06-24.txt:\n    8: 				var counter = 1; \n   10: 					return counter++;\n\n/Users/wjiang/Notes/2014/2014-04-18.txt:\n   52: 4. Generated Content and Counters\n\n/Users/wjiang/Notes/2016/es6.txt:\n   11: `let`, is a signal that the variable may be reassigned, such as a counter in a loop, or a value swap in an algorithm. It also signals that the variable will be used only in the block it’s defined in, which is not always the entire containing function.\n\n/Users/wjiang/Notes/html/watcher.html:\n   44:         var counter = 0;\n   50:             $scope.name = names[counter % names.length];\n   51:             counter++;\n\n/Users/wjiang/Notes/interview/12-01.js:\n  163: ReactDOM.render(<App maxCounters={3} />, document.getElementById('app'));\n  182: [Add a counter] [Remove all counters]\n  186: [Add a counter] [Remove all counters]\n  191: [Add a counter] [Remove all counters]\n  196: [Add a counter] [Remove all counters]\n\n/Users/wjiang/Notes/javascript/configSettings.JS:\n    8: 	counter,\n\n/Users/wjiang/Notes/javascript/general2.js:\n  103:   var counter = 1;\n  105:     return counter ++;\n\n26 matches across 12 files\n",
+			"settings":
+			{
+				"buffer_size": 1682,
 				"line_ending": "Unix",
 				"name": "Find Results",
 				"scratch": true
-			}
-		},
-		{
-			"file": "2015/08-03.txt",
-			"settings":
-			{
-				"buffer_size": 4278,
-				"line_ending": "Unix"
 			}
 		}
 	],
@@ -124,10 +159,37 @@
 	"expanded_folders":
 	[
 		"/Users/wjiang/Notes",
-		"/Users/wjiang/Notes/webmd"
+		"/Users/wjiang/Notes/interview",
+		"/Users/wjiang/Notes/javascript"
 	],
 	"file_history":
 	[
+		"/Users/wjiang/Notes/interview/12-01.js",
+		"/Users/wjiang/Notes/interview/12-01.txt",
+		"/Users/wjiang/Notes/jsbin/direcitves-product.html",
+		"/Users/wjiang/Notes/jsbin/parse-compile-interpolate.html",
+		"/Users/wjiang/Notes/webmd/txt/03-23.txt",
+		"/Users/wjiang/Notes/webmd/txt/DFP.txt",
+		"/Users/wjiang/Notes/webmd/txt/feature-PPE-89355-responsive-2025-2026.txt",
+		"/Users/wjiang/Notes/jsbin/directive-amount.html",
+		"/Users/wjiang/Notes/jsfiddle/AngularJS Debounce Service.html",
+		"/Users/wjiang/Notes/javascript/angular-extend.js",
+		"/Users/wjiang/Notes/javascript/general1.js",
+		"/Users/wjiang/Notes/samples/0713.js",
+		"/Users/wjiang/Notes/jsfiddle/AngularJS issue 1404.html",
+		"/Users/wjiang/Notes/jsfiddle/bind-apply.html",
+		"/Users/wjiang/Notes/jsfiddle/decorator.html",
+		"/Users/wjiang/Notes/jsfiddle/directive.html",
+		"/Users/wjiang/Notes/jsfiddle/directive-formvalidation.html",
+		"/Users/wjiang/Notes/jsfiddle/jsfiddle-template.html",
+		"/Users/wjiang/Notes/samples/directive.js",
+		"/Users/wjiang/Notes/2013/2013-02-04.txt",
+		"/Users/wjiang/Notes/javascript/john_papa.js",
+		"/Users/wjiang/Notes/javascript/react.js",
+		"/Users/wjiang/Notes/etc/bash_profile",
+		"/Users/wjiang/Notes/samples/directives_head.js",
+		"/Users/wjiang/Notes/2015/08-03.txt",
+		"/Users/wjiang/Notes/css/media.txt",
 		"/Users/wjiang/Notes/javascript/todoFooter.js",
 		"/Users/wjiang/Notes/2014/linkedin.txt",
 		"/Users/wjiang/Notes/samples/filters.js",
@@ -163,7 +225,6 @@
 		"/Users/wjiang/Notes/webmd/txt/fis-fipt.txt",
 		"/Users/wjiang/Notes/2016/redux",
 		"/Users/wjiang/Notes/javascript/j10-05.js",
-		"/Users/wjiang/Notes/jsbin/parse-compile-interpolate.html",
 		"/Users/wjiang/Notes/javascript/j10-05",
 		"/Users/wjiang/Notes/webmd/media.net/08-31.txt",
 		"/Users/wjiang/Notes/webmd/mobile-viewability/06-28.txt",
@@ -176,7 +237,6 @@
 		"/Users/wjiang/Notes/webmd/DFP/2016-08-01.txt",
 		"/Users/wjiang/Notes/webmd/txt/pug.txt",
 		"/Users/wjiang/Notes/webmd/DFP/stackoverflow.html",
-		"/Users/wjiang/Notes/webmd/txt/DFP.txt",
 		"/Users/wjiang/Notes/webmd/mobile-viewability/07-24.html",
 		"/Users/wjiang/Notes/plunkr/contactCard.html",
 		"/Users/wjiang/Notes/plunkr/checkList.html",
@@ -209,7 +269,6 @@
 		"/Users/wjiang/Notes/webmd/mobile-viewability/topicId.txt",
 		"/Users/wjiang/Notes/webmd/mediaNet.txt",
 		"/Users/wjiang/Notes/webmd/amp/0705.txt",
-		"/Users/wjiang/Notes/webmd/txt/03-23.txt",
 		"/Users/wjiang/Notes/webmd/DFP/function objectEquals(obj1, obj2) {",
 		"/Users/wjiang/Notes/webmd/DFP/sticky.txt",
 		"/Users/wjiang/Notes/webmd/reports/07-19.txt",
@@ -222,7 +281,6 @@
 		"/Users/wjiang/Notes/webmd/js/debounce.js",
 		"/Users/wjiang/Notes/webmd/txt/06-28.txt",
 		"/Users/wjiang/Notes/debounce",
-		"/Users/wjiang/Notes/jsfiddle/AngularJS Debounce Service.html",
 		"/Users/wjiang/Notes/webmd/txt/06-09.txt",
 		"/Users/wjiang/Notes/webmd/txt/04-15.txt",
 		"/Users/wjiang/Notes/webmd/txt/0628.txt",
@@ -233,29 +291,7 @@
 		"/Users/wjiang/Notes/webmd/js/ajax",
 		"/Users/wjiang/Notes/webmd/js/scripts_harmony.js",
 		"/Users/wjiang/Notes/webmd/txt/dfp.txt",
-		"/Users/wjiang/Notes/webmd/txt/03-28.txt",
-		"/Users/wjiang/Notes/webmd/txt/11-18.txt",
-		"/Users/wjiang/Notes/2014/2014-09-17.txt",
-		"/Users/wjiang/Notes/webmd/txt/heartbeat-document.txt",
-		"/Users/wjiang/Notes/webmd/txt/PublisherId.txt",
-		"/Users/wjiang/Notes/webmd/txt/nodexml.txt",
-		"/Users/wjiang/Notes/webmd/txt/12-08.txt",
-		"/Users/wjiang/Notes/webmd/txt/04-06.txt",
-		"/Users/wjiang/Notes/webmd/js/header-fix-ie8.txt",
-		"/Users/wjiang/Notes/webmd/js/header.txt",
-		"/Users/wjiang/Notes/webmd/txt/01-28.txt",
-		"/Users/wjiang/Notes/webmd/txt/dfp1.txt",
-		"/Users/wjiang/Notes/webmd/03-23.txt",
-		"/Users/wjiang/Notes/webmd/03-30.txt",
-		"/Users/wjiang/Notes/webmd/03-28.txt",
-		"/Users/wjiang/Notes/webmd/DFP.txt",
-		"/Users/wjiang/Notes/webmd/apt.txt",
-		"/Users/wjiang/Notes/webmd/untitled",
-		"/Users/wjiang/Notes/webmd/js/03-31.jx",
-		"/Users/wjiang/Notes/webmd/1.",
-		"/Users/wjiang/Notes/webmd/03-14.txt",
-		"/Users/wjiang/Notes/2014/git.txt",
-		"/Users/wjiang/Notes/webmd/header-bidding.txt"
+		"/Users/wjiang/Notes/webmd/txt/03-28.txt"
 	],
 	"find":
 	{
@@ -274,6 +310,48 @@
 		"case_sensitive": false,
 		"find_history":
 		[
+			"Counter",
+			"defineAd",
+			"[[300, 50], [300, 51], [300, 250], [300, 253], [320, 50], [320, 51]]",
+			"2026",
+			"defineAd",
+			"pg=1",
+			"getSlotId",
+			"getSlotElementId",
+			"getSlotElementId()",
+			"refresh",
+			"TBD",
+			"id:",
+			"TBD",
+			"infinite-ad-1",
+			"1901",
+			"slot1",
+			"getSlots",
+			"defineSlot",
+			"first_",
+			"first",
+			"define",
+			"destroy",
+			"destrory",
+			"destroy",
+			"first_2026",
+			"defineAd",
+			"getSlots",
+			"slotrender",
+			"getSlotElementId",
+			"googletag.defineSlot",
+			"{{",
+			"controller",
+			"ng-",
+			"controller",
+			"foo",
+			"myDir",
+			"my-dir",
+			"myDir",
+			"my-dir",
+			"template",
+			"validSubmit",
+			"pg=",
 			"webpack",
 			"passport",
 			"Object.keys",
@@ -359,49 +437,7 @@
 			"trackingPixel",
 			"git diff",
 			"googletag.cmd",
-			"defineSlot",
-			"clearTimer",
-			"setInterval",
-			"std.",
-			"o.std",
-			"webmdp1thekidneyvista",
-			"test",
-			"588770247",
-			"ppe-",
-			"50%",
-			"debounce",
-			"component",
-			"encodeURIComponent",
-			"8CU62R962",
-			"mnet",
-			"pos",
-			"sl_",
-			"l_",
-			"sl_",
-			"nl",
-			"s_nl",
-			"try",
-			"try {",
-			"sd_",
-			"encodeURIComponent",
-			"encode",
-			"pvid",
-			"debounce",
-			"amp.",
-			"mnet",
-			"whitelist",
-			"mnetDNB",
-			"mnet",
-			"2026",
-			"5000",
-			"googleloaded",
-			"boots",
-			".idea",
-			"mnet",
-			"var $googleloaded = $googleloaded || false;",
-			"googleloaded",
-			"even",
-			"event8"
+			"defineSlot"
 		],
 		"highlight": false,
 		"in_selection": false,
@@ -427,35 +463,38 @@
 	"groups":
 	[
 		{
-			"selected": 1,
+			"selected": 2,
 			"sheets":
 			[
 				{
 					"buffer": 0,
-					"file": "2013/2013-02-04.txt",
+					"file": "jsbin/google-dfp.txt",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 1032,
+						"buffer_size": 4709,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								522,
-								522
+								3525,
+								3554
 							]
 						],
 						"settings":
 						{
-							"syntax": "Packages/Text/Plain text.tmLanguage"
+							"auto_name": "googletag.pubads().addEventListener('slotRenderEnd",
+							"syntax": "Packages/Text/Plain text.tmLanguage",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
-						"translation.y": 0.0,
+						"translation.y": 1741.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 2,
+					"stack_index": 3,
 					"type": "text"
 				},
 				{
@@ -463,7 +502,65 @@
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 692,
+						"buffer_size": 3150,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								3150,
+								3150
+							]
+						],
+						"settings":
+						{
+							"auto_name": "",
+							"syntax": "Packages/Text/Plain text.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 731.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 2,
+					"type": "text"
+				},
+				{
+					"buffer": 2,
+					"file": "interview/12-01.js",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 4337,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								3830,
+								3830
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/JavaScript/JavaScript.sublime-syntax",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 2256.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 0,
+					"type": "text"
+				},
+				{
+					"buffer": 3,
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 1682,
 						"regions":
 						{
 							"match":
@@ -472,28 +569,108 @@
 								"regions":
 								[
 									[
-										78,
-										85
+										97,
+										104
 									],
 									[
-										140,
-										147
+										190,
+										197
 									],
 									[
-										211,
-										218
+										283,
+										290
 									],
 									[
-										232,
-										239
+										374,
+										381
 									],
 									[
-										522,
-										529
+										415,
+										422
 									],
 									[
-										658,
-										665
+										487,
+										494
+									],
+									[
+										528,
+										535
+									],
+									[
+										596,
+										603
+									],
+									[
+										629,
+										636
+									],
+									[
+										714,
+										721
+									],
+									[
+										831,
+										838
+									],
+									[
+										1076,
+										1083
+									],
+									[
+										1128,
+										1135
+									],
+									[
+										1172,
+										1179
+									],
+									[
+										1255,
+										1262
+									],
+									[
+										1319,
+										1326
+									],
+									[
+										1340,
+										1347
+									],
+									[
+										1364,
+										1371
+									],
+									[
+										1385,
+										1392
+									],
+									[
+										1409,
+										1416
+									],
+									[
+										1430,
+										1437
+									],
+									[
+										1454,
+										1461
+									],
+									[
+										1475,
+										1482
+									],
+									[
+										1544,
+										1551
+									],
+									[
+										1611,
+										1618
+									],
+									[
+										1642,
+										1649
 									]
 								],
 								"scope": ""
@@ -502,8 +679,8 @@
 						"selection":
 						[
 							[
-								78,
-								78
+								1326,
+								1326
 							]
 						],
 						"settings":
@@ -518,37 +695,7 @@
 							"syntax": "Packages/Default/Find Results.hidden-tmLanguage"
 						},
 						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 0,
-					"type": "text"
-				},
-				{
-					"buffer": 2,
-					"file": "2015/08-03.txt",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 4278,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								3096,
-								3096
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/Text/Plain text.tmLanguage",
-							"tab_size": 2,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 1900.0,
+						"translation.y": 146.0,
 						"zoom_level": 1.0
 					},
 					"stack_index": 1,
@@ -642,7 +789,7 @@
 	"show_open_files": false,
 	"show_tabs": true,
 	"side_bar_visible": true,
-	"side_bar_width": 144.0,
+	"side_bar_width": 303.0,
 	"status_bar_visible": true,
 	"template_settings":
 	{

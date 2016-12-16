@@ -192,3 +192,7 @@ This is just a traditional async function with a $scope.$apply() called at the e
 
 
 AngularJS provides $timeout, which is like setTimeout, but automatically wraps your code in $apply by default.
+
+
+
+https://github.com/williamjxj?tab=repositories; http://github.com/jxjwilliam; http://github.com/williamjiang

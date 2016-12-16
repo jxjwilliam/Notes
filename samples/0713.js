@@ -5,7 +5,7 @@
 app.directive('directiveName', function () {
     return {
         restrict: 'A',
-        link: function (scrope, element, attrs) {
+        link: function (scope, element, attrs) {
             angular.element(element).pluginActivationFunction(scope.$eval(attrs.directiveName));
         }
     }

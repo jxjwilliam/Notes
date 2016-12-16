@@ -1,0 +1,53 @@
+
+function bind(fn, thisArg) {
+	return function() {
+		fn.apply(thisArg, arguments);
+	}
+}
+
+function RR(words) {
+	var len = words.length;
+	var nw = words[len-1];
+
+	return function RW() {
+		if(len>0) {
+			len = len - 1;
+			if(len>0)
+				nw += words[len-1];
+			return RW();
+		}
+		return nw;
+	}
+}
+
+RR('hello')();
+
+////////////////////
+
+
+
+var seconds, minutes, hours, divider, currentTimeString;
+seconds = minutes = hours = currentTimeString = 0;
+divider = 10;
+var timer = setInterval(function() {
+
+	seconds ++;
+	minutes = Math.floor(seconds/10);
+  	hours = Math.floor(minutes/10);
+  	if(seconds % divider) {
+  		seconds = 0;
+  	}
+  	if(minutes % divider) {
+  		minutes = 0;
+  	}
+
+  	currentTimeString = [
+  		hours ? (hours+":") : '', 
+  		minutes ? (minutes+":") : '', 
+  		seconds
+  	].join('');
+  
+  	console.log(currentTimeString);
+	// $(".clock").html(currentTimeString);
+
+}, 1000);
