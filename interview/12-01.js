@@ -88,9 +88,33 @@ var directiveDefinitionObject = {
 
 
 
+///////////////
+var prices = [105, 101, 102, 104, 109, 110, 99, 101];
+
+function maxProfit(prices) {
+  let profit = 0;
+  if (prices) {
+    let minSoFar = prices[0];
+        
+    for (let i = 1; i < prices.length; ++i) {
+      if (prices[i] < minSoFar) {
+        minSoFar = prices[i]; 
+      }
+      
+      let currentProfit = prices[i] - minSoFar;
+      if (currentProfit > profit) {
+        profit = currentProfit
+      }
+    }
+  }  
+  return profit;
+}
+
+console.log(maxProfit(prices));
 
 
 
+//2.
 function MyP(cb) {
     var resolve = function(msg) {
         console.log('resolve: ', msg);
@@ -99,15 +123,15 @@ function MyP(cb) {
         console.log('reject: ', msg);
     }
     cb.call(this, resolve, reject);
-    //console.log(cb);
 }
 
 MyP.prototype.then = function() {
     console.log('then');
     return this;
 }
+
 MyP.prototype.catch = function() {
-    console.log('catch')
+    console.log('catch');
 }
 
 var mp = new MyP(function(resolve, reject) {
@@ -120,4 +144,56 @@ var mp = new MyP(function(resolve, reject) {
 });
 
 mp.then().then().catch();
-    
+
+
+
+var App = React.createClass({
+  getInitialState: function () {
+    return {count: this.props.maxCounters};
+  },
+
+  onIncrement: function () {
+    this.setState({'count': this.state.count+1})
+  },
+
+  onDecrement: function () {
+    this.setState({'count': this.state.count-1});
+  },
+
+  render: function () {
+    return (
+      <div>
+        <div>{this.state.count}</div>
+        <button onClick={this.onIncrement}> + </button>
+        <button onClick={this.onDecrement}> - </button>
+      </div>
+    );
+  }
+});
+
+
+
+class App extends React.Component {
+  getInitialState() {
+    return {count: this.props.maxCounters};
+  }
+ onIncrement() {
+   this.setState({'count': this.state.count-1});
+   },
+  onDecrement() {
+   this.setState({'count': this.state.count-1});
+  }
+  
+  render() {
+    return (
+      <div>
+        <button onClick={this.onIncrement}> + </button>
+        <button onClick={this.onDecrement}> - </button>
+      </div>
+    );
+  }
+}
+
+ReactDOM.render(<App maxCounters={3} />, document.getElementById('app'));
+
+

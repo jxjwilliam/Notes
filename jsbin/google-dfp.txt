@@ -1,10 +1,3 @@
-googletag.pubads().addEventListener('slotRenderEnded', function(event) {
- console.log('Creative with id: ' + event.creativeId +
-  ' is rendered to slot of size: ' + event.size[0] + 'x' + event.size[1]);
-});
-
-/////////////////////////////
-
 var sort = {};
 var tmp1 = {};
 var tmp2 = {};
@@ -129,9 +122,14 @@ googletag.defineSlot(adUnit, [[300, 50], [300, 51], [300, 250], [300, 253], [320
   .setTargeting('pos', '2026');
 
 
-googletag.defineSlot(adUnit, [1, 1], 'ads2-pos-1901-1x1ad')
+googletag.defineSlot(adUnit, [1,2], 'ads2-pos-5000-ad-cw1-icm')
   .addService(googletag.pubads())
-  .setTargeting('pos', '1901');
+  .setTargeting('pos', '5000');
+
+
+googletag.defineSlot(adUnit, [1,2], 'ads2-pos-1901-1x1ad')
+  .addService(googletag.pubads())
+  .setTargeting('pos', '5001');
 
 googletag.pubads().refresh();
 
@@ -162,6 +160,7 @@ googletag.pubads().addEventListener('slotRenderEnded', function(event) {
     console.log('Creative with id: ' + event.creativeId +
       ' is rendered to slot of size: ' + event.size[0] + 'x' + event.size[1], 'lineItemId: ', event.lineItemId);
   }
+
 });
 // Creative with id: 127629745754 is rendered to slot of size: 300x250 lineItemId:  101778194
 

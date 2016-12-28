@@ -80,44 +80,59 @@
 	"buffers":
 	[
 		{
-			"contents": "var sort = {};\nvar tmp1 = {};\nvar tmp2 = {};\nvar first_2026 = 'infinite-ad-1';\n\nwebmd.ads2Consumer.defineAd({\n    id: first_2026,\n    pos: '2026',\n    sizes: [[300, 50], [300, 51], [300, 250], [300, 253], [320, 50], [320, 51]],\n    refresh: false,\n    immediate: true\n});\n\n\nfor (i in googletag.slot_manager_instance.l) {\n\n  if(/2025/.test(i)) {\n	sort[i] = googletag.slot_manager_instance.l[i];\n  }\n  else if (i !== first_2026) {\n    tmp1[i] = googletag.slot_manager_instance.l[i]\n  }\n  else {\n    tmp2 = googletag.slot_manager_instance.l[first_2026]\n  }\n}\n\nsort[first_2026] = tmp2;\n\nfor (i in tmp1) {\n  sort[i] = tmp1[i];\n}\n\nconsole.log(sort);\ngoogletag.slot_manager_instance.l = sort;\n\ngoogletag.pubads().refresh();\n\n\ngoogletag.destroySlots();\n\n\n\nwebmd.ads2Consumer.defineAd({targets:{art:'091e9c5e80eff7b3',cc:'83',env:'&amp;env=0',hcent:'',leaf:'&amp;leaf=1257',mcent:'',mic:'',pt:'1728',sec:'',pug:'',scent:'',tmg:'',tug:'',uri:'%2fdefault'},blockCodes:'__',id:'ads2-pos-101-ad_banner',pos:'101',sizes:[[728,90],[970, 90],[970,250]]});\n\nwebmd.ads2Consumer.defineAd({id: 'infinite-ad-1',pos: '2026',sizes: [[300, 50], [300, 51], [300, 250], [300, 253], [320, 50], [320, 51]],refresh:false,immediate: true});\n\nwebmd.ads2Consumer.defineAd({id:'ads2-pos-121-ad_rr_p1',pos:'121',sizes:[[300,250],[300, 600],[300,1050]]});\n\n\n\n\n\n//////////////////////////////////////////////////\n\n(1) in HTML page:\n\n  googletag.cmd.push(function() {	defineSlot1(); });\n  googletag.cmd.push(function() { defineSlot2(); });\n  googletag.cmd.push(function() { defineSlot3(); });\n  googletag.cmd.push(function() { defineSlot4(); });\n\n(2) in other js, I dynamically add:\ngoogletag.cmd.push(function() { defineSlot5(); });\n\n\n(3) right now in the queue, there is a sequence like this:\n[slot1, slot2, slot3, slot4, slot5];\n\nMy question is, how to move the slot5 the second place after slot1, like this:\n[slot1, slot5, slot2, slot3, slot4];\n\nin https://developers.google.com/doubleclick-gpt/reference,\ngoogletag.commandArray only has push(f) method, and the googletag.cmd is not a standard array.\n\n\n//////////////////////////////////////////////////\n\ngoogletag.pubads().getSlots().forEach(function(s) {\n  console.log( s.getSlotElementId());\n});\n\ngoogletag.pubads().getTargetingKeys();\n\n\ngoogletag.getResponseInformation()\n\n\n////////////////////////////////\n\nvar slot = googletag.slot_manager_instance.l['ads2-pos-2026-ad_btm']\n//googletag.pubads().clear([slot]);\ngoogletag.destroySlots([slot]);\n\n\nvar slot1 = googletag.slot_manager_instance.l['ads2-pos-1901-1x1ad']\ngoogletag.destroySlots([slot1]);\n\nwebmd.ads2Consumer.defineAd({\n  id:'ads2-pos-1901-1x1ad',\n  pos:'1901',\n  sizes:[1,1],\n});\n\n\n////////////////////////////////\nvar slots = [];\ngoogletag.pubads().getSlots().forEach(function(s) {\n  var exclusive_s = s.getSlotElementId();\n  if(!/2025/.test(exclusive_s)) {\n    slots.push(googletag.slot_manager_instance.l[exclusive_s]);\n  }\n});\ngoogletag.destroySlots(slots);\n\n// \"/4312434/consmobileweb/webmdmobileweb/hp-cmbwwbmd\"\nvar adUnit = '/' + webmd.ads2.networkCode + '/' + webmd.ads2.adTarget.join('/');\n\n\ngoogletag.defineSlot(adUnit, [[300, 50], [300, 51], [300, 250], [300, 253], [320, 50], [320, 51]], 'infinite-ad-1')\n  .addService(googletag.pubads())\n  .setTargeting('pos', '2026');\n\n\ngoogletag.defineSlot(adUnit, [1,2], 'ads2-pos-5000-ad-cw1-icm')\n  .addService(googletag.pubads())\n  .setTargeting('pos', '5000');\n\n\ngoogletag.defineSlot(adUnit, [1,2], 'ads2-pos-1901-1x1ad')\n  .addService(googletag.pubads())\n  .setTargeting('pos', '5001');\n\ngoogletag.pubads().refresh();\n\n\n/**\ngoogletag.defineSlot('/4312434/consumer/webmd/hp-conwbmd', [[300, 50], [300, 51], [300, 250], [300, 253], [320, 50], [320, 51]], 'ads2-pos-2026-ad_btm')\n  .addService(googletag.pubads())\n  .setTargeting('pos', '2026');\n*/\n\n////////////////////////////////\n\n\n///////////\n// https://developers.google.com/doubleclick-gpt/reference#googletag.Slot_getResponseInformation\n// https://developers.google.com/doubleclick-gpt/reference#googletag.ResponseInformation_lineItemId\n\n// lineItemId, creativeId, size, slot, isEmpty\n\n\n// http://www.webmd.com/diabetes/features/diabetic-diet-6-foods-control-blood-sugar#1\ngoogletag.pubads().addEventListener('slotRenderEnded', function(event) {\n\n  if(event.lineItemId) {\n    googletag.pubads().setTargeting('TBD', event.lineItemId);\n    webmd.ads2.pageTargets['TBD'] = event.lineItemId;\n    webmd.ads2.setPageTarget('TBD', event.lineItemId);\n    console.log('Creative with id: ' + event.creativeId +\n      ' is rendered to slot of size: ' + event.size[0] + 'x' + event.size[1], 'lineItemId: ', event.lineItemId);\n  }\n\n});\n// Creative with id: 127629745754 is rendered to slot of size: 300x250 lineItemId:  101778194\n\n",
-			"file": "jsbin/google-dfp.txt",
-			"file_size": 4816,
-			"file_write_time": 131257724150000000,
+			"contents": "\nfunction bind(fn, thisArg) {\n	return function() {\n		fn.apply(thisArg, arguments);\n	}\n}\n\nfunction RR(words) {\n	var len = words.length;\n	var nw = words[len-1];\n\n	return function RW() {\n		if(len>0) {\n			len = len - 1;\n			if(len>0)\n				nw += words[len-1];\n			return RW();\n		}\n		return nw;\n	}\n}\n\nRR('hello')();\n\n////////////////////\n\n\n\nvar seconds, minutes, hours, divider, currentTimeString;\nseconds = minutes = hours = currentTimeString = 0;\ndivider = 10;\nvar timer = setInterval(function() {\n\n	seconds ++;\n	minutes += Math.floor(seconds / divider);\n  	hours += Math.floor(minutes / divider);\n  	if(seconds % divider === 0) {\n  		seconds = 0;\n  	}\n  	if(minutes % divider ===0) {\n  		minutes = 0;\n  	}\n\n  	currentTimeString = [\n  		hours ? (hours+\":\") : '', \n  		minutes ? (minutes+\":\") : '', \n  		seconds\n  	].join('');\n  \n  	console.log(currentTimeString);\n	// $(\".clock\").html(currentTimeString);\n\n}, 1000);\n\n\n/////////////////////////\nfunction isString(x) {\n  return Object.prototype.toString.call(x) === \"[object String]\"\n}\n\n\nvar s = 'String';\nvar a = [1,2,3];\nvar o = {key: 'val'};\n\n(s.constructor === String) && console.log('its a string');\n(a.constructor === Array) && console.log('its an array');\n(o.constructor === Object) && console.log('its an object');\n(o.constructor === Number || s.constructor === Boolean) && console.log('this won\\'t run');\n\nIf you use throw together with try and catch, you can control program flow and generate custom error messages.\n\n\nif (myVar === myVar + '') {\n   //its string\n} else {\n   //its something else\n}\n\n\n///////////////\nvar aa=123\nfunction aa() { console.log('bingo'); }\n\nObject.prototype.toString.call(aa);\n\"[object Function]\"",
+			"file": "interview/12-14.txt",
+			"file_size": 1469,
+			"file_write_time": 131268401980000000,
 			"settings":
 			{
-				"buffer_size": 4709,
-				"line_ending": "Unix",
-				"name": "googletag.pubads().addEventListener('slotRenderEnd"
-			}
-		},
-		{
-			"contents": "\nvar slots = googletag.pubads().getSlots()[0]\n\n\nslots.getSlotId().getDomId()\nslots.getSlotId().getId()\n\nslots.getSlotElementId() //\"ads2-pos-2025-ad-banner\"\n\nslots.getSizes();\n\nslots.getSlotId().getAdUnitPath();  \"/4312434/consmobileweb/webmdmobileweb\"\n\n\n\nwebmd.ads2Consumer.defineAd({targets:{art:'091e9c5e80f2253d',cc:'83',env:'&amp;env=0',hcent:'',leaf:'&amp;leaf=11025',mcent:'',mic:'',pt:'1728',sec:'',pug:'',scent:'',tmg:'',tug:'',uri:'%2fdefault'},blockCodes:'__',id:'ads2-pos-2025-ad_top',pos:'2025',sizes:[[300,50], [320, 50]]});\n\n\nwebmd.ads2Consumer.defineAd({targets:{art:'091e9c5e80f2253d',cc:'83',env:'&amp;env=0',hcent:'',leaf:'&amp;leaf=11025',mcent:'',mic:'',pt:'1728',sec:'',pug:'',scent:'',tmg:'',tug:'',uri:'%2fdefault'},blockCodes:'__',id:'ads2-pos-1901-1x1ad',pos:'1901',sizes:[1,1]});\n\nwebmd.ads2Consumer.defineAd({targets:{art:'091e9c5e80f2253d',cc:'83',env:'&amp;env=0',hcent:'',leaf:'&amp;leaf=11025',mcent:'',mic:'',pt:'1728',sec:'',pug:'',scent:'',tmg:'',tug:'',uri:'%2fdefault'},blockCodes:'__',id:'ads2-pos-2026-ad_btm',pos:'2026',sizes:[[300,50], [300, 51], [300,250], [300,253], [320, 50], [320, 51]]});\n\n\n\nwebmd.ads2Consumer.defineAd({id:'ads2-pos-2025-ad_top',pos:'2025',sizes:[[300,50], [320, 50]]});\n\n\nwebmd.ads2Consumer.defineAd({id:'ads2-pos-1901-1x1ad',pos:'1901',sizes:[1,1]});\n\nwebmd.ads2Consumer.defineAd({id:'ads2-pos-2026-ad_btm',pos:'2026',sizes:[[300,50], [300, 51], [300,250], [300,253], [320, 50], [320, 51]]});\n\n\nif(firstAd) {\n\n	var first_2026_ad = 'infinite-ad-1',\n	    adContainer = $(target).find('.inStreamAd');\n\n	adContainer.append('<div id=\"' + first_2026_ad + '\"></div>');\n\n	window.ads2_ignore = {2026: false};\n	webmd.ads2.setPageTarget('pg', 1);\n	this.index = 1;\n\n	console.info('IN PAGE 1 (1)', googletag.slot_manager_instance.l);\n\n	try{\n		//TODO: adjust the sequence of googletag.slot_manager_instance.l\n		var slots = [], ids = {}, adUnit;\n		//googletag.pubads().getSlots().forEach(function(s) {\n		//	var exclusive_s = s.getSlotElementId();\n		//	if(!/2025/.test(exclusive_s)) {\n		//		var pos = exclusive_s.match(/pos-(\\d+)-/)[1];\n		//		ids[exclusive_s] = pos;\n		//		slots.push(googletag.slot_manager_instance.l[exclusive_s]);\n		//	}\n		//});\n		googletag.destroySlots();\n		googletag.pubads().clear();\n		console.info('IN PAGE 1 (2)', googletag.slot_manager_instance.l);\n\n		webmd.ads2Consumer.defineAd({targets:{art:'091e9c5e80f2253d',cc:'83',env:'&amp;env=0',hcent:'',leaf:'&amp;leaf=11025',mcent:'',mic:'',pt:'1728',sec:'',pug:'',scent:'',tmg:'',tug:'',uri:'%2fdefault'},blockCodes:'__',id:'ads2-pos-2025-ad_top',pos:'2025',sizes:[[300,50], [320, 50]]});\n\n		webmd.ads2Consumer.defineAd({id:'infinite-ad-1',pos:'2026',sizes:[[300,50], [300, 51], [300,250], [300,253], [320, 50], [320, 51]],\n			refresh:false,\n			immediate:false});\n\n		webmd.ads2Consumer.defineAd({id:'ads2-pos-1901-1x1ad',pos:'1901',sizes:[1,1]});\n\n		webmd.ads2Consumer.defineAd({id:'ads2-pos-1901-ad-1x1-1x6',pos:'1920',sizes:[1,6]});\n\n		console.info('IN PAGE 1 (3)', googletag.slot_manager_instance.l);\n\n	} catch(e) {}\n}\nelse {\n	console.info('NOT IN PAGE 1', googletag.slot_manager_instance.l);\n	this.callDFPHouseAd(target);\n}\n\n",
-			"settings":
-			{
-				"buffer_size": 3150,
+				"buffer_size": 1673,
 				"line_ending": "Unix"
 			}
 		},
 		{
-			"contents": "<body ng-app>\n  <label><input type=\"checkbox\" ng-model=\"checked\" />Disable Button<\\/label>\n  <button ng-disabled=\"checked\">Select me<\\/button>\n<\\/body>\n\n\nfunction MyCtrl($scope) {\n	$scope.email = \"\";\n\n	$scope.$watch(\"email\", function(newValue, oldValue) {\n		if ($scope.email.length > 0) {\n			console.log(\"User has started writing into email\");\n		}\n	});\n}\n\n<div ng-controller=\"MyCtrl\">\n  <button ng-click=\"hide()\">Hide element<\\/button>\n  <p ng-hide=\"isHide\">Hide or Show<\\/p>\n<\\/div>\n\nfunction MyCtrl($scope) {\n	$scope.isHide = false;\n	$scope.hide = function() {\n		$scope.isHide = true;\n	}\n}\n\n\nmyApp.factory('$exceptionHandler', function($log, ErrorService) {\n    return function(exception, cause) {\n        \n        if (console) {\n            $log.error(exception);\n            $log.error(cause);\n        }\n\n        ErrorService.send(exception, cause);\n    };\n});\n\n\nvar directiveDefinitionObject = {\n    priority: 0,\n    template: '<div></div>', // or // function(tElement, tAttrs) { ... },\n    // or\n    // templateUrl: 'directive.html', // or // function(tElement, tAttrs) { ... },\n    transclude: false,\n    restrict: 'A',\n    templateNamespace: 'html',\n    scope: false,\n    controller: function($scope, $element, $attrs, $transclude, otherInjectables) { ... },\n    controllerAs: 'stringIdentifier',\n    bindToController: false,\n    require: 'siblingDirectiveName', // or // ['^parentDirectiveName', '?optionalDirectiveName', '?^optionalParent'],\n    compile: function compile(tElement, tAttrs, transclude) {\n      return {\n        pre: function preLink(scope, iElement, iAttrs, controller) { ... },\n        post: function postLink(scope, iElement, iAttrs, controller) { ... }\n      }\n      // or\n      // return function postLink( ... ) { ... }\n    },\n    // or\n    // link: {\n    //  pre: function preLink(scope, iElement, iAttrs, controller) { ... },\n    //  post: function postLink(scope, iElement, iAttrs, controller) { ... }\n    // }\n    // or\n    // link: function postLink( ... ) { ... }\n  };\n\n\n  angular.factory('testService', function($q) {\n  	return {\n  		getName: function() {\n  			var deferred = $q.defer();\n\n  			testApi.getName().then(function(name) {\n  				deferred.resolve(name);\n  			});\n\n  			return deferred.promise;\n  		}\n  	}\n  });\n\n\n\n\n///////////////\nvar prices = [105, 101, 102, 104, 109, 110, 99, 101];\n\nfunction maxProfit(prices) {\n  let profit = 0;\n  if (prices) {\n    let minSoFar = prices[0];\n        \n    for (let i = 1; i < prices.length; ++i) {\n      if (prices[i] < minSoFar) {\n        minSoFar = prices[i]; \n      }\n      \n      let currentProfit = prices[i] - minSoFar;\n      if (currentProfit > profit) {\n        profit = currentProfit\n      }\n    }\n  }  \n  return profit;\n}\n\nconsole.log(maxProfit(prices));\n\n\n\n//2.\nfunction MyP(cb) {\n    var resolve = function(msg) {\n        console.log('resolve: ', msg);\n    }\n    var reject = function(msg) {\n        console.log('reject: ', msg);\n    }\n    cb.call(this, resolve, reject);\n}\n\nMyP.prototype.then = function() {\n    console.log('then');\n    return this;\n}\n\nMyP.prototype.catch = function() {\n    console.log('catch');\n}\n\nvar mp = new MyP(function(resolve, reject) {\n    if(true) {\n        resolve({username: 'william'});\n    }\n    if(!false) {\n        reject({error: 'something wrong'})\n    }\n});\n\nmp.then().then().catch();\n\n\n\nvar App = React.createClass({\n  getInitialState: function () {\n    return {count: this.props.maxCounters};\n  },\n\n  onIncrement: function () {\n    this.setState({'count': this.state.count+1})\n  },\n\n  onDecrement: function () {\n    this.setState({'count': this.state.count-1});\n  },\n\n  render: function () {\n    return (\n      <div>\n        <div>{this.state.count}</div>\n        <button onClick={this.onIncrement}> + </button>\n        <button onClick={this.onDecrement}> - </button>\n      </div>\n    );\n  }\n});\n\n\n\nclass App extends React.Component {\n  getInitialState() {\n    return {count: this.props.maxCounters};\n  }\n onIncrement() {\n   this.setState({'count': this.state.count-1});\n   },\n  onDecrement() {\n   this.setState({'count': this.state.count-1});\n  }\n  \n  render() {\n    return (\n      <div>\n        <button onClick={this.onIncrement}> + </button>\n        <button onClick={this.onDecrement}> - </button>\n      </div>\n    );\n  }\n}\n\nReactDOM.render(<App maxCounters={3} />, document.getElementById('app'));\n\n\n",
-			"file": "interview/12-01.js",
-			"file_size": 2851,
-			"file_write_time": 131261466730000000,
+			"contents": "Searching 252 files for \"multiple\"\n\n/Users/wjiang/Notes/debounce.js:\n   49:             // Multiple mobile-pages:\n  177:             // avoid multiple <div class=\"ad_label\">Advertisement</div><div id=\"infinite-ad-1\"></div>.\n\n/Users/wjiang/Notes/2013/2013-03-26.txt:\n    5: (.) User does exist, but vague or multiple.\n    7: (.) User records are multiple, e.g.: there are more than 1 contacts for March due to DB reason. (the data might be not always correct)\n\n/Users/wjiang/Notes/2013/2013-06-16.txt:\n  232:                     multiple: true,\n  279:                     multiple: true,\n  382:                     multiple: true,\n\n/Users/wjiang/Notes/2013/2013-06-19.txt:\n  242:                     multiple: true,\n\n/Users/wjiang/Notes/2013/2013-06-24.txt:\n  126:             multiple: true,\n\n/Users/wjiang/Notes/2014/2014-02-21.txt:\n   65: . Support for multiple statements\n\n/Users/wjiang/Notes/2014/2014-04-18.txt:\n   29: Multiple Column Layout\n   63: 10. Multiple Backgrounds\n\n/Users/wjiang/Notes/2014/2014-06-27.txt:\n   21: Experience must include the analysis and development of multiple highly complex web applications\n   29: Thorough understanding of how server side technologies function.  Ability to provide technical leadership and mentorship, and work on multiple projects with conflicting deadlines in a team environment.\n\n/Users/wjiang/Notes/2014/angularjs1.txt:\n    2: Can an HTML page have multiple ¡°ng-app¡± directive for bootstrapping multiple AngularJS application?\n    6: initialization process with multiple ng-app in an HTML document/page.\n    8: to auto-bootstrap as an application. To run multiple applications in an HTML document, one must manually bootstrap them using angular bootstrap service.\n\n/Users/wjiang/Notes/2014/css3.txt:\n   10: Multiple Column Layout\n  111: 11. CSS3 Multiple Columns\n\n/Users/wjiang/Notes/2014/mean-stack.txt:\n   56: multiple\n\n/Users/wjiang/Notes/2015/07-16.txt:\n  209: In cases where you have multiple directives on a single DOM element and where the order in which they’re applied matters,\n\n/Users/wjiang/Notes/2016/recruit-info.txt:\n    9: Deployment-wise, everything runs on Docker in Kubernetes (managed by Google Container Engine). A CI builds and publish the docker images into a registry for further deployments which allows them to deploy/rollback multiple times a day without constraints.\n\n/Users/wjiang/Notes/interview/bloomberg.txt:\n   81: caused by multiple functions competing for the same resources. With features such as the availability of\n   89:  Computation that makes use of pure functions is also easy to scale across multiple processors, or across\n  156:  When you need to compose objects from multiple sources.\n\n/Users/wjiang/Notes/webmd/amp/0705.txt:\n   30:  we realized early on is that many performance issues are caused by the integration of multiple JavaScript libraries, tools, embeds, etc. into a page. This isn’t saying that JavaScript immediately leads to bad performance, but once arbitrary JavaScript is in play, most bets are off because anything could happen at any time and it is hard to make any type of performance guarantee. With this in mind we made the tough decision that AMP HTML documents would not include any author-written JavaScript, nor any third-party scripts.\n\n/Users/wjiang/Notes/webmd/defects/fipt_fis.txt:\n  117: http://www.perf.webmd.com/multiple-sclerosis/ss/slideshow-multiple-sclerosis-overview\n  122: in http://www.webmd.com/multiple-sclerosis/ss/slideshow-multiple-sclerosis-overview\n\n/Users/wjiang/Notes/webmd/txt/03-14.txt:\n  115: - prev_iu_szs: A comma separated list of the sizes of each ad slot on the page, slots that have multiple sizes will have a pipe separating each size.\n\n/Users/wjiang/Notes/webmd/txt/03-23.txt:\n    1: •	Multiple ads can be placed on a page.\n    3: •	Each ad can specify a range of ad sizes that are possible. For example, a right ad can specify a single size of 300x200, or it can specify multiple sizes 350x200,350x600, etc.\n\n/Users/wjiang/Notes/webmd/txt/82599 - next page.txt:\n    6: http://www.staging.webmd.com/multiple-sclerosis/ss/slideshow-multiple-sclerosis-overview\n\n/Users/wjiang/Notes/webmd/txt/DOMContentLoaded.txt:\n   54: The problem caused by scripts is that they block *parallel downloads*.   The HTTP/1.1 specification suggests that browsers download no more than two components in parallel per hostname. If you serve your images from multiple hostnames, you can get more than two downloads to occur in parallel. While a script is downloading, however, the browser won't start any other downloads, even on different hostnames. In some situations it's not easy to move scripts to the bottom. If, for example, the script uses document.write to insert part of the page's content, it can't be moved lower in the page. There might also be scoping issues. In many cases, there are ways to workaround these situations.\n\n/Users/wjiang/Notes/webmd/txt/header-bidding.txt:\n    2: Header-bidding target: letting multiple demand sources bid on the same inventory at the same time, publishers increase their yield and make more money.\n   16: (3) Each time an impression arrives, the Media.net Ad Tag sends bid requests for each and every ad slot on your page to multiple external partners such as AppNexus, Amazon A9, OpenX, pubMatic, etc., and also other demand partners of the publisher.\n\n/Users/wjiang/Notes/webmd/txt/iri.txt:\n   29:  * Single value is just a number, such as \"444444\", Multiple values is sent as \"4444,22222,11111\"\n\n/Users/wjiang/Notes/webmd/txt/sticky.txt:\n    4: This requests Google DPF to get these 'pos' advertisements. So nothing wrong here, *multiple 2026* is acceptable.\n   17: - prev_iu_szs: A comma separated list of the sizes of each ad slot on the page, slots that have multiple sizes will have a pipe separating each size.\n\n42 matches across 23 files\n\n\nSearching 250 files for \"lif\"\n\n/Users/wjiang/Notes/2013/2013-02-12.txt:\n   30:  sudo /usr/bin/node/bin/npm install -g uglify-js\n   34:  Uglify.JS (https://github.com/mishoo/UglifyJS) and jsBeautifier (http://jsbeautifier.org) wrapped using JavaScript.NET (http://javascriptnet.codeplex.com) for use in .NET projects.\n\n/Users/wjiang/Notes/2014/2014-06-27.txt:\n   18: Experience and Qualifications:\n\n/Users/wjiang/Notes/2014/javascript-collection.txt:\n   83:     AmplifyJS.publish('news-retrieved', news);\n   94:     amplify.subscribe('news-retrieved', $.proxy(this.showNews));\n\n/Users/wjiang/Notes/2014/requirejs.txt:\n    5: concatenate/Uglify\n\n/Users/wjiang/Notes/2015/07-22.txt:\n   29: app.directive('scrollIf', function() {\n   31:     scope.$watch(attrs.scrollIf, function(value) {\n\n/Users/wjiang/Notes/2015/react.txt:\n   27: ////// Component Lifecycle\n   29: The following is a whole list of lifecycle methods.\n\n/Users/wjiang/Notes/2016/03-24.txt:\n    7: JS	gulp-uglify	grunt-contrib-uglify\n\n/Users/wjiang/Notes/2016/reactjs.txt:\n   55: Component Lifecycle (will / did)\n\n/Users/wjiang/Notes/interview/bloomberg.txt:\n   82: point-free style (aka tacit programming), functions tend to be radically simplified and easily recomposed for\n  105:  Awareness of FP’s capability to radically simplify many applications.\n  113: so on. Immutability can be achieved in either paradigm, but a proliferation of shared stateful objects\n  249: Microservices are frequently deployed on their own virtual machines or containers, causing a proliferation of VM\n\n/Users/wjiang/Notes/javascript/general1.js:\n   52:     AmplifyJS.publish('news-retrieved', news);\n   62:     amplify.subscribe('news-retrieved', $.proxy(this.showNews));\n\n/Users/wjiang/Notes/jsfiddle/directive-formvalidation.html:\n   80: 				// register DOM event handler and wire into Angular's lifecycle with scope.$apply\n\n/Users/wjiang/Notes/markdown/react.md:\n    3: 1. babelify\n    8: \"start\": \"watchify index.js -v -t babelify -o bundle.js\"\n\n/Users/wjiang/Notes/samples/large-scale-js-app-architecture.js:\n   71:  . module lifecycle\n   76:  uglify, grunt, bower, git, jshint, npm,\n\n/Users/wjiang/Notes/webmd/doc/AMP Generator Solution Document - Consumer Development - WebMD Confluence.html:\n   43:             <script type=\"text/x-template\" title=\"gliffy-webpanel-footer\">\n   44:         <div class=\"gliffy-webpanel-footer\"><span></span></div>\n  176: <link type=\"text/css\" rel=\"stylesheet\" href=\"/s/d41d8cd98f00b204e9800998ecf8427e-CDN/en_GB/5639/a252d7f5e75d7a8bf7047b4b2c92f71a56a8f048.1/c4683deadb8357c3e89aa2ff01dcb9f1/_/download/contextbatch/css/gliffy.macro/batch.css\" media=\"all\">\n  195: <script type=\"text/javascript\" src=\"/s/6c0981174e94142364564819dc0d1413-CDN/en_GB/5639/a252d7f5e75d7a8bf7047b4b2c92f71a56a8f048.1/c4683deadb8357c3e89aa2ff01dcb9f1/_/download/contextbatch/js/gliffy.macro/batch.js?locale=en-GB\" ></script>\n  592:     <a  href=\"/plugins/gliffy/launch.action?pageId=16133481\" rel=\"nofollow\"  class=\"\"   title=\"\">\n  593:                     <img alt=\"Gliffy Diagram\" src=\"/download/resources/com.gliffy.integration.confluence/icons/logo_16x16.png\" height=\"16\" width=\"16\" title=\"Gliffy Diagram\">\n  594:                 <span>Gliffy Diagram</span>    </a>\n  923: <span id=\"gliffy-container-16287535-6470\"\n  925:               class=\"gliffy-container \"\n  928:                                               data-edit=\"/plugins/gliffy/editor.action?attachmentId=16287535&amp;attachmentVersion=2&amp;ceoid=16133481&amp;key=ConsumerDev&amp;pageId=16133481&amp;inline=false&amp;lastPage=%2Fpages%2Fviewpage.action%3FpageId%3D16133481\"\n  929:                             data-full=\"/plugins/gliffy/viewer.action?inline=false&amp;attachmentId=16287535&amp;attachmentVersion=2&amp;ceoid=16133481&amp;key=ConsumerDev&amp;pageId=16133481&amp;attachmentId=16287535&amp;attachmentVersion=2&amp;lastPage=%2Fpages%2Fviewpage.action%3FpageId%3D16133481\"\n  933: <map id=\"gliffy-map-16287535-4732\" name=\"gliffy-map-16287535-4732\"></map>\n  935:     <iframe class=\"gliffy-html5-container \" id=\"gliffy-html5-16287535-6470\"\n  936:             src=\"/plugins/gliffy/viewer.action\" width=\"1066\" height=\"452\"\n  945:                         id=\"gliffy-image-16287535-6470\"\n  946:                         class=\"gliffy-image \"\n  953:                         usemap=\"#gliffy-map-16287535-4732\"\n  956:     <map id=\"gliffy-dynamic-map-16287535-6470\" class=\"gliffy-dynamic\"\n  957:          name=\"gliffy-dynamic-map-16287535-6470\"></map>\n\n/Users/wjiang/Notes/webmd/doc/nodesummit.pptx:\n    <binary>\n\n/Users/wjiang/Notes/webmd/media.net/08-31.txt:\n    8: $ uglifyjs header-bidding.js \n\n/Users/wjiang/Notes/webmd/mobile-viewability/07-20.txt:\n   56: You should never use a display:none element as a waypoint. This includes elements that gain display:none at any time in the lifetime of your page, as trigger points are recalculated whenever a refresh occurs, such as a window resize event.\n\n/Users/wjiang/Notes/webmd/mobile-viewability/infinite-article-origin.js:\n  526:     var url = 'http://www' + webmd.url.getLifecycle() + '.m.webmd.com/modules/sponsor-box?id=091e9c5e812b356a';\n\n/Users/wjiang/Notes/webmd/txt/03-28.txt:\n   64: 	 * Helper function to set the appropriate Google NetworkCode based on environment and lifecycle.\n\n57 matches across 19 files\n\n\nSearching 250 files for \"clif\"\n\n0 matches",
 			"settings":
 			{
-				"buffer_size": 4337,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"contents": "Searching 246 files for \"Counter\"\n\n/Users/wjiang/Notes/2013/2013-05-10.txt:\n  168:         var cbCountError = function (e) {};\n\n/Users/wjiang/Notes/2013/2013-05-14.txt:\n  174:         var cbCountError = function (e) {};\n\n/Users/wjiang/Notes/2013/2013-05-15.txt:\n   54:         var cbCountError = function (e) {};\n\n/Users/wjiang/Notes/2013/2013-06-16.txt:\n    4:         var counter = 100;\n    6:             return counter++;\n\n/Users/wjiang/Notes/2013/2013-06-19.txt:\n    4:         var counter = 100;\n    6:             return counter++;\n\n/Users/wjiang/Notes/2013/2013-06-24.txt:\n    8: 				var counter = 1; \n   10: 					return counter++;\n\n/Users/wjiang/Notes/2014/2014-04-18.txt:\n   52: 4. Generated Content and Counters\n\n/Users/wjiang/Notes/2016/es6.txt:\n   11: `let`, is a signal that the variable may be reassigned, such as a counter in a loop, or a value swap in an algorithm. It also signals that the variable will be used only in the block it’s defined in, which is not always the entire containing function.\n\n/Users/wjiang/Notes/html/watcher.html:\n   44:         var counter = 0;\n   50:             $scope.name = names[counter % names.length];\n   51:             counter++;\n\n/Users/wjiang/Notes/interview/12-01.js:\n  163: ReactDOM.render(<App maxCounters={3} />, document.getElementById('app'));\n  182: [Add a counter] [Remove all counters]\n  186: [Add a counter] [Remove all counters]\n  191: [Add a counter] [Remove all counters]\n  196: [Add a counter] [Remove all counters]\n\n/Users/wjiang/Notes/javascript/configSettings.JS:\n    8: 	counter,\n\n/Users/wjiang/Notes/javascript/general2.js:\n  103:   var counter = 1;\n  105:     return counter ++;\n\n26 matches across 12 files\n",
-			"settings":
-			{
-				"buffer_size": 1682,
+				"buffer_size": 11177,
 				"line_ending": "Unix",
 				"name": "Find Results",
 				"scratch": true
+			}
+		},
+		{
+			"file": "interview/11-16.txt",
+			"settings":
+			{
+				"buffer_size": 3157,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "interview/12-01.txt",
+			"settings":
+			{
+				"buffer_size": 1136,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "2016/03-24.txt",
+			"settings":
+			{
+				"buffer_size": 1401,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"contents": "var Sys = {\n    /** This Returns Object Type */\n    getType: function(val){\n        return Object.prototype.toString.call(val);\n    },\n    /** This Checks and Return if Object is Defined */\n    isDefined: function(val){\n        return val !== void 0 || typeof val !== 'undefined';\n    }\n    /** Run a Map on an Array **/\n    map: function(arr,fn){\n        var res = [], i=0;\n        for( ; i<arr.length; ++i){\n            res.push(fn(arr[i], i));\n        }\n        arr = null;\n        return res;\n    },\n    /** Checks and Return if the prop is Objects own Property */\n    hasOwnProp: function(obj, val){\n        return Object.prototype.hasOwnProperty.call(obj, val);\n    },\n    /** Extend properties from extending Object to initial Object */\n    extend: function(newObj, oldObj){\n        for(var prop in oldObj){\n            if(hasOwnProp(oldObj, prop)){\n                newObj[prop] = oldObj[prop];\n            }\n        }\n        return newObj;\n    } \n}\n\n['Arguments', 'Function', 'String', 'Number', 'Date', 'RegExp', 'Object', 'Array'].forEach( \n    function(name) { \n        Sys['is' + name] = function(obj) {\n              return toString.call(obj) == '[object ' + name + ']';\n    };  });",
+			"file": "javascript/small_lib.js",
+			"file_size": 1195,
+			"file_write_time": 131268405080000000,
+			"settings":
+			{
+				"buffer_size": 1196,
+				"line_ending": "Unix"
 			}
 		}
 	],
@@ -164,6 +179,12 @@
 	],
 	"file_history":
 	[
+		"/Users/wjiang/Notes/javascript/small_lib.js",
+		"/Users/wjiang/Notes/2014/2014-07-05.txt",
+		"/Users/wjiang/Notes/jsbin/google-dfp.txt",
+		"/Users/wjiang/Notes/webmd/DFP/stackoverflow.js",
+		"/Users/wjiang/Notes/2014/2014-08-30.txt",
+		"/Users/wjiang/Notes/interview/12-14.txt",
 		"/Users/wjiang/Notes/interview/12-01.js",
 		"/Users/wjiang/Notes/interview/12-01.txt",
 		"/Users/wjiang/Notes/jsbin/direcitves-product.html",
@@ -251,7 +272,6 @@
 		"/Users/wjiang/Notes/webmd/media.net/PERF-header-bidding-boots-fit.js.txt",
 		"/Users/wjiang/Notes/webmd/txt/feature-PPE38895_header_bidding.txt",
 		"/Users/wjiang/Notes/webmd/txt/header.txt",
-		"/Users/wjiang/Notes/webmd/DFP/stackoverflow.js",
 		"/Users/wjiang/Notes/.gitignore",
 		"/Users/wjiang/Notes/webmd/txt/iri.txt",
 		"/Users/wjiang/Notes/webmd/js/header.js",
@@ -286,12 +306,7 @@
 		"/Users/wjiang/Notes/webmd/txt/0628.txt",
 		"/Users/wjiang/Notes/webmd/txt/0608.txt",
 		"/Users/wjiang/Notes/webmd/iri.txt",
-		"/Users/wjiang/Notes/webmd/js/:::::: 63010",
-		"/Users/wjiang/Notes/webmd/js/heartbeat.js",
-		"/Users/wjiang/Notes/webmd/js/ajax",
-		"/Users/wjiang/Notes/webmd/js/scripts_harmony.js",
-		"/Users/wjiang/Notes/webmd/txt/dfp.txt",
-		"/Users/wjiang/Notes/webmd/txt/03-28.txt"
+		"/Users/wjiang/Notes/webmd/js/:::::: 63010"
 	],
 	"find":
 	{
@@ -310,6 +325,26 @@
 		"case_sensitive": false,
 		"find_history":
 		[
+			"clif",
+			"lif",
+			"mul",
+			"multiple",
+			"isP",
+			"drome",
+			"palidrome",
+			"lid=",
+			"lid",
+			"lid=",
+			"lid",
+			"lid=",
+			"lid",
+			"SlotRender",
+			"SlotRenderEndedEvent",
+			"bootstrap",
+			"ng-bootstrap",
+			"destroySlots",
+			"2025",
+			"webmd.ads2Consumer.defineAd",
 			"Counter",
 			"defineAd",
 			"[[300, 50], [300, 51], [300, 250], [300, 253], [320, 50], [320, 51]]",
@@ -417,27 +452,7 @@
 			"react-redux-scripts",
 			"combineReducers",
 			"typeof",
-			"webmd.",
-			"webmd.ads2.setPageTarget('fis', 0);",
-			"pg",
-			"jsfiddle",
-			"jsbin",
-			"fis=",
-			"fipt",
-			"tug=",
-			"tug",
-			"tug=",
-			"tug",
-			"fipt",
-			"fis",
-			"getDFP",
-			".map",
-			"fis",
-			"fipt",
-			"trackingPixel",
-			"git diff",
-			"googletag.cmd",
-			"defineSlot"
+			"webmd."
 		],
 		"highlight": false,
 		"in_selection": false,
@@ -463,38 +478,35 @@
 	"groups":
 	[
 		{
-			"selected": 2,
+			"selected": 1,
 			"sheets":
 			[
 				{
 					"buffer": 0,
-					"file": "jsbin/google-dfp.txt",
+					"file": "interview/12-14.txt",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 4709,
+						"buffer_size": 1673,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								3525,
-								3554
+								1026,
+								1026
 							]
 						],
 						"settings":
 						{
-							"auto_name": "googletag.pubads().addEventListener('slotRenderEnd",
-							"syntax": "Packages/Text/Plain text.tmLanguage",
-							"tab_size": 2,
-							"translate_tabs_to_spaces": true
+							"syntax": "Packages/Text/Plain text.tmLanguage"
 						},
 						"translation.x": 0.0,
-						"translation.y": 1741.0,
+						"translation.y": 576.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 3,
+					"stack_index": 1,
 					"type": "text"
 				},
 				{
@@ -502,65 +514,7 @@
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 3150,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								3150,
-								3150
-							]
-						],
-						"settings":
-						{
-							"auto_name": "",
-							"syntax": "Packages/Text/Plain text.tmLanguage"
-						},
-						"translation.x": 0.0,
-						"translation.y": 731.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 2,
-					"type": "text"
-				},
-				{
-					"buffer": 2,
-					"file": "interview/12-01.js",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 4337,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								3830,
-								3830
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/JavaScript/JavaScript.sublime-syntax",
-							"tab_size": 2,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 2256.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 0,
-					"type": "text"
-				},
-				{
-					"buffer": 3,
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 1682,
+						"buffer_size": 11177,
 						"regions":
 						{
 							"match":
@@ -569,108 +523,384 @@
 								"regions":
 								[
 									[
-										97,
-										104
+										91,
+										99
 									],
 									[
-										190,
-										197
+										142,
+										150
 									],
 									[
-										283,
-										290
+										307,
+										315
 									],
 									[
-										374,
-										381
-									],
-									[
-										415,
-										422
-									],
-									[
-										487,
-										494
+										345,
+										353
 									],
 									[
 										528,
-										535
+										536
 									],
 									[
-										596,
-										603
+										571,
+										579
 									],
 									[
-										629,
-										636
+										614,
+										622
 									],
 									[
-										714,
-										721
+										699,
+										707
 									],
 									[
-										831,
-										838
+										776,
+										784
 									],
 									[
-										1076,
-										1083
+										855,
+										863
 									],
 									[
-										1128,
-										1135
+										924,
+										932
 									],
 									[
-										1172,
-										1179
+										958,
+										966
 									],
 									[
-										1255,
-										1262
+										1084,
+										1092
 									],
 									[
-										1319,
-										1326
+										1266,
+										1274
 									],
 									[
-										1340,
-										1347
+										1405,
+										1413
 									],
 									[
-										1364,
-										1371
-									],
-									[
-										1385,
-										1392
-									],
-									[
-										1409,
-										1416
-									],
-									[
-										1430,
-										1437
-									],
-									[
-										1454,
+										1453,
 										1461
 									],
 									[
-										1475,
-										1482
+										1520,
+										1528
 									],
 									[
-										1544,
-										1551
+										1613,
+										1621
 									],
 									[
-										1611,
-										1618
+										1765,
+										1773
 									],
 									[
-										1642,
-										1649
+										1804,
+										1812
+									],
+									[
+										1870,
+										1878
+									],
+									[
+										1947,
+										1955
+									],
+									[
+										2310,
+										2318
+									],
+									[
+										2415,
+										2423
+									],
+									[
+										2593,
+										2601
+									],
+									[
+										2671,
+										2679
+									],
+									[
+										2824,
+										2832
+									],
+									[
+										3349,
+										3357
+									],
+									[
+										3381,
+										3389
+									],
+									[
+										3440,
+										3448
+									],
+									[
+										3472,
+										3480
+									],
+									[
+										3645,
+										3653
+									],
+									[
+										3750,
+										3758
+									],
+									[
+										3936,
+										3944
+									],
+									[
+										4063,
+										4071
+									],
+									[
+										4095,
+										4103
+									],
+									[
+										4399,
+										4407
+									],
+									[
+										4965,
+										4973
+									],
+									[
+										5213,
+										5221
+									],
+									[
+										5440,
+										5448
+									],
+									[
+										5620,
+										5628
+									],
+									[
+										5753,
+										5761
+									],
+									[
+										5957,
+										5960
+									],
+									[
+										5975,
+										5978
+									],
+									[
+										6012,
+										6015
+									],
+									[
+										6221,
+										6224
+									],
+									[
+										6301,
+										6304
+									],
+									[
+										6355,
+										6358
+									],
+									[
+										6475,
+										6478
+									],
+									[
+										6544,
+										6547
+									],
+									[
+										6598,
+										6601
+									],
+									[
+										6682,
+										6685
+									],
+									[
+										6732,
+										6735
+									],
+									[
+										6805,
+										6808
+									],
+									[
+										6826,
+										6829
+									],
+									[
+										6887,
+										6890
+									],
+									[
+										7040,
+										7043
+									],
+									[
+										7128,
+										7131
+									],
+									[
+										7224,
+										7227
+									],
+									[
+										7365,
+										7368
+									],
+									[
+										7441,
+										7444
+									],
+									[
+										7495,
+										7498
+									],
+									[
+										7679,
+										7682
+									],
+									[
+										7761,
+										7764
+									],
+									[
+										7811,
+										7814
+									],
+									[
+										7912,
+										7915
+									],
+									[
+										7932,
+										7935
+									],
+									[
+										8139,
+										8142
+									],
+									[
+										8191,
+										8194
+									],
+									[
+										8442,
+										8445
+									],
+									[
+										8676,
+										8679
+									],
+									[
+										8753,
+										8756
+									],
+									[
+										8865,
+										8868
+									],
+									[
+										8910,
+										8913
+									],
+									[
+										8992,
+										8995
+									],
+									[
+										9038,
+										9041
+									],
+									[
+										9085,
+										9088
+									],
+									[
+										9145,
+										9148
+									],
+									[
+										9237,
+										9240
+									],
+									[
+										9496,
+										9499
+									],
+									[
+										9766,
+										9769
+									],
+									[
+										9798,
+										9801
+									],
+									[
+										9857,
+										9860
+									],
+									[
+										9886,
+										9889
+									],
+									[
+										9947,
+										9950
+									],
+									[
+										10030,
+										10033
+									],
+									[
+										10096,
+										10099
+									],
+									[
+										10151,
+										10154
+									],
+									[
+										10197,
+										10200
+									],
+									[
+										10238,
+										10241
+									],
+									[
+										10276,
+										10279
+									],
+									[
+										10436,
+										10439
+									],
+									[
+										10650,
+										10653
+									],
+									[
+										10889,
+										10892
+									],
+									[
+										11095,
+										11098
 									]
 								],
 								"scope": ""
@@ -679,15 +909,15 @@
 						"selection":
 						[
 							[
-								1326,
-								1326
+								11136,
+								11136
 							]
 						],
 						"settings":
 						{
 							"detect_indentation": false,
 							"line_numbers": false,
-							"output_tag": 1,
+							"output_tag": 3,
 							"result_base_dir": "",
 							"result_file_regex": "^([^ 	].*):$",
 							"result_line_regex": "^ +([0-9]+):",
@@ -695,10 +925,124 @@
 							"syntax": "Packages/Default/Find Results.hidden-tmLanguage"
 						},
 						"translation.x": 0.0,
-						"translation.y": 146.0,
+						"translation.y": 4095.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 1,
+					"stack_index": 0,
+					"type": "text"
+				},
+				{
+					"buffer": 2,
+					"file": "interview/11-16.txt",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 3157,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								269,
+								269
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Text/Plain text.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 4,
+					"type": "text"
+				},
+				{
+					"buffer": 3,
+					"file": "interview/12-01.txt",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 1136,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								1117,
+								1117
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Text/Plain text.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 126.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 3,
+					"type": "text"
+				},
+				{
+					"buffer": 4,
+					"file": "2016/03-24.txt",
+					"semi_transient": true,
+					"settings":
+					{
+						"buffer_size": 1401,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								0,
+								0
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Text/Plain text.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 2,
+					"type": "text"
+				},
+				{
+					"buffer": 5,
+					"file": "javascript/small_lib.js",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 1196,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								1196,
+								1196
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/JavaScript/JavaScript.sublime-syntax",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 5,
 					"type": "text"
 				}
 			]
@@ -789,7 +1133,7 @@
 	"show_open_files": false,
 	"show_tabs": true,
 	"side_bar_visible": true,
-	"side_bar_width": 303.0,
+	"side_bar_width": 207.0,
 	"status_bar_visible": true,
 	"template_settings":
 	{

@@ -50,9 +50,6 @@ function multiply(a) {
 		Function.prototype.toString = function() {
 			return res;
 		}
-		//mul.toString = function() {
-		//	return res;
-		//}
 		return mul;
 	}
 }

@@ -32,12 +32,12 @@ divider = 10;
 var timer = setInterval(function() {
 
 	seconds ++;
-	minutes = Math.floor(seconds/10);
-  	hours = Math.floor(minutes/10);
-  	if(seconds % divider) {
+	minutes += Math.floor(seconds / divider);
+  	hours += Math.floor(minutes / divider);
+  	if(seconds % divider === 0) {
   		seconds = 0;
   	}
-  	if(minutes % divider) {
+  	if(minutes % divider ===0) {
   		minutes = 0;
   	}
 
@@ -51,3 +51,23 @@ var timer = setInterval(function() {
 	// $(".clock").html(currentTimeString);
 
 }, 1000);
+
+
+/////////////////////////
+function isString(x) {
+  return Object.prototype.toString.call(x) === "[object String]"
+}
+
+
+var s = 'String';
+var a = [1,2,3];
+var o = {key: 'val'};
+
+(s.constructor === String) && console.log('its a string');
+(a.constructor === Array) && console.log('its an array');
+(o.constructor === Object) && console.log('its an object');
+(o.constructor === Number || s.constructor === Boolean) && console.log('this won\'t run');
+
+If you use throw together with try and catch, you can control program flow and generate custom error messages.
+
+
