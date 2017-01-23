@@ -1,6 +1,6 @@
 var Child = React.createClass({
   render: function() {
-    <a onClick={this.props.onClick.bind(null, this)}>Click me</a>
+    <a onClick={this.props.onClick.bind(null, this)}>Click me<\/a>
   }
 });
 

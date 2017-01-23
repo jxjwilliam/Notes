@@ -1,0 +1,166 @@
+var sort = {};
+var tmp1 = {};
+var tmp2 = {};
+var first_2026 = 'infinite-ad-1';
+
+webmd.ads2Consumer.defineAd({
+    id: first_2026,
+    pos: '2026',
+    sizes: [[300, 50], [300, 51], [300, 250], [300, 253], [320, 50], [320, 51]],
+    refresh: false,
+    immediate: true
+});
+
+
+for (i in googletag.slot_manager_instance.l) {
+
+  if(/2025/.test(i)) {
+	sort[i] = googletag.slot_manager_instance.l[i];
+  }
+  else if (i !== first_2026) {
+    tmp1[i] = googletag.slot_manager_instance.l[i]
+  }
+  else {
+    tmp2 = googletag.slot_manager_instance.l[first_2026]
+  }
+}
+
+sort[first_2026] = tmp2;
+
+for (i in tmp1) {
+  sort[i] = tmp1[i];
+}
+
+console.log(sort);
+googletag.slot_manager_instance.l = sort;
+
+googletag.pubads().refresh();
+
+
+googletag.destroySlots();
+
+
+
+webmd.ads2Consumer.defineAd({targets:{art:'091e9c5e80eff7b3',cc:'83',env:'&amp;env=0',hcent:'',leaf:'&amp;leaf=1257',mcent:'',mic:'',pt:'1728',sec:'',pug:'',scent:'',tmg:'',tug:'',uri:'%2fdefault'},blockCodes:'__',id:'ads2-pos-101-ad_banner',pos:'101',sizes:[[728,90],[970, 90],[970,250]]});
+
+webmd.ads2Consumer.defineAd({id: 'infinite-ad-1',pos: '2026',sizes: [[300, 50], [300, 51], [300, 250], [300, 253], [320, 50], [320, 51]],refresh:false,immediate: true});
+
+webmd.ads2Consumer.defineAd({id:'ads2-pos-121-ad_rr_p1',pos:'121',sizes:[[300,250],[300, 600],[300,1050]]});
+
+
+
+
+
+//////////////////////////////////////////////////
+
+(1) in HTML page:
+
+  googletag.cmd.push(function() {	defineSlot1(); });
+  googletag.cmd.push(function() { defineSlot2(); });
+  googletag.cmd.push(function() { defineSlot3(); });
+  googletag.cmd.push(function() { defineSlot4(); });
+
+(2) in other js, I dynamically add:
+googletag.cmd.push(function() { defineSlot5(); });
+
+
+(3) right now in the queue, there is a sequence like this:
+[slot1, slot2, slot3, slot4, slot5];
+
+My question is, how to move the slot5 the second place after slot1, like this:
+[slot1, slot5, slot2, slot3, slot4];
+
+in https://developers.google.com/doubleclick-gpt/reference,
+googletag.commandArray only has push(f) method, and the googletag.cmd is not a standard array.
+
+
+//////////////////////////////////////////////////
+
+googletag.pubads().getSlots().forEach(function(s) {
+  console.log( s.getSlotElementId());
+});
+
+googletag.pubads().getTargetingKeys();
+
+
+googletag.getResponseInformation()
+
+
+////////////////////////////////
+
+var slot = googletag.slot_manager_instance.l['ads2-pos-2026-ad_btm']
+//googletag.pubads().clear([slot]);
+googletag.destroySlots([slot]);
+
+
+var slot1 = googletag.slot_manager_instance.l['ads2-pos-1901-1x1ad']
+googletag.destroySlots([slot1]);
+
+webmd.ads2Consumer.defineAd({
+  id:'ads2-pos-1901-1x1ad',
+  pos:'1901',
+  sizes:[1,1],
+});
+
+
+////////////////////////////////
+var slots = [];
+googletag.pubads().getSlots().forEach(function(s) {
+  var exclusive_s = s.getSlotElementId();
+  if(!/2025/.test(exclusive_s)) {
+    slots.push(googletag.slot_manager_instance.l[exclusive_s]);
+  }
+});
+googletag.destroySlots(slots);
+
+// "/4312434/consmobileweb/webmdmobileweb/hp-cmbwwbmd"
+var adUnit = '/' + webmd.ads2.networkCode + '/' + webmd.ads2.adTarget.join('/');
+
+
+googletag.defineSlot(adUnit, [[300, 50], [300, 51], [300, 250], [300, 253], [320, 50], [320, 51]], 'infinite-ad-1')
+  .addService(googletag.pubads())
+  .setTargeting('pos', '2026');
+
+
+googletag.defineSlot(adUnit, [1,2], 'ads2-pos-5000-ad-cw1-icm')
+  .addService(googletag.pubads())
+  .setTargeting('pos', '5000');
+
+
+googletag.defineSlot(adUnit, [1,2], 'ads2-pos-1901-1x1ad')
+  .addService(googletag.pubads())
+  .setTargeting('pos', '5001');
+
+googletag.pubads().refresh();
+
+
+/**
+googletag.defineSlot('/4312434/consumer/webmd/hp-conwbmd', [[300, 50], [300, 51], [300, 250], [300, 253], [320, 50], [320, 51]], 'ads2-pos-2026-ad_btm')
+  .addService(googletag.pubads())
+  .setTargeting('pos', '2026');
+*/
+
+////////////////////////////////
+
+
+///////////
+// https://developers.google.com/doubleclick-gpt/reference#googletag.Slot_getResponseInformation
+// https://developers.google.com/doubleclick-gpt/reference#googletag.ResponseInformation_lineItemId
+
+// lineItemId, creativeId, size, slot, isEmpty
+
+
+// http://www.webmd.com/diabetes/features/diabetic-diet-6-foods-control-blood-sugar#1
+googletag.pubads().addEventListener('slotRenderEnded', function(event) {
+
+  if(event.lineItemId) {
+    googletag.pubads().setTargeting('TBD', event.lineItemId);
+    webmd.ads2.pageTargets['TBD'] = event.lineItemId;
+    webmd.ads2.setPageTarget('TBD', event.lineItemId);
+    console.log('Creative with id: ' + event.creativeId +
+      ' is rendered to slot of size: ' + event.size[0] + 'x' + event.size[1], 'lineItemId: ', event.lineItemId);
+  }
+
+});
+// Creative with id: 127629745754 is rendered to slot of size: 300x250 lineItemId:  101778194
+

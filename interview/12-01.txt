@@ -1,0 +1,55 @@
+ngPattern
+
+An interceptor is a middleware code where all the $http requests go through. The interceptor is a factory that are registered in $httpProvider.
+
+ngBind, ngModel, ngClass, ngIf
+
+
+How would you specify that a scope variable should have one-time binding only?
+::
+
+
+
+My code samples:
+https://github.com/WilliamJiang/william-jiang-js-samples
+https://github.com/WilliamJiang/william-jiang-mean-app	
+https://github.com/jxjwilliam/pub-ui-programmatic
+https://github.com/jxjwilliam/angular-smart-app
+
+
+
+
+/////// multis(2,3,4,5,6); multis(2,3,4) all work.
+function multis() {
+  var args = [].slice.call(arguments);
+  return args.reduce(function(a,b) {
+    return a*b;
+   }, 1);
+};
+
+// multiply(2)(3)(4)(5)(8)... work.
+function multiply() {
+	var arg = [].slice.call(arguments)[0];
+	var res = arg;
+
+	return function mul() {
+		var arg1 = [].slice.call(arguments)[0];
+		res = res * arg1;
+
+        mul.toString = function() {
+          return res;
+        }
+		return mul;
+	}
+}
+
+function multiply(a) {
+	var res = a;
+	return function mul(b) {
+		res = res * b;
+		Function.prototype.toString = function() {
+			return res;
+		}
+		return mul;
+	}
+}

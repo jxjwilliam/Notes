@@ -4,6 +4,26 @@
 		"selected_items":
 		[
 			[
+				"R",
+				"Reset"
+			],
+			[
+				"pro",
+				"profits"
+			],
+			[
+				"de",
+				"deferred"
+			],
+			[
+				"fa",
+				"factory"
+			],
+			[
+				"fun",
+				"function"
+			],
+			[
 				"map",
 				"mapDispatchToProps"
 			],
@@ -60,28 +80,58 @@
 	"buffers":
 	[
 		{
-			"file": "2013/2013-02-04.txt",
+			"contents": "\nfunction bind(fn, thisArg) {\n	return function() {\n		fn.apply(thisArg, arguments);\n	}\n}\n\nfunction RR(words) {\n	var len = words.length;\n	var nw = words[len-1];\n\n	return function RW() {\n		if(len>0) {\n			len = len - 1;\n			if(len>0)\n				nw += words[len-1];\n			return RW();\n		}\n		return nw;\n	}\n}\n\nRR('hello')();\n\n////////////////////\n\n\n\nvar seconds, minutes, hours, divider, currentTimeString;\nseconds = minutes = hours = currentTimeString = 0;\ndivider = 10;\nvar timer = setInterval(function() {\n\n	seconds ++;\n	minutes += Math.floor(seconds / divider);\n  	hours += Math.floor(minutes / divider);\n  	if(seconds % divider === 0) {\n  		seconds = 0;\n  	}\n  	if(minutes % divider ===0) {\n  		minutes = 0;\n  	}\n\n  	currentTimeString = [\n  		hours ? (hours+\":\") : '', \n  		minutes ? (minutes+\":\") : '', \n  		seconds\n  	].join('');\n  \n  	console.log(currentTimeString);\n	// $(\".clock\").html(currentTimeString);\n\n}, 1000);\n\n\n/////////////////////////\nfunction isString(x) {\n  return Object.prototype.toString.call(x) === \"[object String]\"\n}\n\n\nvar s = 'String';\nvar a = [1,2,3];\nvar o = {key: 'val'};\n\n(s.constructor === String) && console.log('its a string');\n(a.constructor === Array) && console.log('its an array');\n(o.constructor === Object) && console.log('its an object');\n(o.constructor === Number || s.constructor === Boolean) && console.log('this won\\'t run');\n\nIf you use throw together with try and catch, you can control program flow and generate custom error messages.\n\n\nif (myVar === myVar + '') {\n   //its string\n} else {\n   //its something else\n}\n\n\n///////////////\nvar aa=123\nfunction aa() { console.log('bingo'); }\n\nObject.prototype.toString.call(aa);\n\"[object Function]\"",
+			"file": "interview/12-14.txt",
+			"file_size": 1469,
+			"file_write_time": 131268401980000000,
 			"settings":
 			{
-				"buffer_size": 1032,
-				"line_ending": "Windows"
+				"buffer_size": 1673,
+				"line_ending": "Unix"
 			}
 		},
 		{
-			"contents": "Searching 240 files for \"webpack\"\n\n/Users/wjiang/Notes/2015/08-03.txt:\n  150: webpack\n\n/Users/wjiang/Notes/2016/cmd.txt:\n   18: npm install webpack-dev-server\n\n/Users/wjiang/Notes/2016/reactjs.txt:\n    1: React+Webpack+Babel\n   88: webpack-dev-server\n\n/Users/wjiang/Notes/2016/recruit-info.txt:\n    1: Even though Zenly's main product is a mobile app, a lot of Web components have been developed and many others are in the making. Their frontend stack is based on React (w/ Redux when necessary) written in ES6 bundled by Webpack using Babel for transpilation, Flow for static typing and ESlint for linting.\n\n/Users/wjiang/Notes/webmd/js/thunk.js:\n   41: // webpack\n\n6 matches across 5 files\n",
+			"contents": "Searching 252 files for \"multiple\"\n\n/Users/wjiang/Notes/debounce.js:\n   49:             // Multiple mobile-pages:\n  177:             // avoid multiple <div class=\"ad_label\">Advertisement</div><div id=\"infinite-ad-1\"></div>.\n\n/Users/wjiang/Notes/2013/2013-03-26.txt:\n    5: (.) User does exist, but vague or multiple.\n    7: (.) User records are multiple, e.g.: there are more than 1 contacts for March due to DB reason. (the data might be not always correct)\n\n/Users/wjiang/Notes/2013/2013-06-16.txt:\n  232:                     multiple: true,\n  279:                     multiple: true,\n  382:                     multiple: true,\n\n/Users/wjiang/Notes/2013/2013-06-19.txt:\n  242:                     multiple: true,\n\n/Users/wjiang/Notes/2013/2013-06-24.txt:\n  126:             multiple: true,\n\n/Users/wjiang/Notes/2014/2014-02-21.txt:\n   65: . Support for multiple statements\n\n/Users/wjiang/Notes/2014/2014-04-18.txt:\n   29: Multiple Column Layout\n   63: 10. Multiple Backgrounds\n\n/Users/wjiang/Notes/2014/2014-06-27.txt:\n   21: Experience must include the analysis and development of multiple highly complex web applications\n   29: Thorough understanding of how server side technologies function.  Ability to provide technical leadership and mentorship, and work on multiple projects with conflicting deadlines in a team environment.\n\n/Users/wjiang/Notes/2014/angularjs1.txt:\n    2: Can an HTML page have multiple ¡°ng-app¡± directive for bootstrapping multiple AngularJS application?\n    6: initialization process with multiple ng-app in an HTML document/page.\n    8: to auto-bootstrap as an application. To run multiple applications in an HTML document, one must manually bootstrap them using angular bootstrap service.\n\n/Users/wjiang/Notes/2014/css3.txt:\n   10: Multiple Column Layout\n  111: 11. CSS3 Multiple Columns\n\n/Users/wjiang/Notes/2014/mean-stack.txt:\n   56: multiple\n\n/Users/wjiang/Notes/2015/07-16.txt:\n  209: In cases where you have multiple directives on a single DOM element and where the order in which they’re applied matters,\n\n/Users/wjiang/Notes/2016/recruit-info.txt:\n    9: Deployment-wise, everything runs on Docker in Kubernetes (managed by Google Container Engine). A CI builds and publish the docker images into a registry for further deployments which allows them to deploy/rollback multiple times a day without constraints.\n\n/Users/wjiang/Notes/interview/bloomberg.txt:\n   81: caused by multiple functions competing for the same resources. With features such as the availability of\n   89:  Computation that makes use of pure functions is also easy to scale across multiple processors, or across\n  156:  When you need to compose objects from multiple sources.\n\n/Users/wjiang/Notes/webmd/amp/0705.txt:\n   30:  we realized early on is that many performance issues are caused by the integration of multiple JavaScript libraries, tools, embeds, etc. into a page. This isn’t saying that JavaScript immediately leads to bad performance, but once arbitrary JavaScript is in play, most bets are off because anything could happen at any time and it is hard to make any type of performance guarantee. With this in mind we made the tough decision that AMP HTML documents would not include any author-written JavaScript, nor any third-party scripts.\n\n/Users/wjiang/Notes/webmd/defects/fipt_fis.txt:\n  117: http://www.perf.webmd.com/multiple-sclerosis/ss/slideshow-multiple-sclerosis-overview\n  122: in http://www.webmd.com/multiple-sclerosis/ss/slideshow-multiple-sclerosis-overview\n\n/Users/wjiang/Notes/webmd/txt/03-14.txt:\n  115: - prev_iu_szs: A comma separated list of the sizes of each ad slot on the page, slots that have multiple sizes will have a pipe separating each size.\n\n/Users/wjiang/Notes/webmd/txt/03-23.txt:\n    1: •	Multiple ads can be placed on a page.\n    3: •	Each ad can specify a range of ad sizes that are possible. For example, a right ad can specify a single size of 300x200, or it can specify multiple sizes 350x200,350x600, etc.\n\n/Users/wjiang/Notes/webmd/txt/82599 - next page.txt:\n    6: http://www.staging.webmd.com/multiple-sclerosis/ss/slideshow-multiple-sclerosis-overview\n\n/Users/wjiang/Notes/webmd/txt/DOMContentLoaded.txt:\n   54: The problem caused by scripts is that they block *parallel downloads*.   The HTTP/1.1 specification suggests that browsers download no more than two components in parallel per hostname. If you serve your images from multiple hostnames, you can get more than two downloads to occur in parallel. While a script is downloading, however, the browser won't start any other downloads, even on different hostnames. In some situations it's not easy to move scripts to the bottom. If, for example, the script uses document.write to insert part of the page's content, it can't be moved lower in the page. There might also be scoping issues. In many cases, there are ways to workaround these situations.\n\n/Users/wjiang/Notes/webmd/txt/header-bidding.txt:\n    2: Header-bidding target: letting multiple demand sources bid on the same inventory at the same time, publishers increase their yield and make more money.\n   16: (3) Each time an impression arrives, the Media.net Ad Tag sends bid requests for each and every ad slot on your page to multiple external partners such as AppNexus, Amazon A9, OpenX, pubMatic, etc., and also other demand partners of the publisher.\n\n/Users/wjiang/Notes/webmd/txt/iri.txt:\n   29:  * Single value is just a number, such as \"444444\", Multiple values is sent as \"4444,22222,11111\"\n\n/Users/wjiang/Notes/webmd/txt/sticky.txt:\n    4: This requests Google DPF to get these 'pos' advertisements. So nothing wrong here, *multiple 2026* is acceptable.\n   17: - prev_iu_szs: A comma separated list of the sizes of each ad slot on the page, slots that have multiple sizes will have a pipe separating each size.\n\n42 matches across 23 files\n\n\nSearching 250 files for \"lif\"\n\n/Users/wjiang/Notes/2013/2013-02-12.txt:\n   30:  sudo /usr/bin/node/bin/npm install -g uglify-js\n   34:  Uglify.JS (https://github.com/mishoo/UglifyJS) and jsBeautifier (http://jsbeautifier.org) wrapped using JavaScript.NET (http://javascriptnet.codeplex.com) for use in .NET projects.\n\n/Users/wjiang/Notes/2014/2014-06-27.txt:\n   18: Experience and Qualifications:\n\n/Users/wjiang/Notes/2014/javascript-collection.txt:\n   83:     AmplifyJS.publish('news-retrieved', news);\n   94:     amplify.subscribe('news-retrieved', $.proxy(this.showNews));\n\n/Users/wjiang/Notes/2014/requirejs.txt:\n    5: concatenate/Uglify\n\n/Users/wjiang/Notes/2015/07-22.txt:\n   29: app.directive('scrollIf', function() {\n   31:     scope.$watch(attrs.scrollIf, function(value) {\n\n/Users/wjiang/Notes/2015/react.txt:\n   27: ////// Component Lifecycle\n   29: The following is a whole list of lifecycle methods.\n\n/Users/wjiang/Notes/2016/03-24.txt:\n    7: JS	gulp-uglify	grunt-contrib-uglify\n\n/Users/wjiang/Notes/2016/reactjs.txt:\n   55: Component Lifecycle (will / did)\n\n/Users/wjiang/Notes/interview/bloomberg.txt:\n   82: point-free style (aka tacit programming), functions tend to be radically simplified and easily recomposed for\n  105:  Awareness of FP’s capability to radically simplify many applications.\n  113: so on. Immutability can be achieved in either paradigm, but a proliferation of shared stateful objects\n  249: Microservices are frequently deployed on their own virtual machines or containers, causing a proliferation of VM\n\n/Users/wjiang/Notes/javascript/general1.js:\n   52:     AmplifyJS.publish('news-retrieved', news);\n   62:     amplify.subscribe('news-retrieved', $.proxy(this.showNews));\n\n/Users/wjiang/Notes/jsfiddle/directive-formvalidation.html:\n   80: 				// register DOM event handler and wire into Angular's lifecycle with scope.$apply\n\n/Users/wjiang/Notes/markdown/react.md:\n    3: 1. babelify\n    8: \"start\": \"watchify index.js -v -t babelify -o bundle.js\"\n\n/Users/wjiang/Notes/samples/large-scale-js-app-architecture.js:\n   71:  . module lifecycle\n   76:  uglify, grunt, bower, git, jshint, npm,\n\n/Users/wjiang/Notes/webmd/doc/AMP Generator Solution Document - Consumer Development - WebMD Confluence.html:\n   43:             <script type=\"text/x-template\" title=\"gliffy-webpanel-footer\">\n   44:         <div class=\"gliffy-webpanel-footer\"><span></span></div>\n  176: <link type=\"text/css\" rel=\"stylesheet\" href=\"/s/d41d8cd98f00b204e9800998ecf8427e-CDN/en_GB/5639/a252d7f5e75d7a8bf7047b4b2c92f71a56a8f048.1/c4683deadb8357c3e89aa2ff01dcb9f1/_/download/contextbatch/css/gliffy.macro/batch.css\" media=\"all\">\n  195: <script type=\"text/javascript\" src=\"/s/6c0981174e94142364564819dc0d1413-CDN/en_GB/5639/a252d7f5e75d7a8bf7047b4b2c92f71a56a8f048.1/c4683deadb8357c3e89aa2ff01dcb9f1/_/download/contextbatch/js/gliffy.macro/batch.js?locale=en-GB\" ></script>\n  592:     <a  href=\"/plugins/gliffy/launch.action?pageId=16133481\" rel=\"nofollow\"  class=\"\"   title=\"\">\n  593:                     <img alt=\"Gliffy Diagram\" src=\"/download/resources/com.gliffy.integration.confluence/icons/logo_16x16.png\" height=\"16\" width=\"16\" title=\"Gliffy Diagram\">\n  594:                 <span>Gliffy Diagram</span>    </a>\n  923: <span id=\"gliffy-container-16287535-6470\"\n  925:               class=\"gliffy-container \"\n  928:                                               data-edit=\"/plugins/gliffy/editor.action?attachmentId=16287535&amp;attachmentVersion=2&amp;ceoid=16133481&amp;key=ConsumerDev&amp;pageId=16133481&amp;inline=false&amp;lastPage=%2Fpages%2Fviewpage.action%3FpageId%3D16133481\"\n  929:                             data-full=\"/plugins/gliffy/viewer.action?inline=false&amp;attachmentId=16287535&amp;attachmentVersion=2&amp;ceoid=16133481&amp;key=ConsumerDev&amp;pageId=16133481&amp;attachmentId=16287535&amp;attachmentVersion=2&amp;lastPage=%2Fpages%2Fviewpage.action%3FpageId%3D16133481\"\n  933: <map id=\"gliffy-map-16287535-4732\" name=\"gliffy-map-16287535-4732\"></map>\n  935:     <iframe class=\"gliffy-html5-container \" id=\"gliffy-html5-16287535-6470\"\n  936:             src=\"/plugins/gliffy/viewer.action\" width=\"1066\" height=\"452\"\n  945:                         id=\"gliffy-image-16287535-6470\"\n  946:                         class=\"gliffy-image \"\n  953:                         usemap=\"#gliffy-map-16287535-4732\"\n  956:     <map id=\"gliffy-dynamic-map-16287535-6470\" class=\"gliffy-dynamic\"\n  957:          name=\"gliffy-dynamic-map-16287535-6470\"></map>\n\n/Users/wjiang/Notes/webmd/doc/nodesummit.pptx:\n    <binary>\n\n/Users/wjiang/Notes/webmd/media.net/08-31.txt:\n    8: $ uglifyjs header-bidding.js \n\n/Users/wjiang/Notes/webmd/mobile-viewability/07-20.txt:\n   56: You should never use a display:none element as a waypoint. This includes elements that gain display:none at any time in the lifetime of your page, as trigger points are recalculated whenever a refresh occurs, such as a window resize event.\n\n/Users/wjiang/Notes/webmd/mobile-viewability/infinite-article-origin.js:\n  526:     var url = 'http://www' + webmd.url.getLifecycle() + '.m.webmd.com/modules/sponsor-box?id=091e9c5e812b356a';\n\n/Users/wjiang/Notes/webmd/txt/03-28.txt:\n   64: 	 * Helper function to set the appropriate Google NetworkCode based on environment and lifecycle.\n\n57 matches across 19 files\n\n\nSearching 250 files for \"clif\"\n\n0 matches",
 			"settings":
 			{
-				"buffer_size": 692,
+				"buffer_size": 11177,
 				"line_ending": "Unix",
 				"name": "Find Results",
 				"scratch": true
 			}
 		},
 		{
-			"file": "2015/08-03.txt",
+			"file": "webmd/js/heartbeat.js",
 			"settings":
 			{
-				"buffer_size": 4278,
+				"buffer_size": 8047,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "interview/11-16.txt",
+			"settings":
+			{
+				"buffer_size": 3157,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "interview/12-01.txt",
+			"settings":
+			{
+				"buffer_size": 1136,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"contents": "var Sys = {\n    /** This Returns Object Type */\n    getType: function(val){\n        return Object.prototype.toString.call(val);\n    },\n    /** This Checks and Return if Object is Defined */\n    isDefined: function(val){\n        return val !== void 0 || typeof val !== 'undefined';\n    }\n    /** Run a Map on an Array **/\n    map: function(arr,fn){\n        var res = [], i=0;\n        for( ; i<arr.length; ++i){\n            res.push(fn(arr[i], i));\n        }\n        arr = null;\n        return res;\n    },\n    /** Checks and Return if the prop is Objects own Property */\n    hasOwnProp: function(obj, val){\n        return Object.prototype.hasOwnProperty.call(obj, val);\n    },\n    /** Extend properties from extending Object to initial Object */\n    extend: function(newObj, oldObj){\n        for(var prop in oldObj){\n            if(hasOwnProp(oldObj, prop)){\n                newObj[prop] = oldObj[prop];\n            }\n        }\n        return newObj;\n    } \n}\n\n['Arguments', 'Function', 'String', 'Number', 'Date', 'RegExp', 'Object', 'Array'].forEach( \n    function(name) { \n        Sys['is' + name] = function(obj) {\n              return toString.call(obj) == '[object ' + name + ']';\n    };  });",
+			"file": "javascript/small_lib.js",
+			"file_size": 1195,
+			"file_write_time": 131268405080000000,
+			"settings":
+			{
+				"buffer_size": 1196,
 				"line_ending": "Unix"
 			}
 		}
@@ -124,10 +174,43 @@
 	"expanded_folders":
 	[
 		"/Users/wjiang/Notes",
-		"/Users/wjiang/Notes/webmd"
+		"/Users/wjiang/Notes/webmd",
+		"/Users/wjiang/Notes/webmd/js"
 	],
 	"file_history":
 	[
+		"/Users/wjiang/Notes/javascript/small_lib.js",
+		"/Users/wjiang/Notes/2014/2014-07-05.txt",
+		"/Users/wjiang/Notes/jsbin/google-dfp.txt",
+		"/Users/wjiang/Notes/webmd/DFP/stackoverflow.js",
+		"/Users/wjiang/Notes/2014/2014-08-30.txt",
+		"/Users/wjiang/Notes/interview/12-14.txt",
+		"/Users/wjiang/Notes/interview/12-01.js",
+		"/Users/wjiang/Notes/interview/12-01.txt",
+		"/Users/wjiang/Notes/jsbin/direcitves-product.html",
+		"/Users/wjiang/Notes/jsbin/parse-compile-interpolate.html",
+		"/Users/wjiang/Notes/webmd/txt/03-23.txt",
+		"/Users/wjiang/Notes/webmd/txt/DFP.txt",
+		"/Users/wjiang/Notes/webmd/txt/feature-PPE-89355-responsive-2025-2026.txt",
+		"/Users/wjiang/Notes/jsbin/directive-amount.html",
+		"/Users/wjiang/Notes/jsfiddle/AngularJS Debounce Service.html",
+		"/Users/wjiang/Notes/javascript/angular-extend.js",
+		"/Users/wjiang/Notes/javascript/general1.js",
+		"/Users/wjiang/Notes/samples/0713.js",
+		"/Users/wjiang/Notes/jsfiddle/AngularJS issue 1404.html",
+		"/Users/wjiang/Notes/jsfiddle/bind-apply.html",
+		"/Users/wjiang/Notes/jsfiddle/decorator.html",
+		"/Users/wjiang/Notes/jsfiddle/directive.html",
+		"/Users/wjiang/Notes/jsfiddle/directive-formvalidation.html",
+		"/Users/wjiang/Notes/jsfiddle/jsfiddle-template.html",
+		"/Users/wjiang/Notes/samples/directive.js",
+		"/Users/wjiang/Notes/2013/2013-02-04.txt",
+		"/Users/wjiang/Notes/javascript/john_papa.js",
+		"/Users/wjiang/Notes/javascript/react.js",
+		"/Users/wjiang/Notes/etc/bash_profile",
+		"/Users/wjiang/Notes/samples/directives_head.js",
+		"/Users/wjiang/Notes/2015/08-03.txt",
+		"/Users/wjiang/Notes/css/media.txt",
 		"/Users/wjiang/Notes/javascript/todoFooter.js",
 		"/Users/wjiang/Notes/2014/linkedin.txt",
 		"/Users/wjiang/Notes/samples/filters.js",
@@ -163,7 +246,6 @@
 		"/Users/wjiang/Notes/webmd/txt/fis-fipt.txt",
 		"/Users/wjiang/Notes/2016/redux",
 		"/Users/wjiang/Notes/javascript/j10-05.js",
-		"/Users/wjiang/Notes/jsbin/parse-compile-interpolate.html",
 		"/Users/wjiang/Notes/javascript/j10-05",
 		"/Users/wjiang/Notes/webmd/media.net/08-31.txt",
 		"/Users/wjiang/Notes/webmd/mobile-viewability/06-28.txt",
@@ -176,7 +258,6 @@
 		"/Users/wjiang/Notes/webmd/DFP/2016-08-01.txt",
 		"/Users/wjiang/Notes/webmd/txt/pug.txt",
 		"/Users/wjiang/Notes/webmd/DFP/stackoverflow.html",
-		"/Users/wjiang/Notes/webmd/txt/DFP.txt",
 		"/Users/wjiang/Notes/webmd/mobile-viewability/07-24.html",
 		"/Users/wjiang/Notes/plunkr/contactCard.html",
 		"/Users/wjiang/Notes/plunkr/checkList.html",
@@ -191,7 +272,6 @@
 		"/Users/wjiang/Notes/webmd/media.net/PERF-header-bidding-boots-fit.js.txt",
 		"/Users/wjiang/Notes/webmd/txt/feature-PPE38895_header_bidding.txt",
 		"/Users/wjiang/Notes/webmd/txt/header.txt",
-		"/Users/wjiang/Notes/webmd/DFP/stackoverflow.js",
 		"/Users/wjiang/Notes/.gitignore",
 		"/Users/wjiang/Notes/webmd/txt/iri.txt",
 		"/Users/wjiang/Notes/webmd/js/header.js",
@@ -209,7 +289,6 @@
 		"/Users/wjiang/Notes/webmd/mobile-viewability/topicId.txt",
 		"/Users/wjiang/Notes/webmd/mediaNet.txt",
 		"/Users/wjiang/Notes/webmd/amp/0705.txt",
-		"/Users/wjiang/Notes/webmd/txt/03-23.txt",
 		"/Users/wjiang/Notes/webmd/DFP/function objectEquals(obj1, obj2) {",
 		"/Users/wjiang/Notes/webmd/DFP/sticky.txt",
 		"/Users/wjiang/Notes/webmd/reports/07-19.txt",
@@ -222,40 +301,12 @@
 		"/Users/wjiang/Notes/webmd/js/debounce.js",
 		"/Users/wjiang/Notes/webmd/txt/06-28.txt",
 		"/Users/wjiang/Notes/debounce",
-		"/Users/wjiang/Notes/jsfiddle/AngularJS Debounce Service.html",
 		"/Users/wjiang/Notes/webmd/txt/06-09.txt",
 		"/Users/wjiang/Notes/webmd/txt/04-15.txt",
 		"/Users/wjiang/Notes/webmd/txt/0628.txt",
 		"/Users/wjiang/Notes/webmd/txt/0608.txt",
 		"/Users/wjiang/Notes/webmd/iri.txt",
-		"/Users/wjiang/Notes/webmd/js/:::::: 63010",
-		"/Users/wjiang/Notes/webmd/js/heartbeat.js",
-		"/Users/wjiang/Notes/webmd/js/ajax",
-		"/Users/wjiang/Notes/webmd/js/scripts_harmony.js",
-		"/Users/wjiang/Notes/webmd/txt/dfp.txt",
-		"/Users/wjiang/Notes/webmd/txt/03-28.txt",
-		"/Users/wjiang/Notes/webmd/txt/11-18.txt",
-		"/Users/wjiang/Notes/2014/2014-09-17.txt",
-		"/Users/wjiang/Notes/webmd/txt/heartbeat-document.txt",
-		"/Users/wjiang/Notes/webmd/txt/PublisherId.txt",
-		"/Users/wjiang/Notes/webmd/txt/nodexml.txt",
-		"/Users/wjiang/Notes/webmd/txt/12-08.txt",
-		"/Users/wjiang/Notes/webmd/txt/04-06.txt",
-		"/Users/wjiang/Notes/webmd/js/header-fix-ie8.txt",
-		"/Users/wjiang/Notes/webmd/js/header.txt",
-		"/Users/wjiang/Notes/webmd/txt/01-28.txt",
-		"/Users/wjiang/Notes/webmd/txt/dfp1.txt",
-		"/Users/wjiang/Notes/webmd/03-23.txt",
-		"/Users/wjiang/Notes/webmd/03-30.txt",
-		"/Users/wjiang/Notes/webmd/03-28.txt",
-		"/Users/wjiang/Notes/webmd/DFP.txt",
-		"/Users/wjiang/Notes/webmd/apt.txt",
-		"/Users/wjiang/Notes/webmd/untitled",
-		"/Users/wjiang/Notes/webmd/js/03-31.jx",
-		"/Users/wjiang/Notes/webmd/1.",
-		"/Users/wjiang/Notes/webmd/03-14.txt",
-		"/Users/wjiang/Notes/2014/git.txt",
-		"/Users/wjiang/Notes/webmd/header-bidding.txt"
+		"/Users/wjiang/Notes/webmd/js/:::::: 63010"
 	],
 	"find":
 	{
@@ -274,6 +325,68 @@
 		"case_sensitive": false,
 		"find_history":
 		[
+			"clif",
+			"lif",
+			"mul",
+			"multiple",
+			"isP",
+			"drome",
+			"palidrome",
+			"lid=",
+			"lid",
+			"lid=",
+			"lid",
+			"lid=",
+			"lid",
+			"SlotRender",
+			"SlotRenderEndedEvent",
+			"bootstrap",
+			"ng-bootstrap",
+			"destroySlots",
+			"2025",
+			"webmd.ads2Consumer.defineAd",
+			"Counter",
+			"defineAd",
+			"[[300, 50], [300, 51], [300, 250], [300, 253], [320, 50], [320, 51]]",
+			"2026",
+			"defineAd",
+			"pg=1",
+			"getSlotId",
+			"getSlotElementId",
+			"getSlotElementId()",
+			"refresh",
+			"TBD",
+			"id:",
+			"TBD",
+			"infinite-ad-1",
+			"1901",
+			"slot1",
+			"getSlots",
+			"defineSlot",
+			"first_",
+			"first",
+			"define",
+			"destroy",
+			"destrory",
+			"destroy",
+			"first_2026",
+			"defineAd",
+			"getSlots",
+			"slotrender",
+			"getSlotElementId",
+			"googletag.defineSlot",
+			"{{",
+			"controller",
+			"ng-",
+			"controller",
+			"foo",
+			"myDir",
+			"my-dir",
+			"myDir",
+			"my-dir",
+			"template",
+			"validSubmit",
+			"pg=",
 			"webpack",
 			"passport",
 			"Object.keys",
@@ -339,69 +452,7 @@
 			"react-redux-scripts",
 			"combineReducers",
 			"typeof",
-			"webmd.",
-			"webmd.ads2.setPageTarget('fis', 0);",
-			"pg",
-			"jsfiddle",
-			"jsbin",
-			"fis=",
-			"fipt",
-			"tug=",
-			"tug",
-			"tug=",
-			"tug",
-			"fipt",
-			"fis",
-			"getDFP",
-			".map",
-			"fis",
-			"fipt",
-			"trackingPixel",
-			"git diff",
-			"googletag.cmd",
-			"defineSlot",
-			"clearTimer",
-			"setInterval",
-			"std.",
-			"o.std",
-			"webmdp1thekidneyvista",
-			"test",
-			"588770247",
-			"ppe-",
-			"50%",
-			"debounce",
-			"component",
-			"encodeURIComponent",
-			"8CU62R962",
-			"mnet",
-			"pos",
-			"sl_",
-			"l_",
-			"sl_",
-			"nl",
-			"s_nl",
-			"try",
-			"try {",
-			"sd_",
-			"encodeURIComponent",
-			"encode",
-			"pvid",
-			"debounce",
-			"amp.",
-			"mnet",
-			"whitelist",
-			"mnetDNB",
-			"mnet",
-			"2026",
-			"5000",
-			"googleloaded",
-			"boots",
-			".idea",
-			"mnet",
-			"var $googleloaded = $googleloaded || false;",
-			"googleloaded",
-			"even",
-			"event8"
+			"webmd."
 		],
 		"highlight": false,
 		"in_selection": false,
@@ -427,24 +478,24 @@
 	"groups":
 	[
 		{
-			"selected": 1,
+			"selected": 2,
 			"sheets":
 			[
 				{
 					"buffer": 0,
-					"file": "2013/2013-02-04.txt",
+					"file": "interview/12-14.txt",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 1032,
+						"buffer_size": 1673,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								522,
-								522
+								1026,
+								1026
 							]
 						],
 						"settings":
@@ -452,7 +503,7 @@
 							"syntax": "Packages/Text/Plain text.tmLanguage"
 						},
 						"translation.x": 0.0,
-						"translation.y": 0.0,
+						"translation.y": 576.0,
 						"zoom_level": 1.0
 					},
 					"stack_index": 2,
@@ -463,7 +514,7 @@
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 692,
+						"buffer_size": 11177,
 						"regions":
 						{
 							"match":
@@ -472,28 +523,384 @@
 								"regions":
 								[
 									[
-										78,
-										85
+										91,
+										99
 									],
 									[
-										140,
-										147
+										142,
+										150
 									],
 									[
-										211,
-										218
+										307,
+										315
 									],
 									[
-										232,
-										239
+										345,
+										353
 									],
 									[
-										522,
-										529
+										528,
+										536
 									],
 									[
-										658,
-										665
+										571,
+										579
+									],
+									[
+										614,
+										622
+									],
+									[
+										699,
+										707
+									],
+									[
+										776,
+										784
+									],
+									[
+										855,
+										863
+									],
+									[
+										924,
+										932
+									],
+									[
+										958,
+										966
+									],
+									[
+										1084,
+										1092
+									],
+									[
+										1266,
+										1274
+									],
+									[
+										1405,
+										1413
+									],
+									[
+										1453,
+										1461
+									],
+									[
+										1520,
+										1528
+									],
+									[
+										1613,
+										1621
+									],
+									[
+										1765,
+										1773
+									],
+									[
+										1804,
+										1812
+									],
+									[
+										1870,
+										1878
+									],
+									[
+										1947,
+										1955
+									],
+									[
+										2310,
+										2318
+									],
+									[
+										2415,
+										2423
+									],
+									[
+										2593,
+										2601
+									],
+									[
+										2671,
+										2679
+									],
+									[
+										2824,
+										2832
+									],
+									[
+										3349,
+										3357
+									],
+									[
+										3381,
+										3389
+									],
+									[
+										3440,
+										3448
+									],
+									[
+										3472,
+										3480
+									],
+									[
+										3645,
+										3653
+									],
+									[
+										3750,
+										3758
+									],
+									[
+										3936,
+										3944
+									],
+									[
+										4063,
+										4071
+									],
+									[
+										4095,
+										4103
+									],
+									[
+										4399,
+										4407
+									],
+									[
+										4965,
+										4973
+									],
+									[
+										5213,
+										5221
+									],
+									[
+										5440,
+										5448
+									],
+									[
+										5620,
+										5628
+									],
+									[
+										5753,
+										5761
+									],
+									[
+										5957,
+										5960
+									],
+									[
+										5975,
+										5978
+									],
+									[
+										6012,
+										6015
+									],
+									[
+										6221,
+										6224
+									],
+									[
+										6301,
+										6304
+									],
+									[
+										6355,
+										6358
+									],
+									[
+										6475,
+										6478
+									],
+									[
+										6544,
+										6547
+									],
+									[
+										6598,
+										6601
+									],
+									[
+										6682,
+										6685
+									],
+									[
+										6732,
+										6735
+									],
+									[
+										6805,
+										6808
+									],
+									[
+										6826,
+										6829
+									],
+									[
+										6887,
+										6890
+									],
+									[
+										7040,
+										7043
+									],
+									[
+										7128,
+										7131
+									],
+									[
+										7224,
+										7227
+									],
+									[
+										7365,
+										7368
+									],
+									[
+										7441,
+										7444
+									],
+									[
+										7495,
+										7498
+									],
+									[
+										7679,
+										7682
+									],
+									[
+										7761,
+										7764
+									],
+									[
+										7811,
+										7814
+									],
+									[
+										7912,
+										7915
+									],
+									[
+										7932,
+										7935
+									],
+									[
+										8139,
+										8142
+									],
+									[
+										8191,
+										8194
+									],
+									[
+										8442,
+										8445
+									],
+									[
+										8676,
+										8679
+									],
+									[
+										8753,
+										8756
+									],
+									[
+										8865,
+										8868
+									],
+									[
+										8910,
+										8913
+									],
+									[
+										8992,
+										8995
+									],
+									[
+										9038,
+										9041
+									],
+									[
+										9085,
+										9088
+									],
+									[
+										9145,
+										9148
+									],
+									[
+										9237,
+										9240
+									],
+									[
+										9496,
+										9499
+									],
+									[
+										9766,
+										9769
+									],
+									[
+										9798,
+										9801
+									],
+									[
+										9857,
+										9860
+									],
+									[
+										9886,
+										9889
+									],
+									[
+										9947,
+										9950
+									],
+									[
+										10030,
+										10033
+									],
+									[
+										10096,
+										10099
+									],
+									[
+										10151,
+										10154
+									],
+									[
+										10197,
+										10200
+									],
+									[
+										10238,
+										10241
+									],
+									[
+										10276,
+										10279
+									],
+									[
+										10436,
+										10439
+									],
+									[
+										10650,
+										10653
+									],
+									[
+										10889,
+										10892
+									],
+									[
+										11095,
+										11098
 									]
 								],
 								"scope": ""
@@ -502,15 +909,15 @@
 						"selection":
 						[
 							[
-								78,
-								78
+								11136,
+								11136
 							]
 						],
 						"settings":
 						{
 							"detect_indentation": false,
 							"line_numbers": false,
-							"output_tag": 1,
+							"output_tag": 3,
 							"result_base_dir": "",
 							"result_file_regex": "^([^ 	].*):$",
 							"result_line_regex": "^ +([0-9]+):",
@@ -518,40 +925,126 @@
 							"syntax": "Packages/Default/Find Results.hidden-tmLanguage"
 						},
 						"translation.x": 0.0,
-						"translation.y": 0.0,
+						"translation.y": 3675.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 0,
+					"stack_index": 1,
 					"type": "text"
 				},
 				{
 					"buffer": 2,
-					"file": "2015/08-03.txt",
-					"semi_transient": false,
+					"file": "webmd/js/heartbeat.js",
+					"semi_transient": true,
 					"settings":
 					{
-						"buffer_size": 4278,
+						"buffer_size": 8047,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								3096,
-								3096
+								0,
+								0
 							]
 						],
 						"settings":
 						{
-							"syntax": "Packages/Text/Plain text.tmLanguage",
+							"syntax": "Packages/JavaScript/JavaScript.sublime-syntax",
 							"tab_size": 2,
 							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
-						"translation.y": 1900.0,
+						"translation.y": 776.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 1,
+					"stack_index": 0,
+					"type": "text"
+				},
+				{
+					"buffer": 3,
+					"file": "interview/11-16.txt",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 3157,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								269,
+								269
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Text/Plain text.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 4,
+					"type": "text"
+				},
+				{
+					"buffer": 4,
+					"file": "interview/12-01.txt",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 1136,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								1117,
+								1117
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Text/Plain text.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 126.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 3,
+					"type": "text"
+				},
+				{
+					"buffer": 5,
+					"file": "javascript/small_lib.js",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 1196,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								1196,
+								1196
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/JavaScript/JavaScript.sublime-syntax",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 5,
 					"type": "text"
 				}
 			]
@@ -642,7 +1135,7 @@
 	"show_open_files": false,
 	"show_tabs": true,
 	"side_bar_visible": true,
-	"side_bar_width": 144.0,
+	"side_bar_width": 207.0,
 	"status_bar_visible": true,
 	"template_settings":
 	{
