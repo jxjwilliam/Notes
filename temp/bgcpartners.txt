@@ -1,0 +1,35 @@
+Scott Rowe:
+
+
+Trading Applications Web Developer
+
+We are looking for a web developer to work on the trading applications
+front ends
+
+Requirements:
+
+·         Minimum of 4(2) years’ experience with JavaScript. Knowledge of
+basic data structures and OO design.
+·         Expertise in at least one modern JavaScript framework such as
+Angular, React, Backbone.
+·         Deep experience with HTML5 and CSS3.
+·         Working knowledge of Sass or LESS.
+·         Experience with Chrome debugger tools.
+·         Experience with build and package management tools such as NPM,
+Bower, Grunt, Gulp.
+·         Understanding of general user experience and UI design principles.
+·         Ability to learn, good communication skills and positive attitude.
+
+
+Good to have:
+·         Experience building high performance real time web applications
+able to handle high volume of messages
+·         EcmaScript6
+·         TypeScript
+·         Perforce
+·         node.js
+·         Bootstrap
+
+
+They are located at 199 Water Street.  Ask for Scott Rowe upon arrival.  His # is 212-968-2041
+

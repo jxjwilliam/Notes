@@ -1,0 +1,76 @@
+<div id="eventNode"></div>
+
+//1.
+const modifyText = (e) => {
+  console.info('hello world', e.detail);
+}
+
+//2.
+var el = document.getElementById("eventNode");
+el.addEventListener("clickMe", modifyText, false);
+
+
+
+//3.
+var event = new Event('clickMe');
+el.dispatchEvent(event);
+
+event = new CustomEvent('clickMe', { 'detail': +new Date })
+el.dispatchEvent(event)
+
+
+
+var queue = [];
+
+const cb1 = () => {
+	console.log('cb1');
+}
+
+
+const cb2 = param => console.log('cb2', param);
+
+const cb3 = arg => console.log('cb3', arg);
+
+queue.push(cb1);
+queue.push(cb2);
+queue.push(cb3);
+
+queue.forEach(function(q) {
+	q.call(null, (+new Date));
+})
+
+//////////
+function Shape() {
+  this.x = 0;
+  this.y = 0;
+}
+
+// superclass method
+Shape.prototype.move = function(x, y) {
+  this.x += x;
+  this.y += y;
+  console.info('Shape moved.');
+};
+
+// Rectangle - subclass
+function Rectangle() {
+  Shape.call(this); // call super constructor.
+}
+
+// subclass extends superclass
+Rectangle.prototype = Object.create(Shape.prototype);
+Rectangle.prototype.constructor = Rectangle;
+
+var rect = new Rectangle();
+
+queue.push(rect);
+
+queue.forEach(function(q) {
+		console.log('---', typeof q)
+	if(q instanceof Rectangle) {
+		q.move(1, 1);
+	}
+	else {
+		q.call(null, (+new Date));	
+	}
+})

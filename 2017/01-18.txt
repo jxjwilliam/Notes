@@ -1,0 +1,77 @@
+download gps, cdn, olam, chaim, cdn from bitbucket (william@overpass.com/Benjamin001)
+
+- install couchDB
+http://127.0.0.1:5984/_utils/#/_all_dbs
+create 5 buckets: app, default, state, communication, keyspy
+
+- install crossbar
+python, pip, virtualenv
+
+
+- chaim:
+npm install
+source params.rc
+gulp parse-config
+gulp build
+
+- components:
+- cdn:
+
+- olam:
+
+
+
+///////////////
+
+$ npm install tfk-json-to-xlsx
+
+$ npm install json-2-csv
+
+$ npm install -g istanbul
+
+$  gulp export-test-watch
+
+
+
+const ERs = 'src/data/exportReports';
+gulp.task('export-test', () => {
+
+	return gulp.src(ERs + '/spec/*.spec.js')
+		.pipe(mocha({
+			compilers: babel
+		}));
+});
+gulp.task('export-test-watch', () => {
+	gulp.watch([ERs + '/*.js', ERs + '/*.json', ERs + '/spec/*.spec.js'], ['export-test']);
+});
+gulp.task('export-report', () => {
+	return gulp.src(ERs + '**/*.js')
+		.pipe(babel())
+		.pipe(gulp.dest(ERs + '/reports'))
+});
+
+
+//////////////////////////////////////////
+
+@bindable showControls;
+@bindable exportsArr = [
+  { id: 'XLSX', name: 'xlsx' },
+  { id: 'CSV', name: 'csv' },
+  { id: 'SPREADSHEET', 'spreadsheet'}
+]
+
+toggleExports() {
+	showControls = !showControls;
+}
+
+
+////// workforce.js:
+
+<require from="../../components/web-components/op-dropdown/op-dropdown"></require>
+
+<div class="bc_right">
+	<button click.delegate="showControls=!showControls" class="btn alt_btn" typeof="button">Export Online
+		<op-dropdown items.one-way="exportsArr" key.one-way="'name" default-val.one-way="'Export Online Report'"></op-dropdown>
+	</button>
+</div>
+

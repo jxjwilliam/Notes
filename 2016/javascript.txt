@@ -1,0 +1,41 @@
+For adding class:
+
+document.getElementById("div1").classList.add("classToBeAdded");
+For removing class:
+document.getElementById("div1").classList.remove("classToBeRemoved");
+
+document.querySelector('#divId');
+
+
+// https://lewis617.github.io/2016/12/09/rxjs-redux-react-amazing-2/
+Observable是一个由零个、一个或多个值组成的流。注意，是零个、一个或多个值。零个意味着可以没有值，这完全没问题。一个值的情况就像是Promise一样。如果有多个值，那么这些值将位于不同的时间点上。
+Observable跨越了时间。时间是一种新的维度，这个维度是Observable与Promise的重要不同点。所有“流式”的事物都会跨越时间。事实上，流就是一个以时间为维度的集合。
+Observable可以取消。
+
+RxJS是Observable的一种引用实现，它提供了一些定制的功能，比如操作符（Operators）、创建不同类型Observable的工厂方法。lodash for async
+
+
+debounce、throttle都是去除速率过快的事件、buffer则是周期性的合并一些项，然后一起触发它们
+
+
+RxJS和Redux的结合——redux-observable
+
+redux-observable是一个Redux中间件，用来管理副作用，包括异步。我们使用一个叫Epic的概念去完成这个工作。那么什么是Epic？
+
+A function that takes a stream of all actions dispatched and returns a stream of new actions to dispatch
+Epic是一个函数，该函数将所有被发起的流式的action作为参数，然后返回新的流式的action去发起。
+
+
+如今写React程序，仍然可以使用Wilddog或者Firebase，不仅不用配置数据库服务，也不用写数据库增删改查的API程序了，
+
+export default (initialState) => {
+	const store = compose(
+		applyMiddleware(
+			thunk,
+			createLogger()
+		),
+		window.devToolsExtension ? window.devToolsExtension() : f => f
+	)(createStore)(reducers, initialState);
+
+	return store;
+};

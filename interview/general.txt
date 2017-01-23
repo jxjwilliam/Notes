@@ -1,0 +1,56 @@
+(-) What is a closure, and how/why would you use one?
+
+Closures provide a means of putting function definitions and expressions inside of other functions. A common use would be binding event handler functions so that 'this' refers to the event object. The Module Pattern is the classic example.
+
+A closure is an inner function that has access to the variables in the outer (enclosing) function’s scope chain. The closure has access to variables in three scopes; specifically: (1) variable in its own scope, (2) variables in the enclosing function’s scope, and (3) global variables.
+
+var globalVar = '...';
+(function outF(outerArg) {
+	var outV = 'a';
+
+	(function innerF(innerArg) {
+		console.log('All I can access');
+	})(456);
+
+})(123);
+
+
+A closure is formed when you nest functions, inner functions can refer to the variables present in their outer enclosing functions even after their parent functions have already executed.
+
+A closure is a function defined inside another function (called parent function) and has access to the variable which is declared and defined in parent function scope.
+The closure has access to variable in three scopes:
+
+- Variable declared in his own scope
+- Variable declared in parent function scope
+- Variable declared in global namespace
+
+
+(-) Explain the "JavaScript module pattern" and when you'd use it.
+
+The module pattern is a way of organizing and encapsulating code via a closure. It allows you to create public/private functions and vars inside an object (the module). It lessens the likelihood of naming conflicts and unintended interactions with other functions/vars on the page. Modules should work independently and be easily extensible. Using modules enables to write widgets and plugins that interact with each other.
+
+(-) Describe event bubbling.
+
+Events are dispatched first at the event target, then propagate up through the target element's parent and ancestors, 'bubbling' all the way up to the document root.
+
+
+(-) JavaScript
+(1) Prototypal Inheritance (objects without classes, and prototype delegation, aka OLOO — Objects Linking to Other Objects), and
+(2) Functional Programming (enabled by lambdas with closure)
+
+(function() {
+    var genericObject = {
+        bar : "Hello World",
+        get_bar : function() {
+            return this.bar;
+        }
+    };
+    var customObject = Object.create(genericObject);
+    customObject.bar = "Aloha folks!";
+    document.write(customObject.get_bar() + '<br />'); //outputs: "Aloha folks"
+    delete customObject.bar;
+    document.write(customObject.get_bar()); //fallbacks to the prototype's value, outputs: "Hello World"
+})();
+
+
+///////////////

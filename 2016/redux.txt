@@ -130,3 +130,34 @@ class AsyncApp extends Component {
     const {}
   }
 }
+
+
+在Redux世界里，人们经常使用中间件来处理这些操作。所有action在你发起后，和到达reducer前，都必须穿过中间件。现在已经有很多中间件使用回调和Promise来做这些事了（指那些复杂的异步操作）。
+
+
+我们在action中进行http请求和服务端交互，即便是在中间件中执行http请求，其实质也是dispatch的封装。
+
+
+Database <-> Action -> Reducer -> state -> Components -> 
+                |                                      |
+                |                                      |
+                 <------------------------------------ |
+action操作数据库后，要在回调中返回信号，让reducer更新state，因为只有state变了，组件才会变。state变了，组件自动就变了，至少不用苦逼地操作dom了，还是挺开心的！
+
+组件 (Components) 和Redux容器 (Containers) 的耦合度很低，我们可以完全将它们隔离开来编写，通过一些固定的套路将它们连接起来。什么套路？
+
+- 绑定state到props
+- 绑定action到props（可选）
+- 将store注入，并用provider在顶层包住组件 (connect)
+
+Redux是个状态容器，只能通过发起action改变state，这种集中管控的做法让状态管理和预测变的简单。组件只是state的展现形式而已！React只是一个界面库而已！
+
+
+Redux中间一共嵌套了三层函数，分别传递了store、next、action这三个参数。
+
+export default store => next => action => {}
+
+- next, 因为中间件是要多个首尾相连的，对next进行一层层的”加工”，所以next必须独立一层。
+- store，我们要在中间件顶层放上store，因为我们要用store的dispatch和getState两个方法。
+- action，因为我们封装了这么多层，其实就是为了作出更高级的dispatch方法，但是在高级也是dispatch; 是dispatch就得接受action这个参数。
+
