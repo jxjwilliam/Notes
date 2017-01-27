@@ -62,21 +62,15 @@ user::33d3c440-2eb0-4c00-846d-8eaf33cb39ba available environment::5cb7e6fe-f546-
 -- select meta().id from state
 -- select *  from state order by createDate desc
 
-const ERs = 'src/models/userState';
-gulp.task('export-test', () => {
-    return gulp.src([ERs + '/*.js', ERs + '/*.json', ERs + '/spec/*.spec.js'])
-        .pipe(mocha({
-            compilers: babel
-        }));
-});
 
-gulp.task('export-test-watch', () => {
-    gulp.watch([ERs + '/*.js', ERs + '/*.json', ERs + '/spec/*.spec.js'], ['export-test']);
-});
+const ACTION_START = 'start';
 
-const DestER = 'dist/data/exportReports';
-gulp.task('exports-setup', () => {
-    return gulp.src(ERs+'/reports', ERs+'/*')
-        .pipe(babel())
-        .pipe(gulp.dest(DestER))
-});
+function startUserState(userId, status, envPk, sessionId, loginSessionId) {
+   let args = [].slice.call(arguments);
+   return _saveUserState(args.concat(ACTION_START));
+}
+
+function _saveUserState() {
+  let [userId, status, envPk, sessionId, loginSessionId] = arguments[0];
+  ....
+}
