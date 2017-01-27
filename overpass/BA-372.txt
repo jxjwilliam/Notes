@@ -1,0 +1,131 @@
+
+        let loginSession = userState.loginSessions;
+        try {
+          for (let i in loginSession) {
+            console.log('--:', i, loginSession[i].name);
+          }
+        }
+        catch(e) {}
+        
+        console.log('william1: ', loginSessionId, userState.lastKnownLoginSessionId);
+        let ls = loginSession.filter(x=> {
+          return x.loginSessionId === loginSessionId; //userState.lastKnownLoginSessionId
+        })[0];
+
+        // TODO:
+        if(ls) {
+          this.loginSessionId = loginSessionId;
+          let latestState = {
+            timestamp: Date.now(),
+            status: status
+          };
+
+          let first_states = ls.states;
+          first_states.add(latestState);
+        }
+        else {
+          // insert a new loginSessions
+          console.log('william:loginSessions:', loginSessionId);
+          let latestLoginSession = {
+            loginSessionId: loginSessionId,
+            startTime: Date.now(),
+            endTime: Date.now(),
+            states: [
+              {
+                timestamp: Date.now(),
+                status: "online"
+              }
+            ]
+          }
+          loginSession.add(latestLoginSession);
+        }
+
+// TODO: no need everytime to update. Only the webSocketSessions change.
+if(userState.lastKnownWebsocketSessionId !== loginSession.webSocketSessions[0].sessionId) {
+  let latestWebSocketSessions = {
+    sessionId: sessionId.toString(),
+    startTime: Date.now(),
+    endTime: Date.now()
+  };
+  let wssessions = ls.webSocketSessions;
+    wssessions.add(latestWebSocketSessions);
+ }
+
+
+    getLastKnownStatus(states) {
+      console.log('william -- states:', states);
+    let len = states.length;
+    return states[len-1].status;
+  }
+  getLastKnownLoginSessionId(loginSessions) {
+    return loginSessions.loginSessionId;
+  }
+  getLastKnownWebsocketSessionId(webSocketSessions) {
+    let len = states.length;
+    return webSocketSessions[len-1].sessionId;
+  }
+
+-- localStorage:
+
+UPDATE default
+    SET i.subitems = ( ARRAY OBJECT_ADD(s, 'new', 'new_value' )
+        FOR s IN i.subitems END ) 
+            FOR s IN ARRAY_FLATTEN(ARRAY i.subitems 
+                FOR i IN items END, 1) END;
+
+
+import uuid from 'node-uuid';
+let loginSessionId = 'loginSessionId::' + uuid.v1();
+
+
+// loginSessions.add({
+  //  loginSessionId: sessionId.toString(),
+  //  startTime: new Date(),
+  //  endTime: new Date(),
+  //  states: states,
+  //  webSocketSessions: webSocketSessions
+  // });
+
+
+/* istanbul ignore next */
+/* this function is shared by insertEmpty() and upsertDoc(). */
+// let defaultModel = this.generateDefaultUserState();
+generateDefaultUserState() {
+  let modelConfig = UserStateModel.prototype.config;
+  return `{
+    "userId": $5,
+    "lastKnownStatus": "offline",
+    "lastKnownLoginSessionId": $3,
+    "lastKnownWebsocketSessionId": $4,
+    "currentLoginSession": {
+      "loginSessionId": $3,
+      "startTime": Date.now(),
+      "endTime": Date.now(),
+      "states": [
+        {
+          "status": $2,
+          "timestamp": Date.now()
+        }
+      ]
+    },
+    "type": "user-state",
+    "version": "0.1.2"
+  }`;
+}  
+
+
+
+in chaim
+$ source params.rc
+$ gulp parse-config
+$ gulp build
+
+then in olam
+$ source ../chaim.overpass.com/params.rc
+$ gulp parse-config
+$ sudo npm run develop (edited)
+
+
+davidsmith@mailinator.com
+
+Administrator / Overpass@40

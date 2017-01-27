@@ -1,0 +1,42 @@
+MERGE INTO state s
+ USING (SELECT NULL) AS b ON KEY "user-state::user::220b47b3-bbb8-42df-875a-15aa85d23975::environment::d2f85432-9b51-426a-90c4-6e61720bf645"
+ WHEN MATCHED THEN
+ UPDATE 
+ SET s.currentLoginSession.startTime = NOW_MILLIS(),
+ s.currentLoginSession.endTime = NOW_MILLIS(),
+ s.currentLoginSession.states = ARRAY_INSERT(
+ s.currentLoginSession.states, ARRAY_LENGTH(s.currentLoginSession.states),
+ {
+ "status":"onbreak",
+ "timestamp":NOW_MILLIS()
+ }
+ ),
+ s.currentLoginSession.webSocketSessions = ARRAY_INSERT(
+ s.currentLoginSession.states, ARRAY_LENGTH(s.currentLoginSession.states),
+ {
+ "sessionId":"5175120496009768",
+ "startTime":NOW_MILLIS(),
+ "endTime":NOW_MILLIS()
+ }
+ ) 
+
+ WHEN NOT MATCHED THEN
+ INSERT  {
+ "userId": "user::220b47b3-bbb8-42df-875a-15aa85d23975",
+ "lastKnownStatus": "offline",
+ "lastKnownLoginSessionId": "95736a80-e340-11e6-a17b-9140b82e3bfd",
+ "lastKnownWebsocketSessionId": "5175120496009768",
+ "currentLoginSession": {
+ "loginSessionId": "95736a80-e340-11e6-a17b-9140b82e3bfd",
+ "startTime": NOW_MILLIS(),
+ "endTime": NOW_MILLIS(),
+ "states": [
+ {
+ "status": "onbreak",
+ "timestamp": NOW_MILLIS()
+ }
+ ]
+ },
+ "type": "user-state",
+ "version": "0.1.2"
+ }
