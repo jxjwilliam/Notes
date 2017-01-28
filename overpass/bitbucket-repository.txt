@@ -1,0 +1,92 @@
+gps.overpass.com
+olam.overpass.com
+chaim.overpass.com
+cdn.overpass.com
+components.overpass.com
+
+
+
+terminator -m -b -l Overpass-1terminator -m -b -l Overpass-1
+
+http-server -o -c-1
+
+
+class="ub_status activity_status"
+
+ub_status activity_status
+
+
+// NOT work in agent-console.service.js:
+import { ActiveCall } from 'components.overpass.com/dist/active-call/active-call'
+
+
+// 1. DNS lookup error:
+/overpass/application/chaim.overpass.com:
+$ source params.rc
+$ gulp parse-config && gulp build
+
+// 2. /overpass/application/gps.overpass.com
+$ gulp parse-config && gulp build
+$ crossbar start
+
+
+const ERs = 'src/data/exportReports';
+gulp.task('export-test', () => {
+	return gulp.src([ERs + '/*.js', ERs + '/*.json', ERs + '/spec/*.spec.js'])
+		.pipe(mocha({
+			compilers: babel
+		}));
+});
+
+gulp.task('export-test-watch', () => {
+	gulp.watch([ERs + '/*.js', ERs + '/*.json', ERs + '/spec/*.spec.js'], ['export-test']);
+});
+
+const DestER = 'dist/data/exportReports';
+gulp.task('exports-setup', () => {
+	return gulp.src(ERs+'/reports', ERs+'/*')
+		.pipe(babel())
+		.pipe(gulp.dest(DestER))
+});
+
+<op-dropdown disable.bind = "true" items.bind="campaigns" key.bind="'name'" selected.two-way="permission" change.bind="selectPerm" disable.bind="invitee.role == 'ADMIN'"></op-dropdown>
+
+
+userstate::userid:GUID::environmentid::GUID
+{
+	lastKnownStatus : "offline"
+	sessions : [{
+	"sessionId": "GUID",
+	"startTime": 1484757242570,
+	"endTime" : 1484757242624,
+	"states" : [
+		{ timestamp : 1484757242570, status : "inreview"},
+		{ timestamp : 1484757242570, status : "oncall"},
+		{ timestamp : 1484757242570, status : "wrapup"},
+		{ timestamp : 1484757242570, status : "available"}
+	]
+	},
+	{
+	"sessionId": "GUID",
+	"startTime": 1484757242570,
+	"endTime" : 1484757242570,
+	"states" : [
+		{ timestamp : 1484757242570, status : "inreview"},
+		{ timestamp : 1484757242570, status : "oncall"},
+		{ timestamp : 1484757242570, status : "wrapup"},
+		{ timestamp : 1484757242570, status : "available"},
+		{ timestamp : 1484757242570, status : "inreview"},
+		{ timestamp : 1484757242570, status : "oncall"},
+		{ timestamp : 1484757242570, status : "wrapup"},
+		{ timestamp : 1484757242570, status : "available"},
+		{ timestamp : 1484757242570, status : "inreview"},
+		{ timestamp : 1484757242570, status : "oncall"},
+		{ timestamp : 1484757242570, status : "wrapup"},
+		{ timestamp : 1484757242570, status : "available"},
+		{ timestamp : 1484757242570, status : "inreview"},
+		{ timestamp : 1484757242570, status : "oncall"},
+		{ timestamp : 1484757242570, status : "wrapup"},
+		{ timestamp : 1484757242570, status : "available"}
+	]
+	}
+]

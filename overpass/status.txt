@@ -1,0 +1,52 @@
+http://localhost:9000/#/dashboard/environment::e33898ba-3959-47cf-8d47-ae6df74a427b/
+
+
+websocket:
+{"type":"warnings","data":["./src/components/web-components/op-dropdown/op-dropdown.md\nModule parse failed: /overpass/application/olam.overpass.com/src/components/web-components/op-dropdown/op-dropdown.md Unexpected character '#' (1:0)\nYou may need an appropriate loader to handle this file type.\n| # Dropdown Component\n| \n| ## Bindings\n @ ./src ^\\.\\/.*$\n @ ./~/aurelia-loader-webpack/dist/commonjs/aurelia-loader-webpack.js\n @ multi aurelia",
+
+
+/overpass/application/olam.overpass.com:
+william@ /overpass/application/olam.overpass.com (development) $ find . -name "*.md" | grep -v node_modules
+./src/components/web-components/op-dropdown/op-dropdown.md
+./README.md
+
+
+There is a, duplicate names: 
+./src/components/web-components/op-dropdown/op-dropdown.js
+
+
+cd olam.overpass.com/
+npm install
+sudo npm link ../chaim.overpass.com
+sudo npm link ../components.overpass.com
+sudo npm link ../cdn.overpass.com
+sudo npm run develop
+
+cd gps.overpass.com/
+npm install
+gulp parse-config
+gulp build
+sudo npm link ../chaim.overpass.com
+crossbar start
+
+
+
+const ERs = 'src/data/exportReports';
+gulp.task('export-test', () => {
+	return gulp.src([ERs + '/*.js', ERs + '/*.json', ERs + '/spec/*.spec.js'])
+		.pipe(mocha({
+			compilers: babel
+		}));
+});
+
+gulp.task('export-test-watch', () => {
+	gulp.watch([ERs + '/*.js', ERs + '/*.json', ERs + '/spec/*.spec.js'], ['export-test']);
+});
+
+const DestER = 'dist/data/exportReports';
+gulp.task('exports-setup', () => {
+	return gulp.src(ERs+'/reports', ERs+'/*')
+		.pipe(babel())
+		.pipe(gulp.dest(DestER))
+});
+
