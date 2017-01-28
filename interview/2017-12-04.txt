@@ -22,3 +22,31 @@ function callbackTester(callback) {
     callback ();
 }
 
+
+
+//> removeDupChars('Learn more javascript dude');
+//  = "Lnmojvsciptu"
+
+function removeDupChars(str) {
+    var ary=[];
+    for (var i=0; i < str.length; i++) {
+      if (str.indexOf(str[i]) === str.lastIndexOf(str[i])) {
+         ary.push(str[i]);
+      }
+    }
+    return ary.join('');    
+}    
+removeDupChars('Learn more javascript dude');
+
+// function reverseWords(str)
+
+//> reverseInPlace('I am the good boy');
+//= "I ma eht doog yob"
+
+function reverseInPlace(str) {
+  return str.split(' ').map(function(s) {  
+    return s.split('').reverse().join('');
+  }).join(' ');
+}
+reverseInPlace('I am the good boy');
+
