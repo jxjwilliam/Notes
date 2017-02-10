@@ -1,0 +1,277 @@
+/* istanbul ignore next */
+downloadCSV(filePath, response) {
+  const fileName = path.basename(filePath);
+
+  fs.exists(filePath, function(exists){
+    if (exists) {
+      response.writeHead(200, {
+        "Content-Type": "text/csv",
+        "Content-Disposition" : "attachment; filename=" + fileName
+      });
+      fs.createReadStream(filePath).pipe(response);
+    } else {
+      response.writeHead(400, {"Content-Type": "text/plain"});
+      response.end("ERROR File does NOT Exists");
+    }
+  });
+}
+
+/* istanbul ignore next */
+downloadXLSX(filePath, response) {
+  const fileName = path.basename(filePath);
+
+  fs.exists(filePath, function(exists){
+    if (exists) {
+      response.writeHead(200, {
+        "Content-Type": "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+        "Content-Disposition" : "attachment; filename=" + fileName});
+      fs.createReadStream(filePath).pipe(response);
+    } else {
+      response.writeHead(400, {"Content-Type": "text/plain"});
+      response.end("ERROR File does NOT Exists");
+    }
+  });
+}
+
+
+import uuid from 'node-uuid';
+let loginSessionId = 'loginSessionId::' + uuid.v1();
+
+
+loginSessions.add({
+  loginSessionId: sessionId.toString(),
+  startTime: new Date(),
+  endTime: new Date(),
+  states: states,
+  webSocketSessions: webSocketSessions
+});
+
+
+
+
+in chaim
+$ source params.rc
+$ gulp parse-config
+$ gulp build
+
+then in olam
+$ source ../chaim.overpass.com/params.rc
+$ gulp parse-config
+$ sudo npm run develop (edited)
+
+
+bpop@mailinator.com / Benjamin001
+
+Administrator / Overpass@40
+this.typeSchema = {
+    type: {
+        validate: () => ({
+            isValid: true,
+            message: 'Please use existing file type.'
+        })
+    }
+};
+this.dataSchema = {
+    'User.first': {
+        required: true,
+        trim: true
+    },
+    'User.last': {
+        required: true,
+        trim: true
+    },
+    'User.email': {
+        required: true,
+        isEmail: false,
+        asyncValidate: (value, path, cb) => {
+        }
+    }
+};
+
+this.s4 = () => {
+    return (((1 + Math.random()) * 0x10000) | 0).toString(16).substring(1);
+}
+
+//olam.overpass.com/workers/notificationWorker.js
+guidGenerator () {
+    const S4 = this.s4;
+    return (S4() + S4() + "-" + S4() + "-" + S4() + "-" + S4() + "-" + S4() + S4() + S4());
+}
+   
+
+<op-dropdown items.bind="exportList"  
+    selected.one-way="exportType"
+    change.bind="exportFile"
+    simple.bind="true">
+</op-dropdown>
+
+
+flattenData() {
+    const documents = this.data;
+    return documents.map(doc => {
+        let newUser = {};
+        if (doc.user) {
+            _.forEach(Object.keys(doc.user), key => {
+                newUser['User.' + key] = doc.user[key]
+            });
+        }
+        const docWithoutUser = _.omit(documents, ['user']);
+        return _.merge(newUser, docWithoutUser);
+    });
+}
+
+
+/**
+ * flatten {user: {first:'', last:'', email:''}} to {User.first:'', User.last:'', User.email:''}
+ * @returns {Array}
+ */
+flattenData1() {
+    const documents = this.data;
+    let newUser = {};
+    let user = _.pick(documents, ['user']);
+    const docWithoutUser = _.omit(documents, ['user'])
+    _.forEach (Object.keys(user), key => {
+        newUser['User.' + key] = user[key]
+    });
+    return _.merge(newUser, docWithoutUser);
+}
+
+
+getExportData(userPks){
+    let keyspyKeys = userPks.map(item => {
+      return `userState::userId::${item}`;
+    });
+    let query = `SELECT 
+                u.fullName.\`first\` 
+                u.fullName.\`last\` 
+                u.email
+                s.*
+                FROM app u USE KEYS $1
+                LEFT JOIN keyspy ks ON KEYS $2
+                LEFT JOIN state s ON KEYS ks.primaryKey`;
+    return this.connect()
+        .then(_ => {
+            return this.getByQuery(query, [userPks, keyspyKeys]);
+        })
+        .then(results => {
+            return results;
+        })
+}
+
+forEach(Object.keys(t), function(key) {
+    t[key] = exportData.toHHMMSS(t[key]);
+});
+
+select a.email, a.userPk from app a where a.email like 'william%';
+
+select * from app a where a.userPk = 'user::9fc33e57-e2f2-450e-9cec-8b9609fc30d5'
+
+state: "userId": "user::9fc33e57-e2f2-450e-9cec-8b9609fc30d5"
+
+
+
+///////////////////////////////////
+
+1. when login, there will be an entry:
+state: {
+    timeIntervals: [{
+        "start": ......
+        status: "online"
+    }],
+    userId: ...
+}
+
+2. when [available, inreview, oncall, wrapup, onbreak], there will be  entry for each action:
+state: {
+    timeIntervals: [
+        ...,
+    {
+        "start": ......,
+        "end": ...
+        "status": (available | inreview | oncall | wrapup | onbreak)
+    }
+    // will continue to append in this array.
+    ]
+}
+
+3. when logoff, there will be new entry at the end of this object:
+state: {
+    timeIntervals: [{
+        "end": ......
+        status: "offline"
+    }],
+    userId: ...
+}
+
+with this action ('offline'), this state-object is closed.
+
+4. when User login again, there is a new object create to repeat 1-3.
+and So on.
+
+https://www.npmjs.com/package/google-spreadsheet
+
+
+["user::0afb03a8-58d8-48a4-ac19-6f68b1f36992", "user::bac2271b-5002-4863-b36e-6edfffac9ab2", "user::f639e918-9917-484b-b932-3290138c4c24"]
+
+SELECT 
+    u.fullName.\`first\` AS \`first\`, 
+    u.fullName.\`last\` AS \`last\`, 
+    u.email,
+    s.loginSessions.* 
+    FROM app u USE  KEYS [
+      "user::0afb03a8-58d8-48a4-ac19-6f68b1f36992",
+      "user::bac2271b-5002-4863-b36e-6edfffac9ab2",
+      "user::f639e918-9917-484b-b932-3290138c4c24"
+    ]
+    LEFT JOIN keyspy ks ON KEYS 
+    [
+      "user-state::userId::user::0afb03a8-58d8-48a4-ac19-6f68b1f36992",
+      "user-state::userId::user::bac2271b-5002-4863-b36e-6edfffac9ab2",
+      "user-state::userId::user::f639e918-9917-484b-b932-3290138c4c24"
+    ]
+    LEFT JOIN state s ON KEYS ks.primaryKey
+
+
+
+
+select u.email, s.loginSessions 
+from app u USE  KEYS "user-state::user::0afb03a8-58d8-48a4-ac19-6f68b1f36992::environment::45a9fbf2-b565-4922-ad58-980aa677deae"
+left join state s on KEYS 'user::0afb03a8-58d8-48a4-ac19-6f68b1f36992'    
+
+
+select * from state  where userId = 'user::0afb03a8-58d8-48a4-ac19-6f68b1f36992'
+
+select u.* from app u where userPk = 'user::0afb03a8-58d8-48a4-ac19-6f68b1f36992'
+
+select meta() from state where id="user-state::user::0afb03a8-58d8-48a4-ac19-6f68b1f36992::environment::45a9fbf2-b565-4922-ad58-980aa677deae"
+
+select * from app use keys 'user::0afb03a8-58d8-48a4-ac19-6f68b1f36992'
+
+// user-credentials::bpop@mailinator.com
+{
+  "type": "user-credentials",
+  "version": "0.1.1",
+  "createDate": 1485527691792,
+  "passwordHash": "$2a$12$kf3C/IZsJIM7WRCinjvWPutkH.i6/.RNK0Aexs9MmEkPElQO8ohUK",
+  "userPk": "user::0afb03a8-58d8-48a4-ac19-6f68b1f36992",
+  "email": "bpop@mailinator.com",
+  "state": "active",
+  "token": "6422a1fe-ff49-4b92-b0e0-97373c7648a0",
+  "tokenData": {
+    "nextAction": "validate-account",
+    "expireTime": 1485786891787,
+    "used": true
+  },
+  "permissions": [
+    {
+      "level": "environment",
+      "levelPk":"environment::45a9fbf2-b565-4922-ad58-980aa677deae",
+      "role": "admin",
+      "environmentPk": "environment::45a9fbf2-b565-4922-ad58-980aa677deae"
+    }
+  ]
+}
+
+//select meta().id from app where app.userPk = 'user::0afb03a8-58d8-48a4-ac19-6f68b1f36992'
+
+

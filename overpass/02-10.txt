@@ -1,0 +1,44 @@
+Appointment Set
+Busy
+Connection Lost
+Disconnected Number
+Do Not Call Registry
+Donated
+Fax / Data / Modem Line
+Follow Up
+
+
+getEnvironmentStatusData(userPks, envPk) {
+let query = `SELECT 
+    u.fullName.\`first\` AS \`first\`, 
+    u.fullName.\`last\` AS \`last\`, 
+    u.email,
+    s.loginSessions
+    FROM app u USE KEYS $1
+    LEFT JOIN state s ON KEYS 'user-state::' || meta(u).id || '::' || $2 `;
+
+
+// active: true
+// all the time is in timestamp or seconds:
+userId: '...',
+fullName: 'Sylvia H',
+email: 'sylvia@mailinator.com',
+status: 'In Review',
+calls: 36,
+options: {
+	appointment: 12,
+	busy: 2,
+	lost: 3,
+	disconnected: 22,
+	registry: 2,
+	doated: 0,
+	fax: 0,
+	followUp: 4
+}
+onCall: 720,
+wrapUp: 318,
+inReview: 849,
+onBreak: 40,
+offline: 800,
+available: 70,
+invited: 0
