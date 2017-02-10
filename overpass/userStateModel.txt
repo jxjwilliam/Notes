@@ -51,17 +51,6 @@ export const UserStateModel = GenericModel.extend({
 export default UserStateModel;
 
 
-user::220b47b3-bbb8-42df-875a-15aa85d23975 
-available 
-environment::d2f85432-9b51-426a-90c4-6e61720bf645
-
-
-user::33d3c440-2eb0-4c00-846d-8eaf33cb39ba available environment::5cb7e6fe-f546-416f-af90-ddeff82263e9
-
-
--- select meta().id from state
--- select *  from state order by createDate desc
-
 
 const ACTION_START = 'start';
 
