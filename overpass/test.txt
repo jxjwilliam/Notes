@@ -13,3 +13,6 @@ If you go with Mocha, you will likely use:
 - Karma or mocha CLI (for the test runner)
 
 karma + jasmine : mocha + chai
+
+## karma + es6
+http://www.syntaxsuccess.com/viewarticle/writing-jasmine-unit-tests-in-es6

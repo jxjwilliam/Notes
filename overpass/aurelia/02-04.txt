@@ -1,0 +1,2 @@
+One big difference I see here is that activate method has a Promis as return value so you can run here async code. Triggering async code in constructor is a very bad idea. Further detail is that constructor must not throw an exception so typically here you just assign constructor parameters to local variables without any logic. I would not do more stuff in constructor and the actual viewmodel initialization with logic should happen in activate or attached method.
+

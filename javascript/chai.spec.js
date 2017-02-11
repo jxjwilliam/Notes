@@ -2,8 +2,7 @@ import chai, { expect, assert } from 'chai';
 import sinon from 'sinon';
 import path from 'path';
 import fs from  'fs';
-import reportData from '../data.json';
-//import googleSpreadsheet from 'google-spreadsheet';
+import reportData from './data.json';
 
 chai.should();
 
@@ -27,13 +26,11 @@ describe('sum function test', () => {
 
 describe('data json file test', () => {
 	it('should data.json exist', () => {
-		const dataFile = require(path.join(__dirname, '..', 'data.json'));
+		const dataFile = require(path.join(__dirname, 'data.json'));
 		dataFile.should.exist;
-		//console.log(dataFile);
 	});
 
 	it('should import data.json', () => {
-		console.log(typeof reportData);
 		reportData.should.be.an('array');
 	});
 });
@@ -179,15 +176,4 @@ describe('Rectangle class test', () => {
 		});
 	});
 });
-
-describe('google-spreadsheet test', () => {
-	it('should work', () => {
-		const GoogleSpreadsheet = require('google-spreadsheet');
-		GoogleSpreadsheet.should.exist;
-
-		let data = require('../data.json');
-
-	});
-})
-
 
