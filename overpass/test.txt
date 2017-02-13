@@ -16,3 +16,9 @@ karma + jasmine : mocha + chai
 
 ## karma + es6
 http://www.syntaxsuccess.com/viewarticle/writing-jasmine-unit-tests-in-es6
+
+
+gulp --tasks
+
+////////////
+
