@@ -1,5 +1,116 @@
-    "chai": "^3.3.0",
-    "chai-as-promised": "^5.2.0",
-       "mocha": "^2.3.3",
-           "sinon": "^1.17.3",
-    "sinon-chai": "^2.8.0",
+"chai": "^3.3.0",
+"chai-as-promised": "^5.2.0",
+"mocha": "^2.3.3",
+"sinon": "^1.17.3",
+"sinon-chai": "^2.8.0",
+
+## gulpfile.babel.js:
+cd chaim.overpass.com/src/models/user
+gulp agents-convert
+
+
+cd chaim.overpass.com/src/data/ExportData
+gulp export
+
+
+## import agents.json file.
+(1) in userCredentialsCrud.server.js:
+import dummyAgents from './spec/agents.json';
+
+dummyagents.forEach(...);
+
+(2) in chai/mocha:
+(2.a)chaim/src/models/user/spec/agents.spec.js:
+
+beforeEach(() => {
+	dummyAgents = require(path.join(__dirname, 'agents.json'));
+});
+(2.b) chaim/src/data/exportReports/spec/ExportData.spec.js
+beforeEach(() => {
+	const reportData = require(path.join(__dirname, 'loginData.json'));
+	exportData = new ExportData('xls', reportData);
+}
+
+(3) in karma/jasmine/es6:
+(3.a) use require(path.resolve...) not work.
+(3.b) karma-fixture-loader not work
+(3.c) use webpack json-loader:
+
+$ npm install --save-dev json-loader
+in karma.conf.js:
+	module: {
+		loaders: [
+			{
+				test: /\.js$/,
+				exclude: /node_modules/,
+				loader: 'babel'
+			},{
+				test: /\.json$/,
+				loader: 'json-loader',
+			}
+		]
+	}
+
+in agents.spec.js:
+import agentDemos from './agents.json'
+
+in campaign-monitor dir:
+/olam.overpass.com/node_modules/.bin/karma start ./karma-conf
+
+
+(4) for mocha and karma, can't import csv file.
+the following not work coz not json/js format:
+var csv = require(path.join(__dirname, 'agents.csv'));
+
+(5) for userCredentialsCrud.server.js, csv can't import:
+
+(5.a) 
+import csvAgents from './spec/agents.csv';
+//in the class:
+generateDummyAgentList() {
+	return csvAgents;
+}
+(5.b) in test:
+it('after call generateDummaryAgentList(), the original csv returns', ()=> {
+	var csv = userCredentialsCrud.generateDummyAgentList();
+});
+throw same errors: SyntaxError in plugin 'gulp-mocha',  Unexpected token, expected ;
+
+(6) should create a separate node-js file to convert csv to json.
+
+
+(7) The data-structure:
+{
+	"userId": "user::1",
+	"isActive": true,
+	"fullName": "Sylvia H Trump",
+	"email": "Sylvia_dummy@mailinator.com",
+	"status": "In Review",
+	"calls": 36,
+	"phone": "212-888-6655",
+	"options": {
+		"appointment": 12,
+		"busy": 2,
+		"lost": 3,
+		"disconnected": 1,
+		"registry": 2,
+		"donated": 0,
+		"fax": 0,
+		"followUp": 9
+	},
+	"inReviewTime": 839,
+	"onCallTime": 720,
+	"wrapUpTime": 318
+}
+
+use faker:
+$ npm install faker;
+
+weekday = faker.date.weekday;
+profileImage = faker.image.avatar();
+date: used to filer: today, yesterday, this week, last week, all
+
+
+(8) Promise: polyfill
+npm install promise --save
+var Promise = require('promise');
