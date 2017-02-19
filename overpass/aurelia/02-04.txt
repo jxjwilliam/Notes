@@ -10,3 +10,20 @@ let result = map(...)
 
 // http://stackoverflow.com/questions/28419242/property-change-subscription-with-aurelia
 propertyObserver observes a specific property (eg firstName) and notifies you when the property changes. expressionObserver observes an entire expression (eg foo.bar[x][baz].hello() * test / something) and notifies you when the result of the expression changes. 
+
+
+
+// event delegate vs event trigger:
+
+Use delegate except when you cannot use delegate.
+
+Event delegation is a technique used to improve application performance. It drastically reduces the number of event subscriptions by leveraging the "bubbling" characteristic of most DOM events. With event delegation, handlers are not attached to individual elements. Instead, a single event handler is attached to a top-level node such as the body element. When an event bubbles up to this shared top-level handler the event delegation logic calls the appropriate handler based on the event's target.
+
+To find out if event delegation can be used with a particular event, google mdn [event name] event. In fact, preceding any web platform related google search with mdn often returns a high quality result from the Mozilla Developer Network. Once you're on the event's MDN page, check whether the event bubbles. Only events that bubble can be used with Aurelia's delegate binding command. The blur, focus, load and unload events do not bubble so you'll need to use the trigger binding command to subscribe to these events.
+
+
+////////////////////////
+<a click.delegate="showContactDetails(item)">
+<a click.delegate="onPrevious(agent.userId)"><i class="fa fa-caret-left" aria-hidden="true"></i></a>
+
+

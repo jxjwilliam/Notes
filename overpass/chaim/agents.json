@@ -1,0 +1,218 @@
+[
+	{
+		"userId": "user::1",
+		"isActive": true,
+		"fullName": "Sylvia H Trump",
+		"email": "Sylvia_dummy@mailinator.com",
+		"status": "In Review",
+		"calls": 36,
+		"phone": "212-888-6655",
+		"profileImage": "https://s3.amazonaws.com/uifaces/faces/twitter/anatolinicolae/128.jpg",
+		"options": {
+			"appointment": 12,
+			"busy": 2,
+			"lost": 3,
+			"disconnected": 1,
+			"registry": 2,
+			"donated": 0,
+			"fax": 0,
+			"followUp": 9
+		},
+		"inReviewTime": 839,
+		"onCallTime": 720,
+		"wrapUpTime": 318
+	},
+	{
+		"userId": "user::2",
+		"isActive": true,
+		"fullName": "Eugenia O Hilary",
+		"email": "Eugenia_dummy@mailinator.com",
+		"profileImage": "https://s3.amazonaws.com/uifaces/faces/twitter/sementiy/128.jpg",
+		"status": "On Call",
+		"calls": 4,
+		"phone": "212-888-6655",
+		"options": {
+			"appointment": 6,
+			"busy": 7,
+			"lost": 3,
+			"disconnected": 2,
+			"registry": 9,
+			"donated": 0,
+			"fax": 0,
+			"followUp": 8
+		},
+		"inReviewTime": 1004,
+		"onCallTime": 1720,
+		"wrapUpTime": 630
+	},
+	{
+		"userId": "user::3",
+		"isActive": true,
+		"fullName": "Alfred R",
+		"email": "Alfred_dummy@mailinator.com",
+		"phone": "212-888-6655",
+		"profileImage": "https://s3.amazonaws.com/uifaces/faces/twitter/kiwiupover/128.jpg",
+		"status": "On Call",
+		"calls": 15,
+		"options": {
+			"appointment": 12,
+			"busy": 2,
+			"lost": 3,
+			"disconnected": 3,
+			"registry": 2,
+			"donated": 0,
+			"fax": 0,
+			"followUp": 7
+		},
+		"inReviewTime": 345,
+		"onCallTime": 405,
+		"wrapUpTime": 318
+	},
+	{
+		"userId": "user::4",
+		"isActive": true,
+		"fullName": "Bertha V",
+		"email": "Bertha_dummy@mailinator.com",
+		"profileImage": "https://s3.amazonaws.com/uifaces/faces/twitter/plbabin/128.jpg",
+		"phone": "212-888-6655",
+		"status": "Wrap Up",
+		"calls": 44,
+		"options": {
+			"appointment": 12,
+			"busy": 2,
+			"lost": 3,
+			"disconnected": 4,
+			"registry": 2,
+			"donated": 0,
+			"fax": 0,
+			"followUp": 6
+		},
+		"inReviewTime": 110,
+		"onCallTime": 3029,
+		"wrapUpTime": 1122
+	},
+	{
+		"userId": "user::5",
+		"isActive": false,
+		"fullName": "Garrison R",
+		"email": "Garrison_dummy@mailinator.com",
+		"profileImage": "https://s3.amazonaws.com/uifaces/faces/twitter/abelcabans/128.jpg",
+		"phone": "212-888-6655",
+		"status": "Away",
+		"calls": 68,
+		"options": {
+			"appointment": 12,
+			"busy": 2,
+			"lost": 3,
+			"disconnected": 5,
+			"registry": 2,
+			"donated": 0,
+			"fax": 0,
+			"followUp": 5
+		},
+		"inReviewTime": 913,
+		"onCallTime": 3620,
+		"wrapUpTime": 757
+	},
+	{
+		"userId": "user::6",
+		"isActive": false,
+		"fullName": "Terri U",
+		"email": "Terri_dummy@mailinator.com",
+		"profileImage": "https://s3.amazonaws.com/uifaces/faces/twitter/mikemai2awesome/128.jpg",
+		"phone": "212-888-6655",
+		"status": "Offline",
+		"calls": 79,
+		"options": {
+			"appointment": 12,
+			"busy": 2,
+			"lost": 3,
+			"disconnected": 6,
+			"registry": 2,
+			"donated": 0,
+			"fax": 0,
+			"followUp": 4
+		},
+		"inReviewTime": 1809,
+		"onCallTime": 2720,
+		"wrapUpTime": 157
+	},
+	{
+		"userId": "user::7",
+		"isActive": false,
+		"fullName": "Jeanie R",
+		"email": "Jeanie_dummy@mailinator.com",
+		"profileImage": "https://s3.amazonaws.com/uifaces/faces/twitter/zforrester/128.jpg",
+		"phone": "212-888-6655",
+		"status": "Offline",
+		"calls": 99,
+		"options": {
+			"appointment": 12,
+			"busy": 2,
+			"lost": 3,
+			"disconnected": 7,
+			"registry": 2,
+			"donated": 0,
+			"fax": 0,
+			"followUp": 3
+		},
+		"inReviewTime": 2115,
+		"onCallTime": 3720,
+		"wrapUpTime": 212
+	},
+	{
+		"userId": "user::8",
+		"isActive": false,
+		"fullName": "Bryce W",
+		"email": "Bryce_dummy@mailinator.com",
+		"profileImage": "https://s3.amazonaws.com/uifaces/faces/twitter/xamorep/128.jpg",
+		"phone": "212-888-6655",
+		"status": "Offline",
+		"calls": 47,
+		"options": {
+			"appointment": 12,
+			"busy": 2,
+			"lost": 3,
+			"disconnected": 8,
+			"registry": 2,
+			"donated": 0,
+			"fax": 0,
+			"followUp": 2
+		},
+		"inReviewTime": 1256,
+		"onCallTime": 6612,
+		"wrapUpTime": 1111
+	},
+	{
+		"userId": "user::9",
+		"isActive": false,
+		"fullName": "Kevin C",
+		"email": "Kevin_dummy@mailinator.com",
+		"profileImage": "https://s3.amazonaws.com/uifaces/faces/twitter/abdots/128.jpg",
+		"phone": "212-888-6655",
+		"status": "Offline",
+		"calls": 50,
+		"options": {
+			"appointment": 12,
+			"busy": 2,
+			"lost": 3,
+			"disconnected": 9,
+			"registry": 2,
+			"donated": 0,
+			"fax": 0,
+			"followUp": 1
+		},
+		"inReviewTime": 2042,
+		"onCallTime": 1828,
+		"wrapUpTime": 3333
+	},
+	{
+		"userId": "user::10",
+		"isActive": false,
+		"fullName": "Allison B",
+		"email": "Allison_dummy@mailinator.com",
+		"profileImage": "https://s3.amazonaws.com/uifaces/faces/twitter/sovesove/128.jpg",
+
+		"status": "Invited"
+	}
+]

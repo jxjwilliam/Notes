@@ -1,0 +1,9 @@
+
+git log --follow -p -- package.json
+git log --follow --all -p package.json
+git branch -vv
+
+gitk --follow --all -p package.json
+tik --follow --all -p package.json
+
+git log --pretty=short -u -L package.json
