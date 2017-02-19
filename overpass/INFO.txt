@@ -18,14 +18,7 @@ gulp build
 sudo npm link ../chaim.overpass.com
 crossbar start
 
-
 //////////////////
-register.html
-<!--<require from="overpass-wc/src/formattor/phone-number"></require>-->
-
-modified:   src/auth/register/register.html
-modified:   src/environment/dashboard/active/active.html
-modified:   src/environment/dashboard/campaign/monitor/charts/charts.js
 
 https://qa.overpass.com/#/dashboard/environment::85b2ee0d-aac4-4488-9dc4-6b86c2a27b64
 demo+2@overpass.com / Password1

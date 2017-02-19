@@ -24,6 +24,5 @@ export class CssdisplayValueConverter {
 }
 
 
-<require from='css-display'></require>
-
-<form css="display: ${isLoggedIn() | cssdisplay}"></form>
+<require from="css-display"><\/require>
+<form css="display: ${isLoggedIn() | cssdisplay}"><\/form>

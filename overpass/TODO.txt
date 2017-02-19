@@ -1,0 +1,5 @@
+
+////////////////////////
+<a click.delegate="showContactDetails(item)">
+<a click.delegate="onPrevious(agent.userId)"><i class="fa fa-caret-left" aria-hidden="true"></i></a>
+

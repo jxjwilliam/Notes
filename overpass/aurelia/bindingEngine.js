@@ -12,12 +12,10 @@ export class MyClass {
         let subscription = this.bindingEngine.collectionObserver(this.theList).
         	subscribe(this.listChanged);
         
-        // Dispose of observer when you are done via: subscription.dispose();
+        // Dispose of observer when you are done via: 
+        subscription.dispose();
     }
-
-    listChanged(splices) {
-
-    }
+    listChanged(splices) {}
 }
 
 
@@ -43,6 +41,7 @@ class MyClass {
 
 
 // monitor.js
+//<input class="search" placeholder="Search" type="text" value.bind="search.name & debounce:250"/>
 export class CampaignMonitor {
 	constructor(bindingEngine) {
 		this.search = { name : '' };

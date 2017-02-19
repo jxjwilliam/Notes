@@ -22,8 +22,3 @@ Event delegation is a technique used to improve application performance. It dras
 To find out if event delegation can be used with a particular event, google mdn [event name] event. In fact, preceding any web platform related google search with mdn often returns a high quality result from the Mozilla Developer Network. Once you're on the event's MDN page, check whether the event bubbles. Only events that bubble can be used with Aurelia's delegate binding command. The blur, focus, load and unload events do not bubble so you'll need to use the trigger binding command to subscribe to these events.
 
 
-////////////////////////
-<a click.delegate="showContactDetails(item)">
-<a click.delegate="onPrevious(agent.userId)"><i class="fa fa-caret-left" aria-hidden="true"></i></a>
-
-
