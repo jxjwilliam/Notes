@@ -22,3 +22,43 @@ gulp --tasks
 
 ////////////
 
+
+/**
+ * input: "outcomes": [
+ *    "busy",
+ *    "sale closed",
+ *    "sale closed"
+ *  ]
+ *  output: {'sale closed': 2, busy: 1 }
+ *  TODO: should update in chaim: userCredentialsCrud.server.js, outcomes???
+ */
+processOutcomes(outcomes) {
+	let obj = {};
+	if(outcomes && Array.isArray(outcomes)) {
+		outcomes.forEach((x, i) => {
+			let propName = x;
+			if(obj.hasOwnProperty(propName)){
+				obj[propName] += 1;
+			} else {
+				obj[propName] = 1;
+			}
+		});
+	}
+	return obj;
+}
+
+addAgentAttribute() {
+	// what else agent attributes need to be added?
+	this.agents.forEach(x => {
+		x.profileImage = x.profileImage ||  '/node_modules/overpass-cdn/assets/icons/avatar.png';
+		//x.options = x.processOutcomes(x.options);
+		x.outcome = x.outcome || x.options.disconnected;
+	});
+}
+
+
+Available
+Inreview
+Oncall
+Wrapup
+Inwrapup

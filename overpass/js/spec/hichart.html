@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+	<script src="https://code.highcharts.com/highcharts.js"></script>
+	<!--<script src="https://code.highcharts.com/modules/drilldown.js"></script>-->
+</head>
+<body>
+<div id="container" style="max-width: 400px"></div>
+<script>
+
+	const data = [{
+		name: 'In Review',
+		y: 10
+	}, {
+		name: 'On Call',
+		y: 26
+	}, {
+		name: 'Wrap Up',
+		y: 12
+	}]; // End Data
+
+	function setHighChart (data) {
+
+		Highcharts.setOptions({
+			chart: {
+				backgroundColor: '#FAFBFC',
+				style: {
+					fontFamily: "Roboto"
+				},
+				width: 400
+			},
+			credits: {
+				enabled: false
+			},
+			legend: {
+				enabled: false
+			}
+		});
+
+		 return Highcharts.chart('container', {
+			chart: {
+				type: 'pie'
+			},
+			title: {
+				text: 'Calls Status',
+				margin: 10
+			},
+			tooltip: {
+				enabled: false
+			},
+			plotOptions: {
+				pie: {
+					dataLabels: {
+						enabled: true,
+						distance: -35,
+						format: '{point.name}: {y}'
+					},
+					startAngle: -90,
+					endAngle: 90,
+					innerSize: '50%'
+				}
+			},
+			colors: ['#00487C', '#0069B4', '#4FC4D2'],
+			xAxis: [{
+				type: 'category'
+			}],
+			yAxis: [{
+				title: {
+					text: 'Calls'
+				}
+			}],
+			series: [{
+				name: 'Status',
+				data: data
+			}] // End Series
+		});
+	}
+
+	setHighChart(data);
+
+</script>
+</body>
+</html>

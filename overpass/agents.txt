@@ -114,3 +114,26 @@ date: used to filer: today, yesterday, this week, last week, all
 (8) Promise: polyfill
 npm install promise --save
 var Promise = require('promise');
+
+/////////////////////////////////////
+
+
+this.dispositions1 = [
+	{ name: 'Appointment Set', value: 'appointment' },
+	{ name: 'Busy', value: 'busy' },
+	{ name: 'Connection Lost', value: 'lost' },
+	{ name: 'Disconnected Number', value: 'disconnected' },
+	{ name: 'Do Not Call Registry', value: 'registry' },
+	{ name: 'Donated', value: 'donated' },
+	{ name: 'Fax / Data / Modem Line', value: 'fax' },
+	{ name: 'Follow Up', value: 'followUp' },
+];
+
+interactions.outcomes.forEach(i => {
+  let propName = i.replace(/\s/, '');
+  if(obj.hasOwnProperty(propName)){
+	obj[propName].count += 1;
+  } else {
+	obj[propName] = {count:1, outcome:i};
+  }
+});	
