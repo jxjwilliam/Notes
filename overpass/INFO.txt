@@ -1,0 +1,22 @@
+
+this.allStatus = this.getAllUserStatus();
+
+cd olam.overpass.com/
+npm install
+sudo npm link ../chaim.overpass.com
+sudo npm link ../components.overpass.com
+sudo npm link ../cdn.overpass.com
+sudo npm run develop
+
+cd gps.overpass.com/
+npm install
+gulp parse-config
+gulp build
+sudo npm link ../chaim.overpass.com
+crossbar start
+
+//////////////////
+
+https://qa.overpass.com/#/dashboard/environment::85b2ee0d-aac4-4488-9dc4-6b86c2a27b64
+demo+2@overpass.com / Password1
+

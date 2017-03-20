@@ -34,4 +34,5 @@ var Sys = {
     function(name) { 
         Sys['is' + name] = function(obj) {
               return toString.call(obj) == '[object ' + name + ']';
-    };  });
+    };  
+});

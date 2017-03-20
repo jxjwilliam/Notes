@@ -7,7 +7,6 @@ One big difference I see here is that activate method has a Promis as return val
 let result = map(...)
 
 
-
 // http://stackoverflow.com/questions/28419242/property-change-subscription-with-aurelia
 propertyObserver observes a specific property (eg firstName) and notifies you when the property changes. expressionObserver observes an entire expression (eg foo.bar[x][baz].hello() * test / something) and notifies you when the result of the expression changes. 
 
@@ -19,39 +18,11 @@ Switched to a new branch 'serverfix'
 git branch -vv
 
 
-///////////////////////////////////////////
 
-this.agents.forEach(x => {
-	if(x.status === '' && x.isActive) {
-		x.status = 'Available';
-	}
-	else if(/unknown/i.test(x.status)) {
-		x.isActive = false;
-		x.status = 'Offline';
-	}
-});
+// event delegate vs event trigger:
 
+Use delegate except when you cannot use delegate.
 
-{
-"userId": "user::56354979-7de5-4318-bdc0-c7f310c618a3",
-"isActive": true,
-"fullName": "john smith",
-"email": "johnsmiths657567657@mailinator.com",
-"phoneNo": "",
-"status": "unknown",
-"calls": 46,
-"options": {
-  "Connection Lost": 26,
-  "call-back": 19
-},
-"inReviewTime": 0,
-"onCallTime": 0,
-"wrapUpTime": 0,
+Event delegation is a technique used to improve application performance. It drastically reduces the number of event subscriptions by leveraging the "bubbling" characteristic of most DOM events. With event delegation, handlers are not attached to individual elements. Instead, a single event handler is attached to a top-level node such as the body element. When an event bubbles up to this shared top-level handler the event delegation logic calls the appropriate handler based on the event's target.
 
-
-		'In Review': 'inReviewTime',
-		'On Call': 'onCallTime',
-		'Wrap Up': 'wrapUpTime',
-		'In Wrap Up': 'wrapUpTime'
-
-}
+To find out if event delegation can be used with a particular event, google mdn [event name] event. In fact, preceding any web platform related google search with mdn often returns a high quality result from the Mozilla Developer Network. Once you're on the event's MDN page, check whether the event bubbles. Only events that bubble can be used with Aurelia's delegate binding command. The blur, focus, load and unload events do not bubble so you'll need to use the trigger binding command to subscribe to these events.

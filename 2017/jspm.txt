@@ -1,0 +1,14 @@
+jspm init .
+
+1. fork https://github.com/philiphendry/aurelia-highcharts
+registry github: jxjwilliam@gmail.com / Benjamin
+
+2. git clone from https://github.com/jxjwilliam/aurelia-highcharts
+
+3. 
+$ cd aurelia-highcharts
+$ npm init
+$ jspm init
+$ jspm install
+$ http-server .
+open chrome at: http://localhost:8080/

@@ -1,0 +1,24 @@
+
+////////////////////////
+<a click.delegate="showContactDetails(item)">
+<a click.delegate="onPrevious(agent.userId)"><i class="fa fa-caret-left" aria-hidden="true"></i></a>
+
+
+
+gps/campaign/services.js:
+
+//getData(campaignId, timeframe, authToken, session)
+services.getData = (args) => {
+    console.log('gps::campaign::service::getData::args', args);
+    return new CampaignServer().getData(args[0], args[1], args[2], connection.session);
+};
+
+//getExportStatusData(exportType, campaignPk, userPks, authToken)
+services.getExportStatusData = (args) => {
+    return new CampaignServer().getExportStatusData(args[0], args[1], args[2], args[3]);
+}
+
+//getExportStatusData(exportType, agents)
+services.getExportStatusData = (args) => {
+    return new CampaignServer().getExportStatusData(args[0], args[1]);	
+}
