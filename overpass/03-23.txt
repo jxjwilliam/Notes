@@ -1,0 +1,8 @@
+Object.prototype.toString.call(obj) == "[object Object]" && Object.keys(obj).length>0
+
+
+window.onbeforeunload = function (e) {
+// Your logic to prepare for 'Stay on this Page' goes here 
+
+    return "Please click 'Stay on this Page' and we will give you candy";
+};

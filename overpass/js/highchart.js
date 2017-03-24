@@ -1,15 +1,3 @@
-git checkout -b BA-460 origin/BA-460
-
-git merge development
-
-
-git checkout -b responsive-cm origin/responsive-cm
-
-
-git checkout -b  cm-fixes origin/cm-fixes
-
-
-
 // All Highcharts move into charts/chart component.
 //import Highcharts from 'highcharts';
 //import Exporting from "highcharts/modules/exporting";
