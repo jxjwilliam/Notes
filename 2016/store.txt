@@ -8,12 +8,10 @@ ReactDOM.render(
 );
 
 
-///////
 import {store} from 'the above file';
 Component.store.dispatch({ type: 'SET_VAL', value: 'some_val' });
 
 
-//////
 import { combineReducers } from 'redux';
 import { connect } from 'react-redux';
 
@@ -95,7 +93,7 @@ Technically, a container component is just a React component that uses store.sub
 connect()
 
 
-, (dispatch) => {
+(dispatch) => {
     actions: bindActionCreators(actions, dispatch)
 }
 

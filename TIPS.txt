@@ -1,0 +1,5 @@
+1. kill 8080 port daemon:
+lsof -n -i4TCP:8080
+
+2. online object:
+www.webmd.com -> window.configSettings: use it as object example.

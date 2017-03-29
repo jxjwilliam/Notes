@@ -13,10 +13,6 @@ src/components
 webpack.config.js
 index.hml
 
-
-
-
-
 --------- ProveIt ----------------
 
 Test Results for:	William Jiang

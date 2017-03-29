@@ -1,14 +1,13 @@
 1. li du
-import 'events' from jquery;
+import events from jquery;
 so no need to download tooltips, carousel, popup modal, grid etc.
 
 2. tong gou
 Server-side & Client-side use JavaScript.
 React-native, FLUX.
 
+
 3. File-System
-
-
 Performance effects:
 (1) server-side:
 - XML 
@@ -35,7 +34,7 @@ MongoDB / Redis-server (timestamp, search, XML-HTML mapping and path)
 2. Components - reusable, Composable
 3. Virtual DOM
 4. easy managable
-5. it looks like a framework with the benefits of framework, better than jQuery which is just a DOM library.
+5. it looks like a framework with the benefits of framework, better than jQuery as a DOM library.
 6. the most popular front-end solution currently.
 
 

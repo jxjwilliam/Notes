@@ -1,0 +1,17 @@
+// React:
+
+1. The Virtual DOM is not a simple Object – it is a recursive structure. 
+What we get is a nested Object-tree:
+{
+    "type":"div",
+    "key":null,
+    "ref":null,
+    "props":{
+        "children": [
+            {"type":"span","key":null,"ref":null,"props":{}},
+            {"type":"button","key":null,"ref":null,"props":{}}
+        ]
+    }
+}
+
+This is why, in a React Component’s code, we can access the child and ancestor elements via this.props.children. What React does is to walk down a very deep tree of nested Objects, each sitting in their parent element’s children.
