@@ -6,7 +6,7 @@ var Sys = {
     /** This Checks and Return if Object is Defined */
     isDefined: function(val){
         return val !== void 0 || typeof val !== 'undefined';
-    }
+    },
     /** Run a Map on an Array **/
     map: function(arr,fn){
         var res = [], i=0;

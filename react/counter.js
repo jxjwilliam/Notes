@@ -44,7 +44,7 @@ const store = createStore(counter);
 //<script src="https://fb.me/react-dom-15.1.0.js"></script>
 //<script src="https://cdnjs.cloudflare.com/ajax/libs/redux/3.6.0/redux.min.js"></script>
 
-const counter = (state=0, action) => {
+const counter = (state=0, action={}) => {
   switch(action.type) {
     case 'INCREMENT':
       return state + 1;
@@ -84,7 +84,7 @@ const render = () => {
           type: 'DECREMENT'
         })
       }
-    \/>,
+    />,
     document.getElementById('root')
   );
   //document.body.innerText = store.getState();

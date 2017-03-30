@@ -69,18 +69,6 @@ uh.map(function(u) {
  */
 
 
-SMARTOB-8690:
-{
-	pushed: recentlyPushedId === item.task.assignedEquipment.equipmentId, 
-	notPushed: recentlyPushedId !== item.task.assignedEquipment.equipmentId, 
-	group: item.task.groupId && item.task.assignedEquipment.equipmentId, 
-	notHead: item.task.partialTaskSequence !== 1 &&  item.task.assignedEquipment.equipmentId &&  !item.task.catHead, 
-	dualbins : item.task.EquipObj.bins.length > 1,
-	loadupdate  :item.task.binLoadUpdated =='G',
-	snowupdate:item.task.binLoadUpdated=='S', 
-	empty: !item.task.assignedEquipment.equipmentId, 
-	assigned: item.task.assignedEquipment.equipmentId
-}
 
 /// display-board-helper-common.js
 if(h.code === 'CHART') {

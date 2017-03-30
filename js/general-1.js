@@ -46,7 +46,7 @@ $(function() { NS.App.init(); });
 NS.Models.News = (function() {
   var url = '/some/news/';
   var getNews = function() {
-    $.ajax({url:url,....success: newsRetrieved});
+    $.ajax({url:url,success: newsRetrieved});
   };
   var newsRetrieved = function(news){
     AmplifyJS.publish('news-retrieved', news);
@@ -64,7 +64,7 @@ NS.Models.News = (function() {
 
   NS.Views.prototype.showNews = function(news) {
     var self = this;
-    $.each(news.function(article) { self.append(article); });
+    $.each(news, function(article) { self.append(article); });
   }
 }());
 
@@ -94,5 +94,5 @@ $('div.container').threeColumns({a:'b'}, function(params){
 });
 
 //Will display:
-Object { margin="20px", padding="20px", height="auto"}
-Object { fsize_step=2, a="b", adjust_box=function()}
+//Object { margin="20px", padding="20px", height="auto"}
+//Object { fsize_step=2, a="b", adjust_box=function()}
