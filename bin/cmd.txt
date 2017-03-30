@@ -1,0 +1,35 @@
+kill 8080 port daemon
+-------------------------
+lsof -n -i4TCP:8080
+
+terminator -m -b -l Overpass-1terminator -m -b -l Overpass-1
+
+http-server -o -c-1
+
+
+
+sort by file size:
+-------------------
+du -a  | grep '\.js' | sort -r
+
+
+find
+-------
+find . -mtime +0 # find files modified greater than 24 hours ago
+find . -mtime 0 # find files modified between now and 1 day ago
+# (i.e., in the past 24 hours only)
+find . -mtime -1 # find files modified less than 1 day ago (SAME AS -mtime 0)
+find . -mtime 1 # find files modified between 24 and 48 hours ago
+find . -mtime +1 # find files modified more than 48 hours ago
+
+
+
+
+$ sudo npm install jasmine-node -g
+$ jasmine-node test/blacklist.spec.js
+$ uglifyjs header-bidding.js
+
+
+$ karma init -> karma.conf.js
+$ npm init -> package.json
+$ git init -> .git

@@ -1,0 +1,11 @@
+- Highcharts
+- autobahn, crossbar, WAMP
+- Aurelia
+
+
+getSumInReview = (status='InReview') => {
+  return this.activeAgents
+    .filter(f => f.displayStatus === status)
+    .map(m => m[this.StatesMap[status]])
+    .reduce((sum, n) => (sum + n, 0));
+}

@@ -1,0 +1,116 @@
+- https://www.ampproject.org/
+- cheerio
+  xmldom
+  stickyHead
+  jQuery.waypoints
+  responsive
+
+
+- google DFP:
+    ads2?gdfp=...,
+    googletag.pubads().display(), googletag.defineSlot(), googletag.cmd.push(()=>{}), top.googletag.pubads().refresh([slot1]);
+    chrome has a extensions: Google Publisher Toolbar.
+    prev_iu_szs, prev_scp
+    dmp, cui
+
+
+- webmd objects:
+    webmd.ads2
+    webmd.ads2.ads
+    webmd.lotame.truncatedDMPAudiences
+    webmd.metrics, webmd.metrics.dpv({})
+    webmd.url.getenv
+    window.configSettings
+    webmd.medscape
+    webmd.beacon //medscapeBeacon
+    webmd.cookie
+    -> webmd.cookie.getJson('ads_perm', {domain: "webmd.com"}).segvar;
+    -> webmd.cookie.getJson('ads_perm', {domain: "webmd.com"}).segvar.length;
+    -> webmd.adsCookie.get('sess').pim
+    -> webmd.adsCookie.remove({type:'sess', prefix:'fi'});
+
+    adViewability
+    ads
+    ads2
+    ads2Consumer
+    adsCookie
+    lotame
+    m
+    mbox
+    medianet
+    medscape
+    metrics
+    oas
+    offsite
+    omniture
+    url
+    usability
+    visit
+    xdm
+
+- window global variables:
+  window.s_pageview_id
+  window.s_sponsor_program
+  window.s_package_type
+  window.s_package_name
+
+
+- media.net Header-Bidding
+    window.advBidxc, bidexchange.js
+    mnet*: http://contextual.media.net/bidexchange.js?cid=8CU66J63J&version=3.1
+    media.net pass to DFP (8):
+    a. mnetbidPrice
+    b. mnetbidderID
+    c. mnetCrid
+    d. mnet_placement
+    e. mnetSize
+    f. mnetPageID
+    g. mnetCID
+    h. mnTest
+
+- Nativo, Acamai, pubMatic, Lotame, Adobe cloud, omniture
+- Brandcast, Brandfeed
+
+- PageBuilder
+- Heartbeat: Heartbeat tracking Server: http://heartbeats.omtrdc.net
+- AdobeAnalyticsPlugin: https://marketing.adobe.com/resources/help/en_US/sc/appmeasurement/hbvideo/video.pdf:
+
+- First Impression
+- Experian AIQ beacon
+- nativeAdObj
+- exceptionList
+- WHS
+- tricity, whitelist, overlap
+- viewability, impressionViewable
+- AD: direct ad, indirect ad
+- ICM
+- Google DFPP (Dart For Publishers Premium) ad system
+
+
+------------------------------------
+
+Video, Quiz, Slide Show, Physician Finder, Questions
+
+impressions, hover, click, form-submit, infinite-scrolling
+
+
+-------------------------------------
+
+webmd.cookietrack.js
+webmd.m.firstimpression.js
+webmd.visit.js
+amp.premier.js
+pubads_impl.js
+player-shared.js
+www.googletagservices.com
+
+https://securepubads.g.doubleclick.net/gampad/ads?gdfp_req=1&correlator=416…79&vrp=79&ga_vid=1750676695.1458051962&ga_sid=1458051962&ga_hid=1700286765
+http://www.webmd.com/living-healthy?force_hbtest=1
+http://jadserve.postrelease.com/trk.gif?ntv_at=4&ntv_a=cdsBAVyYEAG9kLA&ord=-439032495&prx_r=
+https://marketing.adobe.com/resources/help/en_US/sc/appmeasurement/hbvideo/c_rel_notes.html,
+
+
+Desktop:  https://invis.io/SH4VNV98W
+Mobile:  https://invis.io/N54VP5SQ7
+
+www.webmd.com -> window.configSettings: use it as object example.

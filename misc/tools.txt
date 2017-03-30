@@ -1,0 +1,27 @@
+- evernote
+- Beyond Compare
+- Charles, fiddler proxy tool (.saz)
+- Why SLOW? YSlow
+
+MAC:
+- Xcode
+
+- xLazyLoader
+- modernizr
+- prettyJSON
+- node-apac : Node.js client for the Amazon Product Advertising API, including support of Request Signatures
+- libxslt
+
+
+NPM:
+====
+
+-> use faker:
+$ npm install faker;
+
+-> Promise: polyfill
+npm install promise --save
+var Promise = require('promise');
+
+
+

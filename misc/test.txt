@@ -1,0 +1,25 @@
+1. karma + jasmine : mocha + chai
+
+So, if you were to choose a test framework setup today, what might it look like?
+
+If you go with Jasmine, you will likely use:
+
+- Karma (for the test runner)
+- Sinon (possibly for its fake server unless your framework provides an equivalent, like $httpBackend if you are using Angular)
+
+
+If you go with Mocha, you will likely use:
+
+- Chai (for assertions)
+- Sinon (for test doubles and its fake server)
+- Karma or mocha CLI (for the test runner)
+
+
+2. karma + es6
+http://www.syntaxsuccess.com/viewarticle/writing-jasmine-unit-tests-in-es6
+
+3.
+beforeEach(() => {
+	const reportData = require(path.join(__dirname, 'loginData.json'));
+	exportData = new ExportData('xls', reportData);
+}

@@ -1,0 +1,47 @@
+
+git push -u upstream william
+// after -u, can use: gut pull, git push;
+
+git checkout --theirs / --ours
+
+git diff --stat
+git branch -vv
+git rebase -i HEAD~[number_of_commits]
+
+
+log
+----------
+git log --stat
+git log --follow -p -- package.json
+git log --follow --all -p package.json
+git log --pretty=short -u -L package.json
+git log -p
+
+
+Who Messed With My Code?
+-------------------------
+git blame [file_name]
+
+
+stash
+------
+git stash
+git stash list
+git stash apply
+git stash pop
+git stash clear
+
+
+Ignore the white space
+------------------------
+git diff -w or git blame -w
+
+
+Extract a file from another branch
+-----------------------------------
+git show some-branch:some-file.js
+
+
+Pick a commit from another branch
+-----------------------------------
+git cherry-pick [commit_hash]

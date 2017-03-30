@@ -1,0 +1,84 @@
+Prefetching, preloading and prerendering best practices:
+When to use prefetching(dns):
+
+When you're making AJAX requests to a domain other than the one you're on. This includes subdomains.
+When you're dynamically rendering content on a page from a different domain. Example cases include generated links/buttons and lazyloading images.
+When not to use prefetching(dns):
+
+When there's a link on your page(Modern browsers should fetch that automatically for you)
+In most cases really. Because of automatic prefetching it's hard to find cases when you'd need it other than dynamically-generated subdomains or something similar.
+When to use preloading:
+
+When you have different stylesheets for different pages and know a visitor is likely to visit another page.
+When you know a visitor is likely to visit a "next page" with lots of images or other large files.
+When you have a javascript MVC site and want to hint to the browser to download assets that aren't in the current view.
+When not to use preloading:
+
+When the asset is referred to somewhere else on the same page.
+When you're not sure the user will actually require that asset. Like on a page visitors only go to 3% of the time.
+When to use prerendering:
+
+When you're certain that a user is going to visit a page and
+When that pages has lots of assets that take a while to load.
+When there's a "next page" that's very likely to be visited such as in a sign-up flow or the first link in a series of search results.
+When an increase in page load speed would dramatically increase conversions.
+When not to use prerendering:
+
+When a user is not likely to visit a page.
+When the amount of network data is limited(you don't want users to pay for pages they don't even visit).
+
+
+==========================================
+
+1. DOMContentLoaded
+    document.addEventListener('DOMContentLoaded', function(event) {
+        console.log('DOM fully loaded and parsed.');
+    });
+
+2. readystatechange
+
+3. load
+    document.addEventListener('load', myScript);
+
+4. beforeunload
+    window.onbeforeunload = function (e) {
+        // Your logic to prepare for 'Stay on this Page' goes here
+        return "Please click 'Stay on this Page' and we will give you candy";
+    };
+
+5. unload
+
+==========================================
+
+A request is made from the user's browser to the ad server for gpt.js, the tagging JavaScript.
+
+The tagging JavaScript builds and sends one or more requests (depending on whether single-request mode is enabled) to the ad server for ads tagged on the page.
+
+The ad server recognizes the ad units and any key-values contained within the request.
+
+The ad server selects and returns the best matching ad.
+
+The JavaScript code associated with the ad tag displays the ad on the page.
+
+
+==========================================
+
+1.All scripts should be loaded last
+It's best to place all your script references at the end of the page, just before </body>.
+
+If you are unable to do so due to templating issues and whatnot, decorate your script tags with the defer attribute so that the browser knows to download your scripts after the HTML has been downloaded:
+<script src="my.js" type="text/javascript" defer="defer"></script>
+
+2. Put Scripts at the Bottom
+The problem caused by scripts is that they block *parallel downloads*.   The HTTP/1.1 specification suggests that browsers download no more than two components in parallel per hostname. If you serve your images from multiple hostnames, you can get more than two downloads to occur in parallel. While a script is downloading, however, the browser won't start any other downloads, even on different hostnames. In some situations it's not easy to move scripts to the bottom. If, for example, the script uses document.write to insert part of the page's content, it can't be moved lower in the page. There might also be scoping issues. In many cases, there are ways to workaround these situations.
+
+An alternative suggestion that often comes up is to use deferred scripts. The *DEFER* attribute indicates that the script does not contain document.write, and is a clue to browsers that they can continue rendering. If a script can be deferred, it can also be moved to the bottom of the page. That will make your web pages load faster.
+
+
+3.Yahoo research showed some browsers try to load script files when they hit the script tag and therefore don't load the rest of the page until they have finished.
+
+ -> For external scripts (Google analytics, 3rd party marketing trackers, etc.) place them before the </body> tag.
+ -> For scripts that affect page layout, place in head.
+ -> For scripts that rely on 'dom ready' (like jquery), consider placing before </body> unless you have an edge-case reason to place scripts in head.
+ -> If there are inline scripts with dependencies, place the required scripts in head.
+ -> If you put it at the bottom, it loads last, hence speeding up the speed that the user can see the page. It does need to be before the final </html> though otherwise it won't be part of the DOM.

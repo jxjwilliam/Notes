@@ -1,0 +1,385 @@
+[
+	{
+		"email": "bpop@mailinator.com",
+		"first": "bill",
+		"last": "pop",
+		"loginSessions": [
+			{
+				"loginSessionId": "0b1a8970-e4b9-11e6-98cf-f387bf0883c0",
+				"startTime": 1485539426066.523,
+				"states": [
+					{
+						"status": "online",
+						"timestamp": 1485539396821
+					},
+					{
+						"status": "online",
+						"timestamp": 1485539426071.1848
+					},
+					{
+						"status": "available",
+						"timestamp": 1485539460254.6729
+					},
+					{
+						"status": "available",
+						"timestamp": 1485539478974.4932
+					},
+					{
+						"status": "offline",
+						"timestamp": 1485539484088.7864
+					}
+				],
+				"webSocketSessions": [
+					{
+						"sessionId": "7506224321047153",
+						"startTime": 1485539396821
+					}
+				]
+			},
+			{
+				"loginSessionId": "51a6fe00-e4b9-11e6-98cf-f387bf0883c0",
+				"startTime": 1485539544438.7559,
+				"states": [
+					{
+						"status": "online",
+						"timestamp": 1485539544444.538
+					},
+					{
+						"status": "offline",
+						"timestamp": 1485539566677.7695
+					}
+				],
+				"webSocketSessions": []
+			},
+			{
+				"loginSessionId": "62193280-e4b9-11e6-98cf-f387bf0883c0",
+				"startTime": 1485539572020.692,
+				"states": [
+					{
+						"status": "online",
+						"timestamp": 1485539572025.4565
+					},
+					{
+						"status": "offline",
+						"timestamp": 1485539577185.0415
+					}
+				],
+				"webSocketSessions": []
+			},
+			{
+				"loginSessionId": "697951e0-e4b9-11e6-98cf-f387bf0883c0",
+				"startTime": 1485539584413.6619,
+				"states": [
+					{
+						"status": "online",
+						"timestamp": 1485539584417.9792
+					},
+					{
+						"status": "available",
+						"timestamp": 1485540293726.781
+					},
+					{
+						"status": "available",
+						"timestamp": 1485540293728.0505
+					},
+					{
+						"status": "offline",
+						"timestamp": 1485541475688.6555
+					}
+				],
+				"webSocketSessions": []
+			},
+			{
+				"loginSessionId": "f64157b0-e4c0-11e6-98cf-f387bf0883c0",
+				"startTime": 1485542827128.2341,
+				"states": [
+					{
+						"status": "online",
+						"timestamp": 1485542748887.7954
+					},
+					{
+						"status": "online",
+						"timestamp": 1485542765213.1587
+					},
+					{
+						"status": "online",
+						"timestamp": 1485542798128.8787
+					},
+					{
+						"status": "online",
+						"timestamp": 1485542827132.6047
+					},
+					{
+						"status": "available",
+						"timestamp": 1485542827172.8372
+					},
+					{
+						"status": "available",
+						"timestamp": 1485542849349.4397
+					},
+					{
+						"status": "offline",
+						"timestamp": 1485542902541.2488
+					}
+				],
+				"webSocketSessions": []
+			},
+			{
+				"loginSessionId": "2fee8280-e4c1-11e6-98cf-f387bf0883c0",
+				"startTime": 1485542923898.8467,
+				"states": [
+					{
+						"status": "online",
+						"timestamp": 1485542923903.052
+					},
+					{
+						"status": "offline",
+						"timestamp": 1485542929604.426
+					}
+				],
+				"webSocketSessions": []
+			},
+			{
+				"loginSessionId": "3b3244b0-e4c1-11e6-98cf-f387bf0883c0",
+				"startTime": 1485542942795.8728,
+				"states": [
+					{
+						"status": "online",
+						"timestamp": 1485542942800.933
+					},
+					{
+						"status": "offline",
+						"timestamp": 1485542954039.854
+					}
+				],
+				"webSocketSessions": []
+			},
+			{
+				"loginSessionId": "b2792480-e4c6-11e6-838c-fd8129ec4c29",
+				"startTime": 1485545290449.117,
+				"states": [
+					{
+						"status": "online",
+						"timestamp": 1485543113054.0322
+					},
+					{
+						"status": "available",
+						"timestamp": 1485543119592.837
+					},
+					{
+						"status": "online",
+						"timestamp": 1485545290453.9268
+					},
+					{
+						"status": "available",
+						"timestamp": 1485545290906.8206
+					},
+					{
+						"status": "offline",
+						"timestamp": 1485545384063.1372
+					}
+				],
+				"webSocketSessions": []
+			},
+			{
+				"loginSessionId": "ee733aa0-e4c8-11e6-91b7-b32756375a16",
+				"startTime": 1485546250086.0215,
+				"states": [
+					{
+						"status": "online",
+						"timestamp": 1485545394384.7744
+					},
+					{
+						"status": "online",
+						"timestamp": 1485546250092.0613
+					},
+					{
+						"status": "available",
+						"timestamp": 1485546250133.714
+					},
+					{
+						"status": "offline",
+						"timestamp": 1485546259009.9392
+					}
+				],
+				"webSocketSessions": []
+			},
+			{
+				"loginSessionId": "21470240-e4c9-11e6-91b7-b32756375a16",
+				"startTime": 1485546335354.656,
+				"states": [
+					{
+						"status": "online",
+						"timestamp": 1485546335358.8938
+					},
+					{
+						"status": "available",
+						"timestamp": 1485546734105.0813
+					},
+					{
+						"status": "available",
+						"timestamp": 1485546734115.6296
+					},
+					{
+						"status": "offline",
+						"timestamp": 1485546736490.7246
+					}
+				],
+				"webSocketSessions": []
+			},
+			{
+				"loginSessionId": "a17d50d0-e4ca-11e6-b2db-7fb7e299ff0f",
+				"startTime": 1485546979971.7168,
+				"states": [
+					{
+						"status": "online",
+						"timestamp": 1485546801432.325
+					},
+					{
+						"status": "online",
+						"timestamp": 1485546979976.1304
+					},
+					{
+						"status": "offline",
+						"timestamp": 1485546992572.7666
+					}
+				],
+				"webSocketSessions": []
+			},
+			{
+				"loginSessionId": "03e47030-e4cd-11e6-965c-918def8cd6fa",
+				"startTime": 1485548004088.0388,
+				"states": [
+					{
+						"status": "online",
+						"timestamp": 1485546997781.4363
+					},
+					{
+						"status": "available",
+						"timestamp": 1485547006328.2363
+					},
+					{
+						"status": "available",
+						"timestamp": 1485547006337.255
+					},
+					{
+						"status": "online",
+						"timestamp": 1485547123199.388
+					},
+					{
+						"status": "online",
+						"timestamp": 1485547189142.3423
+					},
+					{
+						"status": "online",
+						"timestamp": 1485547404652.6406
+					},
+					{
+						"status": "online",
+						"timestamp": 1485547882148.0596
+					},
+					{
+						"status": "online",
+						"timestamp": 1485548004093.1414
+					},
+					{
+						"status": "offline",
+						"timestamp": 1485548006477.0078
+					}
+				],
+				"webSocketSessions": []
+			},
+			{
+				"loginSessionId": "aaa7d5f0-e6f9-11e6-af0f-5b64f6880626",
+				"startTime": 1485783475928.6392,
+				"states": [
+					{
+						"status": "online",
+						"timestamp": 1485548017762.3652
+					},
+					{
+						"status": "online",
+						"timestamp": 1485548307838.3503
+					},
+					{
+						"status": "online",
+						"timestamp": 1485548609052.015
+					},
+					{
+						"status": "online",
+						"timestamp": 1485549071151.0806
+					},
+					{
+						"status": "online",
+						"timestamp": 1485549495551.0227
+					},
+					{
+						"status": "online",
+						"timestamp": 1485782654896.8064
+					},
+					{
+						"status": "online",
+						"timestamp": 1485782964557.9697
+					},
+					{
+						"status": "online",
+						"timestamp": 1485783153780.5593
+					},
+					{
+						"status": "online",
+						"timestamp": 1485783475934.5627
+					},
+					{
+						"status": "offline",
+						"timestamp": 1485783615960.5989
+					}
+				],
+				"webSocketSessions": []
+			},
+			{
+				"loginSessionId": "2965dc60-e6fb-11e6-882f-f35f95d6eefe",
+				"startTime": 1485784171569.9236,
+				"states": [
+					{
+						"status": "online",
+						"timestamp": 1485783733487.1494
+					},
+					{
+						"status": "online",
+						"timestamp": 1485784171576.1255
+					},
+					{
+						"status": "offline",
+						"timestamp": 1485784186540.295
+					}
+				],
+				"webSocketSessions": []
+			},
+			{
+				"loginSessionId": "625d72d0-e6fb-11e6-882f-f35f95d6eefe",
+				"startTime": 1485784275098.4697,
+				"states": [
+					{
+						"status": "online",
+						"timestamp": 1485784275103.46
+					},
+					{
+						"status": "offline",
+						"timestamp": 1485784417994.346
+					}
+				],
+				"webSocketSessions": []
+			}
+		]
+	},
+	{
+		"email": "wiliam@overpass.com",
+		"first": "Will",
+		"last": "Smith"
+	},
+	{
+		"email": "william@overpass.com",
+		"first": "",
+		"last": ""
+	}
+]
