@@ -48,7 +48,7 @@ Array.prototype.duplicator = function() {
 
 
 // empty an array
-var arrayList = [ .... ];
+var arrayList = [ 1,2,3 ];
 arrayList = [];
 arrayList.length = 0;
 arrayList.splice(0, arrayList.length);
@@ -57,9 +57,6 @@ while(arrayList.length) {
 	arrayList.pop();	
 }
 
-
-
-////////////////////////////////
 
 Function.prototype.curry = function() {
     if (arguments.length<1) {
@@ -100,9 +97,9 @@ function callback(p1, p2, p3) {
 }
 
 aaa(callback, 100);
-1 100
-2 1
-3 2
+//1 100
+//2 1
+//3 2
 
 
 /////////////////////

@@ -1,94 +1,3 @@
-<body ng-app>
-  <label><input type="checkbox" ng-model="checked" />Disable Button<\/label>
-  <button ng-disabled="checked">Select me<\/button>
-<\/body>
-
-
-function MyCtrl($scope) {
-	$scope.email = "";
-
-	$scope.$watch("email", function(newValue, oldValue) {
-		if ($scope.email.length > 0) {
-			console.log("User has started writing into email");
-		}
-	});
-}
-
-<div ng-controller="MyCtrl">
-  <button ng-click="hide()">Hide element<\/button>
-  <p ng-hide="isHide">Hide or Show<\/p>
-<\/div>
-
-function MyCtrl($scope) {
-	$scope.isHide = false;
-	$scope.hide = function() {
-		$scope.isHide = true;
-	}
-}
-
-
-myApp.factory('$exceptionHandler', function($log, ErrorService) {
-    return function(exception, cause) {
-        
-        if (console) {
-            $log.error(exception);
-            $log.error(cause);
-        }
-
-        ErrorService.send(exception, cause);
-    };
-});
-
-
-var directiveDefinitionObject = {
-    priority: 0,
-    template: '<div></div>', // or // function(tElement, tAttrs) { ... },
-    // or
-    // templateUrl: 'directive.html', // or // function(tElement, tAttrs) { ... },
-    transclude: false,
-    restrict: 'A',
-    templateNamespace: 'html',
-    scope: false,
-    controller: function($scope, $element, $attrs, $transclude, otherInjectables) { ... },
-    controllerAs: 'stringIdentifier',
-    bindToController: false,
-    require: 'siblingDirectiveName', // or // ['^parentDirectiveName', '?optionalDirectiveName', '?^optionalParent'],
-    compile: function compile(tElement, tAttrs, transclude) {
-      return {
-        pre: function preLink(scope, iElement, iAttrs, controller) { ... },
-        post: function postLink(scope, iElement, iAttrs, controller) { ... }
-      }
-      // or
-      // return function postLink( ... ) { ... }
-    },
-    // or
-    // link: {
-    //  pre: function preLink(scope, iElement, iAttrs, controller) { ... },
-    //  post: function postLink(scope, iElement, iAttrs, controller) { ... }
-    // }
-    // or
-    // link: function postLink( ... ) { ... }
-  };
-
-
-  angular.factory('testService', function($q) {
-  	return {
-  		getName: function() {
-  			var deferred = $q.defer();
-
-  			testApi.getName().then(function(name) {
-  				deferred.resolve(name);
-  			});
-
-  			return deferred.promise;
-  		}
-  	}
-  });
-
-
-
-
-///////////////
 var prices = [105, 101, 102, 104, 109, 110, 99, 101];
 
 function maxProfit(prices) {
@@ -147,53 +56,45 @@ mp.then().then().catch();
 
 
 
-var App = React.createClass({
-  getInitialState: function () {
-    return {count: this.props.maxCounters};
-  },
+/////// multis(2,3,4,5,6); multis(2,3,4) all work.
+function multis() {
+    var args = [].slice.call(arguments);
+    return args.reduce(function(a,b) {
+        return a*b;
+    }, 1);
+};
 
-  onIncrement: function () {
-    this.setState({'count': this.state.count+1})
-  },
+// multiply(2)(3)(4)(5)(8)... work.
+function multiply() {
+    var arg = [].slice.call(arguments)[0];
+    var res = arg;
 
-  onDecrement: function () {
-    this.setState({'count': this.state.count-1});
-  },
+    return function mul() {
+        var arg1 = [].slice.call(arguments)[0];
+        res = res * arg1;
 
-  render: function () {
-    return (
-      <div>
-        <div>{this.state.count}</div>
-        <button onClick={this.onIncrement}> + </button>
-        <button onClick={this.onDecrement}> - </button>
-      </div>
-    );
-  }
-});
-
-
-
-class App extends React.Component {
-  getInitialState() {
-    return {count: this.props.maxCounters};
-  }
- onIncrement() {
-   this.setState({'count': this.state.count-1});
-   },
-  onDecrement() {
-   this.setState({'count': this.state.count-1});
-  }
-  
-  render() {
-    return (
-      <div>
-        <button onClick={this.onIncrement}> + </button>
-        <button onClick={this.onDecrement}> - </button>
-      </div>
-    );
-  }
+        mul.toString = function() {
+            return res;
+        }
+        return mul;
+    }
 }
 
-ReactDOM.render(<App maxCounters={3} />, document.getElementById('app'));
+function multiply(a) {
+    var res = a;
+    return function mul(b) {
+        res = res * b;
+        Function.prototype.toString = function() {
+            return res;
+        }
+        return mul;
+    }
+}
 
-
+// recursive:
+function recursive(n) {
+    n = parseInt(n);
+    console.log(n);
+    if(n <= 1) return 1;
+    return n * recursive(n-1);
+}

@@ -21,30 +21,21 @@ request.end('&last_name=doe');
 
 
 
-  NodeJS ODM (Object Document Mapper) model?
+NodeJS ODM (Object Document Mapper) model?
+--------------------------------------------
+
+A.	console.log('user %s of age %d has name %j', ['johndoe', 30, {first: 'John', last: 'Doe'}]);
+B.	console.log('user %s of age %d has name %j', 'johndoe', 30, {first: 'John', last: 'Doe'});
+C.	console.log({format: 'user %s of age %d has name %j', args: ['johndoe', 30, {first: 'John', last: 'Doe'}]});
+D.	console.log('johndoe', 30, {first: 'John', last: 'Doe'});
+E.	console.log({user:'johndoe', age:30, name:{first: 'John', last: 'Doe'}, inspect: function(){return JSON.stringify(this)}});
 
 
-
-	A.	console.log('user %s of age %d has name %j', ['johndoe', 30, {first: 'John', last: 'Doe'}]);
- 
-	B.	console.log('user %s of age %d has name %j', 'johndoe', 30, {first: 'John', last: 'Doe'});
- 
-	C.	console.log({format: 'user %s of age %d has name %j', args: ['johndoe', 30, {first: 'John', last: 'Doe'}]});
- 
-	D.	console.log('johndoe', 30, {first: 'John', last: 'Doe'});
- 
-	E.	console.log({user:'johndoe', age:30, name:{first: 'John', last: 'Doe'}, inspect: function(){return JSON.stringify(this)}});
- 
-
-
-	A.	Reverse proxies provide enhanced error handling capability compared to cluster module.
-	B.	Many reverse proxies support sticky load balancing while cluster module does not.
-	C.	Reverse proxies provide means of communication between its worker processes while cluster module does not.
-	D.	Reverse proxies provide many additional services when compared to cluster module like url rewrites, response caching, optimized static file serving and ssl termination.
-	E.	Reverse proxy distribute load across machines while cluster module can distribute load across processes on same machine.
-Submit Answer	Skip Question
-
-
+A.	Reverse proxies provide enhanced error handling capability compared to cluster module.
+B.	Many reverse proxies support sticky load balancing while cluster module does not.
+C.	Reverse proxies provide means of communication between its worker processes while cluster module does not.
+D.	Reverse proxies provide many additional services when compared to cluster module like url rewrites, response caching, optimized static file serving and ssl termination.
+E.	Reverse proxy distribute load across machines while cluster module can distribute load across processes on same machine.
 
 
 
@@ -58,23 +49,21 @@ var output = fs.createWriteStream('file.txt.gz');
 ****
 
 Which of the following can be subsituted for **** to complete this code and pipe the input, gzip and output streams?
-	A.	output.pipe(gzip).pipe(input);
-	B.	input.pipe(gzip);
+A.	output.pipe(gzip).pipe(input);
+B.	input.pipe(gzip);
 gzip.pipe(output);
-	C.	input.pipe(gzip).pipe(output);
-	D.	output.pipe(gzip.pipe(input));
-	E.	input.pipe(gzip.pipe(output));
-
-
-	Which of the following commands can be used to locate and update any MongoDB document atomically using MongoDB client (when accessed concurrently by multiple clients)?
-	A.	db.collection.findAndModify();
-	B.	db.collection.save(db.collection.find());
-	C.	db.collection.update(db.collection.find());
-	D.	db.collection.update(db.collection.findOne());
-	E.	db.collection.save(db.collection.findOne());
+C.	input.pipe(gzip).pipe(output);
+D.	output.pipe(gzip.pipe(input));
+E.	input.pipe(gzip.pipe(output));
 
 
 
+Which of the following commands can be used to locate and update any MongoDB document atomically using MongoDB client (when accessed concurrently by multiple clients)?
+A.	db.collection.findAndModify();
+B.	db.collection.save(db.collection.find());
+C.	db.collection.update(db.collection.find());
+D.	db.collection.update(db.collection.findOne());
+E.	db.collection.save(db.collection.findOne());
 
 
 Which of the following are valid methods for scaling a NodeJS application across multiple machines?
@@ -86,9 +75,7 @@ Which of the following are valid methods for scaling a NodeJS application across
 
 
 
-
-
-	Which of the following is output by executing the NodeJS code below? (NOTE: the position parameter of the read and readSync function is passed as null, and data will be read from the current file position.)
+Which of the following is output by executing the NodeJS code below? (NOTE: the position parameter of the read and readSync function is passed as null, and data will be read from the current file position.)
 
 // file.txt contains 0123456789
 var fs = require('fs');
@@ -190,26 +177,25 @@ undefined : error executing streaming console logger
 
 
 
-
-
 Which of the following are valid calls to function test, given the JavaScript code snippet below? 
 
 function test(a, b) { 
     return a+b; 
 }
-	A.	test.call(this, [2, 3]);
-	B.	test.call(2, 3);
-	C.	test.apply(this, [2, 3]);
-	D.	test.call(this, 2, 3);
-	E.	test.apply(this, 2, 3);
+
+A.	test.call(this, [2, 3]);
+B.	test.call(2, 3);
+C.	test.apply(this, [2, 3]);
+D.	test.call(this, 2, 3);
+E.	test.apply(this, 2, 3);
 
 
 
 
 
 
-	When a low bandwidth client connects to a server and the server needs to do flow control on the stream, which of the following are valid NodeJS implementations? (NOTE: Assume that both client and server are inside a secured company network.)
-	A.	Using pause/resume with the code below:
+When a low bandwidth client connects to a server and the server needs to do flow control on the stream, which of the following are valid NodeJS implementations? (NOTE: Assume that both client and server are inside a secured company network.)
+A.	Using pause/resume with the code below:
 require('http').createServer( function(request, response) {
     var readable_stream = require('fs').createReadStream('data.json');
     readable_stream.on('data', function(data) {
@@ -227,7 +213,7 @@ require('http').createServer( function(request, response) {
     });
 }).listen(8080);
  
-	B.	Using pause/resume with the code below:
+B.	Using pause/resume with the code below:
 require('http').createServer( function(request, response) {
     var readable_stream = require('fs').createReadStream('data.json');
     readable_stream.on('data', function(data) {
@@ -245,19 +231,19 @@ require('http').createServer( function(request, response) {
     });
 }).listen(8080);
  
-	C.	Using pipe with the code below:
+C.	Using pipe with the code below:
 require('http').createServer(function(request, response) {
     var readable_stream = require('fs').createReadStream('data.json');
     readable_stream.pipe(response);
 }).listen(8080);
  
-	D.	Using pipe with the code below:
+D.	Using pipe with the code below:
 require('http').createServer(function(request, response) {
     var readable_stream = require('fs').createReadStream('data.json');
     response.pipe(readable_stream);
 }).listen(8080);
  
-	E.	Using pipe with the code below:
+E.	Using pipe with the code below:
 require('http').createServer(function(request, response) {
     var readable_stream = require('fs').createReadStream('data.json');
     response.pipe(request);
@@ -268,25 +254,20 @@ require('http').createServer(function(request, response) {
 
 
 Which of the following are valid locations of the NodeJS config file which npm will read?
-	A.	$PROJECT/package.json
-	B.	$HOME/.npmrc
-	C.	$PROJECT/.npmrc
-	D.	$PROJECT/node_modules/.npmrc
-	E.	$PREFIX/etc/npmrc
-
-
+A.	$PROJECT/package.json
+B.	$HOME/.npmrc
+C.	$PROJECT/.npmrc
+D.	$PROJECT/node_modules/.npmrc
+E.	$PREFIX/etc/npmrc
 
 
 
 Which of the following are valid methods of scaling the NodeJS application?
-	A.	Load balancing using cloned worker instances that are created using cluster module
-	B.	Hosting the application at datacenter in geographical location nearest to target users
-	C.	Restricting the use of third party modules with NodeJS app
-	D.	Decomposing application by functionality or service, as in microservices architecture
-	E.	Using cloud infrastructure	
-
-
-
+A.	Load balancing using cloned worker instances that are created using cluster module
+B.	Hosting the application at datacenter in geographical location nearest to target users
+C.	Restricting the use of third party modules with NodeJS app
+D.	Decomposing application by functionality or service, as in microservices architecture
+E.	Using cloud infrastructure
 
 
 Which of the following can be substituted for the ***** in the NodeJS code below to result in an assertion error?
@@ -308,16 +289,12 @@ assert.timeout(new Promise(function(resolve){
 }), 1000, 'The function should return within 1000 ms.').catch(function(err) {
     setTimeout(function() { throw err; });
 });
- 
-	A.	resolve("message");
- 
-	B.	setTimeout(function() { resolve("message"); });
- 
-	C.	setTimeout(function() { resolve("message"); }, 800);
- 
-	D.	setTimeout(function() { resolve("message"); }, 2000);
- 
-	E.	setTimeout(function() { resolve("message"); }, 1200);
+
+A.	resolve("message");
+B.	setTimeout(function() { resolve("message"); });
+C.	setTimeout(function() { resolve("message"); }, 800);
+D.	setTimeout(function() { resolve("message"); }, 2000);
+E.	setTimeout(function() { resolve("message"); }, 1200);
 
 
 
@@ -328,7 +305,7 @@ Which of the following JavaScript coded snippets can take as input the three par
      Input parameter 1 = "(z + p)" 
      Input parameter 2 = "8" 
      Input parameter 3 = "8"
-	A.	window.onload = window.onload = function()  { 
+A.	window.onload = window.onload = function()  {
   var func = prompt("Enter function body in parenthesis"); 
   var z = prompt("Enter value of z"); 
   var p = prompt("Enter value of p"); 
@@ -338,7 +315,8 @@ Which of the following JavaScript coded snippets can take as input the three par
   alert(result); 
 } 
 
- 	B.	window.onload = function () { 
+
+B.	window.onload = function () {
   var func = prompt("Enter function body in parenthesis"); 
   var z = prompt("Enter value of z"); 
   var p = prompt("Enter value of p"); 
@@ -347,7 +325,8 @@ Which of the following JavaScript coded snippets can take as input the three par
   var result = newFun(z, p); 
 } 
 
- 	C.	window.onload = function () { 
+
+C.	window.onload = function () {
   var func = prompt("Enter function body in parenthesis"); 
   var a = prompt("Enter value of z"); 
   var b = prompt("Enter value of p"); 
@@ -356,7 +335,7 @@ Which of the following JavaScript coded snippets can take as input the three par
   var result = newFun(a, b); 
 } 
 
- 	D.	window.onload = function () { 
+D.	window.onload = function () {
   var func = prompt("Enter function body in parenthesis"); 
   var z = prompt("Enter value of z"); 
   var p = prompt("Enter value of p"); 
@@ -365,7 +344,8 @@ Which of the following JavaScript coded snippets can take as input the three par
   alert(newFun(z, p)); 
 } 
 
- 	E.	window.onload = function() { 
+
+E.	window.onload = function() {
   var func = prompt("Enter function body in parenthesis"); 
   var z = prompt("Enter value of z"); 
   var p = prompt("Enter value of p"); 
@@ -374,10 +354,7 @@ Which of the following JavaScript coded snippets can take as input the three par
   var result = newFun(z, p);} 
 
 
-
-
-
-  A developer needs to create a JavaScript function to validate that the user has entered a valid email address in textbox txtemail prior to the form being submitted. Using the JavaScript runValidate() function and the HTML form shown below, which of the following statements are correct?
+A developer needs to create a JavaScript function to validate that the user has entered a valid email address in textbox txtemail prior to the form being submitted. Using the JavaScript runValidate() function and the HTML form shown below, which of the following statements are correct?
 
 Function:
 <script language="javascript" type="text/javascript" >
@@ -412,18 +389,16 @@ Form:
 
 
 
-
-
-	When querying large data sets using streaming API of the NodeJS mysql module, which of the following can be correctly substituted for ***** in the code below for handling the event emitted on receiving each data row?
+When querying large data sets using streaming API of the NodeJS mysql module, which of the following can be correctly substituted for ***** in the code below for handling the event emitted on receiving each data row?
 
 query.on('*****', function(arg1) {
     console.log('Received row: ' + JSON.stringify(arg1));    
 });
-	A.	received
-	B.	result
-	C.	readable
-	D.	columns
-	E.	data
+A.	received
+B.	result
+C.	readable
+D.	columns
+E.	data
 
 
 
@@ -479,8 +454,3 @@ var server = connect()
     .listen(authenticate)
     .listen(function (request, response) { response.end('Authenticated!'); })    
     .listen(3000);
- 
-
-
-
-	

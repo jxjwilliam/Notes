@@ -37,20 +37,3 @@ Events are dispatched first at the event target, then propagate up through the t
 (-) JavaScript
 (1) Prototypal Inheritance (objects without classes, and prototype delegation, aka OLOO — Objects Linking to Other Objects), and
 (2) Functional Programming (enabled by lambdas with closure)
-
-(function() {
-    var genericObject = {
-        bar : "Hello World",
-        get_bar : function() {
-            return this.bar;
-        }
-    };
-    var customObject = Object.create(genericObject);
-    customObject.bar = "Aloha folks!";
-    document.write(customObject.get_bar() + '<br />'); //outputs: "Aloha folks"
-    delete customObject.bar;
-    document.write(customObject.get_bar()); //fallbacks to the prototype's value, outputs: "Hello World"
-})();
-
-
-///////////////

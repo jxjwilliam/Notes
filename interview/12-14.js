@@ -24,8 +24,6 @@ RR('hello')();
 
 ////////////////////
 
-
-
 var seconds, minutes, hours, divider, currentTimeString;
 seconds = minutes = hours = currentTimeString = 0;
 divider = 10;
@@ -68,6 +66,6 @@ var o = {key: 'val'};
 (o.constructor === Object) && console.log('its an object');
 (o.constructor === Number || s.constructor === Boolean) && console.log('this won\'t run');
 
-If you use throw together with try and catch, you can control program flow and generate custom error messages.
+//If you use throw together with try and catch, you can control program flow and generate custom error messages.
 
 

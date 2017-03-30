@@ -29,9 +29,9 @@ console.log('finished processing items');
 ////////////////////////////////////////////
 // Fix popup code, so when close it there is no redirection
 // Should have this layout:
-<a class=“popup” href=“http://….”>
-  <span class=“close-button”>X</span>
-</a>
+//<a class=“popup” href=“http://….”>
+//  <span class=“close-button”>X</span>
+//</a>
 
 
 a.onClick = function(e) {

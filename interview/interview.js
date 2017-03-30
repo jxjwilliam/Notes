@@ -131,3 +131,18 @@ Array.prototype.unique6 = function()
 		return p;
 	}, []); 
 };
+
+
+(function() {
+	var genericObject = {
+		bar : "Hello World",
+		get_bar : function() {
+			return this.bar;
+		}
+	};
+	var customObject = Object.create(genericObject);
+	customObject.bar = "Aloha folks!";
+	document.write(customObject.get_bar() + '<br />'); //outputs: "Aloha folks"
+	delete customObject.bar;
+	document.write(customObject.get_bar()); //fallbacks to the prototype's value, outputs: "Hello World"
+})();

@@ -1,4 +1,4 @@
-import chai, { expect, assert } from 'chai';
+import chai, { expect, assert } from 'chai.spec';
 import sinon from 'sinon';
 import path from 'path';
 import fs from  'fs';

@@ -1,5 +1,6 @@
 ANGULAR QUESTIONS
- 
+------------------
+
 What are some Angular pitfalls you're run into in the past?
 -  pass value or object reference, $watch() and $digest(), ng-repeat one-time binding using ::, cleanup using '$destroy' event, isolate scopes 
 
@@ -13,11 +14,22 @@ What is difference between factory and a service?
 - Factory is mostly preferable in all cases. It can be used when you have constructor function which needs to be instantiated in different controllers. Service is a kind of Singleton Object. The Object return from Service will be same for all controller.
 
 Explain relationship between parent and child scope?
- - like a DOM tree. use $broadcast to dispatches event downwards to all child scopes, and use $emit to dispatche event upwards through the parent scope hierarchy.
+- like a DOM tree. use $broadcast to dispatches event downwards to all child scopes, and use $emit to dispatche event upwards through the parent scope hierarchy.
  
 
+ngPattern
+- An interceptor is a middleware code where all the $http requests go through. The interceptor is a factory that are registered in $httpProvider.
+
+ngBind, ngModel, ngClass, ngIf
+
+
+How would you specify that a scope variable should have one-time binding only?
+- ::
+
+
+
 JAVASCRIPT QUESTIONS
- 
+----------------------
 How would you rate your JS skills on scale of 1 to 10?
  - 9
 
@@ -38,7 +50,7 @@ Can you explain what an arrow function is and what's unique about it?
  
  
 HTML QUESTIONS
- 
+----------------
 How do you convert website designs to actual webpages?
  - use PSD.
 

@@ -14,7 +14,7 @@ var equilibrium = solution(ary);
 console.log('equilibrium:', equilibrium); // [1,3,7]
 
 
-///// FAILED
+///// FAILED !!!
 
 function decreasing(ary) {
   for(var i=0; i<ary.length-1; i++) {
@@ -28,7 +28,8 @@ function increasing(ary) {
   }
   return i-1; 
 }
-undefined
+
+
 function solution(A) {
     // write your code in JavaScript (Node.js 6.4.0)
     var deep = [];

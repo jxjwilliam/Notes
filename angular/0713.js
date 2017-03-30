@@ -49,26 +49,8 @@ app.service('ExampleService', function () {
         return 'Hello' + world;
     };
 });
-//This returns new ExampleService() on injection.
 
 
-/**
- <h4>ng-repeat :filter by single field</h4>
-
- Search by color: <input type="text" ng-model="search.color">
- <div ng-repeat="product in products | filter:search">
- <div ng-repeat="thing in things | filter: { properties: { title: title_filter, id: id_filter } }">
- */
-
-
-/**
- <h4>Submit form on pressing Enter with AngularJS</h4>
- http://stackoverflow.com/questions/15417125/submit-form-on-pressing-enter-with-angularjs
-
- <input ng-keyup="$event.keycode===13 && myFunc()" .../>
- */
-
-//<input key-bind="{ enter: 'go()', esc: 'clear()' }" type="text"></input>
 myModule
     .constant('keyCodes', {
         esc: 27,
@@ -121,18 +103,6 @@ angular.module('app').directive('ngEnter', function () {
     }
 });
 
-
-/**
- <h4>What is the difference between required and ng-required?</h4>
-
- <input required> and <input ng-required="true"> are essentially the same thing
- */
-
-
-/**
- * angular bower module
- * https://github.com/mgcrea/angular-strap/blob/master/src/navbar/navbar.js
- */
 (function () {
     'use strict';
     angular.module('william.navbar', [])
@@ -155,17 +125,6 @@ angular.module('app').directive('ngEnter', function () {
         });
 }());
 
-/**
- * <h4>AngularJS - Create a directive that uses ng-model</h4>
- *
- You only need ng-model when you need to access the model's $viewValue or $modelValue.
- See NgModelController. And in that case, you would use require: '^ngModel'.
- */
-
-
-/**
- * $parse, $scope.$eval
- */
 app.directive('myDirective', function( $parse, $log ) {
     return function( scope, el, attrs ) {
         // parse the "my-attr" attribute value into a function
@@ -182,3 +141,86 @@ app.directive('myDirective', function( $parse, $log ) {
         })
     }
 });
+
+
+///////////////////////////
+
+function MyCtrl($scope) {
+    $scope.email = "";
+
+    $scope.$watch("email", function(newValue, oldValue) {
+        if ($scope.email.length > 0) {
+            console.log("User has started writing into email");
+        }
+    });
+}
+
+<div ng-controller="MyCtrl">
+    <button ng-click="hide()">Hide element</button>
+    <p ng-hide="isHide">Hide or Show</p>
+</div>
+
+function MyCtrl($scope) {
+    $scope.isHide = false;
+    $scope.hide = function() {
+        $scope.isHide = true;
+    }
+}
+
+myApp.factory('$exceptionHandler', function($log, ErrorService) {
+    return function(exception, cause) {
+
+        if (console) {
+            $log.error(exception);
+            $log.error(cause);
+        }
+
+        ErrorService.send(exception, cause);
+    };
+});
+
+
+var directiveDefinitionObject = {
+    priority: 0,
+    template: '<div></div>', // or // function(tElement, tAttrs) { ... },
+    // or
+    // templateUrl: 'directive.html', // or // function(tElement, tAttrs) { ... },
+    transclude: false,
+    restrict: 'A',
+    templateNamespace: 'html',
+    scope: false,
+    controller: function($scope, $element, $attrs, $transclude, otherInjectables) { ... },
+    controllerAs: 'stringIdentifier',
+    bindToController: false,
+    require: 'siblingDirectiveName', // or // ['^parentDirectiveName', '?optionalDirectiveName', '?^optionalParent'],
+    compile: function compile(tElement, tAttrs, transclude) {
+        return {
+            pre: function preLink(scope, iElement, iAttrs, controller) { ... },
+            post: function postLink(scope, iElement, iAttrs, controller) { ... }
+        }
+        // or
+        // return function postLink( ... ) { ... }
+    },
+    // or
+    // link: {
+    //  pre: function preLink(scope, iElement, iAttrs, controller) { ... },
+    //  post: function postLink(scope, iElement, iAttrs, controller) { ... }
+    // }
+    // or
+    // link: function postLink( ... ) { ... }
+};
+
+
+angular.factory('testService', function($q) {
+    return {
+        getName: function() {
+            var deferred = $q.defer();
+
+            testApi.getName().then(function(name) {
+                deferred.resolve(name);
+            });
+            return deferred.promise;
+        }
+    }
+});
+

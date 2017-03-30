@@ -58,7 +58,7 @@ const { Component } = React;
 
 const FilterLink = ({filter, currentFilter, children}) => {
   if (filter === currentFilter) {
-    return <span>{children}<\/span>
+    return <span>{children}</span>
   }
   return (
     <a href='#'
@@ -70,7 +70,7 @@ const FilterLink = ({filter, currentFilter, children}) => {
       })
     }}>
       {children}
-    <\/a>
+    </a>
   );
 };
 
@@ -123,7 +123,7 @@ class TodoApp extends Component {
                 {todo.text}
               </li>
           )}
-        <\/ul>
+        </ul>
         <p>
           Show:
           {" "}
@@ -138,8 +138,8 @@ class TodoApp extends Component {
           <FilterLink filter="SHOW_COMPLETED" currentFilter={visibilityFilter}>
             Completed
           </FilterLink>
-        <\/p>
-      <\/div>
+        </p>
+      </div>
     );
   }
 }
