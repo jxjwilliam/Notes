@@ -1,3 +1,0 @@
-pure function: reducer
-
-// impure function: DB-options

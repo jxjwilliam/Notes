@@ -1,8 +1,8 @@
-1. li du
+1. 粒度
 import events from jquery;
 so no need to download tooltips, carousel, popup modal, grid etc.
 
-2. tong gou
+2. 同构
 Server-side & Client-side use JavaScript.
 React-native, FLUX.
 
