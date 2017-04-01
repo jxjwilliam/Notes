@@ -1,0 +1,119 @@
+typeof foo !== 'undefined' && foo !== null
+
+bower-installer
+superagent
+
+
+-------------------------------------------------------
+## Run:
+webpack -w
+mongod &
+npm start
+
+this.setState({
+	comment: Object.assign({}, this.comment, {
+		body: 'react-not-copy, just duplicate'
+	})
+})
+
+-------------------------------------------------------
+
+
+## Youtube fullstack-reace-redux (https://www.youtube.com/watch?v=1MOJdx_yZ0w&t=7043s):
+
+1. express scaffolder
+2. after express web-server is running:
+
+-> npm install mongoose
+
+-> mkdir models
+
+-> create Comment.js, Zone.js: 
+var ZoneSchema = mongoose.Schema({...}) 
+
+module.exports = mongoose.model('CommentSchema', CommentSchema);
+
+
+-> mkdir controllers (zoneController, commentsController)
+
+var Zone = require('../models/Zone');
+find: function (params, callback) {
+	Zone.find(params, (err, zones)=> {
+		if(err) return callback(err);
+		return callback(null, zones)
+	})
+}
+findById
+create
+update
+delete
+
+-> in web-server:
+router.get('/:resource', (req, res, next) => {
+	var resource = req.params.resource
+	zoneController.find(req.params, (err, zones) => {
+		if (err) {
+			return res.json(err)
+		}
+		return res.json(zones)
+	})
+});
+
+localhost:3000/api/zone
+localhost:3000/api/zone/12345
+
+
+## 
+class App extends Component {
+	render() {
+		return(
+			<div><Zones/><Comments/></div>
+		)
+	}
+}
+ReactDOM.render(<App/>, document.getElementById('app'))
+
+class Zones extends Component {
+	constructor() {
+		this.state = {
+			list: []
+		}
+	}
+	componentDidMount() {
+		superagent
+		.get('/api/zone')
+		.query(null)
+		.set('Accept', 'application/json')
+		.end((err, res) => {
+			if(err) throw err;
+			this.setState({
+				zones: res.body.results.map(x=>{
+					return {}
+				})
+			})
+		})
+	}
+	render() {
+		const listItems = this.state.list.map((zone, i) => {
+			return (<li key={i}><Zone currentZone={zone}/></li>)
+		})
+		return (
+			<ol>{listItems}</ol>
+		)
+	}
+}
+class Zone extend Component {
+	render() {
+		return (
+			<div><a>{this.props.currentZone.zipCode}</a></div>
+		)
+	}
+}
+
+<CreateZone onCreate={this.addZone.bind(this)} />
+then:
+this.props.onCreate(zone)
+-------------------------------------------------------
+
+webpack:
+devtool: '#source-map'

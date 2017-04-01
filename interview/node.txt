@@ -18,7 +18,7 @@ var request = http.request(clientOptions, function(response) {
 request.write('first_name=john');
 request.end('&last_name=doe');
  
-
+--------------------------------------------------------------------------
 
 
 NodeJS ODM (Object Document Mapper) model?
@@ -37,8 +37,7 @@ C.	Reverse proxies provide means of communication between its worker processes w
 D.	Reverse proxies provide many additional services when compared to cluster module like url rewrites, response caching, optimized static file serving and ssl termination.
 E.	Reverse proxy distribute load across machines while cluster module can distribute load across processes on same machine.
 
-
-
+--------------------------------------------------------------------------
 
 A developer is writing a NodeJS program to zip a file using the code below:
 
@@ -56,9 +55,10 @@ C.	input.pipe(gzip).pipe(output);
 D.	output.pipe(gzip.pipe(input));
 E.	input.pipe(gzip.pipe(output));
 
+--------------------------------------------------------------------------
 
-
-Which of the following commands can be used to locate and update any MongoDB document atomically using MongoDB client (when accessed concurrently by multiple clients)?
+Which of the following commands can be used to locate and update any MongoDB document atomically using MongoDB client
+(when accessed concurrently by multiple clients)?
 A.	db.collection.findAndModify();
 B.	db.collection.save(db.collection.find());
 C.	db.collection.update(db.collection.find());
@@ -73,9 +73,10 @@ Which of the following are valid methods for scaling a NodeJS application across
 	D.	Using the NodeJS module child_process
 	E.	Using the NodeJS module http-proxy and seaport
 
+--------------------------------------------------------------------------
 
-
-Which of the following is output by executing the NodeJS code below? (NOTE: the position parameter of the read and readSync function is passed as null, and data will be read from the current file position.)
+Which of the following is output by executing the NodeJS code below? (NOTE: the position parameter of the read and
+readSync function is passed as null, and data will be read from the current file position.)
 
 // file.txt contains 0123456789
 var fs = require('fs');
@@ -108,10 +109,10 @@ synchronous file read (5): 01234
 synchronous file read (5): 56789
  
 
+--------------------------------------------------------------------------
 
-
-
-A NodeJS developer writes a custom assertion regexEqual to match the expected regex to the actual value using the code snippet below. Which of the following are correct examples of using this assertion?
+A NodeJS developer writes a custom assertion regexEqual to match the expected regex to the actual value using
+the code snippet below. Which of the following are correct examples of using this assertion?
 
 var assert = require('assert');
 assert.regexEqual = function(actual, regex, message) {
@@ -126,8 +127,7 @@ assert.regexEqual = function(actual, regex, message) {
 	E.	assert.regexEqual('{ name: "John Doe" }', /John/, 'The name should contain John');
 
 
-
-
+--------------------------------------------------------------------------
 
 A NodeJS developer is writing a streaming console logger that extends from writable stream to log data to console. Which of the following is the correct output of executing the code below?
 
@@ -176,6 +176,7 @@ error : error executing streaming console logger
 undefined : error executing streaming console logger
 
 
+--------------------------------------------------------------------------
 
 Which of the following are valid calls to function test, given the JavaScript code snippet below? 
 
@@ -189,10 +190,7 @@ C.	test.apply(this, [2, 3]);
 D.	test.call(this, 2, 3);
 E.	test.apply(this, 2, 3);
 
-
-
-
-
+--------------------------------------------------------------------------
 
 When a low bandwidth client connects to a server and the server needs to do flow control on the stream, which of the following are valid NodeJS implementations? (NOTE: Assume that both client and server are inside a secured company network.)
 A.	Using pause/resume with the code below:
@@ -250,8 +248,7 @@ require('http').createServer(function(request, response) {
 }).listen(8080);
 
 
-
-
+--------------------------------------------------------------------------
 
 Which of the following are valid locations of the NodeJS config file which npm will read?
 A.	$PROJECT/package.json
@@ -261,6 +258,7 @@ D.	$PROJECT/node_modules/.npmrc
 E.	$PREFIX/etc/npmrc
 
 
+--------------------------------------------------------------------------
 
 Which of the following are valid methods of scaling the NodeJS application?
 A.	Load balancing using cloned worker instances that are created using cluster module
@@ -269,6 +267,8 @@ C.	Restricting the use of third party modules with NodeJS app
 D.	Decomposing application by functionality or service, as in microservices architecture
 E.	Using cloud infrastructure
 
+
+--------------------------------------------------------------------------
 
 Which of the following can be substituted for the ***** in the NodeJS code below to result in an assertion error?
 
@@ -297,14 +297,14 @@ D.	setTimeout(function() { resolve("message"); }, 2000);
 E.	setTimeout(function() { resolve("message"); }, 1200);
 
 
-
-
+--------------------------------------------------------------------------
 
 Which of the following JavaScript coded snippets can take as input the three parameters shown below and then return "88" in a popup window? 
 
      Input parameter 1 = "(z + p)" 
      Input parameter 2 = "8" 
      Input parameter 3 = "8"
+
 A.	window.onload = window.onload = function()  {
   var func = prompt("Enter function body in parenthesis"); 
   var z = prompt("Enter value of z"); 
@@ -313,8 +313,7 @@ A.	window.onload = window.onload = function()  {
   var newFun = new Function("z", "p", func2); 
   var result = newFun(z, p); 
   alert(result); 
-} 
-
+}
 
 B.	window.onload = function () {
   var func = prompt("Enter function body in parenthesis"); 
@@ -344,7 +343,6 @@ D.	window.onload = function () {
   alert(newFun(z, p)); 
 } 
 
-
 E.	window.onload = function() {
   var func = prompt("Enter function body in parenthesis"); 
   var z = prompt("Enter value of z"); 
@@ -354,7 +352,11 @@ E.	window.onload = function() {
   var result = newFun(z, p);} 
 
 
-A developer needs to create a JavaScript function to validate that the user has entered a valid email address in textbox txtemail prior to the form being submitted. Using the JavaScript runValidate() function and the HTML form shown below, which of the following statements are correct?
+--------------------------------------------------------------------------
+
+A developer needs to create a JavaScript function to validate that the user has entered a valid email address in textbox
+txtemail prior to the form being submitted. Using the JavaScript runValidate() function and the HTML form shown below,
+which of the following statements are correct?
 
 Function:
 <script language="javascript" type="text/javascript" >
@@ -388,8 +390,10 @@ Form:
 	E.	If the Validate function fails, txtemail will receive the focus.
 
 
+--------------------------------------------------------------------------
 
-When querying large data sets using streaming API of the NodeJS mysql module, which of the following can be correctly substituted for ***** in the code below for handling the event emitted on receiving each data row?
+When querying large data sets using streaming API of the NodeJS mysql module, which of the following can be correctly substituted
+for ***** in the code below for handling the event emitted on receiving each data row?
 
 query.on('*****', function(arg1) {
     console.log('Received row: ' + JSON.stringify(arg1));    
@@ -398,13 +402,13 @@ A.	received
 B.	result
 C.	readable
 D.	columns
-E.	data
+E.	data    (x)
 
 
+--------------------------------------------------------------------------
 
-
-
-A developer is implementing basic authentication for the web application using the Connect middleware in NodeJS. The mock function to authenticate provided below allows the user admin with password admin to authenticate successfully.
+A developer is implementing basic authentication for the web application using the Connect middleware in NodeJS.
+The mock function to authenticate provided below allows the user admin with password admin to authenticate successfully.
 
 function authenticate(request, response, next) {
     function sendUnauthorized(){
@@ -431,7 +435,7 @@ var server = connect()
     .listen(authenticate)    
     .listen(3000);
  
-	B.	var connect = require('connect');
+(x)	B.	var connect = require('connect');
 var server = connect()
     .use(authenticate)
     .use(function (request, response) { response.end('Authenticated!'); })
